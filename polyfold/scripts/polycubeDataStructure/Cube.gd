@@ -1,14 +1,21 @@
+class_name Cube
 extends Node3D
 
-class_name Cube
+## Cube identifier
+var _id : int
 
-var id : int # Identifiant du cube
-@export var face_scene : PackedScene
-var faces : Array[Face] # Tableau des faces
-var pos : Vector3 # Position au sein du polycube
+## Reference to the face scene (prefab)
+@export var _face_scene : PackedScene
 
+## Array of faces
+var _faces : Array[Face]
+
+## The cube's position inside the polycube
+var _pos : Vector3
+
+## Creates and stores a cube's face from its FaceEnum identifier
 func createFace(face_side: Face.FaceEnum) -> void:
-	var face_pos : Vector3 = pos
+	var face_pos : Vector3 = _pos
 	var face_rot : Vector3 = Vector3(0,0,0)
 	
 	match face_side :
@@ -29,10 +36,10 @@ func createFace(face_side: Face.FaceEnum) -> void:
 			face_pos += Vector3(-0.5,0.5,0)
 			face_rot = Vector3(0,0,90)
 	
-	var face : Face = face_scene.instantiate() as Face
-	face.id_cube = id
+	var face : Face = _face_scene.instantiate() as Face
+	face.id_cube = _id
 	face.side = face_side
 	face.position = face_pos
 	face.rotation_degrees = face_rot
 	add_child(face)
-	faces.append(face)
+	_faces.append(face)
