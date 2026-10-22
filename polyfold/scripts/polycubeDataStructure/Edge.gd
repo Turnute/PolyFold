@@ -8,7 +8,7 @@ class_name Edge
 
 # Énumérateur de sa position au sein d'une face
 enum EdgeEnum { TOP, BOTTOM, LEFT, RIGHT }
-var side: EdgeEnum
+var side : EdgeEnum
 
 # A la création, l'edge est invisible et non-interactible
 func _ready() -> void:
