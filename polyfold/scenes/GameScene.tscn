@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bbk418eewmy02"]
 
 [ext_resource type="Script" uid="uid://c5pvo78f4aof4" path="res://scripts/camera_3d.gd" id="1_vh257"]
+[ext_resource type="PackedScene" uid="uid://1lrt3yilpr45" path="res://prefabs/face.tscn" id="2_xy3my"]
 
 [node name="Node3D" type="Node3D" unique_id=453980180]
 
@@ -9,3 +10,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29971004, 2.2668831)
 script = ExtResource("1_vh257")
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D" unique_id=1962511222]
+
+[node name="Face" parent="." unique_id=503661519 instance=ExtResource("2_xy3my")]

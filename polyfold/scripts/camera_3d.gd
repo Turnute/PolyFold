@@ -43,8 +43,9 @@ func _input(event : InputEvent):
 			
 			if event.button_index == MOUSE_BUTTON_LEFT:
 				var godot_object = getRaycastObject()
-				#Do your thing
-
+				var parent = godot_object["collider"].get_parent()
+				if is_instance_of(parent, Face):
+					parent.select()
 
 #Update the position of the camera that depend on the pitch, yawn and the actuel target
 func updatePositionCamera() -> void :
