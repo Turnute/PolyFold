@@ -27,9 +27,9 @@ var _adj_faces : Array[int]
 ## Reference to the face's MeshInstance3D
 @onready var _mesh: MeshInstance3D = $StaticBody3D/MeshInstance3D
 ## The face's mesh material
-@onready var _material: StandardMaterial3D = mesh.get_active_material(0).duplicate()
+@onready var _material: StandardMaterial3D = _mesh.get_active_material(0).duplicate()
 ## The original color of a face
-@onready var _ogColor: Color = material.albedo_color
+@onready var _ogColor: Color = _material.albedo_color
 ## The color a face is supposed to be when selected (highlighting feature)
 var _selectionColor: Color = Color(1, 1, 0)
 
