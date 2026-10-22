@@ -23,7 +23,7 @@ const RAY_LENGTH = 1000
 
 func _ready() -> void:
 	## Init the pitch value so it not at the same height than the target
-	pitch = clampf(pitch, deg_to_rad(10.0), deg_to_rad(80.0))	
+	pitch = clampf(pitch, deg_to_rad(10.0), deg_to_rad(80.0))
 	updatePositionCamera()
 
 
@@ -48,13 +48,14 @@ func _input(event : InputEvent):
 
 #Update the position of the camera that depend on the pitch, yawn and the actuel target
 func updatePositionCamera() -> void :
-	var offset = Vector3(
-		cos(pitch) * sin(yaw),
-		sin(pitch),
-		cos(pitch) * cos(yaw)
-	) * distance
-	global_position = (offset+ target.global_position)
-	look_at(target.global_position,Vector3.UP)
+	if target :
+		var offset = Vector3(
+			cos(pitch) * sin(yaw),
+			sin(pitch),
+			cos(pitch) * cos(yaw)
+		) * distance
+		global_position = (offset+ target.global_position)
+		look_at(target.global_position,Vector3.UP)
 	
 		
 func _unhandled_input(event: InputEvent) -> void:
