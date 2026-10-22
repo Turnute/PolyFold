@@ -16,8 +16,24 @@ config/icon="res://icon.svg"
 
 [display]
 
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=3
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[importer_defaults]
+
+csv_translation={
+"compress": 1,
+"delimiter": 0,
+"unescape_keys": false,
+"unescape_translations": true
+}
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://localization/translations.en.translation", "res://localization/translations.es.translation", "res://localization/translations.fr.translation")
 
 [physics]
 
