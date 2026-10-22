@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://3whsw10muhw2"]
+
+[ext_resource type="FontFile" uid="uid://cufs7q6thkobs" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="1_dbi6r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g7dw2"]
+bg_color = Color(0.8980392, 0.93333334, 0.9843137, 1)
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="FontVariation" id="FontVariation_7tu0c"]
+base_font = ExtResource("1_dbi6r")
+variation_opentype = {
+2003265652: 700
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_l2mhy"]
+font = SubResource("FontVariation_7tu0c")
+font_size = 35
+font_color = Color(0.33333334, 0.33333334, 0.33333334, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_dbi6r"]
+base_font = ExtResource("1_dbi6r")
+variation_opentype = {
+2003265652: 400
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_yty7p"]
+font = SubResource("FontVariation_dbi6r")
+font_size = 20
+font_color = Color(0.33333334, 0.33333334, 0.33333334, 0.69803923)
+
+[node name="Control" type="Control" unique_id=1342354581]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=355342233]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -350.0
+offset_right = 350.0
+offset_bottom = 125.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g7dw2")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=756785789]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="Level" type="Label" parent="PanelContainer/MarginContainer" unique_id=148288098]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Niveau 0"
+label_settings = SubResource("LabelSettings_l2mhy")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer" unique_id=1072777452]
+layout_mode = 2
+theme_override_constants/margin_top = 40
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/MarginContainer" unique_id=1492957799]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "5 cubes"
+label_settings = SubResource("LabelSettings_yty7p")

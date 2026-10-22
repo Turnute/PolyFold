@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bdqqw8wj4jjxh"
-path="res://.godot/imported/polycube.png-77716081e72f7f1b8ee68caeb3b42284.ctex"
+path="res://.godot/imported/polycube.png-c45838ea3d1cd80f1fe161a04ecf8884.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/img/polycube.png"
-dest_files=["res://.godot/imported/polycube.png-77716081e72f7f1b8ee68caeb3b42284.ctex"]
+source_file="res://assets/img/polycube.png"
+dest_files=["res://.godot/imported/polycube.png-c45838ea3d1cd80f1fe161a04ecf8884.ctex"]
 
 [params]
 
