@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 
 class_name Cube
 
@@ -17,21 +17,22 @@ func createFace(face_side: Face.FaceEnum) -> void:
 		Face.FaceEnum.BOTTOM :
 			face_rot = Vector3(180,0,0)
 		Face.FaceEnum.LEFT :
-			face_pos =+ Vector3(0,0.5,-0.5)
+			face_pos += Vector3(0,0.5,-0.5)
 			face_rot = Vector3(-90,0,0)
 		Face.FaceEnum.RIGHT :
-			face_pos =+ Vector3(0,0.5,0.5)
+			face_pos += Vector3(0,0.5,0.5)
 			face_rot = Vector3(90,0,0)
 		Face.FaceEnum.FRONT :
-			face_pos =+ Vector3(0.5,0.5,0)
+			face_pos += Vector3(0.5,0.5,0)
 			face_rot = Vector3(0,0,-90)
 		Face.FaceEnum.BACK :
-			face_pos =+ Vector3(-0.5,0.5,0)
+			face_pos += Vector3(-0.5,0.5,0)
 			face_rot = Vector3(0,0,90)
 	
 	var face : Face = face_scene.instantiate() as Face
+	face.id_cube = id
 	face.side = face_side
 	face.position = face_pos
-	face.rotation = face_rot
+	face.rotation_degrees = face_rot
 	add_child(face)
 	faces.append(face)

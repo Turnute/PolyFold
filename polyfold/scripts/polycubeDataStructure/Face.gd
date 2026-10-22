@@ -6,7 +6,7 @@ class_name Face
 var id_cube : int
 
 # Énumérateur de sa position au sein d'un cube
-enum FaceEnum { TOP, BOTTOM, LEFT, RIGHT, FRONT, BACK }
+enum FaceEnum { NONE, TOP, BOTTOM, LEFT, RIGHT, FRONT, BACK }
 var side : FaceEnum
 
 # Identifiant unique de la face
