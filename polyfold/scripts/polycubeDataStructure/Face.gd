@@ -30,17 +30,17 @@ var selectionColor: Color = Color(1, 1, 0)
 func _ready() -> void:
 	mesh.set_surface_override_material(0, material)
 	
-	create_edge(Edge.EdgeEnum.TOP, Vector3(0.5,0,0))
-	create_edge(Edge.EdgeEnum.BOTTOM, Vector3(-0.5,0,0))
-	create_edge(Edge.EdgeEnum.LEFT, Vector3(0,0,-0.5))
-	create_edge(Edge.EdgeEnum.RIGHT, Vector3(0,0,0.5))
+	createEdge(Edge.EdgeEnum.TOP, Vector3(0.5,0,0))
+	createEdge(Edge.EdgeEnum.BOTTOM, Vector3(-0.5,0,0))
+	createEdge(Edge.EdgeEnum.LEFT, Vector3(0,0,-0.5))
+	createEdge(Edge.EdgeEnum.RIGHT, Vector3(0,0,0.5))
 
-func select_face() -> void:
+func select() -> void:
 	print("Face sélectionnée !")
 	material.albedo_color = selectionColor
 	switchEdges()
 
-func unselect_face() -> void:
+func unselect() -> void:
 	material.albedo_color = ogColor
 	switchEdges()
 
@@ -48,7 +48,7 @@ func switchEdges() -> void:
 	for e in edges:
 		e.switch()
 
-func create_edge(edge_side: Edge.EdgeEnum, pos: Vector3) -> void:
+func createEdge(edge_side: Edge.EdgeEnum, pos: Vector3) -> void:
 	var edge : Edge = edge_scene.instantiate() as Edge
 	edge.side = edge_side
 	edge.position = pos
