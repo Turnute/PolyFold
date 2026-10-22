@@ -60,7 +60,7 @@ func updatePositionCamera() -> void :
 		
 func _unhandled_input(event: InputEvent) -> void:
 	## Click on eitheir (shift + mouse left click) or (shift + click mouse wheel) to rotate the camera 
-	if event is InputEventMouseMotion and ((Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and (event.keycode == KEY_SHIFT))or (Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE) and (event.shift_pressed))):
+	if event is InputEventMouseMotion and ((Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and (event.shift_pressed))or (Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE) and (event.shift_pressed))):
 		yaw -= event.relative.x * sensibilite
 		pitch -= event.relative.y * sensibilite
 		pitch = clampf(pitch, deg_to_rad(10.0), deg_to_rad(80.0))
