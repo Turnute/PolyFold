@@ -41,4 +41,31 @@ static func loadPolycube(data: PolycubeData) -> Polycube:
 	for cube in cubes:
 		polycube.initCube(cube._id)
 
+	# TODO: Initialize face adjacency
+
 	return polycube
+
+
+static func generatePolycube(cube_nb: int, max_adj: int) -> Polycube :
+	if (cube_nb < 1): return null
+	
+	var data : PolycubeData = PolycubeData.new()
+	
+	var queue = []
+	var visited = []
+	queue.push_back(Vector3i(0,0,0))
+	visited.push_back(queue.back())
+	
+	while (cube_nb > 0):
+		data.cube_matrix.push_back(queue.pop_front())
+		var adj = getAdj(data.cube_matrix.back())
+		
+		for i in range(max_adj):
+			var idx = randi() % 6 # Allows for repeat numbers => not necessarily of length max_adj
+			if (!visited.has(adj[idx])) :
+				visited.push_back(adj[idx])
+				queue.push_back(adj[idx])
+		
+		cube_nb -= 1
+	
+	return loadPolycube(data)
