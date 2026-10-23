@@ -61,7 +61,7 @@ func switchEdges() -> void:
 ## Creates and stores an edge
 func createEdge(edge_side: Edge.EdgeEnum, pos: Vector3) -> void:
 	var edge : Edge = _edge_scene.instantiate() as Edge
-	edge.side = edge_side
+	edge._side = edge_side
 	edge.position = pos
 	add_child(edge)
 	_edges.append(edge)
