@@ -1,56 +1,67 @@
+class_name Face
 extends Node3D
 
-class_name Face
+## Identifier of the cube we belong to
+var _id_cube : int
 
-# Identifiant du cube auquel on appartient
-var id_cube : int
-
-# Énumérateur de sa position au sein d'un cube
+## Enumerator of the face's position inside a cube
 enum FaceEnum { NONE, TOP, BOTTOM, LEFT, RIGHT, FRONT, BACK }
-var side : FaceEnum
+## Enumerator of the face's position inside a cube
+var _side : FaceEnum
 
-# Identifiant unique de la face
-var id_face: int:
+## A face's unique identifier. Equals to id_cube*10 + side
+var _id_face: int:
 	get:
-		return id_cube * 10 + side
+		return _id_cube * 10 + _side
 
-# Arêtes de la face
-var edges : Array[Edge]
-@export var edge_scene: PackedScene
+## A reference to the Edge scene (prefab)
+@export var _edge_scene: PackedScene = preload("res://prefabs/edge.tscn")
 
-# Identifiants des faces adjacentes
-var adj_faces : Array[int]
+## The face's edges
+var _edges : Array[Edge]
 
-# Gestion de la couleur de la face
-@onready var mesh: MeshInstance3D = $StaticBody3D/MeshInstance3D
-@onready var material: StandardMaterial3D = mesh.get_active_material(0).duplicate()
-@onready var ogColor: Color = material.albedo_color
-var selectionColor: Color = Color(1, 1, 0)
+## This face's adjancy list. Containts the unique identifiers of all
+## neighbouring faces (or -1 if disconnected).
+var _adj_faces : Array[int]
 
+## Reference to the face's MeshInstance3D
+@onready var _mesh: MeshInstance3D = $StaticBody3D/MeshInstance3D
+## The face's mesh material
+@onready var _material: StandardMaterial3D = _mesh.get_active_material(0).duplicate()
+## The original color of a face
+@onready var _ogColor: Color = _material.albedo_color
+## The color a face is supposed to be when selected (highlighting feature)
+var _selectionColor: Color = Color(1, 1, 0)
+
+## _ready() method: set the face's material and creates its edges
 func _ready() -> void:
-	mesh.set_surface_override_material(0, material)
+	_mesh.set_surface_override_material(0, _material)
 	
 	createEdge(Edge.EdgeEnum.TOP, Vector3(0.5,0,0))
 	createEdge(Edge.EdgeEnum.BOTTOM, Vector3(-0.5,0,0))
 	createEdge(Edge.EdgeEnum.LEFT, Vector3(0,0,-0.5))
 	createEdge(Edge.EdgeEnum.RIGHT, Vector3(0,0,0.5))
 
+## Called when a face is selected. Highlights it and reveals its edges.
 func select() -> void:
 	print("Face sélectionnée !")
-	material.albedo_color = selectionColor
+	_material.albedo_color = _selectionColor
 	switchEdges()
 
+## Called when a face is unselected. Removes highlighting and hides its edges.
 func unselect() -> void:
-	material.albedo_color = ogColor
+	_material.albedo_color = _ogColor
 	switchEdges()
 
+## Switches the face's edges visibility
 func switchEdges() -> void:
-	for e in edges:
+	for e in _edges:
 		e.switch()
 
+## Creates and stores an edge
 func createEdge(edge_side: Edge.EdgeEnum, pos: Vector3) -> void:
-	var edge : Edge = edge_scene.instantiate() as Edge
+	var edge : Edge = _edge_scene.instantiate() as Edge
 	edge.side = edge_side
 	edge.position = pos
 	add_child(edge)
-	edges.append(edge)
+	_edges.append(edge)

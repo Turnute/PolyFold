@@ -1,29 +1,30 @@
+class_name Edge
 extends StaticBody3D
 
-class_name Edge
+## Reference to the edge's MeshInstance
+@onready var _mesh : MeshInstance3D = $MeshInstance3D
+## Reference to the edge's CollisionShape
+@onready var _col : CollisionShape3D = $CollisionShape3D
 
-# Référence aux objets de la scène
-@onready var mesh : MeshInstance3D = $MeshInstance3D
-@onready var col : CollisionShape3D = $CollisionShape3D
-
-# Énumérateur de sa position au sein d'une face
+## Enumerator of the edge's position inside a face
 enum EdgeEnum { TOP, BOTTOM, LEFT, RIGHT }
-var side : EdgeEnum
+## Enumerator of the edge's position inside a face
+var _side : EdgeEnum
 
-# A la création, l'edge est invisible et non-interactible
+## on _ready(), an edge is invisible and non interactible
 func _ready() -> void:
-	mesh.visible = false
-	col.disabled = true
+	_mesh.visible = false
+	_col.disabled = true
 
-# Sélection d'un edge
+## Selecting an edge
 func select() -> void:
 	print("Selected " + get_parent().name)
 
-# Déselection d'un edge (clic dans le vide)
+## Unselecting an edge
 func unselect() -> void:
 	print("Unelected " + get_parent().name)
 
-# Switch de la visibilité et interactibilité de l'edge
+## Switch the edge's visibility
 func switch() -> void:
-	mesh.visible = !mesh.visible
-	col.disabled = !col.disabled
+	_mesh.visible = !_mesh.visible
+	_col.disabled = !_col.disabled
