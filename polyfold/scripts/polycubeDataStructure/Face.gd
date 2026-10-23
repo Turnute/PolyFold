@@ -101,3 +101,12 @@ func rotateAroundEdge(edge : Edge, angle : float) -> void:
 	t.origin = pivot + rotation * (t.origin - pivot)
 	t.basis = rotation * t.basis
 	global_transform = t
+
+func getNeighbouringFace(edge : Edge) -> int:
+	return _adj_faces[edge._side]
+
+func disconnectFromEdge(edge : Edge) -> void:
+	for i in range(4):
+		if i == edge._side:
+			pass
+		else: _adj_faces[i] = -1
