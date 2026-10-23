@@ -53,3 +53,12 @@ func initCube(id : int) -> void:
 ## Checks if the polycube can be unfolded
 func canUnfold() -> bool:
 	return true;
+
+func getAveragePos() -> Vector3i : 
+	if _cubes.is_empty(): return Vector3i.ZERO
+	var result = Vector3i.ZERO
+	for cube in _cubes : 
+		result += cube
+	return result / _cubes.size()
+		
+	

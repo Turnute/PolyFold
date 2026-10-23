@@ -54,15 +54,20 @@ func updatePositionCamera() -> void :
 			sin(pitch),
 			cos(pitch) * cos(yaw)
 		) * distance
-		global_position = (offset+ target.global_position)
-		look_at(target.global_position,Vector3.UP)
+		var position_target : Vector3
+		if target.has_method("getAveragePos"):
+			position_target = target.getAveragePos()
+		else : 
+			position_target = target.global_position
+		global_position = (offset+ position_target)
+		look_at(position_target,Vector3.UP)
 	
 		
 func _unhandled_input(event: InputEvent) -> void:
 	## Click on eitheir (shift + mouse left click) or (shift + click mouse wheel) to rotate the camera 
 	if event is InputEventMouseMotion and ((Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and (event.shift_pressed))or (Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE) and (event.shift_pressed))):
 		yaw -= event.relative.x * sensibilite
-		pitch -= event.relative.y * sensibilite
+		pitch += event.relative.y * sensibilite
 		pitch = clampf(pitch, deg_to_rad(10.0), deg_to_rad(80.0))
 		updatePositionCamera()
 
