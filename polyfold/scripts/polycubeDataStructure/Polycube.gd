@@ -53,3 +53,6 @@ func initCube(id : int) -> void:
 ## Checks if the polycube can be unfolded
 func canUnfold() -> bool:
 	return true;
+
+func getFace(id_cube : int, side : Face.FaceEnum) -> Face :
+	return _cubes[id_cube]._faces[side-1]

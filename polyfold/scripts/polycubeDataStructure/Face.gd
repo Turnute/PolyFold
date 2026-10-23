@@ -61,24 +61,24 @@ func switchEdges() -> void:
 ## Creates and stores an edge
 func createEdge(edge_side: Edge.EdgeEnum, pos: Vector3) -> void:
 	var edge : Edge = _edge_scene.instantiate() as Edge
-	edge.side = edge_side
+	edge._side = edge_side
 	edge.position = pos
 	add_child(edge)
-	edges.append(edge)
+	_edges.append(edge)
 
 func getInfo() -> Array[int] :
-	return [side, id_cube]
+	return [_side, _id_cube]
 
 func getOppositeEdge(e : Edge) -> Edge :
-	match e.side :
+	match e._side :
 		Edge.EdgeEnum.TOP :
-			return edges[1]
+			return _edges[1]
 		Edge.EdgeEnum.BOTTOM :
-			return edges[0]
+			return _edges[0]
 		Edge.EdgeEnum.LEFT :
-			return edges[3]
+			return _edges[3]
 		Edge.EdgeEnum.RIGHT :
-			return edges[2]
+			return _edges[2]
 		_ :
 			print("ERROR! Unidentified Edge!")
 			return null
@@ -87,7 +87,7 @@ func rotateAroundEdge(edge : Edge, angle : float) -> void:
 	var pivot : Vector3 = edge.global_position
 	var local_axis: Vector3
 
-	match edge.side:
+	match edge._side:
 		Edge.EdgeEnum.TOP, Edge.EdgeEnum.BOTTOM:
 			local_axis = Vector3.FORWARD
 		Edge.EdgeEnum.LEFT, Edge.EdgeEnum.RIGHT:

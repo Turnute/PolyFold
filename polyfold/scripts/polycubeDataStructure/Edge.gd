@@ -22,7 +22,7 @@ func select(dir : UnfoldAction.DirEnum) -> UnfoldAction:
 	if get_parent().has_method("getInfo"):
 		info = get_parent().getInfo()
 
-	return UnfoldAction.createAction(info[1], info[0], side, dir)
+	return UnfoldAction.createAction(info[1], info[0], _side, dir)
 
 ## Unselecting an edge
 func unselect() -> void:

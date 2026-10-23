@@ -15,8 +15,8 @@ static func executeMove(action : UnfoldAction, pol : Polycube) -> void:
 	
 	action.print() # DEBUG
 	
-	var folding_face : Face = pol.cubes[action._id_cube].faces[action._face-1]
-	var folding_edge : Edge = folding_face.edges[action._edge]
+	var folding_face : Face = pol.getFace(action._id_cube, action._face)
+	var folding_edge : Edge = folding_face._edges[action._edge]
 	var opposite_edge : Edge = folding_face.getOppositeEdge(folding_edge)
 	var rot : float
 	if action._dir == UnfoldAction.DirEnum.FWD:
