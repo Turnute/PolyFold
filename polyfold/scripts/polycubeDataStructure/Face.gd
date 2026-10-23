@@ -14,6 +14,11 @@ var _id_face: int:
 	get:
 		return _id_cube * 10 + _side
 
+static func faceIdToCubeIDWithSide(faceId : int) -> Array[int] :
+	var side : int = faceId%10
+	var cube : int = (faceId - side)/10
+	return [cube, side]
+
 ## A reference to the Edge scene (prefab)
 @export var _edge_scene: PackedScene = preload("res://prefabs/edge.tscn")
 
@@ -102,11 +107,25 @@ func rotateAroundEdge(edge : Edge, angle : float) -> void:
 	t.basis = rotation * t.basis
 	global_transform = t
 
-func getNeighbouringFace(edge : Edge) -> int:
-	return _adj_faces[edge._side]
+func getNeighbouringFace(edge : Edge.EdgeEnum) -> int:
+	return _adj_faces[edge]
 
-func disconnectFromEdge(edge : Edge) -> void:
+## Disconnects all faces in this face's adjency list except the one specified
+## by an edge.
+## Returns an array containing the id of all disconnected faces.
+func disconnectFromEdge(edge : Edge) -> Array[int]:
+	var disconnected_faces : Array[int]
 	for i in range(4):
 		if i == edge._side:
 			pass
-		else: _adj_faces[i] = -1
+		else:
+			disconnected_faces.append(getNeighbouringFace(i))
+			_adj_faces[i] = -1
+	return disconnected_faces
+
+func disconnectFace(faceId : int) -> bool:
+	for face in _adj_faces :
+		if face == faceId :
+			face = -1
+			return true
+	return false
