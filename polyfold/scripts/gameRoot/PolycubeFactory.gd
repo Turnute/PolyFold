@@ -5,12 +5,9 @@ extends Node
 ## Function which gets positions of adjacent cubes by position
 static func getAdj(pos: Vector3i) -> Array[Vector3i]:
 	var adj : Array[Vector3i] = []
-	adj.append(pos + Vector3i(0,1,0))
-	adj.append(pos + Vector3i(0,-1,0))
-	adj.append(pos + Vector3i(0,0,1))
-	adj.append(pos + Vector3i(0,0,-1))
-	adj.append(pos + Vector3i(1,0,0))
-	adj.append(pos + Vector3i(-1,0,0))
+	
+	for i in range(1,7):
+		adj.append(pos + Face.DIRECTIONS[i])
 	
 	return adj 
 
@@ -40,5 +37,7 @@ static func loadPolycube(data: PolycubeData) -> Polycube:
 	
 	for cube in cubes:
 		polycube.initCube(cube._id)
+
+	polycube.initFaceAdj()
 
 	return polycube

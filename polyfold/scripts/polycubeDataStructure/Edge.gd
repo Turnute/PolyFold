@@ -7,7 +7,19 @@ extends StaticBody3D
 @onready var _col : CollisionShape3D = $CollisionShape3D
 
 ## Enumerator of the edge's position inside a face
-enum EdgeEnum { TOP, BOTTOM, LEFT, RIGHT }
+enum EdgeEnum {
+	TOP,	# TOP (+X)
+	BOTTOM,	# BOTTOM (-X)
+	LEFT,	# LEFT (-Z)
+	RIGHT	# RIGHT (+Z)
+}
+## The edge direction (local to face)
+const DIRECTIONS = [
+	Vector3i.RIGHT,		# TOP (+X)
+	Vector3i.LEFT,		# BOTTOM (-X)
+	Vector3i.FORWARD,	# LEFT (-Z)
+	Vector3i.BACK 		# RIGHT (+Z)
+]
 ## Enumerator of the edge's position inside a face
 var _side : EdgeEnum
 

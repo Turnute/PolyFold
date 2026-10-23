@@ -27,4 +27,7 @@ static func executeMove(action : UnfoldAction, pol : Polycube) -> void:
 	# sauf la face adjacente à l'edge opposé
 	
 	var disconnected_faces : Array[int] = folding_face.disconnectFromEdge(opposite_edge)
-	# for f
+	for f_id in disconnected_faces :
+		var f : Face = pol.getFaceFromFaceId(f_id)
+		if f == null: print("no face from ", f_id)
+		f.disconnectFace(folding_face._id_face)

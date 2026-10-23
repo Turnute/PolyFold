@@ -5,7 +5,24 @@ extends Node3D
 var _id_cube : int
 
 ## Enumerator of the face's position inside a cube
-enum FaceEnum { NONE, TOP, BOTTOM, LEFT, RIGHT, FRONT, BACK }
+enum FaceEnum { 
+	NONE, 	# NONE
+	TOP, 	# TOP
+	BOTTOM,	# BOTTOM
+	LEFT, 	# LEFT (-Z)
+	RIGHT, 	# RIGHT (+Z)
+	FRONT, 	# FRONT (+X)
+	BACK 	# BACK (-X)
+}
+const DIRECTIONS = [ 
+	Vector3i.ZERO, 		# NONE
+	Vector3i.UP, 		# TOP
+	Vector3i.DOWN,		# BOTTOM
+	Vector3i.FORWARD, 	# LEFT (-Z)
+	Vector3i.BACK, 		# RIGHT (+Z)
+	Vector3i.RIGHT, 	# FRONT (+X)
+	Vector3i.LEFT 		# BACK (-X)
+]
 ## Enumerator of the face's position inside a cube
 var _side : FaceEnum
 
@@ -41,11 +58,8 @@ var _selectionColor: Color = Color(1, 1, 0)
 ## _ready() method: set the face's material and creates its edges
 func _ready() -> void:
 	_mesh.set_surface_override_material(0, _material)
-	
-	createEdge(Edge.EdgeEnum.TOP, Vector3(0.5,0,0))
-	createEdge(Edge.EdgeEnum.BOTTOM, Vector3(-0.5,0,0))
-	createEdge(Edge.EdgeEnum.LEFT, Vector3(0,0,-0.5))
-	createEdge(Edge.EdgeEnum.RIGHT, Vector3(0,0,0.5))
+	for i in range(4):
+		createEdge(i, Vector3(Edge.DIRECTIONS[i]) * 0.5)
 
 ## Called when a face is selected. Highlights it and reveals its edges.
 func select() -> void:
@@ -123,9 +137,9 @@ func disconnectFromEdge(edge : Edge) -> Array[int]:
 			_adj_faces[i] = -1
 	return disconnected_faces
 
-func disconnectFace(faceId : int) -> bool:
-	for face in _adj_faces :
-		if face == faceId :
-			face = -1
+func disconnectFace(faceId: int) -> bool:
+	for i in range(_adj_faces.size()):
+		if _adj_faces[i] == faceId:
+			_adj_faces[i] = -1
 			return true
 	return false
