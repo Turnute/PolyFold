@@ -43,3 +43,10 @@ func createFace(face_side: Face.FaceEnum) -> void:
 	face.rotation_degrees = face_rot
 	add_child(face)
 	_faces.append(face)
+
+## Returns the face corresponding to the searched side
+func getFace(face_side: Face.FaceEnum) -> Face:
+	for face in _faces:
+		if face._side == face_side:
+			return face
+	return null

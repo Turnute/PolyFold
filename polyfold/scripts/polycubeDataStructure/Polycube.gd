@@ -55,4 +55,4 @@ func canUnfold() -> bool:
 	return true;
 
 func getFace(id_cube : int, side : Face.FaceEnum) -> Face :
-	return _cubes[id_cube]._faces[side-1]
+	return _cubes[id_cube].getFace(side)
