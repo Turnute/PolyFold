@@ -57,9 +57,11 @@ func canUnfold() -> bool:
 func getFace(id_cube : int, side : Face.FaceEnum) -> Face :
 	return _cubes[id_cube].getFace(side)
 
-func getAveragePos() -> Vector3i : 
+func getAveragePos() -> Vector3 : 
 	if _cubes.is_empty(): return Vector3i.ZERO
-	var result = Vector3i.ZERO
-	for cube in _cubes : 
-		result += cube
+	var result = Vector3.ZERO
+	for cube in _cubes :
+		var c_pos : Vector3 = cube._pos
+		result += c_pos
+		
 	return result / _cubes.size()
