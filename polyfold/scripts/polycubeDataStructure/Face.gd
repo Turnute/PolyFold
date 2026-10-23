@@ -54,3 +54,39 @@ func createEdge(edge_side: Edge.EdgeEnum, pos: Vector3) -> void:
 	edge.position = pos
 	add_child(edge)
 	edges.append(edge)
+
+func getInfo() -> Array[int] :
+	return [side, id_cube]
+
+func getOppositeEdge(e : Edge) -> Edge :
+	match e.side :
+		Edge.EdgeEnum.TOP :
+			return edges[1]
+		Edge.EdgeEnum.BOTTOM :
+			return edges[0]
+		Edge.EdgeEnum.LEFT :
+			return edges[3]
+		Edge.EdgeEnum.RIGHT :
+			return edges[2]
+		_ :
+			print("ERROR! Unidentified Edge!")
+			return null
+
+func rotateAroundEdge(edge : Edge, angle : float) -> void:
+	var pivot : Vector3 = edge.global_position
+	var local_axis: Vector3
+
+	match edge.side:
+		Edge.EdgeEnum.TOP, Edge.EdgeEnum.BOTTOM:
+			local_axis = Vector3.FORWARD
+		Edge.EdgeEnum.LEFT, Edge.EdgeEnum.RIGHT:
+			local_axis = Vector3.RIGHT
+		_:
+			return
+
+	var axis: Vector3 = (global_transform.basis * local_axis).normalized()
+	var rotation := Basis(axis, deg_to_rad(angle))
+	var t: Transform3D = global_transform
+	t.origin = pivot + rotation * (t.origin - pivot)
+	t.basis = rotation * t.basis
+	global_transform = t

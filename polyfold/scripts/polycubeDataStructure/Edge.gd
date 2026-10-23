@@ -16,8 +16,12 @@ func _ready() -> void:
 	col.disabled = true
 
 # Sélection d'un edge
-func select() -> void:
-	print("Selected " + get_parent().name)
+func select(dir : UnfoldAction.DirEnum) -> UnfoldAction:
+	var info = [0,0]
+	if get_parent().has_method("getInfo"):
+		info = get_parent().getInfo()
+
+	return UnfoldAction.createAction(info[1], info[0], side, dir)
 
 # Déselection d'un edge (clic dans le vide)
 func unselect() -> void:

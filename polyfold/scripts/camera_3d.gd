@@ -1,7 +1,7 @@
 extends Camera3D
 
 ## The target that the camera will focus on
-@export var target : Node3D
+@export var target : Polycube
 @onready var raycast = $RayCast3D
 
 ## Angle of ratation of both x and y axis
@@ -43,9 +43,22 @@ func _input(event : InputEvent):
 			
 			if event.button_index == MOUSE_BUTTON_LEFT:
 				var godot_object = getRaycastObject()
-				var parent = godot_object["collider"].get_parent()
-				if is_instance_of(parent, Face):
-					parent.select()
+				print(godot_object)
+				if godot_object:
+					var selected_object = godot_object["collider"]
+					var parent = selected_object.get_parent()
+					if is_instance_of(selected_object, Edge):
+						# TODO : Déterminer la direction
+						# dynamiquement, en fonction du déplacement
+						# de la souris par rapport à la face sélectionnée
+						var action : UnfoldAction = selected_object.select(UnfoldAction.DirEnum.FWD)
+						Unfolder.executeMove(action, target) # TODO : passer le Polycube courant
+					elif is_instance_of(parent, Face):
+						parent.select()
+						
+				else:
+					# TODO : déselectionner toutes les faces
+					pass
 
 #Update the position of the camera that depend on the pitch, yawn and the actuel target
 func updatePositionCamera() -> void :
