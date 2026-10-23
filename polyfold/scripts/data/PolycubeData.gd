@@ -1,4 +1,4 @@
-class_name Polycube_Data
+class_name PolycubeData
 extends Resource
 
 # Représentation abstraite d'un polycube

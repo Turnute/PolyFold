@@ -5,13 +5,13 @@ extends Node3D
 var _id : int
 
 ## Reference to the face scene (prefab)
-@export var _face_scene : PackedScene
+@export var _face_scene : PackedScene = preload("res://prefabs/face.tscn")
 
 ## Array of faces
 var _faces : Array[Face]
 
 ## The cube's position inside the polycube
-var _pos : Vector3
+var _pos : Vector3i
 
 ## Creates and stores a cube's face from its FaceEnum identifier
 func createFace(face_side: Face.FaceEnum) -> void:
@@ -37,8 +37,8 @@ func createFace(face_side: Face.FaceEnum) -> void:
 			face_rot = Vector3(0,0,90)
 	
 	var face : Face = _face_scene.instantiate() as Face
-	face.id_cube = _id
-	face.side = face_side
+	face._id_cube = _id
+	face._side = face_side
 	face.position = face_pos
 	face.rotation_degrees = face_rot
 	add_child(face)

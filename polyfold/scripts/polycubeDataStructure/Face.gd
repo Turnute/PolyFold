@@ -15,7 +15,7 @@ var _id_face: int:
 		return _id_cube * 10 + _side
 
 ## A reference to the Edge scene (prefab)
-@export var _edge_scene: PackedScene
+@export var _edge_scene: PackedScene = preload("res://prefabs/edge.tscn")
 
 ## The face's edges
 var _edges : Array[Edge]

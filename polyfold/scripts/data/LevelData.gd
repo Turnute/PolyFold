@@ -1,4 +1,4 @@
-class_name Level_Data
+class_name LevelData
 extends Resource
 
 # Représente un niveau de jeu
@@ -7,4 +7,4 @@ extends Resource
 @export var name : String
 @export var difficulty : int
 @export var high_score : int
-@export var polycube_file : Polycube_Data
+@export var polycube_file : PolycubeData
