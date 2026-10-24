@@ -65,17 +65,21 @@ func _ready() -> void:
 func select() -> void:
 	print("Face sélectionnée !")
 	_material.albedo_color = _selectionColor
-	switchEdges()
+	showEdges(true)
 
 ## Called when a face is unselected. Removes highlighting and hides its edges.
 func unselect() -> void:
 	_material.albedo_color = _ogColor
-	switchEdges()
+	showEdges(false)
 
 ## Switches the face's edges visibility
 func switchEdges() -> void:
 	for e in _edges:
 		e.switch()
+
+func showEdges(vis: bool) -> void:
+	for e in _edges:
+		e.showEdge(vis)
 
 ## Creates and stores an edge
 func createEdge(edge_side: Edge.EdgeEnum, pos: Vector3) -> void:
@@ -132,9 +136,11 @@ func disconnectFromEdge(edge : Edge) -> Array[int]:
 	for i in range(4):
 		if i == edge._side:
 			pass
-		else:
+		if _adj_faces[i] != -1:
 			disconnected_faces.append(getNeighbouringFace(i))
-			_adj_faces[i] = -1
+		
+		_adj_faces[i] = -1
+		
 	return disconnected_faces
 
 func disconnectFace(faceId: int) -> bool:

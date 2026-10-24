@@ -18,16 +18,19 @@ static func executeMove(action : UnfoldAction, pol : Polycube) -> void:
 	var folding_face : Face = pol.getFace(action._id_cube, action._face)
 	var folding_edge : Edge = folding_face._edges[action._edge]
 	var opposite_edge : Edge = folding_face.getOppositeEdge(folding_edge)
+	
+	# Translating direction to rotation value
 	var rot : float
 	if action._dir == UnfoldAction.DirEnum.FWD: rot = 90.0
 	else: rot = -90.0
+	
+	# Rotating the face using the opposite edge as the axis
 	folding_face.rotateAroundEdge(opposite_edge, rot)
 	
-	# TODO: mettre à jour la liste d'adjacence des faces : tout est déconnecté 
-	# sauf la face adjacente à l'edge opposé
-	
+	# Updating the faces' adjacency list. Everything is disconnected from the folding face
+	# except the one adjacent to the opposite edge.	
 	var disconnected_faces : Array[int] = folding_face.disconnectFromEdge(opposite_edge)
 	for f_id in disconnected_faces :
 		var f : Face = pol.getFaceFromFaceId(f_id)
 		if f == null: print("no face from ", f_id)
-		f.disconnectFace(folding_face._id_face)
+		else: f.disconnectFace(folding_face._id_face)

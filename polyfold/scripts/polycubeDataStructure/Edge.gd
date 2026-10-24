@@ -44,3 +44,7 @@ func unselect() -> void:
 func switch() -> void:
 	_mesh.visible = !_mesh.visible
 	_col.disabled = !_col.disabled
+
+func showEdge(vis : bool) -> void:
+	_mesh.visible = vis
+	_col.disabled = !vis

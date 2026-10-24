@@ -106,3 +106,16 @@ func getAveragePos() -> Vector3 :
 		result += c_pos
 		
 	return result / _cubes.size()
+
+func unselectAllFaces() -> void :
+	for cube in _cubes:
+		for face in cube._faces:
+			face.unselect()
+
+func selectFace(face_id : int) -> void :
+	var f : Face = getFaceFromFaceId(face_id)
+	f.select()
+
+func unselectFace(face_id : int) -> void :
+	var f : Face = getFaceFromFaceId(face_id)
+	f.unselect()

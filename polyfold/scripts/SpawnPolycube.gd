@@ -12,7 +12,8 @@ func init_polycube() -> void:
 	
 	polycube.name = "Polycube"
 	add_child(polycube)
-	camera.target = polycube
+	camera.target(polycube)
+	
 
 func _ready() -> void:
 	# TEMP: Init polycube
