@@ -1,119 +1,197 @@
 class_name FoldDragController
 extends Node
 
-var _camera: Camera3D
-var _target: Polycube
-## EDGE DRAGGING RELATED VARIABLES
-## The edge being dragged by the player
-var _drag_edge : Edge
-## The face the dragged edge belongs to (and thus the player moves around)
-var _drag_face : Face
-## The face's hinge: its opposite edge to the one being dragged.
-var _drag_hinge : Edge
-## The drag hinge's global position
-var _drag_pivot : Vector3
-## The face's initial transform
-var _drag_initial_transform : Transform3D
-## The angle at which the face is currently being rotated
-var _drag_angle : float = 0.0
-## The rotation's direction (see Face.rotateAroundEdge method)
-var _drag_axis : Vector3
-enum DragState { IDLE, DRAGGING, ANIMATING }
-var _drag_state : DragState = DragState.IDLE
-## The 3D Point found by the raycast
-var _drag_point : Vector3
-## Angle at which an unfolding is considered committed
-const COMMIT_ANGLE: float = 90.0
+enum DragState { IDLE, DRAGGING }
 
-## Begins the action of a an edge being dragged by the player.
-## Sets the dragging related variables.
-func beginEdgeDrag(selected_edge : Edge, hit_point: Vector3, cam : Camera3D, polycube : Polycube) -> void :
+## Minimum angle in degrees required to lock the direction.
+const DIRECTION_LOCK_ANGLE: float = 4.0
+## Minimum angle in degrees required to snap to a quarter turn.
+const SNAP_ENTER_ANGLE: float = 75.0
+## Minimum angle in degrees required to remain snapped.
+const SNAP_EXIT_ANGLE: float = 70.0
+
+## Camera used for screen projection.
+var _camera: Camera3D
+## Polycube receiving the committed move.
+var _target: Polycube
+## Edge grabbed by the player.
+var _drag_edge: Edge
+## Face being dragged.
+var _drag_face: Face
+## Opposite edge used as the hinge.
+var _drag_hinge: Edge
+## Initial world-space hinge position.
+var _drag_pivot: Vector3
+## Initial world-space face transform.
+var _drag_initial_transform: Transform3D
+## Current preview angle in degrees.
+var _drag_angle: float = 0.0
+## World-space rotation axis.
+var _drag_axis: Vector3
+## Current interaction state.
+var _drag_state: DragState = DragState.IDLE
+## World-space point grabbed at drag start.
+var _drag_point: Vector3
+## Locked direction: 0 unset, 1 positive, -1 negative.
+var _drag_direction: int = 0
+## Whether the preview is snapped to a quarter turn.
+var _drag_snapped: bool = false
+
+
+## Stores the initial drag geometry and resets the interaction.
+func beginEdgeDrag(selected_edge: Edge, hit_point: Vector3, cam: Camera3D, polycube: Polycube) -> void:
+	endEdgeDrag(false)
+
+	if not is_instance_valid(selected_edge):
+		return
+	if not is_instance_valid(cam) or not is_instance_valid(polycube):
+		return
+
+	var face: Face = selected_edge.get_parent() as Face
+	if not is_instance_valid(face):
+		return
+
+	var hinge: Edge = face.getOppositeEdge(selected_edge)
+	if not is_instance_valid(hinge):
+		return
+
+	var local_axis: Vector3
+	match hinge._side:
+		Edge.EdgeEnum.TOP, Edge.EdgeEnum.BOTTOM:
+			local_axis = Vector3.FORWARD
+		Edge.EdgeEnum.LEFT, Edge.EdgeEnum.RIGHT:
+			local_axis = Vector3.RIGHT
+		_:
+			return
+
 	_camera = cam
 	_target = polycube
 	_drag_edge = selected_edge
-	_drag_face = selected_edge.get_parent()
-	_drag_hinge = _drag_face.getOppositeEdge(selected_edge)
-	_drag_pivot = _drag_hinge.global_position
-	_drag_initial_transform = _drag_face.global_transform
-	_drag_angle = 0.0
-	_drag_state = DragState.DRAGGING
+	_drag_face = face
+	_drag_hinge = hinge
+	_drag_pivot = hinge.global_position
+	_drag_initial_transform = face.global_transform
 	_drag_point = hit_point
-	match selected_edge._side:
-		Edge.EdgeEnum.TOP, Edge.EdgeEnum.BOTTOM:
-			_drag_axis = Vector3.FORWARD
-		Edge.EdgeEnum.LEFT, Edge.EdgeEnum.RIGHT:
-			_drag_axis = Vector3.RIGHT
-	_drag_axis = (_drag_initial_transform.basis * _drag_axis).normalized()
+	_drag_axis = (_drag_initial_transform.basis * local_axis).normalized()
+	_drag_angle = 0.0
+	_drag_direction = 0
+	_drag_snapped = false
+	_drag_state = DragState.DRAGGING
 
-## Handles input for a drag:
-## if IDLE, returns false (and the rest or the input handling system continues as normal)
-## if DRAGGING, handles the dragging event
-## if ANIMATING, returns true (and blocks the rest of the input handling system while
-## the unfolding animation is unfinished)
-func dragEdgeInput(event : InputEvent) -> bool :
-	match _drag_state:
-		DragState.IDLE:
-			return false
-		DragState.DRAGGING:
-			# MOVING THE MOUSE -> DRAGGING THE OBJECT
-			if event is InputEventMouseMotion:
-					print("DRAGGING!") # DEBUG
-					var angle: float = findDragAngle(event.position)
-					setPreviewAngle(angle)
-					if absf(angle) >= COMMIT_ANGLE:
-						_drag_state = DragState.IDLE
-						# set the direction from the current angle
-						var direction : UnfoldAction.DirEnum
-						if angle > 0:
-							direction = UnfoldAction.DirEnum.FWD
-						else: direction = UnfoldAction.DirEnum.BWD
-						var action : UnfoldAction = _drag_edge.select(direction)
-						_drag_face.global_transform = _drag_initial_transform
-						Unfolder.executeMove(action, _target)
-						
-			
-			# RELEASING THE MOUSE BUTTON -> STOP DRAG
-			elif event is InputEventMouseButton:
-				if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
-					print("STOP!") # DEBUG
-					_drag_state = DragState.IDLE
-					setPreviewAngle(0.0)
-			
-			return true
-		DragState.ANIMATING:
-			return true # bloque les commandes dans _input
-		_:
-			return false
 
-## Rotates the dragged face at a certain angle to preview its unfolding action
-func setPreviewAngle(angle : float) -> void :
-	_drag_face.global_transform = _drag_initial_transform # reset l'angle de la face
+## Updates the preview and consumes input while dragging.
+func dragEdgeInput(event: InputEvent) -> bool:
+	if _drag_state == DragState.IDLE:
+		return false
+
+	if (
+		not is_instance_valid(_camera)
+		or not is_instance_valid(_target)
+		or not is_instance_valid(_drag_edge)
+		or not is_instance_valid(_drag_face)
+		or not is_instance_valid(_drag_hinge)
+	):
+		endEdgeDrag(false)
+		return true
+
+	if event is InputEventMouseMotion:
+		var raw_angle: float = findDragAngle(event.position)
+
+		if _drag_direction == 0 and absf(raw_angle) >= DIRECTION_LOCK_ANGLE:
+			if raw_angle > 0.0:
+				_drag_direction = 1
+			else:
+				_drag_direction = -1
+
+		if _drag_snapped:
+			_drag_snapped = absf(raw_angle) >= SNAP_EXIT_ANGLE
+		else:
+			_drag_snapped = absf(raw_angle) >= SNAP_ENTER_ANGLE
+
+		var preview_angle: float = raw_angle
+		if _drag_snapped:
+			preview_angle = 90.0 * _drag_direction
+
+		setPreviewAngle(preview_angle)
+
+	elif event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
+			endEdgeDrag(_drag_snapped)
+
+	return true
+
+
+## Ends the drag, committing only a snapped preview when requested.
+func endEdgeDrag(commit: bool) -> void:
+	if _drag_state == DragState.IDLE:
+		return
+
+	_drag_state = DragState.IDLE
+
+	if is_instance_valid(_drag_face):
+		# Restore the initial pose before applying the full quarter turn.
+		_drag_face.global_transform = _drag_initial_transform
+
+		if (
+			commit
+			and _drag_snapped
+			and _drag_direction != 0
+			and is_instance_valid(_drag_edge)
+			and is_instance_valid(_target)
+		):
+			var direction: UnfoldAction.DirEnum = UnfoldAction.DirEnum.FWD
+			if _drag_direction < 0:
+				direction = UnfoldAction.DirEnum.BWD
+
+			var action: UnfoldAction = _drag_edge.select(direction)
+			Unfolder.executeMove(action, _target)
+
+	_camera = null
+	_target = null
+	_drag_edge = null
+	_drag_face = null
+	_drag_hinge = null
+	_drag_angle = 0.0
+	_drag_direction = 0
+	_drag_snapped = false
+
+
+## Sets the preview angle relative to the initial pose.
+func setPreviewAngle(angle: float) -> void:
+	_drag_face.global_transform = _drag_initial_transform
 	_drag_face.rotateAroundEdge(_drag_hinge, angle)
 	_drag_angle = angle
 
-## Predicts the position of the drag_point (place where we clicked) after
-## a rotation of a certain angle
-func predictDragPoint(angle : float) -> Vector3 :
-	var offset : Vector3 = _drag_point - _drag_pivot
-	var rotation_basis : Basis = Basis(_drag_axis, deg_to_rad(angle))
-	var rotated_offset : Vector3 = rotation_basis * offset
-	
-	return _drag_pivot + rotated_offset
 
-## Finds and returns the angle at which predictDragPoint returns a position
-## closest to the mouse cursor
-func findDragAngle(mouse_pos : Vector2) -> float :
-	var best_angle : float = _drag_angle
-	var best_error : float = INF
-	
-	for angle in range(-90.0, 91.0, 2.0):
-		var point_3d : Vector3 = predictDragPoint(angle)
+## Returns the grabbed point's world position for an angle in degrees.
+func predictDragPoint(angle: float) -> Vector3:
+	var offset: Vector3 = _drag_point - _drag_pivot
+	var rotation_basis := Basis(_drag_axis, deg_to_rad(angle))
+	return _drag_pivot + rotation_basis * offset
+
+
+## Finds the closest projected angle within the locked direction.
+func findDragAngle(mouse_pos: Vector2) -> float:
+	var best_angle: float = _drag_angle
+	var best_error: float = INF
+	var min_angle: int = -90
+	var max_angle: int = 90
+
+	if _drag_direction > 0:
+		min_angle = 0
+	elif _drag_direction < 0:
+		max_angle = 0
+
+	for candidate in range(min_angle, max_angle + 1, 2):
+		var angle: float = float(candidate)
+		var point_3d: Vector3 = predictDragPoint(angle)
 		if _camera.is_position_behind(point_3d):
 			continue
-		var point_2d : Vector2 = _camera.unproject_position(point_3d)
-		var error : float = point_2d.distance_squared_to(mouse_pos)
+
+		var point_2d: Vector2 = _camera.unproject_position(point_3d)
+		var error: float = point_2d.distance_squared_to(mouse_pos)
 		if error < best_error:
 			best_angle = angle
 			best_error = error
-		
+
 	return best_angle
