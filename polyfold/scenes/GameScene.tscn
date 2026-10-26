@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c5pvo78f4aof4" path="res://scripts/camera_3d.gd" id="1_vh257"]
 [ext_resource type="Script" uid="uid://q8ap87w27sm3" path="res://scripts/SpawnPolycube.gd" id="1_xy3my"]
+[ext_resource type="Script" uid="uid://b6inn0km6nbue" path="res://scripts/FoldDragController.gd" id="3_cxv17"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xy3my"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -27,5 +28,8 @@ shadow_enabled = true
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2035737990]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29971004, 2.2668831)
 script = ExtResource("1_vh257")
+
+[node name="FoldDragController" type="Node" parent="Camera3D" unique_id=175849905]
+script = ExtResource("3_cxv17")
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D" unique_id=1962511222]
