@@ -1,6 +1,7 @@
 class_name PolycubeData
 extends Resource
 
-# Représentation abstraite d'un polycube
+## Abstract representation of a polycube.
 
+## Cube coordinates in the polycube grid.
 @export var cube_matrix : Array[Vector3i]

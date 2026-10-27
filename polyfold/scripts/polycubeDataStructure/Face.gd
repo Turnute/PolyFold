@@ -1,10 +1,10 @@
 class_name Face
 extends Node3D
 
-## Identifier of the cube we belong to
+## Identifier of the cube we belong to.
 var _id_cube : int
 
-## Enumerator of the face's position inside a cube
+## Enumerator of the face's position inside a cube.
 enum FaceEnum { 
 	NONE, 	# NONE
 	TOP, 	# TOP
@@ -14,6 +14,7 @@ enum FaceEnum {
 	FRONT, 	# FRONT (+X)
 	BACK 	# BACK (-X)
 }
+## Face normals in the cube local space.
 const DIRECTIONS = [ 
 	Vector3i.ZERO, 		# NONE
 	Vector3i.UP, 		# TOP
@@ -23,39 +24,40 @@ const DIRECTIONS = [
 	Vector3i.RIGHT, 	# FRONT (+X)
 	Vector3i.LEFT 		# BACK (-X)
 ]
-## Enumerator of the face's position inside a cube
+## The face's original side inside its cube.
 var _side : FaceEnum
 
-## A face's unique identifier. Equals to id_cube*10 + side
+## Unique face identifier: id_cube * 10 + side.
 var _id_face: int:
 	get:
 		return _id_cube * 10 + _side
 
+## Returns the cube identifier and side encoded in a face identifier.
 static func faceIdToCubeIDWithSide(faceId : int) -> Array[int] :
 	var side : int = faceId%10
 	var cube : int = (faceId - side)/10
 	return [cube, side]
 
-## A reference to the Edge scene (prefab)
+## A reference to the edge scene (prefab).
 @export var _edge_scene: PackedScene = preload("res://prefabs/edge.tscn")
 
-## The face's edges
+## The face's edges, indexed by EdgeEnum.
 var _edges : Array[Edge]
 
-## This face's adjancy list. Containts the unique identifiers of all
-## neighbouring faces (or -1 if disconnected).
+## This face's adjacency list. Contains the unique identifiers of
+## neighbouring faces, indexed by EdgeEnum (-1 if disconnected).
 var _adj_faces : Array[int]
 
-## Reference to the face's MeshInstance3D
+## Reference to the face's MeshInstance3D.
 @onready var _mesh: MeshInstance3D = $StaticBody3D/MeshInstance3D
-## The face's mesh material
+## The face's own copy of its mesh material.
 @onready var _material: StandardMaterial3D = _mesh.get_active_material(0).duplicate()
-## The original color of a face
+## The original color of the face.
 @onready var _ogColor: Color = _material.albedo_color
-## The color a face is supposed to be when selected (highlighting feature)
+## The color used to highlight the selected face.
 var _selectionColor: Color = Color(1, 1, 0)
 
-## _ready() method: set the face's material and creates its edges
+## Sets the face's material and creates its edges.
 func _ready() -> void:
 	_mesh.set_surface_override_material(0, _material)
 	for i in range(4):
@@ -72,16 +74,17 @@ func unselect() -> void:
 	_material.albedo_color = _ogColor
 	showEdges(false)
 
-## Switches the face's edges visibility
+## Toggles the face's edge visibility and collision.
 func switchEdges() -> void:
 	for e in _edges:
 		e.switch()
 
+## Sets the visibility and collision state of all edges.
 func showEdges(vis: bool) -> void:
 	for e in _edges:
 		e.showEdge(vis)
 
-## Creates and stores an edge
+## Creates and stores an edge.
 func createEdge(edge_side: Edge.EdgeEnum, pos: Vector3) -> void:
 	var edge : Edge = _edge_scene.instantiate() as Edge
 	edge._side = edge_side
@@ -89,9 +92,11 @@ func createEdge(edge_side: Edge.EdgeEnum, pos: Vector3) -> void:
 	add_child(edge)
 	_edges.append(edge)
 
+## Returns the face side followed by the cube identifier.
 func getInfo() -> Array[int] :
 	return [_side, _id_cube]
 
+## Returns the edge opposite to the given edge.
 func getOppositeEdge(e : Edge) -> Edge :
 	match e._side :
 		Edge.EdgeEnum.TOP :
@@ -106,6 +111,7 @@ func getOppositeEdge(e : Edge) -> Edge :
 			print("ERROR! Unidentified Edge!")
 			return null
 
+## Rotates the face around an edge by an angle in degrees.
 func rotateAroundEdge(edge : Edge, angle : float) -> void:
 	var pivot : Vector3 = edge.global_position
 	var local_axis: Vector3
@@ -125,17 +131,17 @@ func rotateAroundEdge(edge : Edge, angle : float) -> void:
 	t.basis = rotation * t.basis
 	global_transform = t
 
+## Returns the neighbouring face identifier, or -1 if disconnected.
 func getNeighbouringFace(edge : Edge.EdgeEnum) -> int:
 	return _adj_faces[edge]
 
-## Disconnects all faces in this face's adjency list except the one specified
-## by an edge.
-## Returns an array containing the id of all disconnected faces.
+## Disconnects all neighbouring faces except the one across the given edge.
+## Returns the identifiers of the disconnected faces.
 func disconnectFromEdge(edge : Edge) -> Array[int]:
 	var disconnected_faces : Array[int]
 	for i in range(4):
 		if i == edge._side:
-			pass
+			continue
 		if _adj_faces[i] != -1:
 			disconnected_faces.append(getNeighbouringFace(i))
 		
@@ -143,6 +149,7 @@ func disconnectFromEdge(edge : Edge) -> Array[int]:
 		
 	return disconnected_faces
 
+## Disconnects a neighbouring face and returns whether it was found.
 func disconnectFace(faceId: int) -> bool:
 	for i in range(_adj_faces.size()):
 		if _adj_faces[i] == faceId:

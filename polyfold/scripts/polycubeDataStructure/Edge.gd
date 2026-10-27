@@ -1,34 +1,34 @@
 class_name Edge
 extends StaticBody3D
 
-## Reference to the edge's MeshInstance
+## Reference to the edge's MeshInstance3D.
 @onready var _mesh : MeshInstance3D = $MeshInstance3D
-## Reference to the edge's CollisionShape
+## Reference to the edge's CollisionShape3D.
 @onready var _col : CollisionShape3D = $CollisionShape3D
 
-## Enumerator of the edge's position inside a face
+## Enumerator of the edge's position inside a face.
 enum EdgeEnum {
 	TOP,	# TOP (+X)
 	BOTTOM,	# BOTTOM (-X)
 	LEFT,	# LEFT (-Z)
 	RIGHT	# RIGHT (+Z)
 }
-## The edge direction (local to face)
+## Edge directions in the face local space.
 const DIRECTIONS = [
 	Vector3i.RIGHT,		# TOP (+X)
 	Vector3i.LEFT,		# BOTTOM (-X)
 	Vector3i.FORWARD,	# LEFT (-Z)
 	Vector3i.BACK 		# RIGHT (+Z)
 ]
-## Enumerator of the edge's position inside a face
+## The edge's position inside its face.
 var _side : EdgeEnum
 
-## on _ready(), an edge is invisible and non interactible
+## Hides the edge and disables its collision on startup.
 func _ready() -> void:
 	_mesh.visible = false
 	_col.disabled = true
 
-# Sélection d'un edge
+## Creates an unfolding action for this edge and direction.
 func select(dir : UnfoldAction.DirEnum) -> UnfoldAction:
 	var info = [0,0]
 	if get_parent().has_method("getInfo"):
@@ -36,15 +36,16 @@ func select(dir : UnfoldAction.DirEnum) -> UnfoldAction:
 
 	return UnfoldAction.createAction(info[1], info[0], _side, dir)
 
-## Unselecting an edge
+## Logs edge deselection for debugging.
 func unselect() -> void:
 	print("Unelected " + get_parent().name)
 
-## Switch the edge's visibility
+## Toggles the edge's visibility and collision.
 func switch() -> void:
 	_mesh.visible = !_mesh.visible
 	_col.disabled = !_col.disabled
 
+## Sets the edge visibility and collision state.
 func showEdge(vis : bool) -> void:
 	_mesh.visible = vis
 	_col.disabled = !vis

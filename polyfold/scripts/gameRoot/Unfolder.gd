@@ -1,14 +1,15 @@
 class_name Unfolder
 extends Node
 
-## Script gérant les dépliements
+## Handles unfolding moves.
 
-## Checks if a move is valid: not disconnecting and no overlap
+## Checks connectivity and overlap constraints.
 static func validMove(action : UnfoldAction, pol : Polycube) -> bool:
-	# TODO : validation
+	# TODO: Validate connectivity and collisions.
 	return true
 
-## Executes an Unfolding move
+## Executes an unfolding move and updates face connections.
+# TODO : Handle unfolding groups
 static func executeMove(action : UnfoldAction, pol : Polycube) -> void:
 	if !validMove(action, pol):
 		return
@@ -19,16 +20,15 @@ static func executeMove(action : UnfoldAction, pol : Polycube) -> void:
 	var folding_edge : Edge = folding_face._edges[action._edge]
 	var opposite_edge : Edge = folding_face.getOppositeEdge(folding_edge)
 	
-	# Translating direction to rotation value
+	# Translate the direction to an angle in degrees.
 	var rot : float
 	if action._dir == UnfoldAction.DirEnum.FWD: rot = 90.0
 	else: rot = -90.0
 	
-	# Rotating the face using the opposite edge as the axis
+	# Rotate the face around the opposite edge.
 	folding_face.rotateAroundEdge(opposite_edge, rot)
 	
-	# Updating the faces' adjacency list. Everything is disconnected from the folding face
-	# except the one adjacent to the opposite edge.	
+	# Update face connections, keeping only the hinge connection.
 	var disconnected_faces : Array[int] = folding_face.disconnectFromEdge(opposite_edge)
 	for f_id in disconnected_faces :
 		var f : Face = pol.getFaceFromFaceId(f_id)

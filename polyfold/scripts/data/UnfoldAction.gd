@@ -1,16 +1,19 @@
 class_name UnfoldAction
 extends Resource
 
-## Enumerator describing the direction of the unfolding
-enum DirEnum { FWD, BWD }
+## Unfolding direction.
+enum DirEnum { 
+	FWD,	## Adds 90 degrees
+	BWD		## Substracts 90 degrees
+	}
 
-## Identifier of the cube where the action takes place
+## Identifier of the cube where the action takes place.
 var _id_cube : int
-## The folded face
+## The face to fold.
 var _face : Face.FaceEnum
-## The edge at which the action is taking place
+## The grabbed edge. Its opposite edge is the hinge.
 var _edge : Edge.EdgeEnum
-## The direction of the unfolding
+## The direction of the unfolding.
 var _dir : DirEnum
 
 ## Creates an unfolding action for the specified cube, face, edge, and direction.
@@ -24,6 +27,7 @@ static func createAction(id_cube : int, face : Face.FaceEnum, edge : Edge.EdgeEn
 
 	return action
 
+## Prints the action parameters for debugging.
 func print() -> void :
 	print(
 		"id_cube: ", _id_cube,
