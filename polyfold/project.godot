@@ -26,6 +26,19 @@ window/stretch/aspect="expand"
 
 project/assembly_name="PolyFold"
 
+[importer_defaults]
+
+csv_translation={
+"compress": 1,
+"delimiter": 0,
+"unescape_keys": false,
+"unescape_translations": true
+}
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://localization/translations.en.translation", "res://localization/translations.es.translation", "res://localization/translations.fr.translation")
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
