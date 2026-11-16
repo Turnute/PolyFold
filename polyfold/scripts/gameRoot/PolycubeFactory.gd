@@ -45,7 +45,9 @@ static func loadPolycube(data: PolycubeData) -> Polycube:
 
 	return polycube
 
-
+## Function which randomly generates a polycube [br]
+## [param cube_nb] : number of cubes in the polycube [br]
+## [param max_adj] : maximum possible number of adjacent cubes
 static func generatePolycube(cube_nb: int, max_adj: int) -> Polycube :
 	if (cube_nb < 1): return null
 	
