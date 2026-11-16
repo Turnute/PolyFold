@@ -36,6 +36,8 @@ var _drag_point: Vector3
 var _drag_direction: int = 0
 ## Whether the preview is snapped to a quarter turn.
 var _drag_snapped: bool = false
+## Dictionary of Face -> initial Transform3D.
+var _drag_initial_transforms: Dictionary = {}
 
 
 ## Stores the initial drag geometry and resets the interaction.
@@ -82,6 +84,17 @@ func beginEdgeDrag(selected_edge: Edge, hit_point: Vector3, cam: Camera3D, polyc
 	_drag_direction = 0
 	_drag_snapped = false
 	_drag_state = DragState.DRAGGING
+	
+	_drag_initial_transforms.clear()
+
+	var group: Array[int] = _target.getFoldGroup(
+		_drag_face._id_face,
+		_drag_edge._side
+	)
+
+	for face_id in group:
+		var member: Face = _target.getFaceFromFaceId(face_id)
+		_drag_initial_transforms[member] = member.global_transform
 
 
 ## Updates the preview and consumes input while dragging.
@@ -135,7 +148,9 @@ func endEdgeDrag(commit: bool) -> void:
 
 	if is_instance_valid(_drag_face):
 		# Restore the initial pose before applying the full quarter turn.
-		_drag_face.global_transform = _drag_initial_transform
+		for face in _drag_initial_transforms:
+			if is_instance_valid(face):
+				face.global_transform = _drag_initial_transforms[face]
 
 		if (
 			commit
@@ -159,12 +174,21 @@ func endEdgeDrag(commit: bool) -> void:
 	_drag_angle = 0.0
 	_drag_direction = 0
 	_drag_snapped = false
+	_drag_initial_transforms.clear()
 
 
 ## Sets the preview angle relative to the initial pose.
 func setPreviewAngle(angle: float) -> void:
-	_drag_face.global_transform = _drag_initial_transform
-	_drag_face.rotateAroundEdge(_drag_hinge, angle)
+	var rotation := Basis(_drag_axis, deg_to_rad(angle))
+
+	for face in _drag_initial_transforms:
+		var t: Transform3D = _drag_initial_transforms[face]
+
+		t.origin = _drag_pivot + rotation * (t.origin - _drag_pivot)
+		t.basis = rotation * t.basis
+
+		face.global_transform = t
+
 	_drag_angle = angle
 
 

@@ -10,29 +10,55 @@ static func validMove(action: UnfoldAction, pol: Polycube) -> bool:
 	return pol.canFoldFace(face._id_face, action._edge)
 
 ## Executes an unfolding move and updates face connections.
-# TODO : Handle unfolding groups
 static func executeMove(action : UnfoldAction, pol : Polycube) -> void:
 	if !validMove(action, pol):
 		return
-	
-	action.print() # DEBUG
-	
+		
 	var folding_face : Face = pol.getFace(action._id_cube, action._face)
 	var folding_edge : Edge = folding_face._edges[action._edge]
-	var opposite_edge : Edge = folding_face.getOppositeEdge(folding_edge)
+	var hinge : Edge = folding_face.getOppositeEdge(folding_edge)
 	
-	# Translate the direction to an angle in degrees.
-	var rot : float
-	if action._dir == UnfoldAction.DirEnum.FWD: rot = 90.0
-	else: rot = -90.0
+	var group : Array[int] = pol.getFoldGroup(folding_face._id_face, action._edge)
+	var hinge_neighbour : int = folding_face.getNeighbouringFace(hinge._side)
 	
-	# Rotate the face around the opposite edge.
-	folding_face.rotateAroundEdge(opposite_edge, rot)
+	var pivot : Vector3 = hinge.global_position
+	var local_axis : Vector3 = Vector3.FORWARD
 	
-	# Update face connections, keeping only the hinge connection.
-	var disconnected_faces : Array[int] = folding_face.disconnectFromEdge(opposite_edge)
-	for f_id in disconnected_faces :
-		var f : Face = pol.getFaceFromFaceId(f_id)
-		if f == null: print("no face from ", f_id)
-		else: f.disconnectFace(folding_face._id_face)
+	if hinge._side == Edge.EdgeEnum.LEFT or hinge._side == Edge.EdgeEnum.RIGHT:
+		local_axis = Vector3.RIGHT
+
+	var axis: Vector3 = (
+		folding_face.global_transform.basis * local_axis
+	).normalized()
+
+	var angle: float = 90.0
+	if action._dir == UnfoldAction.DirEnum.BWD:
+		angle = -90.0
+
+	var rotation := Basis(axis, deg_to_rad(angle))
+
+	for face_id in group:
+		var face: Face = pol.getFaceFromFaceId(face_id)
+		var t: Transform3D = face.global_transform
+
+		t.origin = pivot + rotation * (t.origin - pivot)
+		t.basis = rotation * t.basis
+
+		face.global_transform = t
+
+	for face_id in group:
+		var face: Face = pol.getFaceFromFaceId(face_id)
+
+		for i in range(face._adj_faces.size()):
+			var neighbour_id: int = face._adj_faces[i]
+
+			if neighbour_id == -1 or group.has(neighbour_id):
+				continue
+
+			if face_id == folding_face._id_face and neighbour_id == hinge_neighbour:
+				continue
+
+			face._adj_faces[i] = -1
+			pol.getFaceFromFaceId(neighbour_id).disconnectFace(face_id)
+
 	pol.refreshSelectedFaceEdges()

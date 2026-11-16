@@ -130,59 +130,108 @@ func selectFace(face_id: int) -> void:
 
 ## Removes selection from the face matching a valid face identifier.
 func unselectFace(face_id : int) -> void :
-	var f : Face = getFaceFromFaceId(face_id)
-	f.unselect()
-	if _selected_face_id == face_id:
-		_selected_face_id = -1
+	unselectAllFaces()
 
 ## Checks whether a face can be unfolded along a certain edge
-func canFoldFace(face_id : int, edge_side : Edge.EdgeEnum) -> bool :
-	var folding_face: Face = getFaceFromFaceId(face_id)
-	var grabbed_edge: Edge = folding_face._edges[edge_side]
-	var hinge: Edge = folding_face.getOppositeEdge(grabbed_edge)
-	var hinge_neighbour: int = folding_face.getNeighbouringFace(hinge._side)
-	
-	if hinge_neighbour == -1 :
-		return false
-	
-	var visited : Dictionary = {}
-	var pending : Array[int] = [face_id]
-	var next_index : int = 0
-	
-	while next_index < pending.size():
-		var current_id: int = pending[next_index]
-		next_index += 1
+func canFoldFace(face_id : int, edge_side : Edge.EdgeEnum) -> bool:
+	return not getFoldGroup(face_id, edge_side).is_empty()
 
-		var current_face: Face = getFaceFromFaceId(current_id)
-
-		for neighbour_id in current_face._adj_faces:
-			if neighbour_id == -1:
-				continue
-
-			if current_id == face_id and neighbour_id != hinge_neighbour:
-				continue
-
-			if neighbour_id == face_id and current_id != hinge_neighbour:
-				continue
-
-			if visited.has(neighbour_id):
-				continue
-
-			visited[neighbour_id] = true
-			pending.append(neighbour_id)
-
-	var face_count: int = 0
-	for cube in _cubes:
-		face_count += cube._faces.size()
-
-	return visited.size() == face_count
-
+## TODO doc
 func refreshSelectedFaceEdges() -> void:
 	if _selected_face_id == -1:
 		return
 
-	var face: Face = getFaceFromFaceId(_selected_face_id)
+	for cube in _cubes:
+		for face in cube._faces:
+			face.unselect()
 
-	for edge in face._edges:
-		var allowed: bool = canFoldFace(_selected_face_id, edge._side)
-		edge.showEdge(allowed)
+	var group: Array[int] = getPlanarGroup(_selected_face_id)
+
+	for face_id in group:
+		var face: Face = getFaceFromFaceId(face_id)
+		face.select()
+
+		for edge in face._edges:
+			edge.showEdge(canFoldFace(face_id, edge._side))
+
+## Checks whether or not two faces are coplanar
+func areCoplanar(a : Face, b : Face) -> bool :
+	var normal_a : Vector3 = a.global_transform.basis.y.normalized()
+	var normal_b : Vector3 = b.global_transform.basis.y.normalized()
+	
+	var parallel: bool = absf(normal_a.dot(normal_b)) >= 0.9999
+	
+	var distance_to_plane: float = absf(
+		normal_a.dot(b.global_position - a.global_position)
+	)
+
+	return parallel and distance_to_plane <= 0.0001
+
+## Returns the coplanar group to a designated face
+func getPlanarGroup(face_id : int) -> Array[int] :
+	var ref : Face = getFaceFromFaceId(face_id)
+	var group : Array[int] = [face_id]
+	var visited : Dictionary = {}
+	var next_index : int = 0
+	
+	visited[face_id] = true
+	
+	while next_index < group.size() :
+		var current : Face = getFaceFromFaceId(group[next_index])
+		next_index += 1
+		
+		for i in current._adj_faces:
+			# i is the neighbour face's id we are examining
+			if i == -1 or visited.has(i):
+				continue
+			
+			visited[i] = true
+			
+			if areCoplanar(ref, getFaceFromFaceId(i)):
+				group.append(i)
+	
+	return group
+
+## Returns the whole folding group
+func getFoldGroup(face_id : int, edge_side : Edge.EdgeEnum) -> Array[int] :
+	var planar_group : Array[int] = getPlanarGroup(face_id)
+	var face : Face = getFaceFromFaceId(face_id)
+	var grabbed_edge : Edge = face._edges[edge_side]
+	var hinge: Edge = face.getOppositeEdge(grabbed_edge)
+	var hinge_neighbour: int = face.getNeighbouringFace(hinge._side)
+	
+	if hinge_neighbour == -1:
+		return []
+	
+	if planar_group.has(hinge_neighbour):
+		return[]
+	
+	var stationary: Dictionary = {}
+	var pending: Array[int] = [hinge_neighbour]
+	var next_index: int = 0
+	
+	stationary[hinge_neighbour] = true
+	
+	while next_index < pending.size():
+		var current : Face = getFaceFromFaceId(pending[next_index])
+		next_index += 1
+		
+		for i in current._adj_faces:
+			if i == -1:
+				continue
+			if planar_group.has(i):
+				continue
+			if stationary.has(i):
+				continue
+			
+			stationary[i] = true
+			pending.append(i)
+		
+	var moving_group : Array[int] = []
+	
+	for cube in _cubes:
+		for f in cube._faces:
+			if not stationary.has(f._id_face):
+				moving_group.append(f._id_face)
+		
+	return moving_group
