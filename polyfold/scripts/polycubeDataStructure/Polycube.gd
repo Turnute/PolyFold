@@ -16,6 +16,9 @@ var _adj : Array[Array] = []
 # Cube 2 is connected to cube 0 through its TOP face.
 # A cube identifier matches its index in the matrix.
 
+## Stores which face is currently being selected
+var _selected_face_id: int = -1
+
 ## Initializes the polycube from an array of cubes.
 func _init(cubes: Array[Cube]):
 	_cubes = cubes
@@ -87,7 +90,6 @@ func initFaceAdj() -> void :
 				if neighbour != null:
 					face._adj_faces[i] = neighbour._id_face
 
-
 ## Checks whether the polycube can be unfolded.
 func canUnfold() -> bool:
 	return true;
@@ -113,16 +115,74 @@ func getAveragePos() -> Vector3 :
 
 ## Removes selection from all faces.
 func unselectAllFaces() -> void :
+	_selected_face_id = -1
 	for cube in _cubes:
 		for face in cube._faces:
 			face.unselect()
 
 ## Selects the face matching a valid face identifier.
-func selectFace(face_id : int) -> void :
-	var f : Face = getFaceFromFaceId(face_id)
-	f.select()
+func selectFace(face_id: int) -> void:
+	var face: Face = getFaceFromFaceId(face_id)
+
+	_selected_face_id = face_id
+	face.select()
+	refreshSelectedFaceEdges()
 
 ## Removes selection from the face matching a valid face identifier.
 func unselectFace(face_id : int) -> void :
 	var f : Face = getFaceFromFaceId(face_id)
 	f.unselect()
+	if _selected_face_id == face_id:
+		_selected_face_id = -1
+
+## Checks whether a face can be unfolded along a certain edge
+func canFoldFace(face_id : int, edge_side : Edge.EdgeEnum) -> bool :
+	var folding_face: Face = getFaceFromFaceId(face_id)
+	var grabbed_edge: Edge = folding_face._edges[edge_side]
+	var hinge: Edge = folding_face.getOppositeEdge(grabbed_edge)
+	var hinge_neighbour: int = folding_face.getNeighbouringFace(hinge._side)
+	
+	if hinge_neighbour == -1 :
+		return false
+	
+	var visited : Dictionary = {}
+	var pending : Array[int] = [face_id]
+	var next_index : int = 0
+	
+	while next_index < pending.size():
+		var current_id: int = pending[next_index]
+		next_index += 1
+
+		var current_face: Face = getFaceFromFaceId(current_id)
+
+		for neighbour_id in current_face._adj_faces:
+			if neighbour_id == -1:
+				continue
+
+			if current_id == face_id and neighbour_id != hinge_neighbour:
+				continue
+
+			if neighbour_id == face_id and current_id != hinge_neighbour:
+				continue
+
+			if visited.has(neighbour_id):
+				continue
+
+			visited[neighbour_id] = true
+			pending.append(neighbour_id)
+
+	var face_count: int = 0
+	for cube in _cubes:
+		face_count += cube._faces.size()
+
+	return visited.size() == face_count
+
+func refreshSelectedFaceEdges() -> void:
+	if _selected_face_id == -1:
+		return
+
+	var face: Face = getFaceFromFaceId(_selected_face_id)
+
+	for edge in face._edges:
+		var allowed: bool = canFoldFace(_selected_face_id, edge._side)
+		edge.showEdge(allowed)

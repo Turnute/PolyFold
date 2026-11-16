@@ -55,6 +55,11 @@ func beginEdgeDrag(selected_edge: Edge, hit_point: Vector3, cam: Camera3D, polyc
 	if not is_instance_valid(hinge):
 		return
 
+	var action: UnfoldAction = selected_edge.select(UnfoldAction.DirEnum.FWD)
+
+	if not Unfolder.validMove(action, polycube):
+		return
+
 	var local_axis: Vector3
 	match hinge._side:
 		Edge.EdgeEnum.TOP, Edge.EdgeEnum.BOTTOM:

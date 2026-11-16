@@ -4,9 +4,10 @@ extends Node
 ## Handles unfolding moves.
 
 ## Checks connectivity and overlap constraints.
-static func validMove(action : UnfoldAction, pol : Polycube) -> bool:
-	# TODO: Validate connectivity and collisions.
-	return true
+static func validMove(action: UnfoldAction, pol: Polycube) -> bool:
+	var face: Face = pol.getFace(action._id_cube, action._face)
+
+	return pol.canFoldFace(face._id_face, action._edge)
 
 ## Executes an unfolding move and updates face connections.
 # TODO : Handle unfolding groups
@@ -34,3 +35,4 @@ static func executeMove(action : UnfoldAction, pol : Polycube) -> void:
 		var f : Face = pol.getFaceFromFaceId(f_id)
 		if f == null: print("no face from ", f_id)
 		else: f.disconnectFace(folding_face._id_face)
+	pol.refreshSelectedFaceEdges()
