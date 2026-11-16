@@ -22,8 +22,6 @@ var _drag_face: Face
 var _drag_hinge: Edge
 ## Initial world-space hinge position.
 var _drag_pivot: Vector3
-## Initial world-space face transform.
-var _drag_initial_transform: Transform3D
 ## Current preview angle in degrees.
 var _drag_angle: float = 0.0
 ## World-space rotation axis.
@@ -40,8 +38,13 @@ var _drag_snapped: bool = false
 var _drag_initial_transforms: Dictionary = {}
 
 
-## Stores the initial drag geometry and resets the interaction.
-func beginEdgeDrag(selected_edge: Edge, hit_point: Vector3, cam: Camera3D, polycube: Polycube) -> void:
+## Resolves the handle's actual hinge and captures every moving face once.
+func beginEdgeDrag(
+	selected_edge: Edge,
+	hit_point: Vector3,
+	cam: Camera3D,
+	polycube: Polycube
+) -> void:
 	endEdgeDrag(false)
 
 	if not is_instance_valid(selected_edge):
@@ -49,27 +52,20 @@ func beginEdgeDrag(selected_edge: Edge, hit_point: Vector3, cam: Camera3D, polyc
 	if not is_instance_valid(cam) or not is_instance_valid(polycube):
 		return
 
-	var face: Face = selected_edge.get_parent() as Face
+	var action: UnfoldAction = selected_edge.select(UnfoldAction.DirEnum.FWD)
+	var face: Face = polycube.getFace(action._id_cube, action._face)
+
 	if not is_instance_valid(face):
 		return
 
-	var hinge: Edge = face.getOppositeEdge(selected_edge)
-	if not is_instance_valid(hinge):
+	var hinge: Edge = face.getOppositeEdge(face._edges[action._edge])
+	var group: Array[int] = polycube.getFoldGroup(
+		face._id_face,
+		action._edge
+	)
+
+	if group.is_empty():
 		return
-
-	var action: UnfoldAction = selected_edge.select(UnfoldAction.DirEnum.FWD)
-
-	if not Unfolder.validMove(action, polycube):
-		return
-
-	var local_axis: Vector3
-	match hinge._side:
-		Edge.EdgeEnum.TOP, Edge.EdgeEnum.BOTTOM:
-			local_axis = Vector3.FORWARD
-		Edge.EdgeEnum.LEFT, Edge.EdgeEnum.RIGHT:
-			local_axis = Vector3.RIGHT
-		_:
-			return
 
 	_camera = cam
 	_target = polycube
@@ -77,25 +73,18 @@ func beginEdgeDrag(selected_edge: Edge, hit_point: Vector3, cam: Camera3D, polyc
 	_drag_face = face
 	_drag_hinge = hinge
 	_drag_pivot = hinge.global_position
-	_drag_initial_transform = face.global_transform
+	_drag_axis = polycube.getEdgeAxis(face, hinge)
 	_drag_point = hit_point
-	_drag_axis = (_drag_initial_transform.basis * local_axis).normalized()
 	_drag_angle = 0.0
 	_drag_direction = 0
 	_drag_snapped = false
 	_drag_state = DragState.DRAGGING
-	
+
 	_drag_initial_transforms.clear()
 
-	var group: Array[int] = _target.getFoldGroup(
-		_drag_face._id_face,
-		_drag_edge._side
-	)
-
 	for face_id in group:
-		var member: Face = _target.getFaceFromFaceId(face_id)
+		var member: Face = polycube.getFaceFromFaceId(face_id)
 		_drag_initial_transforms[member] = member.global_transform
-
 
 ## Updates the preview and consumes input while dragging.
 func dragEdgeInput(event: InputEvent) -> bool:

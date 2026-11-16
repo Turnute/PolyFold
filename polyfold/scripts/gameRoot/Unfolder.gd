@@ -3,7 +3,7 @@ extends Node
 
 ## Handles unfolding moves.
 
-## Checks connectivity and overlap constraints.
+## Checks whether the action has a valid connected folding group.
 static func validMove(action: UnfoldAction, pol: Polycube) -> bool:
 	var face: Face = pol.getFace(action._id_cube, action._face)
 
@@ -22,14 +22,7 @@ static func executeMove(action : UnfoldAction, pol : Polycube) -> void:
 	var hinge_neighbour : int = folding_face.getNeighbouringFace(hinge._side)
 	
 	var pivot : Vector3 = hinge.global_position
-	var local_axis : Vector3 = Vector3.FORWARD
-	
-	if hinge._side == Edge.EdgeEnum.LEFT or hinge._side == Edge.EdgeEnum.RIGHT:
-		local_axis = Vector3.RIGHT
-
-	var axis: Vector3 = (
-		folding_face.global_transform.basis * local_axis
-	).normalized()
+	var axis: Vector3 = pol.getEdgeAxis(folding_face, hinge)
 
 	var angle: float = 90.0
 	if action._dir == UnfoldAction.DirEnum.BWD:

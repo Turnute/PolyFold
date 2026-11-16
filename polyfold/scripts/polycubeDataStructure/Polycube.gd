@@ -120,12 +120,9 @@ func unselectAllFaces() -> void :
 		for face in cube._faces:
 			face.unselect()
 
-## Selects the face matching a valid face identifier.
+## Selects the reference face and refreshes its entire folding group.
 func selectFace(face_id: int) -> void:
-	var face: Face = getFaceFromFaceId(face_id)
-
 	_selected_face_id = face_id
-	face.select()
 	refreshSelectedFaceEdges()
 
 ## Removes selection from the face matching a valid face identifier.
@@ -136,7 +133,7 @@ func unselectFace(face_id : int) -> void :
 func canFoldFace(face_id : int, edge_side : Edge.EdgeEnum) -> bool:
 	return not getFoldGroup(face_id, edge_side).is_empty()
 
-## TODO doc
+## Highlights the selected group and binds one farthest handle per valid hinge.
 func refreshSelectedFaceEdges() -> void:
 	if _selected_face_id == -1:
 		return
@@ -144,15 +141,36 @@ func refreshSelectedFaceEdges() -> void:
 	for cube in _cubes:
 		for face in cube._faces:
 			face.unselect()
+			for edge in face._edges:
+				edge._fold_face = null
 
-	var group: Array[int] = getPlanarGroup(_selected_face_id)
+	var group: Array[int] = getSelectionGroup(_selected_face_id)
 
 	for face_id in group:
 		var face: Face = getFaceFromFaceId(face_id)
 		face.select()
+		face.showEdges(false)
 
-		for edge in face._edges:
-			edge.showEdge(canFoldFace(face_id, edge._side))
+	for face_id in group:
+		var anchor: Face = getFaceFromFaceId(face_id)
+
+		for hinge in anchor._edges:
+			var neighbour_id: int = anchor.getNeighbouringFace(hinge._side)
+
+			if neighbour_id == -1 or group.has(neighbour_id):
+				continue
+
+			var grabbed: Edge = anchor.getOppositeEdge(hinge)
+
+			if not canFoldFace(face_id, grabbed._side):
+				continue
+
+			var handle: Edge = findFarthestHandle(group, anchor, hinge)
+
+			if handle != null:
+				handle._fold_face = anchor
+				handle._fold_grabbed_side = grabbed._side
+				handle.showEdge(true)
 
 ## Checks whether or not two faces are coplanar
 func areCoplanar(a : Face, b : Face) -> bool :
@@ -167,71 +185,118 @@ func areCoplanar(a : Face, b : Face) -> bool :
 
 	return parallel and distance_to_plane <= 0.0001
 
-## Returns the coplanar group to a designated face
-func getPlanarGroup(face_id : int) -> Array[int] :
-	var ref : Face = getFaceFromFaceId(face_id)
-	var group : Array[int] = [face_id]
+## Returns faces reachable through existing connections.
+## Excluded faces are not crossed.[br]
+## [param plane] optionally restricts the traversal.
+func collectFaces(start_id : int, excluded : Array[int], plane : Face = null) -> Array[int]:
+	var result: Array[int] = []
+	var pending : Array[int] = [start_id]
 	var visited : Dictionary = {}
 	var next_index : int = 0
 	
-	visited[face_id] = true
-	
-	while next_index < group.size() :
-		var current : Face = getFaceFromFaceId(group[next_index])
-		next_index += 1
-		
-		for i in current._adj_faces:
-			# i is the neighbour face's id we are examining
-			if i == -1 or visited.has(i):
-				continue
-			
-			visited[i] = true
-			
-			if areCoplanar(ref, getFaceFromFaceId(i)):
-				group.append(i)
-	
-	return group
-
-## Returns the whole folding group
-func getFoldGroup(face_id : int, edge_side : Edge.EdgeEnum) -> Array[int] :
-	var planar_group : Array[int] = getPlanarGroup(face_id)
-	var face : Face = getFaceFromFaceId(face_id)
-	var grabbed_edge : Edge = face._edges[edge_side]
-	var hinge: Edge = face.getOppositeEdge(grabbed_edge)
-	var hinge_neighbour: int = face.getNeighbouringFace(hinge._side)
-	
-	if hinge_neighbour == -1:
-		return []
-	
-	if planar_group.has(hinge_neighbour):
-		return[]
-	
-	var stationary: Dictionary = {}
-	var pending: Array[int] = [hinge_neighbour]
-	var next_index: int = 0
-	
-	stationary[hinge_neighbour] = true
-	
 	while next_index < pending.size():
-		var current : Face = getFaceFromFaceId(pending[next_index])
+		var face_id : int = pending[next_index]
 		next_index += 1
 		
-		for i in current._adj_faces:
-			if i == -1:
-				continue
-			if planar_group.has(i):
-				continue
-			if stationary.has(i):
-				continue
-			
-			stationary[i] = true
-			pending.append(i)
+		if face_id == -1 or excluded.has(face_id) or visited.has(face_id):
+			continue
 		
-	var moving_group : Array[int] = []
+		visited[face_id] = true
+		var face : Face = getFaceFromFaceId(face_id)
+		
+		if plane != null and not areCoplanar(plane, face):
+			continue
+		
+		result.append(face_id)
+		pending.append_array(face._adj_faces)
 	
+	return result
+
+## Returns the largest coplanar branch containing the selected face.
+## Other members reach the body only through the group's attachment face.
+func getSelectionGroup(face_id: int) -> Array[int]:
+	var reference: Face = getFaceFromFaceId(face_id)
+	var best_group: Array[int] = [face_id]
+
+	for root_id in collectFaces(face_id, [], reference):
+		var root_face: Face = getFaceFromFaceId(root_id)
+		var candidate: Array[int] = [root_id]
+		var processed: Dictionary = {root_id: true}
+
+		for i in root_face._adj_faces:
+			if i == -1 or processed.has(i):
+				continue
+
+			var component: Array[int] = collectFaces(i, [root_id])
+			var eligible: bool = true
+
+			for j in component:
+				processed[j] = true
+				if not areCoplanar(root_face, getFaceFromFaceId(j)):
+					eligible = false
+
+			if eligible:
+				candidate.append_array(component)
+
+		if candidate.has(face_id) and candidate.size() > best_group.size():
+			best_group = candidate
+
+	return best_group
+
+## Returns the moving faces for the chosen hinge, including dependent branches.
+## [param edge_side] identifies the grabbed side on the attachment face.
+func getFoldGroup(face_id: int, edge_side: Edge.EdgeEnum) -> Array[int]:
+	var selection: Array[int] = getSelectionGroup(face_id)
+	var face: Face = getFaceFromFaceId(face_id)
+	var hinge: Edge = face.getOppositeEdge(face._edges[edge_side])
+	var neighbour_id: int = face.getNeighbouringFace(hinge._side)
+
+	if neighbour_id == -1 or selection.has(neighbour_id):
+		return []
+
+	var stationary: Array[int] = collectFaces(neighbour_id, selection)
+
+	var moving: Array[int] = []
+
 	for cube in _cubes:
-		for f in cube._faces:
-			if not stationary.has(f._id_face):
-				moving_group.append(f._id_face)
-		
-	return moving_group
+		for member in cube._faces:
+			if not stationary.has(member._id_face):
+				moving.append(member._id_face)
+
+	return moving
+
+## Returns an edge's longitudinal axis in world space.
+func getEdgeAxis(face: Face, edge: Edge) -> Vector3:
+	var local_axis: Vector3 = Vector3.FORWARD
+
+	if edge._side == Edge.EdgeEnum.LEFT or edge._side == Edge.EdgeEnum.RIGHT:
+		local_axis = Vector3.RIGHT
+
+	return (face.global_transform.basis * local_axis).normalized()
+
+## Returns one boundary edge at maximum distance opposite the chosen hinge.
+func findFarthestHandle(group: Array[int], anchor: Face, hinge: Edge) -> Edge:
+	var pivot: Vector3 = hinge.global_position
+	var axis: Vector3 = getEdgeAxis(anchor, hinge)
+	var direction: Vector3 = (anchor.global_position - pivot).normalized()
+
+	var best: Edge = null
+	var best_distance: float = -INF
+
+	for face_id in group:
+		var face: Face = getFaceFromFaceId(face_id)
+
+		for edge in face._edges:
+			if group.has(face.getNeighbouringFace(edge._side)):
+				continue
+
+			if absf(getEdgeAxis(face, edge).dot(axis)) < 0.9999:
+				continue
+
+			var distance: float = (edge.global_position - pivot).dot(direction)
+
+			if distance > best_distance:
+				best_distance = distance
+				best = edge
+
+	return best
