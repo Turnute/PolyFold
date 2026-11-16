@@ -1,3 +1,22 @@
 [gd_scene format=3 uid="uid://bgq0y6jiuktsn"]
 
-[node name="Edge" type="Node3D" unique_id=125070455]
+[ext_resource type="Script" uid="uid://b5uab35k33oqh" path="res://scripts/polycubeDataStructure/Edge.gd" id="1_nlyqy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kjnlj"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_8uy76"]
+material = SubResource("StandardMaterial3D_kjnlj")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wqvgw"]
+
+[node name="Edge" type="StaticBody3D" unique_id=723858274]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+script = ExtResource("1_nlyqy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=533498329]
+mesh = SubResource("SphereMesh_8uy76")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=275263273]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+shape = SubResource("SphereShape3D_wqvgw")

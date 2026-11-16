@@ -1,3 +1,25 @@
 [gd_scene format=3 uid="uid://1lrt3yilpr45"]
 
+[ext_resource type="Script" uid="uid://dnwcpw40uv4ae" path="res://scripts/polycubeDataStructure/Face.gd" id="1_4gycn"]
+[ext_resource type="PackedScene" uid="uid://bgq0y6jiuktsn" path="res://prefabs/edge.tscn" id="2_vbuov"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbuov"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_sxki6"]
+material = SubResource("StandardMaterial3D_vbuov")
+size = Vector3(1, 0.05, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m7ri8"]
+size = Vector3(1, 0.05, 1)
+
 [node name="Face" type="Node3D" unique_id=503661519]
+script = ExtResource("1_4gycn")
+edge_scene = ExtResource("2_vbuov")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1382572740]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1240226411]
+mesh = SubResource("BoxMesh_sxki6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=873661448]
+shape = SubResource("BoxShape3D_m7ri8")
