@@ -18,7 +18,7 @@ static func getAdj(pos: Vector3i) -> Array[Vector3i]:
 static func loadPolycube(data: PolycubeData) -> Polycube:
 	var curr_id = 0
 	
-	## Instantiating cubes
+	# Instantiating cubes
 	var cubes : Array[Cube] = []
 	for pos in data.cube_matrix:
 		var cube = Cube.new()
@@ -27,10 +27,10 @@ static func loadPolycube(data: PolycubeData) -> Polycube:
 		cubes.append(cube)
 		curr_id += 1
 	
-	## Creating a new polycube
+	# Creating a new polycube
 	var polycube : Polycube = Polycube.new(cubes)
 
-	## Updating adjacency matrix
+	# Updating adjacency matrix
 	for cube in cubes:
 		var adj = getAdj(cube._pos)
 		for i in range(6):
