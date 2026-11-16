@@ -34,6 +34,7 @@ variation_opentype = {
 spacing_top = -5
 
 [sub_resource type="LabelSettings" id="LabelSettings_yty7p"]
+line_spacing = -5.0
 font = SubResource("FontVariation_6uhnx")
 font_size = 21
 font_color = Color(0.33333334, 0.33333334, 0.33333334, 0.69803923)
@@ -117,11 +118,15 @@ label_settings = SubResource("LabelSettings_l2mhy")
 
 [node name="level_description" type="Label" parent="info_level/VBoxContainer" unique_id=1492957799]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 52)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "5 cubes"
 label_settings = SubResource("LabelSettings_yty7p")
+horizontal_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="info_level/VBoxContainer" unique_id=1469317380]
 layout_mode = 2
