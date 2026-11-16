@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dhe1or0vvst4l" path="res://scripts/locale.gd" id="1_qoor0"]
 [ext_resource type="Texture2D" uid="uid://bdqqw8wj4jjxh" path="res://assets/img/polycube.png" id="1_vgc6r"]
-[ext_resource type="Texture2D" uid="uid://dyfi0cvghweks" path="res://assets/icons/play.svg" id="2_2lruy"]
 [ext_resource type="Texture2D" uid="uid://bsqefeqrn7i5r" path="res://assets/icons/cog.svg" id="3_nn3se"]
 [ext_resource type="Texture2D" uid="uid://bdxx8w6r213jy" path="res://assets/icons/doorway_exit.svg" id="4_ac62s"]
 [ext_resource type="Texture2D" uid="uid://ff5322nd6c51" path="res://assets/icons/info.svg" id="6_04thv"]
@@ -13,6 +12,32 @@ colors = PackedColorArray(0.26993462, 0.4844079, 0.988347, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_3db7w"]
 gradient = SubResource("Gradient_qoor0")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nn3se"]
+bg_color = Color(0.7254902, 0.8666667, 0.93333334, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.17341399, 0.3571631, 0.48805606, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ac62s"]
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bks8y"]
+load_path = "res://.godot/imported/play.svg-e9236ccb724ef92a26e89cd871a33e4f.ctex"
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_nc8eo"]
 grow_begin = -10.0
@@ -72,28 +97,58 @@ theme_override_constants/separation = 20
 
 [node name="Title" type="Label" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=767189458]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 96
 text = "POLYFOLD"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PlayButton" type="MenuButton" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=574124349]
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
-text = "BUTTON_JOUER"
-icon = ExtResource("2_2lruy")
+theme_override_colors/font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+theme_override_colors/font_pressed_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+theme_override_colors/font_hover_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+theme_override_colors/icon_normal_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+theme_override_constants/h_separation = 0
+theme_override_constants/icon_max_width = 24
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_nn3se")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ac62s")
+flat = false
+expand_icon = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayButton" unique_id=2059244913]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayButton/HBoxContainer" unique_id=1210964108]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_bks8y")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayButton/HBoxContainer" unique_id=160964817]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+theme_override_font_sizes/font_size = 32
+text = "BUTTON_JOUEUR"
 
 [node name="SettingsButton" type="MenuButton" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=766120144]
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 32
 text = "BUTTON_OPTION"
 icon = ExtResource("3_nn3se")
+flat = false
 
 [node name="QuitButton" type="MenuButton" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=253671006]
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 32
 text = "BUTTON_QUITTER"
 icon = ExtResource("4_ac62s")
+flat = false
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer" unique_id=277126498]
 layout_mode = 2
