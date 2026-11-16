@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/galaxy.svg-e45d23c8d27e219d7f2c194ab986e3ab.d
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

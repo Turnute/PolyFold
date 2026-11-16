@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/television_flat_screen.svg-9cdb829fb43b285fd2
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

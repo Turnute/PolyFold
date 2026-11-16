@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/bar_graph.svg-8d74e1e2fd8c91eebf47d3889bbfdc2
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

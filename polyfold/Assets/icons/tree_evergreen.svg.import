@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/tree_evergreen.svg-3ca757b8570151df8475d6175c
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

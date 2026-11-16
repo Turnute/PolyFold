@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/stamp.svg-a0cdd71a1d0e319b95682f8be1a875f9.dp
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

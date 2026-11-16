@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/diamond.svg-b88c88036a249f3c4ac3f3b9720e8dcd.
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

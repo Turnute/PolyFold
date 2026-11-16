@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/pointer_left.svg-f28a654b0c981a4b84516be50164
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

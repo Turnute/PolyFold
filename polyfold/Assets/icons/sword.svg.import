@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/sword.svg-36053a264fd39ce22b93b188d1f662d1.dp
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

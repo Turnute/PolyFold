@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/slide_switch.svg-9cb6bc7f6a58adda4d189475a941
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

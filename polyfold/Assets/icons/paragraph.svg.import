@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/paragraph.svg-93a4fbccc7b9ac0eb8e8a90c4b62637
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/grid_fine.svg-60e85d73f4d5124fc0481561dfe18bb
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

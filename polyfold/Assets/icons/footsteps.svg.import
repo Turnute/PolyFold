@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/footsteps.svg-352cbee4a230b32eb390ea1dc6647c3
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

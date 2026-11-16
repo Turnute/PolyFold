@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/shovel.svg-f573b750ce2868044f728d3079c4d1c2.d
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

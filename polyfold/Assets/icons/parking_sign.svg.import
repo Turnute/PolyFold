@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/parking_sign.svg-5d1d31b89a5172f7d09ade53b374
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/medal.svg-81483ce63fa5b949828e39ca7e6f762a.dp
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

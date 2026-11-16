@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/film_cartridge.svg-01a15528ab25ea8ddbc6f5ef6b
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

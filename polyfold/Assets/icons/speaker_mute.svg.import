@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/speaker_mute.svg-fa8817baa4e54e662a2f2584a9cf
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

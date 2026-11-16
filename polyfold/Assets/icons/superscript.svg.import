@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/superscript.svg-ffeb3dd168a0d2fe8832c591f778a
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

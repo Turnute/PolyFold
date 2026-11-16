@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/paper_airplane.svg-8b4b010bef8e65ea78dcc2b81b
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

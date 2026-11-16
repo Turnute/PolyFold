@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/comb.svg-6f15650c6bdd589d165886584c7bbdab.dpi
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

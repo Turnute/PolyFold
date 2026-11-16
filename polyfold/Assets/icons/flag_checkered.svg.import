@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/flag_checkered.svg-6ece887ca9a74c42758d55db57
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

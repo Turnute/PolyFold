@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/gravity.svg-c24118a01792d4aa19031bc78f4f3cac.
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

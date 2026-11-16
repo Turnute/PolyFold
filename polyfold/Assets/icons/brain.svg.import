@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/brain.svg-1deca44688e6b7e15d843d29eccf40f0.dp
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/sky_panorama.svg-453a582a1346599b3a70f219c8ec
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/jigsaw_piece.svg-cd0e2dfc03bc8bf176104faabdbf
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

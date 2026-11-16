@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/poultry.svg-9d4473f411773af1dd3a07e7d07029b0.
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/octagon.svg-4df1aff3588c10cfb80780281e270339.
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

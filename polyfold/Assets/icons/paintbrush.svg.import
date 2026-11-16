@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/paintbrush.svg-1506ad64b81f03236afe050f854603
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

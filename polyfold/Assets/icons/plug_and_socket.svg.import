@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/plug_and_socket.svg-e569c3f0eb1ef0cddc4d9b61f
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

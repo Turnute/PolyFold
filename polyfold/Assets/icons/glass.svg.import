@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/glass.svg-9bee09ab68b97141fc74f5e8a9ed4fe1.dp
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

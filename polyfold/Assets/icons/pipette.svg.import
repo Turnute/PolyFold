@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/pipette.svg-34b0bf9e2c7b10b60be48cc2e5f6ebfc.
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

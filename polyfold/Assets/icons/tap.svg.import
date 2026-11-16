@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/tap.svg-c1fc4c35903c0e15033a56ad88ca1ee1.dpit
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

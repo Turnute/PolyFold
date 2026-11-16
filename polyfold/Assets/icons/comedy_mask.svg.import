@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/comedy_mask.svg-fb12dd463cc8f7fb398e7d4e88481
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

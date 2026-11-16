@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/football.svg-e4b3d72c1c0771073b0464664e43760a
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

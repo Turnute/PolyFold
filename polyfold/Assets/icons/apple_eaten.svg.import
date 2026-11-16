@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/apple_eaten.svg-6818074b26c80aef87f98915f1856
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

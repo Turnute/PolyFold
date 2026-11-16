@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/delivery_box.svg-ac40e9c453f1ddcf59eea9100b9a
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/laser.svg-509961022aafdeae8b7323ab19f825d8.dp
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/arrow_axes.svg-34b9dadc5fd64e2c24a2614ca463b8
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

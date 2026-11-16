@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/archive.svg-d59936f5822b3e08ca3506008f87325c.
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

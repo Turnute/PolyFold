@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/brick_wall.svg-a823c319c3b2c4aca13d2de7d0434f
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

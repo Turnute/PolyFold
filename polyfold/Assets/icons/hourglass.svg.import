@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/hourglass.svg-63830dfbcab7b1201529162ce37f7f2
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

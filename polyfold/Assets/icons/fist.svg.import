@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/fist.svg-e8a116ad374cffba553bb7b0409d170a.dpi
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

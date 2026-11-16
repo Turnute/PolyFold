@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/arrow_zigzag.svg-98535e16c1800c50a00e4c943740
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

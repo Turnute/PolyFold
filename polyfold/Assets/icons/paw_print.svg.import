@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/paw_print.svg-b509b41b6da16b85f2e23729d954da7
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

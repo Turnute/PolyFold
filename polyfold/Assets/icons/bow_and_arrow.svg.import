@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/bow_and_arrow.svg-5936932c15dab68aaa689ca3795
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

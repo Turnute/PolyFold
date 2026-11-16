@@ -7,7 +7,7 @@ content_margin_left = 15.0
 content_margin_top = 15.0
 content_margin_right = 10.0
 content_margin_bottom = 15.0
-bg_color = Color(0.8980392, 0.93333334, 0.9843137, 1)
+bg_color = Color(0.7254902, 0.8666667, 0.93333334, 1)
 border_width_left = 6
 border_width_top = 2
 border_width_right = 2
@@ -92,12 +92,14 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_l2mhy")
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=907236958]
 layout_mode = 2
 
-[node name="error_name" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=587989286]
+[node name="error_title" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=587989286]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Coup invalide"
 label_settings = SubResource("LabelSettings_l2mhy")
 
-[node name="error_description" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=1401190894]
+[node name="error_message" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=1401190894]
+unique_name_in_owner = true
 layout_mode = 2
 text = "La face chevauche une autre face !"
 label_settings = SubResource("LabelSettings_s2k8f")

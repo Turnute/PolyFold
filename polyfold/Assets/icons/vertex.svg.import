@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/vertex.svg-407a4ccc9664ff2b33619f1d15a3d99b.d
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

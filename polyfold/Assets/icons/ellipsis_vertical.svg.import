@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/ellipsis_vertical.svg-9ab81e562cffb9ba5c839b8
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

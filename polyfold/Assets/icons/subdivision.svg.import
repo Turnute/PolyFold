@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/subdivision.svg-9d78671a60f1aee075f72dabc2412
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

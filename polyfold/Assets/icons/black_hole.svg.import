@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/black_hole.svg-913166872a91b635c8806215e14255
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

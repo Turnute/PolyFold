@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/shield.svg-0516060ddd505929ed4b1a74b1dde73f.d
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

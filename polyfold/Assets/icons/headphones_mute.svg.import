@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/headphones_mute.svg-28137c4e7e4fbce0c4a63dc8f
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

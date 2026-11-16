@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/cloud_arrow_down.svg-378ad7df0662a4d08702e95a
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

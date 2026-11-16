@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/sign_post.svg-01a7aa1eec40d969eadaec97b9a4393
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

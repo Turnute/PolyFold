@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/arrow_shuffle.svg-64ef78eee8f901461c5f4ac1cc9
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

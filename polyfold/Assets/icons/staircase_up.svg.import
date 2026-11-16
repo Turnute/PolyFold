@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/staircase_up.svg-c4828992d470bb850633963686c6
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

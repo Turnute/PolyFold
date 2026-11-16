@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/torch.svg-7960f7fd4a7496ce6f9c26a64f169a28.dp
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

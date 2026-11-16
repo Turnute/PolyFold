@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/test_tube.svg-4bd524aa60fc7dd9b6391a9e8db76d4
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

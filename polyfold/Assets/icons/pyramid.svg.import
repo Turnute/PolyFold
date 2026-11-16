@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/pyramid.svg-ee7e7067ee503913cb6d935129509a2b.
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

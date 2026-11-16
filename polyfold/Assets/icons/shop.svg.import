@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/shop.svg-d59d0a1a51c2eeb82ae33e112f1ac134.dpi
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

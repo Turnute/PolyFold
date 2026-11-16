@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/flowchart.svg-19b1755c17b902e84c2a7e3137b6d31
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true
