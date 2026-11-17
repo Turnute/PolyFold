@@ -4,6 +4,7 @@
 
 # Godot-specific ignores
 .import/
+*.import
 export.cfg
 export_credentials.cfg
 
@@ -17,3 +18,5 @@ mono_crash.*.json
 
 # Scene for testing
 TestScene.tscn
+
+.idea/
