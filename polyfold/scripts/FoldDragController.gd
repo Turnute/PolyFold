@@ -155,6 +155,7 @@ func endEdgeDrag(commit: bool) -> void:
 			var action: UnfoldAction = _drag_edge.select(direction)
 			Unfolder.executeMove(action, _target)
 
+	_target.unselectAllFaces()
 	_camera = null
 	_target = null
 	_drag_edge = null
