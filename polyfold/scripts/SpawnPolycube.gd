@@ -6,8 +6,8 @@ const data_str = "res://data/polycubes/test_poly.tres"
 
 var polycube : Polycube
 static var data : PolycubeData = null
-static var nb_cubes : int = 30
-static var max_adj : int = 6
+static var nb_cubes : int = 4
+static var max_adj : int = 2
 
 @onready var camera : Camera3D = $Camera3D
 
@@ -26,6 +26,7 @@ func init_polycube() -> void:
 
 func _ready() -> void:
 	# TEMP: Init polycube
+	Log._set_log_level(Log.Event.DEBUG)
 	data = load(data_str)
 	
 	init_polycube()
