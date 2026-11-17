@@ -14,6 +14,8 @@ const SNAP_EXIT_ANGLE: float = 70.0
 var _camera: Camera3D
 ## Polycube receiving the committed move.
 var _target: Polycube
+## History of action 
+var _history : History = History.new()
 ## Edge grabbed by the player.
 var _drag_edge: Edge
 ## Face being dragged.
@@ -69,6 +71,7 @@ func beginEdgeDrag(
 
 	_camera = cam
 	_target = polycube
+	_history.setPolucube(_target)
 	_drag_edge = selected_edge
 	_drag_face = face
 	_drag_hinge = hinge
@@ -154,6 +157,8 @@ func endEdgeDrag(commit: bool) -> void:
 
 			var action: UnfoldAction = _drag_edge.select(direction)
 			Unfolder.executeMove(action, _target)
+			## Add the action into the historic
+			_history.addAction(action)
 
 	_target.unselectAllFaces()
 	_camera = null
