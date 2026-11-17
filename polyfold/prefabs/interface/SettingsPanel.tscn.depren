@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://qhkdy28iiy6r"]
+
+[ext_resource type="Script" uid="uid://dki35c2uee0uk" path="res://scripts/scene/prefabs/SettingsPanel.gd" id="1_toewy"]
+[ext_resource type="PackedScene" uid="uid://2la5g75kyjxf" path="res://prefabs/interface/BackButton.tscn" id="2_513gy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_st8hq"]
+
+[node name="SettingsPanel" type="PanelContainer" unique_id=806210726]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_st8hq")
+script = ExtResource("1_toewy")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1809685219]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=556982979]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1850417253]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+theme_override_font_sizes/font_size = 48
+text = "OPTION_TITLE"
+horizontal_alignment = 1
+
+[node name="LangLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1085991999]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+theme_override_font_sizes/font_size = 26
+text = "OPTION_LABEL_LANG"
+
+[node name="LangSelect" type="OptionButton" parent="MarginContainer/VBoxContainer" unique_id=1083023603]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1418767932]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+
+[node name="ResLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1991952277]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+theme_override_font_sizes/font_size = 26
+text = "OPTION_LABEL_RES"
+
+[node name="ResSelect" type="OptionButton" parent="MarginContainer/VBoxContainer" unique_id=716209483]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="FullscreenCheck" type="CheckBox" parent="MarginContainer/VBoxContainer" unique_id=826618835]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+theme_override_font_sizes/font_size = 24
+text = "OPTION_CHECK_FULLSCREEN"
+
+[node name="BackButton" parent="MarginContainer/VBoxContainer" unique_id=614178926 instance=ExtResource("2_513gy")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer" unique_id=1055854589]
+layout_mode = 2
+
+[editable path="MarginContainer/VBoxContainer/BackButton"]

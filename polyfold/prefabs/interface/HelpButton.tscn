@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://n1nupa36ocyr"]
+
+[ext_resource type="FontFile" uid="uid://cufs7q6thkobs" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="1_e0g0q"]
+[ext_resource type="Texture2D" uid="uid://ff5322nd6c51" path="res://assets/icons/info.svg" id="2_t0wsp"]
+
+[sub_resource type="FontVariation" id="FontVariation_ac62s"]
+base_font = ExtResource("1_e0g0q")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3db7w"]
+content_margin_left = 24.0
+content_margin_top = 10.0
+content_margin_right = 24.0
+content_margin_bottom = 10.0
+bg_color = Color(1, 1, 1, 0.039215688)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_og51k"]
+content_margin_left = 24.0
+content_margin_top = 10.0
+content_margin_right = 24.0
+content_margin_bottom = 10.0
+bg_color = Color(1, 1, 1, 0.2)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_st8hq"]
+content_margin_left = 24.0
+content_margin_top = 10.0
+content_margin_right = 24.0
+content_margin_bottom = 10.0
+bg_color = Color(1, 1, 1, 0.101960786)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kocej"]
+content_margin_left = 24.0
+content_margin_top = 10.0
+content_margin_right = 24.0
+content_margin_bottom = 10.0
+bg_color = Color(0.8352941, 0.85490197, 0.8666667, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.54901963, 0.6, 0.6313726, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 12
+
+[node name="HelpButton" type="Button" unique_id=614178926]
+custom_minimum_size = Vector2(0, 40)
+offset_right = 112.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.5019608)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0.8)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0.8)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 0.7019608)
+theme_override_colors/icon_focus_color = Color(1, 1, 1, 0.9019608)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 0.9019608)
+theme_override_constants/h_separation = 8
+theme_override_fonts/font = SubResource("FontVariation_ac62s")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_3db7w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_og51k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_st8hq")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_kocej")
+icon = ExtResource("2_t0wsp")

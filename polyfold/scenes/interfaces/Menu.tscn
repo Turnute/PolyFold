@@ -1,43 +1,27 @@
 [gd_scene format=3 uid="uid://b7sw2hgh0fhef"]
 
-[ext_resource type="Script" uid="uid://dhe1or0vvst4l" path="res://scripts/locale.gd" id="1_qoor0"]
+[ext_resource type="Script" uid="uid://dehfwyr45whwl" path="res://scripts/scene/Menu.gd" id="1_ac62s"]
 [ext_resource type="Texture2D" uid="uid://bdqqw8wj4jjxh" path="res://assets/img/polycube.png" id="1_vgc6r"]
+[ext_resource type="FontFile" uid="uid://cufs7q6thkobs" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="2_nn3se"]
 [ext_resource type="Texture2D" uid="uid://bsqefeqrn7i5r" path="res://assets/icons/cog.svg" id="3_nn3se"]
-[ext_resource type="Texture2D" uid="uid://bdxx8w6r213jy" path="res://assets/icons/doorway_exit.svg" id="4_ac62s"]
-[ext_resource type="Texture2D" uid="uid://ff5322nd6c51" path="res://assets/icons/info.svg" id="6_04thv"]
+[ext_resource type="Texture2D" uid="uid://dyfi0cvghweks" path="res://assets/icons/play.svg" id="4_ac62s"]
+[ext_resource type="PackedScene" uid="uid://4s33upjasyn5" path="res://prefabs/interface/NavButton.tscn" id="5_ac62s"]
+[ext_resource type="PackedScene" uid="uid://n1nupa36ocyr" path="res://prefabs/interface/HelpButton.tscn" id="8_04thv"]
 
-[sub_resource type="Gradient" id="Gradient_qoor0"]
+[sub_resource type="Gradient" id="Gradient_ac62s"]
 offsets = PackedFloat32Array(0, 0.8694915)
 colors = PackedColorArray(0.26993462, 0.4844079, 0.988347, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_3db7w"]
-gradient = SubResource("Gradient_qoor0")
+gradient = SubResource("Gradient_ac62s")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nn3se"]
-bg_color = Color(0.7254902, 0.8666667, 0.93333334, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.17341399, 0.3571631, 0.48805606, 1)
-corner_radius_top_left = 100
-corner_radius_top_right = 100
-corner_radius_bottom_right = 100
-corner_radius_bottom_left = 100
+[sub_resource type="FontVariation" id="FontVariation_3db7w"]
+base_font = ExtResource("2_nn3se")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ac62s"]
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
-corner_radius_top_left = 100
-corner_radius_top_right = 100
-corner_radius_bottom_right = 100
-corner_radius_bottom_left = 100
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bks8y"]
-load_path = "res://.godot/imported/play.svg-e9236ccb724ef92a26e89cd871a33e4f.ctex"
+[sub_resource type="DPITexture" id="DPITexture_nn3se"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"none\" viewBox=\"0 0 16 16\"><path fill=\"#ffffff\" d=\"M6 1a5 5 0 0 1 5 5H9a3 3 0 0 0-6 0v9H1V6a5 5 0 0 1 5-5M11 15H9v-3h2z\"/><path fill=\"#ffffff\" d=\"M11.293 6.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-2 2a1 1 0 1 1-1.414-1.414l.293-.293H6a1 1 0 0 1 0-2h5.586l-.293-.293a1 1 0 0 1 0-1.414\"/></svg>"
+fix_alpha_border = true
+base_scale = 4.0
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_nc8eo"]
 grow_begin = -10.0
@@ -52,7 +36,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_qoor0")
+script = ExtResource("1_ac62s")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1062525419]
 layout_mode = 1
@@ -91,70 +75,54 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/CenterContainer" unique_id=996941825]
-custom_minimum_size = Vector2(240, 50)
+custom_minimum_size = Vector2(400, 64)
 layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="Title" type="Label" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=767189458]
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_3db7w")
 theme_override_font_sizes/font_size = 96
 text = "POLYFOLD"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayButton" type="MenuButton" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=574124349]
+[node name="NavButton" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=614178926 instance=ExtResource("5_ac62s")]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
-theme_override_colors/font_pressed_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
-theme_override_colors/font_hover_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
-theme_override_colors/icon_normal_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
-theme_override_constants/h_separation = 0
-theme_override_constants/icon_max_width = 24
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_nn3se")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ac62s")
-flat = false
-expand_icon = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayButton" unique_id=2059244913]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 4
-alignment = 1
+[node name="Icon" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/NavButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="0" unique_id=1591882090]
+texture = ExtResource("4_ac62s")
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayButton/HBoxContainer" unique_id=1210964108]
+[node name="Text" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/NavButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="1" unique_id=296136175]
+text = "BUTTON_PLAY"
+
+[node name="SettingsButton" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=666445710 instance=ExtResource("5_ac62s")]
+unique_name_in_owner = true
 layout_mode = 2
-texture = SubResource("CompressedTexture2D_bks8y")
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayButton/HBoxContainer" unique_id=160964817]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
-theme_override_font_sizes/font_size = 32
-text = "BUTTON_JOUEUR"
+[node name="Icon" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/SettingsButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(666445710, 1873338246) index="0" unique_id=1591882090]
+texture = ExtResource("3_nn3se")
 
-[node name="SettingsButton" type="MenuButton" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=766120144]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "BUTTON_OPTION"
-icon = ExtResource("3_nn3se")
-flat = false
+[node name="Text" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/SettingsButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(666445710, 1873338246) index="1" unique_id=296136175]
+text = "BUTTON_SETTINGS"
 
-[node name="QuitButton" type="MenuButton" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=253671006]
+[node name="QuitButton" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=2014947329 instance=ExtResource("5_ac62s")]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "BUTTON_QUITTER"
-icon = ExtResource("4_ac62s")
-flat = false
+
+[node name="Icon" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/QuitButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2014947329, 1873338246) index="0" unique_id=1591882090]
+texture = SubResource("DPITexture_nn3se")
+
+[node name="Text" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/QuitButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2014947329, 1873338246) index="1" unique_id=296136175]
+text = "BUTTON_QUIT"
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer" unique_id=277126498]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_nc8eo")
 
 [node name="Label" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=1791152142]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("1_vgc6r")
@@ -175,12 +143,10 @@ theme_override_constants/margin_bottom = 30
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2" unique_id=1582123714]
 layout_mode = 2
 
-[node name="MenuButton" type="MenuButton" parent="MarginContainer2/HBoxContainer" unique_id=1499248600]
+[node name="HelpButton" parent="MarginContainer2/HBoxContainer" unique_id=1824558458 instance=ExtResource("8_04thv")]
 layout_mode = 2
-size_flags_horizontal = 0
-text = "A_PROPOS"
-icon = ExtResource("6_04thv")
+text = "ABOUT"
 
-[node name="Label" type="Label" parent="MarginContainer2/HBoxContainer" unique_id=1576219523]
-layout_mode = 2
-size_flags_horizontal = 8
+[editable path="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/NavButton"]
+[editable path="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/SettingsButton"]
+[editable path="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/QuitButton"]

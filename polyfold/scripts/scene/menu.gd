@@ -1,11 +1,16 @@
 extends Node
 
+const SETTINGS_PAGE := preload("res://scenes/interfaces/Settings.tscn")
 
-# Called when the node enters the scene tree for the first time.
+@onready var settings_button: Button = %SettingsButton
+@onready var quit_button: Button = %QuitButton
+
 func _ready() -> void:
-	pass # Replace with function body.
+	settings_button.pressed.connect(settings_button_pressed)
+	quit_button.pressed.connect(quit_button_pressed)
 
+func settings_button_pressed() -> void:
+	add_child(SETTINGS_PAGE.instantiate())
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func quit_button_pressed() -> void:
+	get_tree().quit()   # ferme le jeu

@@ -15,11 +15,17 @@ run/main_scene="uid://3whsw10muhw2"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Settings="*uid://dj5lmp4auweb5"
+
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
+window/size/resizable=false
+window/size/window_width_override=1024
+window/size/window_height_override=768
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

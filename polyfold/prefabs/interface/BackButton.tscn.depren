@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://2la5g75kyjxf"]
+
+[ext_resource type="PackedScene" uid="uid://4s33upjasyn5" path="res://prefabs/interface/NavButton.tscn" id="1_asbp6"]
+[ext_resource type="Script" uid="uid://dh41kd4408jc6" path="res://scripts/scene/prefabs/BackButton.gd" id="2_hk87g"]
+[ext_resource type="Texture2D" uid="uid://dl27nxj5irhm7" path="res://assets/icons/arrow_counterclockwise.svg" id="3_7c5l1"]
+
+[node name="BackButton" unique_id=614178926 instance=ExtResource("1_asbp6")]
+custom_minimum_size = Vector2(200, 64)
+script = ExtResource("2_hk87g")
+
+[node name="Icon" parent="MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1873338246) index="0" unique_id=1591882090]
+texture = ExtResource("3_7c5l1")
+
+[node name="Text" parent="MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1873338246) index="1" unique_id=296136175]
+text = "BACK"
