@@ -1,0 +1,220 @@
+[gd_scene format=3 uid="uid://6xddxibtyyn2"]
+
+[ext_resource type="Shader" uid="uid://duvqdhtdslif7" path="res://scenes/interface/flou.gdshader" id="1_2boj1"]
+[ext_resource type="FontFile" uid="uid://cufs7q6thkobs" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="2_d1cmq"]
+[ext_resource type="PackedScene" uid="uid://4s33upjasyn5" path="res://prefabs/interface/NavButton.tscn" id="3_qheo7"]
+[ext_resource type="Texture2D" uid="uid://dyfi0cvghweks" path="res://assets/icons/play.svg" id="4_3jl50"]
+[ext_resource type="Texture2D" uid="uid://bsqefeqrn7i5r" path="res://assets/icons/cog.svg" id="5_4ctk6"]
+[ext_resource type="Texture2D" uid="uid://ff5322nd6c51" path="res://assets/icons/info.svg" id="6_3jl50"]
+[ext_resource type="Texture2D" uid="uid://bdxx8w6r213jy" path="res://assets/icons/doorway_exit.svg" id="7_4ctk6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l2mhy"]
+shader = ExtResource("1_2boj1")
+shader_parameter/blur_amount = 2.000000095
+shader_parameter/darken = 0.150000007125
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aaql1"]
+bg_color = Color(0.33333334, 0.33333334, 0.33333334, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="FontVariation" id="FontVariation_s2alt"]
+base_font = ExtResource("2_d1cmq")
+variation_opentype = {
+2003265652: 600
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_jr2gh"]
+font = SubResource("FontVariation_s2alt")
+font_size = 40
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l2mhy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s2k8f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aaql1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbrlc"]
+content_margin_left = 24.0
+content_margin_top = 10.0
+content_margin_right = 24.0
+content_margin_bottom = 10.0
+bg_color = Color(0.9843137, 0.34117648, 0.34117648, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 12
+shadow_color = Color(0.11764706, 0.27058825, 0.3764706, 0.2509804)
+shadow_size = 4
+shadow_offset = Vector2(4, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lfk0b"]
+content_margin_left = 24.0
+content_margin_top = 10.0
+content_margin_right = 24.0
+content_margin_bottom = 10.0
+bg_color = Color(0.9255526, 0.14301413, 0.2108388, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 12
+shadow_color = Color(0.11764706, 0.27058825, 0.3764706, 0.1882353)
+shadow_size = 1
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_12j7i"]
+content_margin_left = 24.0
+content_margin_top = 10.0
+content_margin_right = 24.0
+content_margin_bottom = 10.0
+bg_color = Color(0.9931796, 0.5043844, 0.481874, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 12
+shadow_color = Color(0.11764706, 0.27058825, 0.3764706, 0.33333334)
+shadow_size = 8
+shadow_offset = Vector2(6, 6)
+
+[node name="PauseMenu" type="Control" unique_id=1253092038]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Flou" type="PanelContainer" parent="." unique_id=479069604]
+material = SubResource("ShaderMaterial_l2mhy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menu" type="PanelContainer" parent="." unique_id=901564814]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -91.0
+offset_right = 200.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_aaql1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu" unique_id=567488598]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Title" type="Label" parent="Menu/VBoxContainer" unique_id=1822215169]
+layout_mode = 2
+text = "PAUSE"
+label_settings = SubResource("LabelSettings_jr2gh")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Menu/VBoxContainer" unique_id=1459378118]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_l2mhy")
+
+[node name="Resume_button" parent="Menu/VBoxContainer" unique_id=614178926 instance=ExtResource("3_qheo7")]
+layout_mode = 2
+
+[node name="Icon" parent="Menu/VBoxContainer/Resume_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="0" unique_id=1591882090]
+texture = ExtResource("4_3jl50")
+
+[node name="VSeparator" type="VSeparator" parent="Menu/VBoxContainer/Resume_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="1" unique_id=1415928607]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
+
+[node name="Text" parent="Menu/VBoxContainer/Resume_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="2" unique_id=296136175]
+text = "PAUSE_RESUME"
+
+[node name="Settings_button" parent="Menu/VBoxContainer" unique_id=827849679 instance=ExtResource("3_qheo7")]
+layout_mode = 2
+
+[node name="Icon" parent="Menu/VBoxContainer/Settings_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(827849679, 1873338246) index="0" unique_id=1591882090]
+texture = ExtResource("5_4ctk6")
+
+[node name="VSeparator" type="VSeparator" parent="Menu/VBoxContainer/Settings_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(827849679, 1873338246) index="1" unique_id=74435057]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
+
+[node name="Text" parent="Menu/VBoxContainer/Settings_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(827849679, 1873338246) index="2" unique_id=296136175]
+text = "PAUSE_SETTINGS"
+
+[node name="HSeparator2" type="HSeparator" parent="Menu/VBoxContainer" unique_id=501722279]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_aaql1")
+
+[node name="Rules_button" parent="Menu/VBoxContainer" unique_id=1357910421 instance=ExtResource("3_qheo7")]
+layout_mode = 2
+
+[node name="Icon" parent="Menu/VBoxContainer/Rules_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1357910421, 1873338246) index="0" unique_id=1591882090]
+texture = ExtResource("6_3jl50")
+
+[node name="VSeparator" type="VSeparator" parent="Menu/VBoxContainer/Rules_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1357910421, 1873338246) index="1" unique_id=1898879978]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
+
+[node name="Text" parent="Menu/VBoxContainer/Rules_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1357910421, 1873338246) index="2" unique_id=296136175]
+text = "PAUSE_RULES"
+
+[node name="Leave_button" parent="Menu/VBoxContainer" unique_id=1955330189 instance=ExtResource("3_qheo7")]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_cbrlc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lfk0b")
+theme_override_styles/hover = SubResource("StyleBoxFlat_12j7i")
+
+[node name="Icon" parent="Menu/VBoxContainer/Leave_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1955330189, 1873338246) index="0" unique_id=1591882090]
+texture = ExtResource("7_4ctk6")
+
+[node name="VSeparator" type="VSeparator" parent="Menu/VBoxContainer/Leave_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1955330189, 1873338246) index="1" unique_id=1534110236]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
+
+[node name="Text" parent="Menu/VBoxContainer/Leave_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1955330189, 1873338246) index="2" unique_id=296136175]
+text = "PAUSE_LEAVE"
+
+[editable path="Menu/VBoxContainer/Resume_button"]
+[editable path="Menu/VBoxContainer/Settings_button"]
+[editable path="Menu/VBoxContainer/Rules_button"]
+[editable path="Menu/VBoxContainer/Leave_button"]
