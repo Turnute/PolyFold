@@ -2,7 +2,7 @@
 
 importer="svg"
 type="DPITexture"
-uid="uid://c1x6nl2nosk5g"
+uid="uid://ddoumw0juxs12"
 path="res://.godot/imported/pause.svg-622e8222a9136ab06a9c070e3f978eb0.dpitex"
 
 [deps]
@@ -15,6 +15,6 @@ dest_files=["res://.godot/imported/pause.svg-622e8222a9136ab06a9c070e3f978eb0.dp
 base_scale=3.0
 saturation=1.0
 color_map={}
-fix_alpha_border=true
+fix_alpha_border=false
 premult_alpha=false
 compress=true

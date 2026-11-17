@@ -2,7 +2,7 @@
 
 importer="svg"
 type="DPITexture"
-uid="uid://bdxx8w6r213jy"
+uid="uid://6emt0ew4r8fi"
 path="res://.godot/imported/doorway_exit.svg-8788fc617b00b583ea240a267a8e5535.dpitex"
 
 [deps]
@@ -15,6 +15,6 @@ dest_files=["res://.godot/imported/doorway_exit.svg-8788fc617b00b583ea240a267a8e
 base_scale=3.0
 saturation=1.0
 color_map={}
-fix_alpha_border=true
+fix_alpha_border=false
 premult_alpha=false
 compress=true

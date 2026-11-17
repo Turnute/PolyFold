@@ -2,7 +2,7 @@
 
 importer="svg"
 type="DPITexture"
-uid="uid://ds0geuub18dv3"
+uid="uid://cmwfjq2dwmtwc"
 path="res://.godot/imported/arrow_right.svg-bad29200a3508d7532820c541ac040e4.dpitex"
 
 [deps]
@@ -15,6 +15,6 @@ dest_files=["res://.godot/imported/arrow_right.svg-bad29200a3508d7532820c541ac04
 base_scale=3.0
 saturation=1.0
 color_map={}
-fix_alpha_border=true
+fix_alpha_border=false
 premult_alpha=false
 compress=true

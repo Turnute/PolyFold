@@ -2,7 +2,7 @@
 
 importer="svg"
 type="DPITexture"
-uid="uid://ckwm2ebq2wucv"
+uid="uid://d1k10kbsy3uvy"
 path="res://.godot/imported/bullseye.svg-0b6fd84292f7b1aa5dcc6da77a061330.dpitex"
 
 [deps]
@@ -15,6 +15,6 @@ dest_files=["res://.godot/imported/bullseye.svg-0b6fd84292f7b1aa5dcc6da77a061330
 base_scale=3.0
 saturation=1.0
 color_map={}
-fix_alpha_border=true
+fix_alpha_border=false
 premult_alpha=false
 compress=true

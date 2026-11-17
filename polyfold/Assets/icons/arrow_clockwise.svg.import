@@ -2,7 +2,7 @@
 
 importer="svg"
 type="DPITexture"
-uid="uid://c3ct13kt5p330"
+uid="uid://xkgtdgba68mo"
 path="res://.godot/imported/arrow_clockwise.svg-ef43a2b415fc45a0a5ac9c90726c9d93.dpitex"
 
 [deps]
@@ -15,6 +15,6 @@ dest_files=["res://.godot/imported/arrow_clockwise.svg-ef43a2b415fc45a0a5ac9c907
 base_scale=3.0
 saturation=1.0
 color_map={}
-fix_alpha_border=true
+fix_alpha_border=false
 premult_alpha=false
 compress=true

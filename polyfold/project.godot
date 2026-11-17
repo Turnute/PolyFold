@@ -15,6 +15,10 @@ run/main_scene="uid://3whsw10muhw2"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://dpp2v3er0nsy3"
+
 [autoload]
 
 Settings="*uid://dj5lmp4auweb5"
@@ -40,6 +44,9 @@ csv_translation={
 "delimiter": 0,
 "unescape_keys": false,
 "unescape_translations": true
+}
+svg={
+&"base_scale": 3.0
 }
 
 [internationalization]
