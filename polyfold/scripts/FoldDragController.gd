@@ -42,15 +42,16 @@ var _drag_initial_transforms: Dictionary = {}
 var _drag_excluded_areas: Array[RID] = []
 ## Whether a collision occured during a folding drag
 var _drag_colliding : bool
-
 ## Latest mouse request, waiting for physics validation.
 var _drag_requested_angle: float = 0.0
-
 ## Whether the mouse was released before validation completed.
 var _drag_release_requested: bool = false
-
 ## Maximum subdivision depth when checking a rotation interval.
 const SWEEP_MAX_DEPTH: int = 16
+## Retraction applied only to the moving group's outer borders.
+const GROUP_BORDER_INSET: float = 0.01
+## Temporary group volume: Face -> shape and local offset.
+var _drag_detectors: Dictionary = {}
 
 ## Resolves the handle's actual hinge and captures every moving face once.
 func beginEdgeDrag(
@@ -100,12 +101,36 @@ func beginEdgeDrag(
 	_drag_colliding = false
 	
 	_drag_requested_angle = 0.0
-	_drag_release_requested = false
+	_drag_detectors.clear()
 
 	for face_id in group:
 		var member: Face = polycube.getFaceFromFaceId(face_id)
 		_drag_initial_transforms[member] = member.global_transform
 		_drag_excluded_areas.append(member._fold_area.get_rid())
+
+		var inset: Array[float] = []
+		for neighbour_id in member._adj_faces:
+			inset.append(
+				0.0 if group.has(neighbour_id) else GROUP_BORDER_INSET
+			)
+
+		var source: BoxShape3D = member._fold_shape.shape
+		var shape := BoxShape3D.new()
+		shape.margin = 0.0
+		shape.size = Vector3(
+			1.0 - inset[0] - inset[1],
+			source.size.y,
+			1.0 - inset[2] - inset[3]
+		)
+
+		_drag_detectors[member] = {
+			"shape": shape,
+			"offset": Vector3(
+				(inset[1] - inset[0]) * 0.5,
+				0.0,
+				(inset[2] - inset[3]) * 0.5
+			)
+		}
 
 ## Updates the preview and consumes input while dragging.
 func dragEdgeInput(event: InputEvent) -> bool:
@@ -191,6 +216,11 @@ func endEdgeDrag(commit: bool) -> void:
 	_drag_direction = 0
 	_drag_snapped = false
 	_drag_initial_transforms.clear()
+	_drag_detectors.clear()
+	_drag_excluded_areas.clear()
+	_drag_requested_angle = 0.0
+	_drag_release_requested = false
+	_drag_colliding = false
 
 
 ## Sets the preview angle relative to the initial pose.
@@ -241,7 +271,34 @@ func findDragAngle(mouse_pos: Vector2) -> float:
 
 	return best_angle
 
-## Tries the requested pose and restores the last valid pose on overlap.
+
+## Checks the temporary group volume against stationary face detectors.
+func previewOverlaps() -> bool:
+	var query := PhysicsShapeQueryParameters3D.new()
+	query.collision_mask = 2
+	query.collide_with_areas = true
+	query.collide_with_bodies = false
+	query.exclude = _drag_excluded_areas
+
+	var space := _target.get_world_3d().direct_space_state
+
+	for face in _drag_detectors:
+		var detector: Dictionary = _drag_detectors[face]
+		var offset: Vector3 = detector["offset"]
+
+		query.shape = detector["shape"]
+		query.transform = (
+			face.global_transform
+			* Transform3D(Basis.IDENTITY, offset)
+		)
+
+		if not space.intersect_shape(query, 1).is_empty():
+			return true
+
+	return false
+
+
+## Advances the preview and rejects the first overlapping pose.
 func _physics_process(_delta: float) -> void:
 	if _drag_state != DragState.DRAGGING:
 		return
@@ -250,18 +307,22 @@ func _physics_process(_delta: float) -> void:
 		endEdgeDrag(false)
 		return
 
-	var previous_angle: float = _drag_angle
-	setPreviewAngle(_drag_requested_angle)
-
 	_drag_colliding = false
 
-	for face in _drag_initial_transforms:
-		if face.overlapsAt(face.global_transform, _drag_excluded_areas):
-			_drag_colliding = true
-			break
+	while _drag_angle != _drag_requested_angle:
+		var previous_angle: float = _drag_angle
+		var next_angle: float = move_toward(
+			_drag_angle,
+			_drag_requested_angle,
+			0.25
+		)
 
-	if _drag_colliding:
-		setPreviewAngle(previous_angle)
+		setPreviewAngle(next_angle)
+		_drag_colliding = previewOverlaps()
+
+		if _drag_colliding:
+			setPreviewAngle(previous_angle)
+			break
 
 	if _drag_release_requested:
 		endEdgeDrag(
