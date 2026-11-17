@@ -48,6 +48,14 @@ var _edges : Array[Edge]
 ## neighbouring faces, indexed by EdgeEnum (-1 if disconnected).
 var _adj_faces : Array[int]
 
+# TODO
+@onready var _separators : Array[MeshInstance3D] = [
+	$StaticBody3D/SeparatorTop,
+	$StaticBody3D/SeparatorBottom,
+	$StaticBody3D/SeparatorLeft,
+	$StaticBody3D/SeparatorRight
+]
+
 ## Reference to the face's MeshInstance3D.
 @onready var _mesh: MeshInstance3D = $StaticBody3D/MeshInstance3D
 ## The face's own copy of its mesh material.
@@ -68,11 +76,13 @@ func select() -> void:
 	print("Face sélectionnée !")
 	_material.albedo_color = _selectionColor
 	showEdges(true)
+	showSeparators(true)
 
 ## Called when a face is unselected. Removes highlighting and hides its edges.
 func unselect() -> void:
 	_material.albedo_color = _ogColor
 	showEdges(false)
+	showSeparators(false)
 
 ## Toggles the face's edge visibility and collision.
 func switchEdges() -> void:
@@ -156,3 +166,8 @@ func disconnectFace(faceId: int) -> bool:
 			_adj_faces[i] = -1
 			return true
 	return false
+
+func showSeparators(show : bool) -> void :
+	for i in range(4):
+		if _adj_faces[i] == -1:
+			_separators[i].visible = show

@@ -62,7 +62,7 @@ func _input(event : InputEvent):
 					if is_instance_of(selected_object, Edge):
 						_fold_drag.beginEdgeDrag(selected_object, godot_object["position"], self, _target)
 					elif is_instance_of(parent, Face):
-						if _curr_selected_face_id != parent._id_face:
+						if _target._selected_face_id != parent._id_face:
 							if _curr_selected_face_id != -1:
 								_target.unselectFace(_curr_selected_face_id)
 							_curr_selected_face_id = parent._id_face
