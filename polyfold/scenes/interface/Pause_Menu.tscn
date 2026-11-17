@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://6xddxibtyyn2"]
 
 [ext_resource type="Shader" uid="uid://duvqdhtdslif7" path="res://scenes/interface/flou.gdshader" id="1_2boj1"]
+[ext_resource type="Script" uid="uid://chapiiq16kvn8" path="res://scripts/interface/pause_menu.gd" id="1_4ctk6"]
 [ext_resource type="FontFile" uid="uid://cufs7q6thkobs" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="2_d1cmq"]
 [ext_resource type="PackedScene" uid="uid://4s33upjasyn5" path="res://prefabs/interface/NavButton.tscn" id="3_qheo7"]
 [ext_resource type="Texture2D" uid="uid://dyfi0cvghweks" path="res://assets/icons/play.svg" id="4_3jl50"]
@@ -101,12 +102,14 @@ shadow_size = 8
 shadow_offset = Vector2(6, 6)
 
 [node name="PauseMenu" type="Control" unique_id=1253092038]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_4ctk6")
 
 [node name="Flou" type="PanelContainer" parent="." unique_id=479069604]
 material = SubResource("ShaderMaterial_l2mhy")
@@ -183,19 +186,19 @@ layout_mode = 2
 theme_override_constants/separation = 8
 theme_override_styles/separator = SubResource("StyleBoxEmpty_aaql1")
 
-[node name="Rules_button" parent="Menu/VBoxContainer" unique_id=1357910421 instance=ExtResource("3_qheo7")]
+[node name="Help_button" parent="Menu/VBoxContainer" unique_id=1357910421 instance=ExtResource("3_qheo7")]
 layout_mode = 2
 
-[node name="Icon" parent="Menu/VBoxContainer/Rules_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1357910421, 1873338246) index="0" unique_id=1591882090]
+[node name="Icon" parent="Menu/VBoxContainer/Help_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1357910421, 1873338246) index="0" unique_id=1591882090]
 texture = ExtResource("6_3jl50")
 
-[node name="VSeparator" type="VSeparator" parent="Menu/VBoxContainer/Rules_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1357910421, 1873338246) index="1" unique_id=1898879978]
+[node name="VSeparator" type="VSeparator" parent="Menu/VBoxContainer/Help_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1357910421, 1873338246) index="1" unique_id=1898879978]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
 
-[node name="Text" parent="Menu/VBoxContainer/Rules_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1357910421, 1873338246) index="2" unique_id=296136175]
-text = "PAUSE_RULES"
+[node name="Text" parent="Menu/VBoxContainer/Help_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1357910421, 1873338246) index="2" unique_id=296136175]
+text = "PAUSE_HELP"
 
 [node name="Leave_button" parent="Menu/VBoxContainer" unique_id=1955330189 instance=ExtResource("3_qheo7")]
 layout_mode = 2
@@ -214,7 +217,10 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
 [node name="Text" parent="Menu/VBoxContainer/Leave_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1955330189, 1873338246) index="2" unique_id=296136175]
 text = "PAUSE_LEAVE"
 
+[connection signal="pressed" from="Menu/VBoxContainer/Resume_button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Help_button" to="." method="_on_help_button_pressed"]
+
 [editable path="Menu/VBoxContainer/Resume_button"]
 [editable path="Menu/VBoxContainer/Settings_button"]
-[editable path="Menu/VBoxContainer/Rules_button"]
+[editable path="Menu/VBoxContainer/Help_button"]
 [editable path="Menu/VBoxContainer/Leave_button"]

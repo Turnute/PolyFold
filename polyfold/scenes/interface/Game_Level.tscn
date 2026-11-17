@@ -258,3 +258,5 @@ layout_mode = 2
 text = "Redo"
 label_settings = SubResource("LabelSettings_2y1bh")
 horizontal_alignment = 1
+
+[connection signal="pressed" from="pause_button" to="." method="_on_pause_button_pressed"]

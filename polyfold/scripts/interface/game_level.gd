@@ -74,3 +74,13 @@ func addMove() -> void:
 func removeMove() -> void:
 	moves -= 1
 	%move_number.text = TranslationServer.translate("GAME_LEVEL_MOVE") % moves	
+
+
+## Function called when the [code]pause_button[/code] button is pressed.
+func _on_pause_button_pressed() -> void:
+	PauseMenu.create(self)
+
+## Detect if the [code]Escape[/code] is pressed and open the Pause menu.
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		_on_pause_button_pressed()
