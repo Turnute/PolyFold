@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/node_graph_node.svg-8ab2c59dc04cdaaa031dfd9b9
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

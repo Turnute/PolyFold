@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/lightning_in_circle.svg-6791ee26f02207d270ba4
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/wave.svg-f618f3a31f86c4e48dee17a8d8fa9fc9.dpi
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

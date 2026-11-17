@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/arrow_merge.svg-7666b29b9101d0b3020eaa0d132cf
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

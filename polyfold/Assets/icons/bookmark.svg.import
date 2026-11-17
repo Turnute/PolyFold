@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/bookmark.svg-1f05c5062ded013a60e2a2e67923c1da
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

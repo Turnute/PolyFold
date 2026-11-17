@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/scissors.svg-a9ba5599c23b9f0a31843f8ca1775496
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

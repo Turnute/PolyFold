@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/battery_high.svg-6d4f1756ccc5a6c05733da0db50c
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

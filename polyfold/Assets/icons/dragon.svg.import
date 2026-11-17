@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/dragon.svg-02eade3d9625788a2a6625e4ee226a2b.d
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

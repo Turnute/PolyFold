@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/steering_wheel.svg-faed3115287a1e887862d0a44c
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

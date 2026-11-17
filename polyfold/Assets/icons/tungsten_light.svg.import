@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/tungsten_light.svg-d0973ee1768b9c58c8e21b8c37
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

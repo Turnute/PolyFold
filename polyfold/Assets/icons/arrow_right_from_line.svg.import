@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/arrow_right_from_line.svg-41edead45b4a0bf393c
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

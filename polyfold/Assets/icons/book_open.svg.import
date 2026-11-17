@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/book_open.svg-e3aca6d544c36b9a7296aab87af0736
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

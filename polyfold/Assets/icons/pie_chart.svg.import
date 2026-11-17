@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/pie_chart.svg-52a8ed78b772ea96b04bacee1e2743f
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

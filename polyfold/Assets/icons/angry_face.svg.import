@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/angry_face.svg-28e8d99310c9ef44e6d11abe848072
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

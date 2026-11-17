@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/dot_grid.svg-94ada740a3b7413610a861f96ee3b485
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

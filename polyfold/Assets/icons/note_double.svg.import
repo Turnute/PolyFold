@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/note_double.svg-f44b32c01643fd34172d4b14d789d
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/bug.svg-1f2b6988bc5005ced9611ba92c1746f9.dpit
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

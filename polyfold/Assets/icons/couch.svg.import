@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/couch.svg-930946932c9c9714fe25e7cb4c47a264.dp
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/forest.svg-7c2cc1778f5ac773e8dc45f1bfe10421.d
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

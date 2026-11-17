@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/rotate.svg-4fa641ff463c6ddb8d298e574da9c77e.d
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

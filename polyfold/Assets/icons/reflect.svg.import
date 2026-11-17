@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/reflect.svg-f1e9dbf2dbf4333c80f349e33bee74f0.
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

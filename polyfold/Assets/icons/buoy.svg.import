@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/buoy.svg-055bdc54586f3da6e323bcdbf5784ec6.dpi
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/pen_nib.svg-786e2b4de1bd119aee5878c3f38c4240.
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

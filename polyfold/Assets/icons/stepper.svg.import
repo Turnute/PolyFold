@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/stepper.svg-ad8ff5118ecc4f3f96b1aa947cb846cd.
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

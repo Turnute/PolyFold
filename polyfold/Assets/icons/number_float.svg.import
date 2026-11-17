@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/number_float.svg-70c7b5a3d9243df0b61471eb93ff
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

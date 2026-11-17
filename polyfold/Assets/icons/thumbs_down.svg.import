@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/thumbs_down.svg-7b41ba4f9bb62cf022478c1caf435
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

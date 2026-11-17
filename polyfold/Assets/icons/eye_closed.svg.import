@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/eye_closed.svg-7d1c6d13569e698d39c47ce7ccb57e
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

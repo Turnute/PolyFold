@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/heart_broken.svg-d52f34c4cb278ac667b97e2f5d43
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

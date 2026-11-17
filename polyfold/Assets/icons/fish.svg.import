@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/fish.svg-f67a1ad8e404f439767310ff9a9880cf.dpi
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

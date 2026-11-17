@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/pouch.svg-2fdd136147ba6f237b3e471e954c7ffb.dp
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

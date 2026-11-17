@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/push_button.svg-58968f663da3d4290e22848800e76
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

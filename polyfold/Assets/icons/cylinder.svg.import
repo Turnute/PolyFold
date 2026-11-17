@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/cylinder.svg-6b2aed39eaa9d6b8b8a43f13bf594d90
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

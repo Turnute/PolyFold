@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/tower.svg-d123c43771680a4050441693c9a798aa.dp
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

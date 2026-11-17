@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/arrow_up_to_line.svg-a19879377d51911154bc6356
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

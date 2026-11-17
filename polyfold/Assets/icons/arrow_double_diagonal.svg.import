@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/arrow_double_diagonal.svg-824572f13b47bd5fbc2
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

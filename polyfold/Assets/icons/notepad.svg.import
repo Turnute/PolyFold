@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/notepad.svg-b300a792b6e51bfc6dfb984200da1c5c.
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

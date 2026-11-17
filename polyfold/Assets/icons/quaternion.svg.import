@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/quaternion.svg-2c1591a500d2492b98941ca888b88f
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

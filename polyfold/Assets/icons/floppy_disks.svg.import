@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/floppy_disks.svg-b501609ab4076e0a07c6e987585e
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

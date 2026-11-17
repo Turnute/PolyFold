@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/handset_waves.svg-8622c8593e7a8eb50b848fb2e32
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

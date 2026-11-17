@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/tennis_ball.svg-09ea0e32de77d045ab95d344ba513
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/slider_joint.svg-53744f58087b2098f1230164e242
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

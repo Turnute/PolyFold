@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/flintlock.svg-e635bda6f1f6afe3ee8b744d09db6fa
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

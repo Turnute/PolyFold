@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/video_camera.svg-809658f4743890323f220dca2bd2
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

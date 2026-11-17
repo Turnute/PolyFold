@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/traffic_cone.svg-c31748bbf466e84dc118ad3d4c32
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

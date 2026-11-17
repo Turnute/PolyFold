@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/shopping_basket.svg-f1dacab358dbd50e14ad1fbef
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

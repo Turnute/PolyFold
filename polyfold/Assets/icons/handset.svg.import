@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/handset.svg-cb050b5aeac0ee7b22a23e1d58b4c265.
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

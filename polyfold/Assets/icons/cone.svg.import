@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/cone.svg-b905facb70d1383934a07f5cd93c572b.dpi
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/set_square.svg-87680cc994e3988597350ab8a6302e
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/arrow_turn_down_right.svg-40f942578ace9afadce
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

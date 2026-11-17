@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/magic_staff.svg-fc4e8b34daee2a42f9275bf2876f2
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

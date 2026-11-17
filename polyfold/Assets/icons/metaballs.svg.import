@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/metaballs.svg-30929c946184d2e0807f98a1f5bcb9c
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

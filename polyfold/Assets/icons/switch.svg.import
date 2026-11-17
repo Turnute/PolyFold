@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/switch.svg-79f9c439d0ba89280801cb83def0520d.d
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

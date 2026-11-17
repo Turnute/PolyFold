@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/cursor.svg-cae3dc1e575de8b7240f839f84989749.d
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

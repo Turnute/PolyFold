@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/clock.svg-f626f83c0695c556703b5157c5817857.dp
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

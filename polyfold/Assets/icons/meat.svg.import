@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/meat.svg-ea7a1746efbd6dc1bfa675e672927d8c.dpi
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true

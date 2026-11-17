@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/spade.svg-769268379b21eebab62d162459d3fa7a.dp
 
 [params]
 
-base_scale=4.0
+base_scale=3.0
 saturation=1.0
 color_map={}
 fix_alpha_border=true
