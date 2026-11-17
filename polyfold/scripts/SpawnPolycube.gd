@@ -4,16 +4,16 @@ extends Node3D
 # TEMP : String value for test polycube
 const data_str = "res://data/polycubes/test_poly.tres"
 
+var polycube : Polycube
 static var data : PolycubeData = null
-static var nb_cubes : int = 10
-static var max_adj : int = 3
+static var nb_cubes : int = 30
+static var max_adj : int = 6
 
 @onready var camera : Camera3D = $Camera3D
 
 ## Spawns polycube based on a PolycubeData object [br]
 ## If [member SpawnPolycube.data][code] == null[/code] on ready, a random polycube will be generated 
 func init_polycube() -> void:
-	var polycube : Polycube
 	if (data != null):
 		polycube = PolycubeFactory.loadPolycube(data)
 	else: 
@@ -27,3 +27,4 @@ func init_polycube() -> void:
 func _ready() -> void:
 	# TEMP: Init polycube
 	init_polycube()
+	print(polycube._adj)
