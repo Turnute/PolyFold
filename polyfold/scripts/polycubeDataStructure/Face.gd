@@ -64,6 +64,8 @@ var _selectionColor: Color = Color(1, 1, 0)
 @onready var _fold_area: Area3D = $FoldDetector
 ## Collision shape.
 @onready var _fold_shape: CollisionShape3D = $FoldDetector/CollisionShape3D
+## Label (used for debug)
+@onready var _label: Label3D = $Label3D
 
 ## Sets the face's material and creates its edges.
 func _ready() -> void:
@@ -74,6 +76,8 @@ func _ready() -> void:
 		createEdge(i, Vector3(Edge.DIRECTIONS[i]) * 0.5)
 	
 	updateConnectionVisuals()
+	
+	_label.text = str(_id_face)
 
 ## Called when a face is selected. Highlights it and reveals its edges.
 func select() -> void:

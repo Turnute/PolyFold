@@ -32,3 +32,8 @@ monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FoldDetector" unique_id=108504098]
 shape = SubResource("BoxShape3D_sxki6")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=566673382]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25994843, 0)
+pixel_size = 0.01
+text = "Test"
