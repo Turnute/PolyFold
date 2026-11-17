@@ -51,7 +51,7 @@ static func executeMove(action : UnfoldAction, pol : Polycube) -> void:
 			if face_id == folding_face._id_face and neighbour_id == hinge_neighbour:
 				continue
 
-			face._adj_faces[i] = -1
+			face.disconnectFace(neighbour_id)
 			pol.getFaceFromFaceId(neighbour_id).disconnectFace(face_id)
 
 	pol.refreshSelectedFaceEdges()
