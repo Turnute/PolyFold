@@ -3,7 +3,7 @@ extends Control
 ## This class handles the creation of the [code]Help[/code] interface
 ## as well as the various events associated with the buttons on the menu.
 
-const HELP = preload("res://scenes/interface/Help_Menu.tscn")
+const HELP = preload("res://scenes/interfaces/Help_Menu.tscn")
 
 
 ## Create the interface by customizing the fields.

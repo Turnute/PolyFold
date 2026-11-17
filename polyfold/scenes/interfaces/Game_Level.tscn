@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://3whsw10muhw2"]
 
-[ext_resource type="Script" uid="uid://dcqwu0ow02tw7" path="res://scripts/interface/game_level.gd" id="1_hq6jr"]
+[ext_resource type="Script" uid="uid://dcqwu0ow02tw7" path="res://scripts/interfaces/game_level.gd" id="1_hq6jr"]
 [ext_resource type="FontFile" uid="uid://cufs7q6thkobs" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="2_jr2gh"]
 [ext_resource type="Texture2D" uid="uid://ckwm2ebq2wucv" path="res://assets/icons/bullseye.svg" id="3_s2alt"]
 [ext_resource type="Texture2D" uid="uid://cap7xul327cib" path="res://assets/icons/stopwatch.svg" id="4_853i0"]
-[ext_resource type="PackedScene" uid="uid://c53y36ip3fu05" path="res://prefabs/interface/ButtonIcon.tscn" id="5_0lshf"]
+[ext_resource type="PackedScene" uid="uid://c53y36ip3fu05" path="res://prefabs/interfaces/ButtonIcon.tscn" id="5_0lshf"]
 [ext_resource type="Texture2D" uid="uid://c1x6nl2nosk5g" path="res://assets/icons/pause.svg" id="6_t5vjp"]
 [ext_resource type="Texture2D" uid="uid://dl27nxj5irhm7" path="res://assets/icons/arrow_counterclockwise.svg" id="7_5dcfj"]
 [ext_resource type="Texture2D" uid="uid://c3ct13kt5p330" path="res://assets/icons/arrow_clockwise.svg" id="8_k5pa4"]

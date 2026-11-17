@@ -1,7 +1,7 @@
 class_name GameLevel
 extends Control
 
-const GAME_LEVEL_INTERFACE: PackedScene = preload("res://scenes/interface/Game_Level.tscn")
+const GAME_LEVEL_INTERFACE: PackedScene = preload("res://scenes/interfaces/Game_Level.tscn")
 
 var temps_ecoule: float = 0.0
 var chrono_is_running: bool = false

@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://b7sw2hgh0fhef"]
+
+[ext_resource type="Script" uid="uid://dehfwyr45whwl" path="res://scripts/interfaces/Menu.gd" id="1_ac62s"]
+[ext_resource type="Texture2D" uid="uid://bdqqw8wj4jjxh" path="res://assets/img/polycube.png" id="1_vgc6r"]
+[ext_resource type="FontFile" uid="uid://cufs7q6thkobs" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="2_nn3se"]
+[ext_resource type="Texture2D" uid="uid://bsqefeqrn7i5r" path="res://assets/icons/cog.svg" id="3_nn3se"]
+[ext_resource type="Texture2D" uid="uid://dyfi0cvghweks" path="res://assets/icons/play.svg" id="4_ac62s"]
+[ext_resource type="PackedScene" uid="uid://4s33upjasyn5" path="res://prefabs/interfaces/NavButton.tscn" id="5_ac62s"]
+[ext_resource type="PackedScene" uid="uid://n1nupa36ocyr" path="res://prefabs/interfaces/HelpButton.tscn" id="8_04thv"]
+
+[sub_resource type="Gradient" id="Gradient_ac62s"]
+offsets = PackedFloat32Array(0, 0.8694915)
+colors = PackedColorArray(0.26993462, 0.4844079, 0.988347, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3db7w"]
+gradient = SubResource("Gradient_ac62s")
+
+[sub_resource type="FontVariation" id="FontVariation_3db7w"]
+base_font = ExtResource("2_nn3se")
+
+[sub_resource type="DPITexture" id="DPITexture_nn3se"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"none\" viewBox=\"0 0 16 16\"><path fill=\"#ffffff\" d=\"M6 1a5 5 0 0 1 5 5H9a3 3 0 0 0-6 0v9H1V6a5 5 0 0 1 5-5M11 15H9v-3h2z\"/><path fill=\"#ffffff\" d=\"M11.293 6.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-2 2a1 1 0 1 1-1.414-1.414l.293-.293H6a1 1 0 0 1 0-2h5.586l-.293-.293a1 1 0 0 1 0-1.414\"/></svg>"
+fix_alpha_border = true
+base_scale = 4.0
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_nc8eo"]
+grow_begin = -10.0
+grow_end = -10.0
+thickness = 3
+vertical = true
+
+[node name="MainMenu" type="Control" unique_id=1346635894]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ac62s")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1062525419]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.1113402, 1.1577446)
+texture = SubResource("GradientTexture1D_3db7w")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1237686117]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.5
+offset_top = -109.0
+offset_right = 156.5
+offset_bottom = 109.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=179414917]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer" unique_id=765135166]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/CenterContainer" unique_id=996941825]
+custom_minimum_size = Vector2(400, 64)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=767189458]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_3db7w")
+theme_override_font_sizes/font_size = 96
+text = "POLYFOLD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayButton" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=614178926 instance=ExtResource("5_ac62s")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Icon" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="0" unique_id=1591882090]
+texture = ExtResource("4_ac62s")
+
+[node name="Text" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="1" unique_id=296136175]
+text = "BUTTON_PLAY"
+
+[node name="SettingsButton" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=666445710 instance=ExtResource("5_ac62s")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Icon" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/SettingsButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(666445710, 1873338246) index="0" unique_id=1591882090]
+texture = ExtResource("3_nn3se")
+
+[node name="Text" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/SettingsButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(666445710, 1873338246) index="1" unique_id=296136175]
+text = "BUTTON_SETTINGS"
+
+[node name="QuitButton" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=2014947329 instance=ExtResource("5_ac62s")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Icon" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/QuitButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2014947329, 1873338246) index="0" unique_id=1591882090]
+texture = SubResource("DPITexture_nn3se")
+
+[node name="Text" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/QuitButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2014947329, 1873338246) index="1" unique_id=296136175]
+text = "BUTTON_QUIT"
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer" unique_id=277126498]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_nc8eo")
+
+[node name="Label" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=1791152142]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_vgc6r")
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=460263239]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2" unique_id=1582123714]
+layout_mode = 2
+
+[node name="HelpButton" parent="MarginContainer2/HBoxContainer" unique_id=1824558458 instance=ExtResource("8_04thv")]
+layout_mode = 2
+text = "ABOUT"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/HelpButton" to="." method="_on_help_button_pressed"]
+
+[editable path="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayButton"]
+[editable path="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/SettingsButton"]
+[editable path="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/QuitButton"]

@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://bhjm1ljk1p20o"]
 
-[ext_resource type="Script" uid="uid://djuhftwah1bay" path="res://scripts/interface/help_menu.gd" id="1_vq8ek"]
-[ext_resource type="Shader" uid="uid://duvqdhtdslif7" path="res://scenes/interface/flou.gdshader" id="2_jn8xe"]
+[ext_resource type="Script" uid="uid://djuhftwah1bay" path="res://scripts/interfaces/help_menu.gd" id="1_vq8ek"]
+[ext_resource type="Shader" uid="uid://duvqdhtdslif7" path="res://scenes/interfaces/flou.gdshader" id="2_jn8xe"]
 [ext_resource type="FontFile" uid="uid://cufs7q6thkobs" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="3_ejxdo"]
-[ext_resource type="PackedScene" uid="uid://c53y36ip3fu05" path="res://prefabs/interface/ButtonIcon.tscn" id="4_s2upg"]
+[ext_resource type="PackedScene" uid="uid://c53y36ip3fu05" path="res://prefabs/interfaces/ButtonIcon.tscn" id="4_s2upg"]
 [ext_resource type="Texture2D" uid="uid://daejxb8k0icd7" path="res://assets/img/cube.png" id="5_e6p4f"]
 [ext_resource type="Texture2D" uid="uid://ds0geuub18dv3" path="res://assets/icons/arrow_right.svg" id="6_wmrcs"]
 [ext_resource type="Texture2D" uid="uid://dxyblpcv2hn4n" path="res://assets/img/patron.png" id="7_wgidi"]
 [ext_resource type="Texture2D" uid="uid://db50tdd4v6e52" path="res://assets/icons/checkmark.svg" id="8_7g5cy"]
-[ext_resource type="PackedScene" uid="uid://4s33upjasyn5" path="res://prefabs/interface/NavButton.tscn" id="9_re7ix"]
+[ext_resource type="PackedScene" uid="uid://4s33upjasyn5" path="res://prefabs/interfaces/NavButton.tscn" id="9_re7ix"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l2mhy"]
 shader = ExtResource("2_jn8xe")

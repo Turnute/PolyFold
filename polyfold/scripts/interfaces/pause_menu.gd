@@ -3,7 +3,7 @@ extends Control
 ## This class handles the creation of the [code]Pause[/code] interface
 ## as well as the various events associated with the buttons on the menu.
 
-const PAUSE = preload("res://scenes/interface/Pause_Menu.tscn")
+const PAUSE = preload("res://scenes/interfaces/Pause_Menu.tscn")
 
 
 ## Create the interface by customizing the fields.
