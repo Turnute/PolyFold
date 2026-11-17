@@ -60,6 +60,15 @@ const CUT_INSET: float = 0.015
 ## The color used to highlight the selected face.
 var _selectionColor: Color = Color(1, 1, 0)
 
+## Dedicated detector used to validate folding collisions.
+@onready var _fold_area: Area3D = $FoldDetector
+## Collision shape.
+@onready var _fold_shape: CollisionShape3D = $FoldDetector/CollisionShape3D
+## Physics identifiers of every detector in the moving group.
+var _drag_excluded_areas: Array[RID] = []
+## Whether the current preview overlaps a stationary detector.
+var _drag_colliding: bool = false
+
 ## Sets the face's material and creates its edges.
 func _ready() -> void:
 	_mesh.mesh = _mesh.mesh.duplicate()
@@ -189,3 +198,19 @@ func updateConnectionVisuals() -> void :
 		_mesh.position.y,
 		(left - right) * 0.5
 	)
+
+## Checks a proposed face pose against stationary fold detectors.
+## Must be called during the physics step.
+func overlapsAt(pose: Transform3D, excluded: Array[RID]) -> bool :
+	var query := PhysicsShapeQueryParameters3D.new()
+
+	query.shape = _fold_shape.shape
+	query.transform = pose * _fold_area.transform * _fold_shape.transform
+
+	query.collision_mask = 2
+	query.collide_with_areas = true
+	query.collide_with_bodies = false
+	query.exclude = excluded
+
+	var space := get_world_3d().direct_space_state
+	return not space.intersect_shape(query, 1).is_empty()

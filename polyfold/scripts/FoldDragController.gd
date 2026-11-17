@@ -38,7 +38,19 @@ var _drag_direction: int = 0
 var _drag_snapped: bool = false
 ## Dictionary of Face -> initial Transform3D.
 var _drag_initial_transforms: Dictionary = {}
+## Array of excluded areas from a collision detection check
+var _drag_excluded_areas: Array[RID] = []
+## Whether a collision occured during a folding drag
+var _drag_colliding : bool
 
+## Latest mouse request, waiting for physics validation.
+var _drag_requested_angle: float = 0.0
+
+## Whether the mouse was released before validation completed.
+var _drag_release_requested: bool = false
+
+## Maximum subdivision depth when checking a rotation interval.
+const SWEEP_MAX_DEPTH: int = 16
 
 ## Resolves the handle's actual hinge and captures every moving face once.
 func beginEdgeDrag(
@@ -84,10 +96,16 @@ func beginEdgeDrag(
 	_drag_state = DragState.DRAGGING
 
 	_drag_initial_transforms.clear()
+	_drag_excluded_areas.clear()
+	_drag_colliding = false
+	
+	_drag_requested_angle = 0.0
+	_drag_release_requested = false
 
 	for face_id in group:
 		var member: Face = polycube.getFaceFromFaceId(face_id)
 		_drag_initial_transforms[member] = member.global_transform
+		_drag_excluded_areas.append(member._fold_area.get_rid())
 
 ## Updates the preview and consumes input while dragging.
 func dragEdgeInput(event: InputEvent) -> bool:
@@ -102,6 +120,9 @@ func dragEdgeInput(event: InputEvent) -> bool:
 		or not is_instance_valid(_drag_hinge)
 	):
 		endEdgeDrag(false)
+		return true
+	
+	if _drag_release_requested:
 		return true
 
 	if event is InputEventMouseMotion:
@@ -122,11 +143,11 @@ func dragEdgeInput(event: InputEvent) -> bool:
 		if _drag_snapped:
 			preview_angle = 90.0 * _drag_direction
 
-		setPreviewAngle(preview_angle)
+		_drag_requested_angle = preview_angle
 
 	elif event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
-			endEdgeDrag(_drag_snapped)
+			_drag_release_requested = true
 
 	return true
 
@@ -219,3 +240,32 @@ func findDragAngle(mouse_pos: Vector2) -> float:
 			best_error = error
 
 	return best_angle
+
+## Tries the requested pose and restores the last valid pose on overlap.
+func _physics_process(_delta: float) -> void:
+	if _drag_state != DragState.DRAGGING:
+		return
+
+	if not is_instance_valid(_target):
+		endEdgeDrag(false)
+		return
+
+	var previous_angle: float = _drag_angle
+	setPreviewAngle(_drag_requested_angle)
+
+	_drag_colliding = false
+
+	for face in _drag_initial_transforms:
+		if face.overlapsAt(face.global_transform, _drag_excluded_areas):
+			_drag_colliding = true
+			break
+
+	if _drag_colliding:
+		setPreviewAngle(previous_angle)
+
+	if _drag_release_requested:
+		endEdgeDrag(
+			_drag_snapped
+			and not _drag_colliding
+			and absf(_drag_angle) == 90.0
+		)
