@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://2la5g75kyjxf"]
 
 [ext_resource type="PackedScene" uid="uid://4s33upjasyn5" path="res://prefabs/interfaces/NavButton.tscn" id="1_asbp6"]
-[ext_resource type="Texture2D" uid="uid://dl27nxj5irhm7" path="res://assets/icons/arrow_counterclockwise.svg" id="3_7c5l1"]
+[ext_resource type="Texture2D" uid="uid://ot6sv16ia5le" path="res://assets/icons/arrow_counterclockwise.svg" id="3_7c5l1"]
 
 [node name="BackButton" unique_id=614178926 instance=ExtResource("1_asbp6")]
 custom_minimum_size = Vector2(200, 64)

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://n1nupa36ocyr"]
 
-[ext_resource type="FontFile" uid="uid://cufs7q6thkobs" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="1_e0g0q"]
-[ext_resource type="Texture2D" uid="uid://ff5322nd6c51" path="res://assets/icons/info.svg" id="2_t0wsp"]
+[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="1_e0g0q"]
+[ext_resource type="Texture2D" uid="uid://d0ftfeqf0l8sh" path="res://assets/icons/info.svg" id="2_t0wsp"]
 
 [sub_resource type="FontVariation" id="FontVariation_ac62s"]
 base_font = ExtResource("1_e0g0q")
