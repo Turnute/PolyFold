@@ -3,7 +3,7 @@ extends Control
 ## This class handles the creation of the [code]Help[/code] interface
 ## as well as the various events associated with the buttons on the menu.
 
-const HELP = preload("res://scenes/interfaces/Help_Menu.tscn")
+const HELP = preload("res://scenes/interfaces/HelpMenu.tscn")
 
 
 ## Create the interface by customizing the fields.
@@ -11,7 +11,7 @@ const HELP = preload("res://scenes/interfaces/Help_Menu.tscn")
 ## [br][b]Returns:[/b] [code]Control[/code] - The interface added to the parent
 static func create(parent: Node) -> HelpMenu:
 	var interface: HelpMenu = HELP.instantiate()
-	interface.get_node("%rule_fourth_desc").text = TranslationServer.tr("HELP_RULES_4") % TranslationServer.tr("GAME_LEVEL_UNDO") % TranslationServer.tr("GAME_LEVEL_REDO")
+	interface.get_node("%rule_fourth_desc").text = TranslationServer.tr("HELP_RULES_4") % [TranslationServer.tr("GAME_LEVEL_UNDO"), TranslationServer.tr("GAME_LEVEL_REDO")]
 	parent.add_child(interface)
 	return interface
 	

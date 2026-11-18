@@ -1,7 +1,7 @@
 class_name GameLevel
 extends Control
 
-const GAME_LEVEL_INTERFACE: PackedScene = preload("res://scenes/interfaces/Game_Level.tscn")
+const GAME_LEVEL_INTERFACE: PackedScene = preload("res://scenes/interfaces/GameLevel.tscn")
 
 var temps_ecoule: float = 0.0
 var chrono_is_running: bool = false
@@ -79,6 +79,14 @@ func removeMove() -> void:
 ## Function called when the [code]pause_button[/code] button is pressed.
 func _on_pause_button_pressed() -> void:
 	PauseMenu.create(self)
+
+## Function called when the [code]undo_button[/code] button is pressed.
+func _on_undo_button_pressed() -> void:
+	History.undo()
+
+## Function called when the [code]redo_button[/code] button is pressed.
+func _on_redo_button_pressed() -> void:
+	History.redo()
 
 ## Detect if the [code]Escape[/code] is pressed and open the Pause menu.
 func _input(event: InputEvent) -> void:
