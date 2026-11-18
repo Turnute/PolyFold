@@ -20,13 +20,13 @@ func test_getAdj():
 
 func test_loadPolycube():
 	var data : PolycubeData = load(data_str)
-	var polycube : Polycube = PolycubeFactory.loadPolycube(data)
+	var polycube : Polycube = autofree(PolycubeFactory.loadPolycube(data))
 	
 	assert_true(polycube._cubes.size() == 2, "Check polycube size")
 	assert_true(polycube._adj[0][1] == Face.FaceEnum.FRONT, "Check polycube adjacency")
 
 func test_generatePolycube():
-	var polycube : Polycube = PolycubeFactory.generatePolycube(6,2)
+	var polycube : Polycube = autofree(PolycubeFactory.generatePolycube(6,2))
 	
 	assert_true(polycube._cubes.size() == 6, "Check polycube size")
 	assert_true(polycube._adj.size() == 6, "Check adj matrix col number")
