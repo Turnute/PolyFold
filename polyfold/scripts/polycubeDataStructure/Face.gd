@@ -72,10 +72,14 @@ func _ready() -> void:
 	_mesh.mesh = _mesh.mesh.duplicate()
 	_mesh.set_surface_override_material(0, _material)
 	
+	createEdges()
+	updateConnectionVisuals()
+
+## Creates the face's edges
+func createEdges() -> void :
 	for i in range(4):
 		createEdge(i, Vector3(Edge.DIRECTIONS[i]) * 0.5)
 
-	updateConnectionVisuals()
 ## Called when a face is selected. Highlights it and reveals its edges.
 func select() -> void:
 	print("Face sélectionnée !")

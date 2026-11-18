@@ -306,3 +306,9 @@ func log() -> void :
 	for c in _cubes:
 		for f in c._faces:
 			f.log()
+
+## Used in unit testing: manually creates all faces' edges
+func createEdges() -> void :
+	for c in _cubes:
+		for f in c._faces:
+			f.createEdges()
