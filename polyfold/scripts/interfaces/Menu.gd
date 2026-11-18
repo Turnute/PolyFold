@@ -1,8 +1,5 @@
 extends Node
 
-const GAME_LEVEL := "res://scenes/interfaces/Game_Level.tscn"
-const SETTINGS_PAGE := preload("res://scenes/interfaces/Settings.tscn")
-
 @onready var settings_button: Button = %SettingsButton
 @onready var quit_button: Button = %QuitButton
 
@@ -11,13 +8,13 @@ func _ready() -> void:
 	quit_button.pressed.connect(_on_quit_button_pressed)
 
 func _on_play_button_pressed() -> void:
-	get_tree().change_scene_to_file(GAME_LEVEL)
+	get_tree().change_scene_to_file(MenuManager.GAME_LEVEL)
 
 func _on_settings_button_pressed() -> void:
-	add_child(SETTINGS_PAGE.instantiate())
+	MenuManager._display_settings(self)
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()   # ferme le jeu
 
 func _on_help_button_pressed() -> void:
-	HelpMenu.create(self)
+	MenuManager._display_help(self)

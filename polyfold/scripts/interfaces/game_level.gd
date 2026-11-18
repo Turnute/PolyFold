@@ -1,8 +1,6 @@
 class_name GameLevel
 extends Control
 
-const GAME_LEVEL_INTERFACE: PackedScene = preload("res://scenes/interfaces/Game_Level.tscn")
-
 var temps_ecoule: float = 0.0
 var chrono_is_running: bool = false
 var moves : int = 0
@@ -15,24 +13,20 @@ var moves : int = 0
 ## [br]- [param move_goal]: Target number of moves (if negative, no target is applied)
 ## [br]- [param time_goal]: Time target in seconds (if negative, no target is applied)
 ## [br][b]Returns:[/b] [code]Control[/code] - The interface, prepared and added to the parent
-static func create(parent: Node, level_number: int, level_description: String,
-				move_goal: int, time_goal: int) -> GameLevel:
-	var interface = GAME_LEVEL_INTERFACE.instantiate() as GameLevel
+func initialize(level_number: int, level_description: String,
+				move_goal: int, time_goal: int) -> void:
+	get_node("%level_name").text = TranslationServer.translate("GAME_LEVEL_NAME") % level_number
+	get_node("%level_description").text = level_description
 	
-	parent.add_child(interface)
-	
-	interface.get_node("%level_name").text = TranslationServer.translate("GAME_LEVEL_NAME") % level_number
-	interface.get_node("%level_description").text = level_description
-	
-	interface.get_node("%move_number").text = TranslationServer.translate("GAME_LEVEL_MOVE") % 0
+	get_node("%move_number").text = TranslationServer.translate("GAME_LEVEL_MOVE") % 0
 	var m_goal = ""
 	if(move_goal > 0):
 		m_goal = TranslationServer.translate("GAME_LEVEL_GOAL") % TranslationServer.translate("GAME_LEVEL_MOVE") % move_goal
 	else:
 		m_goal = TranslationServer.translate("GAME_LEVEL_GOAL") % "-"
-	interface.get_node("%move_goal").text = m_goal
+	get_node("%move_goal").text = m_goal
 	
-	interface.get_node("%time_count").text = "00:00:00"
+	get_node("%time_count").text = "00:00:00"
 	var t_goal = ""
 	if(time_goal > 0):
 		var minutes = time_goal / 60
@@ -41,9 +35,7 @@ static func create(parent: Node, level_number: int, level_description: String,
 		t_goal = TranslationServer.translate("GAME_LEVEL_GOAL") % temps
 	else:
 		t_goal = TranslationServer.translate("GAME_LEVEL_GOAL") % "-"
-	interface.get_node("%time_goal").text = t_goal
-	
-	return interface
+	get_node("%time_goal").text = t_goal
 
 ## Start the stopwatch.
 func startChrono() -> void:
@@ -78,7 +70,7 @@ func removeMove() -> void:
 
 ## Function called when the [code]pause_button[/code] button is pressed.
 func _on_pause_button_pressed() -> void:
-	PauseMenu.create(self)
+	MenuManager._display_pause(self)
 
 ## Detect if the [code]Escape[/code] is pressed and open the Pause menu.
 func _input(event: InputEvent) -> void:

@@ -3,12 +3,12 @@
 importer="svg"
 type="DPITexture"
 uid="uid://d1k10kbsy3uvy"
-path="res://.godot/imported/bullseye.svg-0b6fd84292f7b1aa5dcc6da77a061330.dpitex"
+path="res://.godot/imported/bullseye.svg-b324abebfa75f02a0417b7ac4424c1e5.dpitex"
 
 [deps]
 
-source_file="res://assets/icons/bullseye.svg"
-dest_files=["res://.godot/imported/bullseye.svg-0b6fd84292f7b1aa5dcc6da77a061330.dpitex"]
+source_file="res://Assets/icons/bullseye.svg"
+dest_files=["res://.godot/imported/bullseye.svg-b324abebfa75f02a0417b7ac4424c1e5.dpitex"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="svg"
 type="DPITexture"
 uid="uid://ddd6qg7gphwoa"
-path="res://.godot/imported/stopwatch.svg-5c1e870b82f2bce9a6e5094f9552866c.dpitex"
+path="res://.godot/imported/stopwatch.svg-9098af7476057705bf09ba8bd4a09ee6.dpitex"
 
 [deps]
 
-source_file="res://assets/icons/stopwatch.svg"
-dest_files=["res://.godot/imported/stopwatch.svg-5c1e870b82f2bce9a6e5094f9552866c.dpitex"]
+source_file="res://Assets/icons/stopwatch.svg"
+dest_files=["res://.godot/imported/stopwatch.svg-9098af7476057705bf09ba8bd4a09ee6.dpitex"]
 
 [params]
 
