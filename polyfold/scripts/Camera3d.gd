@@ -104,6 +104,7 @@ func getRaycastObject() -> Dictionary :
 	var end = origin + self.project_ray_normal(mousepos) * _RAY_LENGTH
 	var query = PhysicsRayQueryParameters3D.create(origin, end)
 	query.collide_with_areas = true
+	query.collision_mask = 1
 	var result = space_state.intersect_ray(query)
 	return result
 
