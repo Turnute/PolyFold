@@ -74,7 +74,7 @@ func _ready() -> void:
 	
 	for i in range(4):
 		createEdge(i, Vector3(Edge.DIRECTIONS[i]) * 0.5)
-	
+
 	updateConnectionVisuals()
 ## Called when a face is selected. Highlights it and reveals its edges.
 func select() -> void:
@@ -200,3 +200,12 @@ func updateConnectionVisuals() -> void :
 		_mesh.position.y,
 		(left - right) * 0.5
 	)
+
+func log() -> void :
+	Log.trace(
+		"Face " + str(_id_face) 
+		+ " of side " + str(_side)
+		+ " with Edges: "
+		)
+	for e in _edges:
+		e.log()

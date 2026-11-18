@@ -61,3 +61,6 @@ func switch() -> void:
 func showEdge(vis : bool) -> void:
 	_mesh.visible = vis
 	_col.disabled = !vis
+
+func log() -> void : 
+	Log.trace("Edge " + str(_side))

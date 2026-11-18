@@ -300,3 +300,9 @@ func findFarthestHandle(group: Array[int], anchor: Face, hinge: Edge) -> Edge:
 				best = edge
 
 	return best
+
+func log() -> void :
+	Log.trace("Polycube")
+	for c in _cubes:
+		for f in c._faces:
+			f.log()
