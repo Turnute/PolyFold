@@ -70,9 +70,19 @@ static func _create_log_file() -> FileAccess:
 	var file := FileAccess.open(file_path, FileAccess.WRITE)
 	return file
 
-## Removing the oldest log file
+## Ensures that there is no more than [member Log._MAX_LOG_FILES] log files
 static func _remove_old_log_files() -> void:
-	pass
+	var log_file_paths: Array[String]
+	for file: String in DirAccess.get_files_at(_LOG_DIR):
+		if file.get_extension().to_lower() == _LOG_EXTENSION and file.contains(_LOG_FILENAME):
+			log_file_paths.append(_LOG_DIR.path_join(file))
+	while log_file_paths.size() > _MAX_LOG_FILES:
+		var path: String = log_file_paths.pop_front()
+		var err := DirAccess.remove_absolute(path)
+		if err:
+			error("Failed to clean up old log (%s): %s" % [error_string(err), path])
+		else:
+			info("Cleaned up old log: %s" % path)
 
 ## Storing strings of log events for writing into the log file
 static var _event_strings: PackedStringArray = Event.keys()
