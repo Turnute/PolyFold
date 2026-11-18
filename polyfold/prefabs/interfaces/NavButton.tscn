@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://4s33upjasyn5"]
 
-[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="1_st8hq"]
+[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://Assets/fonts/Oswald-VariableFont_wght.ttf" id="1_st8hq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3db7w"]
 content_margin_left = 24.0
@@ -67,12 +67,12 @@ content_margin_left = 24.0
 content_margin_top = 10.0
 content_margin_right = 24.0
 content_margin_bottom = 10.0
-bg_color = Color(0.8352941, 0.85490197, 0.8666667, 1)
+bg_color = Color(0.10554498, 0.11974127, 0.12815723, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.54901963, 0.6, 0.6313726, 1)
+border_color = Color(0.204974, 0.2349821, 0.25334612, 1)
 corner_radius_top_left = 100
 corner_radius_top_right = 100
 corner_radius_bottom_right = 100
@@ -90,6 +90,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0.4)
 theme_override_styles/normal = SubResource("StyleBoxFlat_3db7w")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_og51k")
 theme_override_styles/hover = SubResource("StyleBoxFlat_st8hq")

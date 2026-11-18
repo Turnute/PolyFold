@@ -1,0 +1,172 @@
+[gd_scene format=3 uid="uid://b2mkeapd81dcl"]
+
+[ext_resource type="Script" uid="uid://bhq8dabieev35" path="res://scenes/interfaces/game_mode_choice.gd" id="1_16dlw"]
+[ext_resource type="Shader" uid="uid://duvqdhtdslif7" path="res://scenes/interfaces/flou.gdshader" id="2_16dlw"]
+[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://Assets/fonts/Oswald-VariableFont_wght.ttf" id="3_e22pi"]
+[ext_resource type="PackedScene" uid="uid://4s33upjasyn5" path="res://prefabs/interfaces/NavButton.tscn" id="4_s3htr"]
+[ext_resource type="Texture2D" uid="uid://batlu0jisforq" path="res://Assets/icons/flag_triangular.svg" id="5_16dlw"]
+[ext_resource type="Texture2D" uid="uid://h6kgdmkdes6o" path="res://Assets/icons/jigsaw_piece.svg" id="6_16dlw"]
+[ext_resource type="Texture2D" uid="uid://c5u35ubvu7lov" path="res://Assets/icons/out_of_bounds.svg" id="7_e22pi"]
+[ext_resource type="Texture2D" uid="uid://cm521tnjv5yur" path="res://Assets/icons/wrench.svg" id="8_e22pi"]
+[ext_resource type="PackedScene" uid="uid://2la5g75kyjxf" path="res://prefabs/interfaces/BackButton.tscn" id="9_s3htr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l2mhy"]
+shader = ExtResource("2_16dlw")
+shader_parameter/blur_amount = 2.000000095
+shader_parameter/darken = 0.150000007125
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aaql1"]
+bg_color = Color(0.33333334, 0.33333334, 0.33333334, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="FontVariation" id="FontVariation_s2alt"]
+base_font = ExtResource("3_e22pi")
+variation_opentype = {
+2003265652: 600
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_jr2gh"]
+font = SubResource("FontVariation_s2alt")
+font_size = 40
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l2mhy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s2k8f"]
+
+[node name="GameModeChoice" type="Control" unique_id=1253092038]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_16dlw")
+
+[node name="Flou" type="PanelContainer" parent="." unique_id=479069604]
+material = SubResource("ShaderMaterial_l2mhy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menu" type="PanelContainer" parent="." unique_id=901564814]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -91.0
+offset_right = 200.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_aaql1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu" unique_id=567488598]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Title" type="Label" parent="Menu/VBoxContainer" unique_id=1822215169]
+layout_mode = 2
+text = "GAME_MODE_CHOICE_TITLE"
+label_settings = SubResource("LabelSettings_jr2gh")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Menu/VBoxContainer" unique_id=1459378118]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_l2mhy")
+
+[node name="Mode_level_button" parent="Menu/VBoxContainer" unique_id=614178926 instance=ExtResource("4_s3htr")]
+layout_mode = 2
+
+[node name="Icon" parent="Menu/VBoxContainer/Mode_level_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="0" unique_id=1591882090]
+texture = ExtResource("5_16dlw")
+
+[node name="VSeparator" type="VSeparator" parent="Menu/VBoxContainer/Mode_level_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="1" unique_id=1415928607]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
+
+[node name="Text" parent="Menu/VBoxContainer/Mode_level_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="2" unique_id=296136175]
+text = "GAME_MODE_LEVEL"
+
+[node name="Mode_Puzzle_button" parent="Menu/VBoxContainer" unique_id=827849679 instance=ExtResource("4_s3htr")]
+layout_mode = 2
+disabled = true
+
+[node name="Icon" parent="Menu/VBoxContainer/Mode_Puzzle_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(827849679, 1873338246) index="0" unique_id=1591882090]
+texture = ExtResource("6_16dlw")
+
+[node name="VSeparator" type="VSeparator" parent="Menu/VBoxContainer/Mode_Puzzle_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(827849679, 1873338246) index="1" unique_id=74435057]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
+
+[node name="Text" parent="Menu/VBoxContainer/Mode_Puzzle_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(827849679, 1873338246) index="2" unique_id=296136175]
+text = "GAME_MODE_PUZZLE"
+
+[node name="Mode_Endless_button" parent="Menu/VBoxContainer" unique_id=1357910421 instance=ExtResource("4_s3htr")]
+layout_mode = 2
+disabled = true
+
+[node name="Icon" parent="Menu/VBoxContainer/Mode_Endless_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1357910421, 1873338246) index="0" unique_id=1591882090]
+texture = ExtResource("7_e22pi")
+
+[node name="VSeparator" type="VSeparator" parent="Menu/VBoxContainer/Mode_Endless_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1357910421, 1873338246) index="1" unique_id=1898879978]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
+
+[node name="Text" parent="Menu/VBoxContainer/Mode_Endless_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1357910421, 1873338246) index="2" unique_id=296136175]
+text = "GAME_MODE_ENDLESS"
+
+[node name="Mode_Custom_Button" parent="Menu/VBoxContainer" unique_id=1191579740 instance=ExtResource("4_s3htr")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Icon" parent="Menu/VBoxContainer/Mode_Custom_Button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1191579740, 1873338246) index="0" unique_id=1591882090]
+texture = ExtResource("8_e22pi")
+
+[node name="VSeparator" type="VSeparator" parent="Menu/VBoxContainer/Mode_Custom_Button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1191579740, 1873338246) index="1" unique_id=624382249]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
+
+[node name="Text" parent="Menu/VBoxContainer/Mode_Custom_Button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1191579740, 1873338246) index="2" unique_id=296136175]
+text = "GAME_MODE_CUSTOM"
+
+[node name="HSeparator2" type="HSeparator" parent="Menu/VBoxContainer" unique_id=722061579]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_l2mhy")
+
+[node name="BackButton" parent="Menu/VBoxContainer" unique_id=2117156625 instance=ExtResource("9_s3htr")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+
+[connection signal="pressed" from="Menu/VBoxContainer/Mode_Endless_button" to="." method="_on_help_button_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Mode_Custom_Button" to="." method="_on_mode_custom_button_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+
+[editable path="Menu/VBoxContainer/Mode_level_button"]
+[editable path="Menu/VBoxContainer/Mode_Puzzle_button"]
+[editable path="Menu/VBoxContainer/Mode_Endless_button"]
+[editable path="Menu/VBoxContainer/Mode_Custom_Button"]
+[editable path="Menu/VBoxContainer/BackButton"]
