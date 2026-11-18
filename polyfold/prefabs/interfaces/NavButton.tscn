@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://4s33upjasyn5"]
 
-[ext_resource type="FontFile" uid="uid://cufs7q6thkobs" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="1_st8hq"]
+[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="1_st8hq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3db7w"]
 content_margin_left = 24.0

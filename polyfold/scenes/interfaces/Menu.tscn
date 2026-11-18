@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://b7sw2hgh0fhef"]
 
-[ext_resource type="Script" uid="uid://dehfwyr45whwl" path="res://scripts/interfaces/Menu.gd" id="1_ac62s"]
+[ext_resource type="Script" uid="uid://dehfwyr45whwl" path="res://scripts/interfaces/menu.gd" id="1_ac62s"]
 [ext_resource type="Texture2D" uid="uid://dc26v3qr3x5g2" path="res://assets/img/polycube.png" id="1_vgc6r"]
 [ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="2_nn3se"]
 [ext_resource type="Texture2D" uid="uid://bydir01fx200c" path="res://assets/icons/cog.svg" id="3_nn3se"]
 [ext_resource type="Texture2D" uid="uid://cjodlp5gky7ka" path="res://assets/icons/play.svg" id="4_ac62s"]
 [ext_resource type="PackedScene" uid="uid://4s33upjasyn5" path="res://prefabs/interfaces/NavButton.tscn" id="5_ac62s"]
+[ext_resource type="Texture2D" uid="uid://6emt0ew4r8fi" path="res://assets/icons/doorway_exit.svg" id="6_04thv"]
 [ext_resource type="PackedScene" uid="uid://n1nupa36ocyr" path="res://prefabs/interfaces/HelpButton.tscn" id="8_04thv"]
 
 [sub_resource type="Gradient" id="Gradient_ac62s"]

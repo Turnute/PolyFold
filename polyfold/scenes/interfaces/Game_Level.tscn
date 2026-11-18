@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dcqwu0ow02tw7" path="res://scripts/interfaces/game_level.gd" id="1_hq6jr"]
 [ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="2_jr2gh"]
-[ext_resource type="Texture2D" uid="uid://creyrmujhteiy" path="res://assets/icons/bullseye.svg" id="3_s2alt"]
-[ext_resource type="Texture2D" uid="uid://dsk4boync2jh3" path="res://assets/icons/stopwatch.svg" id="4_853i0"]
+[ext_resource type="Texture2D" uid="uid://d1k10kbsy3uvy" path="res://assets/icons/bullseye.svg" id="3_s2alt"]
+[ext_resource type="Texture2D" uid="uid://ddd6qg7gphwoa" path="res://assets/icons/stopwatch.svg" id="4_853i0"]
 [ext_resource type="PackedScene" uid="uid://c53y36ip3fu05" path="res://prefabs/interfaces/ButtonIcon.tscn" id="5_0lshf"]
-[ext_resource type="Texture2D" uid="uid://irmtpeqpo018" path="res://assets/icons/pause.svg" id="6_t5vjp"]
+[ext_resource type="Texture2D" uid="uid://ddoumw0juxs12" path="res://assets/icons/pause.svg" id="6_t5vjp"]
 [ext_resource type="Texture2D" uid="uid://ot6sv16ia5le" path="res://assets/icons/arrow_counterclockwise.svg" id="7_5dcfj"]
-[ext_resource type="Texture2D" uid="uid://3xsbh7qycnsl" path="res://assets/icons/arrow_clockwise.svg" id="8_k5pa4"]
+[ext_resource type="Texture2D" uid="uid://xkgtdgba68mo" path="res://assets/icons/arrow_clockwise.svg" id="8_k5pa4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g7dw2"]
 bg_color = Color(0.7254902, 0.8666667, 0.93333334, 1)

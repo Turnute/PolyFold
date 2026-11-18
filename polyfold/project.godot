@@ -46,7 +46,7 @@ csv_translation={
 "unescape_translations": true
 }
 svg={
-&"base_scale": 3.0
+"importer": "dpi_texture"
 }
 
 [internationalization]

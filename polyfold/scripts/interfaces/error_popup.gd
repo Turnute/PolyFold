@@ -1,7 +1,7 @@
 class_name ErrorPopup
 extends Control
 
-const POPUP = preload("res://prefabs/interfaces/error_popup.tscn")
+const POPUP = preload("res://prefabs/interfaces/ErrorPopup.tscn")
 
 ## Create an error popup and return it.
 ## [br][br]

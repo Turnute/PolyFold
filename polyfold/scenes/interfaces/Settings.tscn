@@ -11,6 +11,36 @@ colors = PackedColorArray(0.5146108, 0.8251347, 0.34318286, 1, 1, 1, 1, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_w5dhp"]
 gradient = SubResource("Gradient_qoor0")
 
+[sub_resource type="FontVariation" id="FontVariation_hlm2k"]
+base_font = ExtResource("2_4rudf")
+
+[sub_resource type="LabelSettings" id="LabelSettings_llpt4"]
+font = SubResource("FontVariation_hlm2k")
+font_size = 48
+font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_u8y58"]
+base_font = ExtResource("2_4rudf")
+
+[sub_resource type="LabelSettings" id="LabelSettings_7spiv"]
+font = SubResource("FontVariation_u8y58")
+font_size = 26
+font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_u716c"]
+base_font = ExtResource("2_4rudf")
+
+[sub_resource type="FontVariation" id="FontVariation_mywkd"]
+base_font = ExtResource("2_4rudf")
+
+[sub_resource type="LabelSettings" id="LabelSettings_pcpot"]
+font = SubResource("FontVariation_mywkd")
+font_size = 26
+font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_otiot"]
+base_font = ExtResource("2_4rudf")
+
 [sub_resource type="FontVariation" id="FontVariation_4rudf"]
 base_font = ExtResource("2_4rudf")
 
@@ -44,6 +74,21 @@ grow_vertical = 2
 [node name="SettingsPanel" parent="CenterContainer" unique_id=806210726 instance=ExtResource("1_ims5e")]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="Title" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(806210726, 556982979) index="0" unique_id=1850417253]
+label_settings = SubResource("LabelSettings_llpt4")
+
+[node name="LangLabel" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(806210726, 556982979) index="1" unique_id=1085991999]
+label_settings = SubResource("LabelSettings_7spiv")
+
+[node name="LangSelect" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(806210726, 556982979) index="2" unique_id=1083023603]
+theme_override_fonts/font = SubResource("FontVariation_u716c")
+
+[node name="ResLabel" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(806210726, 556982979) index="4" unique_id=1991952277]
+label_settings = SubResource("LabelSettings_pcpot")
+
+[node name="ResSelect" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(806210726, 556982979) index="5" unique_id=716209483]
+theme_override_fonts/font = SubResource("FontVariation_otiot")
 
 [node name="FullscreenCheck" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(806210726, 556982979) index="6" unique_id=826618835]
 theme_override_colors/font_focus_color = Color(0.24705882, 0.49803922, 0.6666667, 1)

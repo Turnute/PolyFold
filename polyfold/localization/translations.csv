@@ -1,0 +1,41 @@
+id,fr,en,es
+POLYFOLD,PolyFold,PolyFold,PolyFolda
+BUTTON_PLAY,Jouer,Play,si senor
+BUTTON_SETTINGS,Options,Settings,paela
+BUTTON_QUIT,Quitter,Quit,adios
+HELP,Aide,Help,Sangria
+ABOUT,A propos du jeu ,About the Game,El juego
+GAME_LEVEL_NAME,Niveau %d,Level %d,
+GAME_LEVEL_MOVE,%d coups,%d moves,
+GAME_LEVEL_GOAL,Objectif : %s,Goal : %s,
+GAME_LEVEL_UNDO,Annuler,Undo,
+GAME_LEVEL_REDO,Refaire,Redo,
+PAUSE,Pause,Paused,
+PAUSE_RESUME,Reprendre partie,Resume game,
+PAUSE_SETTINGS,Paramètres,Settings,
+PAUSE_HELP,Aide,Help,
+PAUSE_LEAVE,Quitter la partie,Leave the game,
+OPTION_TITLE,Options,Settings,
+FR,Français,French,
+EN,Anglais,English,
+ES,Espagnol,Spanish,Español
+OPTION_LABEL_LANG,Langues,Langages,
+OPTION_LABEL_RES,Résolutions,Resolutions,
+OPTION_LABEL_COMMAND,Commandes,Keybinds,
+OPTION_CHECK_FULLSCREEN,Plein écran,Fullscreen,
+OPTION_CHECK_WINDOWED,Fenêtré,Windowed,
+BACK,Retour,Back,
+HELP_TITLE,Comment jouer ?,How to play ?,
+HELP_OBJECTIVE,Objectif,Objective,
+HELP_OBJECTIVE_DESCRIPTION,"Déplie toutes les faces de chaque cube du polycube, et cela sans recouvrement !","Unfold all the faces of each cube in the polycube, without any overlap !",
+HELP_METHOD,Méthode,Method,
+HELP_METHOD_1,1. Sélectionne la face,1. Select the face,
+HELP_METHOD_2,2. Sélectionne l’arête et glisse la souris dans le sens souhaité,2. Select the edge and drag the mouse in the desired direction,
+HELP_METHOD_3,3. La face est dépliée de 90°,3. The face is unfolded by 90°,
+HELP_RULES,Règles,Rules,
+HELP_RULES_1,Une face ne peut se déplier qu’autour d’une arête qu’elle partage avec une autre face.,A face can only unfold around an edge that it shares with another face.,
+HELP_RULES_2,Les faces dépliées ne doivent jamais se chevaucher.,The unfolded faces must never overlap.,
+HELP_RULES_3,Déplier une face entraîne avec elle toutes les faces déjà dépliées sur le même plan.,Unfolding a face carries along with it all the faces already unfolded on the same plane.,
+HELP_RULES_4,"Il est possible d'annuler un coup grâce au bouton ""%s"" et d'annuler ce retour en arrière grâce au bouton ""%s"".","It is possible to undo a move using the ""%s"" button, and to reverse that undo action using the ""%s"" button.",
+HELP_RULES_5,Le niveau est réussi quand toutes les faces sont à plat.,The level is successfully completed when all the faces are lying flat.,
+HELP_CONFIRM,Compris !,Understood !,
