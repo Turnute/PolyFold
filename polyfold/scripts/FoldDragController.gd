@@ -153,6 +153,10 @@ func dragEdgeInput(event: InputEvent) -> bool:
 	if event is InputEventMouseMotion:
 		var raw_angle: float = findDragAngle(event.position)
 
+		if _drag_direction != 0 and is_zero_approx(raw_angle):
+			_drag_direction = 0
+			raw_angle = findDragAngle(event.position)
+
 		if _drag_direction == 0 and absf(raw_angle) >= DIRECTION_LOCK_ANGLE:
 			if raw_angle > 0.0:
 				_drag_direction = 1
