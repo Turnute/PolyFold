@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cufs7q6thkobs"
-path="res://.godot/imported/Oswald-VariableFont_wght.ttf-e74b7d17565fa9bc7ad6430c6f897bde.fontdata"
+uid="uid://bi2jok75ve7nd"
+path="res://.godot/imported/Oswald-VariableFont_wght.ttf-79c79ae0fb0323f6de4edba3dac6cde6.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/Oswald-VariableFont_wght.ttf"
-dest_files=["res://.godot/imported/Oswald-VariableFont_wght.ttf-e74b7d17565fa9bc7ad6430c6f897bde.fontdata"]
+source_file="res://Assets/fonts/Oswald-VariableFont_wght.ttf"
+dest_files=["res://.godot/imported/Oswald-VariableFont_wght.ttf-79c79ae0fb0323f6de4edba3dac6cde6.fontdata"]
 
 [params]
 
@@ -30,12 +30,7 @@ Fallbacks=null
 fallbacks=[]
 Compress=null
 compress=true
-preload=[{
-"chars": [],
-"glyphs": [],
-"name": "Nouvelle configuration",
-"size": Vector2i(16, 0)
-}]
+preload=[]
 language_support={}
 script_support={}
 opentype_features={}
