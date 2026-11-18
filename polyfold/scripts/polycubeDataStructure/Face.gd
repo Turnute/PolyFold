@@ -76,9 +76,6 @@ func _ready() -> void:
 		createEdge(i, Vector3(Edge.DIRECTIONS[i]) * 0.5)
 	
 	updateConnectionVisuals()
-	
-	_label.text = str(_id_face)
-
 ## Called when a face is selected. Highlights it and reveals its edges.
 func select() -> void:
 	Log.debug("Face sélectionnée !")
@@ -167,13 +164,18 @@ func disconnectFromEdge(edge : Edge) -> Array[int]:
 	return disconnected_faces
 
 ## Disconnects a neighbouring face and returns whether it was found.
-func disconnectFace(faceId: int) -> bool:
+func disconnectFace(faceId: int) -> int:
 	for i in range(_adj_faces.size()):
 		if _adj_faces[i] == faceId:
 			_adj_faces[i] = -1
 			updateConnectionVisuals()
-			return true
-	return false
+			return i
+	return -1
+
+func connectFace(faceId: int, dir : Edge.EdgeEnum) -> void:
+	_adj_faces[dir] = faceId
+	updateConnectionVisuals()
+	pass
 
 ## Insets disconnected mesh borders.
 func updateConnectionVisuals() -> void :
@@ -184,7 +186,7 @@ func updateConnectionVisuals() -> void :
 	var bottom: float = CUT_INSET if _adj_faces[Edge.EdgeEnum.BOTTOM] == -1 else 0.0
 	var left: float = CUT_INSET if _adj_faces[Edge.EdgeEnum.LEFT] == -1 else 0.0
 	var right: float = CUT_INSET if _adj_faces[Edge.EdgeEnum.RIGHT] == -1 else 0.0
-
+	
 	var box: BoxMesh = _mesh.mesh as BoxMesh
 
 	box.size = Vector3(
