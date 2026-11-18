@@ -1,10 +1,10 @@
 class_name MenuManager
 extends Control
 
-const GAME_LEVEL := "res://scenes/interfaces/Game_Level.tscn"
+const GAME_LEVEL := "res://scenes/interfaces/GameLevel.tscn"
 const SETTINGS_PAGE := "res://scenes/interfaces/Settings.tscn"
-const HELP := "res://scenes/interfaces/Help_Menu.tscn"
-const PAUSE := "res://scenes/interfaces/Pause_Menu.tscn"
+const HELP := "res://scenes/interfaces/HelpMenu.tscn"
+const PAUSE := "res://scenes/interfaces/PauseMenu.tscn"
 const POPUP := "res://prefabs/interfaces/ErrorPopup.tscn"
 const MAIN_MENU := "res://scenes/interfaces/Menu.tscn"
 

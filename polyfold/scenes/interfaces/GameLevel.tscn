@@ -91,6 +91,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 1
 script = ExtResource("1_hq6jr")
 
 [node name="info_level" type="PanelContainer" parent="." unique_id=355342233]
@@ -250,7 +251,6 @@ grow_horizontal = 0
 [node name="redo_button" parent="redo" unique_id=1009220721 instance=ExtResource("5_0lshf")]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-disabled = true
 icon = ExtResource("8_k5pa4")
 
 [node name="redo_text" type="Label" parent="redo" unique_id=597812352]
@@ -260,3 +260,5 @@ label_settings = SubResource("LabelSettings_2y1bh")
 horizontal_alignment = 1
 
 [connection signal="pressed" from="pause_button" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="undo/undo_button" to="." method="_on_undo_button_pressed"]
+[connection signal="pressed" from="redo/redo_button" to="." method="_on_redo_button_pressed"]

@@ -72,6 +72,14 @@ func removeMove() -> void:
 func _on_pause_button_pressed() -> void:
 	MenuManager._display_pause(self)
 
+## Function called when the [code]undo_button[/code] button is pressed.
+func _on_undo_button_pressed() -> void:
+	History.undo()
+
+## Function called when the [code]redo_button[/code] button is pressed.
+func _on_redo_button_pressed() -> void:
+	History.redo()
+
 ## Detect if the [code]Escape[/code] is pressed and open the Pause menu.
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
