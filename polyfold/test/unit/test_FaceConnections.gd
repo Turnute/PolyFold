@@ -3,7 +3,7 @@ extends GutTest
 var _face : Face
 
 func before_each() -> void :
-	_face = Face.new()
+	_face = autofree(Face.new())
 	_face._adj_faces = [
 		11,	# TOP connected face id
 		12,	# BOTTOM connected face id
@@ -31,11 +31,21 @@ func test_connect_face_restores_cut_connection() -> void :
 	assert_eq(_face._adj_faces, expected)
 
 func test_disconnect_from_edge_cuts_other_connections() -> void :
-	var e : Edge = Edge.new()
+	var e : Edge = autofree(Edge.new())
 	e._side = Edge.EdgeEnum.TOP
 	var disconnected_faces = _face.disconnectFromEdge(e)
 	var expected_cuts = [12, 14]
 	var expected = [11, -1, -1, -1]
 	
 	assert_eq(disconnected_faces, expected_cuts)
+	assert_eq(_face._adj_faces, expected)
+
+func test_disconnect_twice() -> void :
+	var disconnected_side : int = _face.disconnectFace(14)
+	assert_eq(disconnected_side, Edge.EdgeEnum.RIGHT)
+	
+	disconnected_side = _face.disconnectFace(14)
+	var expected : Array[int] = [11, 12, -1, -1]
+	
+	assert_eq(disconnected_side, -1)
 	assert_eq(_face._adj_faces, expected)
