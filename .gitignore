@@ -4,8 +4,12 @@
 
 # Godot-specific ignores
 .import/
+*.import
 export.cfg
 export_credentials.cfg
+
+# Imported translations (automatically generated from CSV files)
+*.translation
 
 # Mono-specific ignores
 .mono/
@@ -17,3 +21,6 @@ mono_crash.*.json
 
 # Temp files
 *.tmp
+
+# Scene for testing
+TestScene.tscn

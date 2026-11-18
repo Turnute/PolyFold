@@ -62,7 +62,7 @@ func _input(event : InputEvent):
 					if is_instance_of(selected_object, Edge):
 						_fold_drag.beginEdgeDrag(selected_object, godot_object["position"], self, _target)
 					elif is_instance_of(parent, Face):
-						if _curr_selected_face_id != parent._id_face:
+						if _target._selected_face_id != parent._id_face:
 							if _curr_selected_face_id != -1:
 								_target.unselectFace(_curr_selected_face_id)
 							_curr_selected_face_id = parent._id_face
@@ -104,6 +104,7 @@ func getRaycastObject() -> Dictionary :
 	var end = origin + self.project_ray_normal(mousepos) * _RAY_LENGTH
 	var query = PhysicsRayQueryParameters3D.create(origin, end)
 	query.collide_with_areas = true
+	query.collision_mask = 1
 	var result = space_state.intersect_ray(query)
 	return result
 

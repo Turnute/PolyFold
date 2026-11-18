@@ -15,10 +15,6 @@ run/main_scene="uid://3whsw10muhw2"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
-[audio]
-
-buses/default_bus_layout="uid://dpp2v3er0nsy3"
-
 [autoload]
 
 Settings="*uid://dj5lmp4auweb5"
@@ -36,6 +32,10 @@ window/stretch/aspect="expand"
 [dotnet]
 
 project/assembly_name="PolyFold"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 
 [importer_defaults]
 

@@ -48,6 +48,9 @@ var _edges : Array[Edge]
 ## neighbouring faces, indexed by EdgeEnum (-1 if disconnected).
 var _adj_faces : Array[int]
 
+## Recess of each disconnected visual border, in face-local units.
+const CUT_INSET: float = 0.015
+
 ## Reference to the face's MeshInstance3D.
 @onready var _mesh: MeshInstance3D = $StaticBody3D/MeshInstance3D
 ## The face's own copy of its mesh material.
@@ -57,11 +60,24 @@ var _adj_faces : Array[int]
 ## The color used to highlight the selected face.
 var _selectionColor: Color = Color(1, 1, 0)
 
+## Dedicated detector used to validate folding collisions.
+@onready var _fold_area: Area3D = $FoldDetector
+## Collision shape.
+@onready var _fold_shape: CollisionShape3D = $FoldDetector/CollisionShape3D
+## Label (used for debug)
+@onready var _label: Label3D = $Label3D
+
 ## Sets the face's material and creates its edges.
 func _ready() -> void:
+	_mesh.mesh = _mesh.mesh.duplicate()
 	_mesh.set_surface_override_material(0, _material)
+	
 	for i in range(4):
 		createEdge(i, Vector3(Edge.DIRECTIONS[i]) * 0.5)
+	
+	updateConnectionVisuals()
+	
+	_label.text = str(_id_face)
 
 ## Called when a face is selected. Highlights it and reveals its edges.
 func select() -> void:
@@ -146,7 +162,8 @@ func disconnectFromEdge(edge : Edge) -> Array[int]:
 			disconnected_faces.append(getNeighbouringFace(i))
 		
 		_adj_faces[i] = -1
-		
+	
+	updateConnectionVisuals()
 	return disconnected_faces
 
 ## Disconnects a neighbouring face and returns whether it was found.
@@ -154,5 +171,30 @@ func disconnectFace(faceId: int) -> bool:
 	for i in range(_adj_faces.size()):
 		if _adj_faces[i] == faceId:
 			_adj_faces[i] = -1
+			updateConnectionVisuals()
 			return true
 	return false
+
+## Insets disconnected mesh borders.
+func updateConnectionVisuals() -> void :
+	if _adj_faces.size() != 4 or not is_instance_valid(_mesh):
+		return
+
+	var top: float = CUT_INSET if _adj_faces[Edge.EdgeEnum.TOP] == -1 else 0.0
+	var bottom: float = CUT_INSET if _adj_faces[Edge.EdgeEnum.BOTTOM] == -1 else 0.0
+	var left: float = CUT_INSET if _adj_faces[Edge.EdgeEnum.LEFT] == -1 else 0.0
+	var right: float = CUT_INSET if _adj_faces[Edge.EdgeEnum.RIGHT] == -1 else 0.0
+
+	var box: BoxMesh = _mesh.mesh as BoxMesh
+
+	box.size = Vector3(
+		1.0 - top - bottom,
+		box.size.y,
+		1.0 - left - right
+	)
+
+	_mesh.position = Vector3(
+		(bottom - top) * 0.5,
+		_mesh.position.y,
+		(left - right) * 0.5
+	)

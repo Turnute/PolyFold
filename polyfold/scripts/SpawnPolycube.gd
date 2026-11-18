@@ -1,14 +1,23 @@
+class_name SpawnPolycube
 extends Node3D
 
-## String for the polycube data file
-var data_str = "res://data/polycubes/test_poly.tres"
+# TEMP : String value for test polycube
+const data_str = "res://data/polycubes/test_poly.tres"
+
+var polycube : Polycube
+static var data : PolycubeData = null
+static var nb_cubes : int = 4
+static var max_adj : int = 2
+
 @onready var camera : Camera3D = $Camera3D
 
-# TODO: Update this function to do random generation based on a mode parameter
-## Spawns polycube based on a PolycubeData object
+## Spawns polycube based on a PolycubeData object [br]
+## If [member SpawnPolycube.data][code] == null[/code] on ready, a random polycube will be generated 
 func init_polycube() -> void:
-	var data : PolycubeData = load(data_str)
-	var polycube : Polycube = PolycubeFactory.loadPolycube(data)
+	if (data != null):
+		polycube = PolycubeFactory.loadPolycube(data)
+	else: 
+		polycube = PolycubeFactory.generatePolycube(nb_cubes, max_adj)
 	
 	polycube.name = "Polycube"
 	add_child(polycube)
@@ -17,4 +26,8 @@ func init_polycube() -> void:
 
 func _ready() -> void:
 	# TEMP: Init polycube
+	Log._set_log_level(Log.Event.DEBUG)
+	data = load(data_str)
+	
 	init_polycube()
+	print(polycube._adj)

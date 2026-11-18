@@ -22,14 +22,26 @@ const DIRECTIONS = [
 ]
 ## The edge's position inside its face.
 var _side : EdgeEnum
+## Actual attachment face controlled by this handle.
+var _fold_face: Face = null
+## Grabbed-side identifier on the attachment face, opposite its actual hinge.
+var _fold_grabbed_side: EdgeEnum
 
 ## Hides the edge and disables its collision on startup.
 func _ready() -> void:
 	_mesh.visible = false
 	_col.disabled = true
 
-## Creates an unfolding action for this edge and direction.
+## Creates an action for the assigned attachment, or this edge's parent face.
 func select(dir : UnfoldAction.DirEnum) -> UnfoldAction:
+	if is_instance_valid(_fold_face):
+		return UnfoldAction.createAction(
+			_fold_face._id_cube,
+			_fold_face._side,
+			_fold_grabbed_side,
+			dir
+		)
+
 	var info = [0,0]
 	if get_parent().has_method("getInfo"):
 		info = get_parent().getInfo()
