@@ -55,7 +55,7 @@ func _input(event : InputEvent):
 			
 			if event.button_index == MOUSE_BUTTON_LEFT and not event.shift_pressed:
 				var godot_object = getRaycastObject()
-				print(godot_object)
+				Log.trace(str(godot_object))
 				if godot_object:
 					var selected_object = godot_object["collider"]
 					var parent = selected_object.get_parent()

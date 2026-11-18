@@ -23,6 +23,7 @@ const EVENT_COLORS: Dictionary[Event, String] = {
 }
 
 # Log storage details
+const _LOG_FILENAME := "polyfold"
 const _LOG_DIR := "user://logs"
 const _LOG_EXTENSION := "log"
 
@@ -64,7 +65,7 @@ static func _set_log_level(min_event: Event) -> void:
 
 ## Creating a file of path [code]user://logs/date_time.log[/code] and opens it with write access
 static func _create_log_file() -> FileAccess:
-	var file_name := "%s.%s" % [Time.get_datetime_string_from_system(), _LOG_EXTENSION]
+	var file_name := "%s_%s.%s" % [_LOG_FILENAME, Time.get_datetime_string_from_system().replace(":", "."), _LOG_EXTENSION]
 	var file_path := _LOG_DIR.path_join(file_name)
 	var file := FileAccess.open(file_path, FileAccess.WRITE)
 	return file
@@ -88,6 +89,7 @@ func _log_message(message: String, error: bool) -> void:
 		return
 	var event := Event.ERROR if error else Event.INFO
 	message = _format_log_message(message.trim_suffix('\n'), event)
+	_add_message_to_file(message, event)
 
 func _log_error(
 		function: String,
@@ -111,10 +113,12 @@ func _log_error(
 		"line": line,
 		"function": function,
  	})
-	
+		
 	# In the case of an error, add the backtrace to the message to find it
 	if event == Event.ERROR:
 		message += '\n' + _get_gdscript_backtrace(script_backtraces)
+	
+	_add_message_to_file(message, event)
 
 ## Function to format log messages (for printing clarity)
 static func _format_log_message(message: String, event: Event) -> String:
@@ -129,6 +133,7 @@ static func _log(message: String, event: Event, add_backtrace: bool = false) -> 
 	if not _is_valid or event < _log_level:
 		return
 	message = _format_log_message(message, event)
+	_add_message_to_file(message, event)
 	
 	if add_backtrace:
 		var script_backtraces := Engine.capture_script_backtraces()
