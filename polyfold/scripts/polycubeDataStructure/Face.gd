@@ -56,7 +56,7 @@ const CUT_INSET: float = 0.015
 ## The face's own copy of its mesh material.
 @onready var _material: StandardMaterial3D = _mesh.get_active_material(0).duplicate()
 ## The original color of the face.
-@onready var _ogColor: Color = _material.albedo_color
+@onready var _ogColor: Color
 ## The color used to highlight the selected face.
 var _selectionColor: Color = Color(1, 1, 0)
 
@@ -71,14 +71,16 @@ var _selectionColor: Color = Color(1, 1, 0)
 func _ready() -> void:
 	_mesh.mesh = _mesh.mesh.duplicate()
 	_mesh.set_surface_override_material(0, _material)
+	_material.albedo_color = _ogColor
 	
 	for i in range(4):
 		createEdge(i, Vector3(Edge.DIRECTIONS[i]) * 0.5)
 	
 	updateConnectionVisuals()
+
 ## Called when a face is selected. Highlights it and reveals its edges.
 func select() -> void:
-	Log.debug("Face sélectionnée !")
+	Log.debug("Face " + str(_id_face) + " sélectionnée !")
 	_material.albedo_color = _selectionColor
 	showEdges(true)
 

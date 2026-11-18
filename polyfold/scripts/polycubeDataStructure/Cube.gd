@@ -13,6 +13,9 @@ var _faces : Array[Face]
 ## The cube's position in the polycube grid.
 var _pos : Vector3i
 
+## The color of this cube's faces
+var _col : Color = Color(1,1,1)
+
 ## Creates and stores a cube's face from its FaceEnum identifier.
 func createFace(face_side: Face.FaceEnum) -> void:
 	var face_pos : Vector3 = _pos
@@ -39,6 +42,7 @@ func createFace(face_side: Face.FaceEnum) -> void:
 	var face : Face = _face_scene.instantiate() as Face
 	face._id_cube = _id
 	face._side = face_side
+	face._ogColor = _col
 	face.position = face_pos
 	face.rotation_degrees = face_rot
 	add_child(face)
