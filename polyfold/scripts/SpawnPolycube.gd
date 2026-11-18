@@ -26,8 +26,5 @@ func init_polycube() -> void:
 
 func _ready() -> void:
 	# TEMP: Init polycube
-	Log._set_log_level(Log.Event.DEBUG)
 	data = load(data_str)
-	
 	init_polycube()
-	print(polycube._adj)

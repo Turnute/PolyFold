@@ -23,6 +23,7 @@ const EVENT_COLORS: Dictionary[Event, String] = {
 }
 
 # Log storage details
+const _LOG_FILENAME := "polyfold"
 const _LOG_DIR := "user://logs"
 const _LOG_EXTENSION := "log"
 
@@ -64,14 +65,24 @@ static func _set_log_level(min_event: Event) -> void:
 
 ## Creating a file of path [code]user://logs/date_time.log[/code] and opens it with write access
 static func _create_log_file() -> FileAccess:
-	var file_name := "%s.%s" % [Time.get_datetime_string_from_system(), _LOG_EXTENSION]
+	var file_name := "%s_%s.%s" % [_LOG_FILENAME, Time.get_datetime_string_from_system().replace(":", "."), _LOG_EXTENSION]
 	var file_path := _LOG_DIR.path_join(file_name)
 	var file := FileAccess.open(file_path, FileAccess.WRITE)
 	return file
 
-## Removing the oldest log file
+## Ensures that there is no more than [member Log._MAX_LOG_FILES] log files
 static func _remove_old_log_files() -> void:
-	pass
+	var log_file_paths: Array[String]
+	for file: String in DirAccess.get_files_at(_LOG_DIR):
+		if file.get_extension().to_lower() == _LOG_EXTENSION and file.contains(_LOG_FILENAME):
+			log_file_paths.append(_LOG_DIR.path_join(file))
+	while log_file_paths.size() > _MAX_LOG_FILES:
+		var path: String = log_file_paths.pop_front()
+		var err := DirAccess.remove_absolute(path)
+		if err:
+			error("Failed to clean up old log (%s): %s" % [error_string(err), path])
+		else:
+			info("Cleaned up old log: %s" % path)
 
 ## Storing strings of log events for writing into the log file
 static var _event_strings: PackedStringArray = Event.keys()
@@ -88,6 +99,7 @@ func _log_message(message: String, error: bool) -> void:
 		return
 	var event := Event.ERROR if error else Event.INFO
 	message = _format_log_message(message.trim_suffix('\n'), event)
+	_add_message_to_file(message, event)
 
 func _log_error(
 		function: String,
@@ -111,10 +123,12 @@ func _log_error(
 		"line": line,
 		"function": function,
  	})
-	
+		
 	# In the case of an error, add the backtrace to the message to find it
 	if event == Event.ERROR:
 		message += '\n' + _get_gdscript_backtrace(script_backtraces)
+	
+	_add_message_to_file(message, event)
 
 ## Function to format log messages (for printing clarity)
 static func _format_log_message(message: String, event: Event) -> String:
@@ -129,6 +143,7 @@ static func _log(message: String, event: Event, add_backtrace: bool = false) -> 
 	if not _is_valid or event < _log_level:
 		return
 	message = _format_log_message(message, event)
+	_add_message_to_file(message, event)
 	
 	if add_backtrace:
 		var script_backtraces := Engine.capture_script_backtraces()

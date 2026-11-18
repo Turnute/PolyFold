@@ -22,6 +22,7 @@ static func cntAdj(ref_cube: Vector3i, data: PolycubeData) -> int:
 
 ## Function which loads a polycube into the scene based on the coordinates in the data structure
 static func loadPolycube(data: PolycubeData) -> Polycube:
+	Log.info("Loading current polycube")
 	var curr_id = 0
 	
 	# Instantiating cubes

@@ -82,7 +82,7 @@ func createEdges() -> void :
 
 ## Called when a face is selected. Highlights it and reveals its edges.
 func select() -> void:
-	print("Face sélectionnée !")
+	Log.debug("Face sélectionnée !")
 	_material.albedo_color = _selectionColor
 	showEdges(true)
 
@@ -125,7 +125,7 @@ func getOppositeEdge(e : Edge) -> Edge :
 		Edge.EdgeEnum.RIGHT :
 			return _edges[2]
 		_ :
-			print("ERROR! Unidentified Edge!")
+			Log.error("ERROR! Unidentified Edge!")
 			return null
 
 ## Rotates the face around an edge by an angle in degrees.

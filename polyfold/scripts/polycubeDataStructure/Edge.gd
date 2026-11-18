@@ -50,7 +50,7 @@ func select(dir : UnfoldAction.DirEnum) -> UnfoldAction:
 
 ## Logs edge deselection for debugging.
 func unselect() -> void:
-	print("Unelected " + get_parent().name)
+	Log.debug("Unselected " + get_parent().name)
 
 ## Toggles the edge's visibility and collision.
 func switch() -> void:
