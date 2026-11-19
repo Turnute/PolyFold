@@ -210,7 +210,8 @@ func endEdgeDrag(commit: bool) -> void:
 			## Add the action into the historic
 			_history.addAction(action)
 
-	_target.unselectAllFaces()
+	if is_instance_valid(_target):
+		_target.unselectAllFaces()
 	_camera = null
 	_target = null
 	_drag_edge = null

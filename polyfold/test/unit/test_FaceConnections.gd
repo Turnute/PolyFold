@@ -49,3 +49,38 @@ func test_disconnect_twice() -> void :
 	
 	assert_eq(disconnected_side, -1)
 	assert_eq(_face._adj_faces, expected)
+
+func test_get_neighbouring_face_returns_connection_or_minus_one() -> void :
+	assert_eq(_face.getNeighbouringFace(Edge.EdgeEnum.TOP), 11)
+	assert_eq(_face.getNeighbouringFace(Edge.EdgeEnum.BOTTOM), 12)
+	assert_eq(_face.getNeighbouringFace(Edge.EdgeEnum.LEFT), -1)
+	assert_eq(_face.getNeighbouringFace(Edge.EdgeEnum.RIGHT), 14)
+
+func test_connect_face_only_changes_requested_side() -> void :
+	_face.connectFace(23, Edge.EdgeEnum.LEFT)
+	var expected : Array[int] = [11, 12, 23, 14]
+	assert_eq(_face._adj_faces, expected)
+
+	_face.connectFace(24, Edge.EdgeEnum.RIGHT)
+	expected = [11, 12, 23, 24]
+	assert_eq(_face._adj_faces, expected)
+
+func test_disconnect_from_missing_hinge_cuts_all_connections() -> void :
+	var edge : Edge = autofree(Edge.new())
+	edge._side = Edge.EdgeEnum.LEFT
+	var disconnected : Array[int] = _face.disconnectFromEdge(edge)
+	var expected_cuts : Array[int] = [11, 12, 14]
+	var expected : Array[int] = [-1, -1, -1, -1]
+
+	assert_eq(disconnected, expected_cuts)
+	assert_eq(_face._adj_faces, expected)
+
+func test_disconnect_from_edge_twice_does_not_cut_hinge() -> void :
+	var edge : Edge = autofree(Edge.new())
+	edge._side = Edge.EdgeEnum.TOP
+	_face.disconnectFromEdge(edge)
+	var disconnected : Array[int] = _face.disconnectFromEdge(edge)
+	var expected : Array[int] = [11, -1, -1, -1]
+
+	assert_true(disconnected.is_empty())
+	assert_eq(_face._adj_faces, expected)
