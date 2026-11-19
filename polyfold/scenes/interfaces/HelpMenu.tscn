@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bhjm1ljk1p20o"]
 
-[ext_resource type="Script" uid="uid://djuhftwah1bay" path="res://scripts/interfaces/help_menu.gd" id="1_vq8ek"]
+[ext_resource type="Script" uid="uid://djuhftwah1bay" path="res://scripts/ui/HelpMenu.gd" id="1_vq8ek"]
 [ext_resource type="Shader" uid="uid://duvqdhtdslif7" path="res://scenes/interfaces/flou.gdshader" id="2_jn8xe"]
 [ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://Assets/fonts/Oswald-VariableFont_wght.ttf" id="3_ejxdo"]
 [ext_resource type="PackedScene" uid="uid://c53y36ip3fu05" path="res://prefabs/interfaces/ButtonIcon.tscn" id="4_s2upg"]

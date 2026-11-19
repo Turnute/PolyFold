@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://6xddxibtyyn2"]
 
 [ext_resource type="Shader" uid="uid://duvqdhtdslif7" path="res://scenes/interfaces/flou.gdshader" id="1_2boj1"]
-[ext_resource type="Script" uid="uid://chapiiq16kvn8" path="res://scripts/interfaces/pause_menu.gd" id="1_4ctk6"]
-[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="2_d1cmq"]
+[ext_resource type="Script" uid="uid://chapiiq16kvn8" path="res://scripts/ui/PauseMenu.gd" id="1_4ctk6"]
+[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://Assets/fonts/Oswald-VariableFont_wght.ttf" id="2_d1cmq"]
 [ext_resource type="PackedScene" uid="uid://4s33upjasyn5" path="res://prefabs/interfaces/NavButton.tscn" id="3_qheo7"]
-[ext_resource type="Texture2D" uid="uid://cjodlp5gky7ka" path="res://assets/icons/play.svg" id="4_3jl50"]
-[ext_resource type="Texture2D" uid="uid://bydir01fx200c" path="res://assets/icons/cog.svg" id="5_4ctk6"]
-[ext_resource type="Texture2D" uid="uid://d0ftfeqf0l8sh" path="res://assets/icons/info.svg" id="6_3jl50"]
-[ext_resource type="Texture2D" uid="uid://6emt0ew4r8fi" path="res://assets/icons/doorway_exit.svg" id="7_4ctk6"]
+[ext_resource type="Texture2D" uid="uid://cjodlp5gky7ka" path="res://Assets/icons/play.svg" id="4_3jl50"]
+[ext_resource type="Texture2D" uid="uid://bydir01fx200c" path="res://Assets/icons/cog.svg" id="5_4ctk6"]
+[ext_resource type="Texture2D" uid="uid://d0ftfeqf0l8sh" path="res://Assets/icons/info.svg" id="6_3jl50"]
+[ext_resource type="Texture2D" uid="uid://6emt0ew4r8fi" path="res://Assets/icons/doorway_exit.svg" id="7_4ctk6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l2mhy"]
 shader = ExtResource("1_2boj1")

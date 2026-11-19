@@ -16,7 +16,7 @@ var fullscreen := false
 func _ready() -> void:
 	_load() # load settings file (if exist)
 	TranslationServer.set_locale(locale)
-	print("Langue active : ", TranslationServer.get_locale())
+	Log.info("Langue active : " + TranslationServer.get_locale())
 	_apply_window()
 
 
