@@ -3,12 +3,12 @@
 importer="svg"
 type="DPITexture"
 uid="uid://6emt0ew4r8fi"
-path="res://.godot/imported/doorway_exit.svg-bfb60f241cd06efa7c31a5f7a9617fc9.dpitex"
+path="res://.godot/imported/doorway_exit.svg-8788fc617b00b583ea240a267a8e5535.dpitex"
 
 [deps]
 
-source_file="res://Assets/icons/doorway_exit.svg"
-dest_files=["res://.godot/imported/doorway_exit.svg-bfb60f241cd06efa7c31a5f7a9617fc9.dpitex"]
+source_file="res://assets/icons/doorway_exit.svg"
+dest_files=["res://.godot/imported/doorway_exit.svg-8788fc617b00b583ea240a267a8e5535.dpitex"]
 
 [params]
 

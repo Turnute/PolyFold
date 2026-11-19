@@ -3,12 +3,12 @@
 importer="svg"
 type="DPITexture"
 uid="uid://ot6sv16ia5le"
-path="res://.godot/imported/arrow_counterclockwise.svg-63111790ba392f92b3511e4df009b8e6.dpitex"
+path="res://.godot/imported/arrow_counterclockwise.svg-186bf1224ea470da73d1523cbdfe00f0.dpitex"
 
 [deps]
 
-source_file="res://Assets/icons/arrow_counterclockwise.svg"
-dest_files=["res://.godot/imported/arrow_counterclockwise.svg-63111790ba392f92b3511e4df009b8e6.dpitex"]
+source_file="res://assets/icons/arrow_counterclockwise.svg"
+dest_files=["res://.godot/imported/arrow_counterclockwise.svg-186bf1224ea470da73d1523cbdfe00f0.dpitex"]
 
 [params]
 

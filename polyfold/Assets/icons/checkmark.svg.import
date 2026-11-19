@@ -3,12 +3,12 @@
 importer="svg"
 type="DPITexture"
 uid="uid://dfhky7jfnowe3"
-path="res://.godot/imported/checkmark.svg-ab5a17a6e23d171b9feba03d0bded8ae.dpitex"
+path="res://.godot/imported/checkmark.svg-4a44cabb032cf7d1a1c7c7314c5fd9a6.dpitex"
 
 [deps]
 
-source_file="res://Assets/icons/checkmark.svg"
-dest_files=["res://.godot/imported/checkmark.svg-ab5a17a6e23d171b9feba03d0bded8ae.dpitex"]
+source_file="res://assets/icons/checkmark.svg"
+dest_files=["res://.godot/imported/checkmark.svg-4a44cabb032cf7d1a1c7c7314c5fd9a6.dpitex"]
 
 [params]
 

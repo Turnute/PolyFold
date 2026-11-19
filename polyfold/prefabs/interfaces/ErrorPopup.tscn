@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cm0y27vt5s30"]
 
-[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://Assets/fonts/Oswald-VariableFont_wght.ttf" id="1_87okg"]
+[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="1_87okg"]
 [ext_resource type="Script" uid="uid://mvp2vgatp0o8" path="res://scripts/ui/ErrorPopup.gd" id="1_05581"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2mhy"]

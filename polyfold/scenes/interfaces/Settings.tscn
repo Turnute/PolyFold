@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://qhkdy28iiy6r" path="res://prefabs/interfaces/SettingsPanel.tscn" id="1_ims5e"]
 [ext_resource type="Script" uid="uid://ceeruxsx71axk" path="res://scripts/ui/SettingsPage.gd" id="1_sdea2"]
-[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://Assets/fonts/Oswald-VariableFont_wght.ttf" id="2_4rudf"]
+[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="2_4rudf"]
 
 [sub_resource type="Gradient" id="Gradient_qoor0"]
 offsets = PackedFloat32Array(0, 0.8697271)
