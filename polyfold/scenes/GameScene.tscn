@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bbk418eewmy02"]
 
-[ext_resource type="Script" uid="uid://q8ap87w27sm3" path="res://scripts/SpawnPolycube.gd" id="1_xy3my"]
-[ext_resource type="Script" uid="uid://c0byudojwg0gv" path="res://scripts/Camera3d.gd" id="2_cxv17"]
-[ext_resource type="Script" uid="uid://b6inn0km6nbue" path="res://scripts/FoldDragController.gd" id="3_cxv17"]
+[ext_resource type="Script" uid="uid://q8ap87w27sm3" path="res://scripts/gameplay/SpawnPolycube.gd" id="1_xy3my"]
+[ext_resource type="Script" uid="uid://c0byudojwg0gv" path="res://scripts/gameplay/Camera3d.gd" id="2_cxv17"]
+[ext_resource type="Script" uid="uid://b6inn0km6nbue" path="res://scripts/gameplay/FoldDragController.gd" id="3_cxv17"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xy3my"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)

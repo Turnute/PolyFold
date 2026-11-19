@@ -1,0 +1,41 @@
+id,fr,en,es
+POLYFOLD,PolyFold,PolyFold,PolyFold
+BUTTON_PLAY,Jouer,Play,Jugar
+BUTTON_SETTINGS,Options,Settings,Opciones
+BUTTON_QUIT,Quitter,Quit,Salir
+HELP,Aide,Help,Ayuda
+ABOUT,A propos du jeu ,About the Game,Acerca del juego
+GAME_LEVEL_NAME,Niveau %d,Level %d,Nivel %d
+GAME_LEVEL_MOVE,%d coups,%d moves,%d movimientos
+GAME_LEVEL_GOAL,Objectif : %s,Goal : %s,Objetivo: %s
+GAME_LEVEL_UNDO,Annuler,Undo,Deshacer
+GAME_LEVEL_REDO,Refaire,Redo,Rehacer
+PAUSE,Pause,Paused,En pausa
+PAUSE_RESUME,Reprendre partie,Resume game,Reanudar partida
+PAUSE_SETTINGS,Paramètres,Settings,Opciones
+PAUSE_HELP,Aide,Help,Ayuda
+PAUSE_LEAVE,Quitter la partie,Leave the game,Salir de la partida
+OPTION_TITLE,Options,Settings,Opciones
+FR,Français,French,Francés
+EN,Anglais,English,Inglés
+ES,Espagnol,Spanish,Español
+OPTION_LABEL_LANG,Langues,Langages,Idiomas
+OPTION_LABEL_RES,Résolutions,Resolutions,Resoluciones
+OPTION_LABEL_COMMAND,Commandes,Keybinds,Controles
+OPTION_CHECK_FULLSCREEN,Plein écran,Fullscreen,Pantalla completa
+OPTION_CHECK_WINDOWED,Fenêtré,Windowed,Modo ventana
+BACK,Retour,Back,Volver
+HELP_TITLE,Comment jouer ?,How to play ?,¿Cómo se juega?
+HELP_OBJECTIVE,Objectif,Objective,Objetivo
+HELP_OBJECTIVE_DESCRIPTION,"Déplie toutes les faces de chaque cube du polycube, et cela sans recouvrement !","Unfold all the faces of each cube in the polycube, without any overlap !","¡Despliega todas las caras de cada cubo del policubo sin que se superpongan!"
+HELP_METHOD,Méthode,Method,Cómo jugar
+HELP_METHOD_1,1. Sélectionne la face,1. Select the face,1. Selecciona la cara
+HELP_METHOD_2,2. Sélectionne l’arête et glisse la souris dans le sens souhaité,2. Select the edge and drag the mouse in the desired direction,2. Selecciona la arista y arrastra el ratón en la dirección deseada
+HELP_METHOD_3,3. La face est dépliée de 90°,3. The face is unfolded by 90°,3. La cara se despliega 90°
+HELP_RULES,Règles,Rules,Reglas
+HELP_RULES_1,Une face ne peut se déplier qu’autour d’une arête qu’elle partage avec une autre face.,A face can only unfold around an edge that it shares with another face.,Una cara solo puede desplegarse alrededor de una arista que comparta con otra cara.
+HELP_RULES_2,Les faces dépliées ne doivent jamais se chevaucher.,The unfolded faces must never overlap.,Las caras desplegadas nunca deben superponerse.
+HELP_RULES_3,Déplier une face entraîne avec elle toutes les faces déjà dépliées sur le même plan.,Unfolding a face carries along with it all the faces already unfolded on the same plane.,"Al desplegar una cara, también se mueven todas las caras ya desplegadas que estén en el mismo plano."
+HELP_RULES_4,"Il est possible d'annuler un coup grâce au bouton ""%s"" et d'annuler ce retour en arrière grâce au bouton ""%s"".","It is possible to undo a move using the ""%s"" button, and to reverse that undo action using the ""%s"" button.","Puedes deshacer un movimiento con el botón ""%s"" y rehacerlo con el botón ""%s""."
+HELP_RULES_5,Le niveau est réussi quand toutes les faces sont à plat.,The level is successfully completed when all the faces are lying flat.,El nivel se completa cuando todas las caras quedan extendidas en un mismo plano.
+HELP_CONFIRM,Compris !,Understood !,¡Entendido!

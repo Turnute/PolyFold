@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://cm0y27vt5s30"]
+
+[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="1_87okg"]
+[ext_resource type="Script" uid="uid://mvp2vgatp0o8" path="res://scripts/ui/ErrorPopup.gd" id="1_05581"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2mhy"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 10.0
+content_margin_bottom = 15.0
+bg_color = Color(0.7254902, 0.8666667, 0.93333334, 1)
+border_width_left = 6
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9843137, 0.34117648, 0.34117648, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="DPITexture" id="DPITexture_s4768"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"none\" viewBox=\"0 0 16 16\"><path fill=\"#ffffff\" d=\"M12 2a3 3 0 0 1 3 3v4a3 3 0 0 1-3 3h-1.5l-2.093 2.93a.5.5 0 0 1-.814 0L5.5 12H4a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3zM8 9a1 1 0 1 0 0 2 1 1 0 0 0 0-2m0-6a1 1 0 0 0-1 1v3a1 1 0 0 0 2 0V4a1 1 0 0 0-1-1\"/></svg>"
+fix_alpha_border = true
+base_scale = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l2mhy"]
+
+[sub_resource type="FontVariation" id="FontVariation_s2k8f"]
+base_font = ExtResource("1_87okg")
+variation_opentype = {
+2003265652: 500
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_l2mhy"]
+font = SubResource("FontVariation_s2k8f")
+font_size = 22
+font_color = Color(0.9843137, 0.34117648, 0.34117648, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_aaql1"]
+base_font = ExtResource("1_87okg")
+variation_opentype = {
+2003265652: 300
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_s2k8f"]
+font = SubResource("FontVariation_aaql1")
+font_size = 14
+font_color = Color(0.33333334, 0.33333334, 0.33333334, 0.5254902)
+
+[sub_resource type="DPITexture" id="DPITexture_ud6hu"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"none\" viewBox=\"0 0 16 16\"><path fill=\"#ffffff\" d=\"M12.293 2.293a1 1 0 0 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 1 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 1 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 1 1 1.414-1.414L8 6.586z\"/></svg>"
+fix_alpha_border = true
+base_scale = 1.5
+
+[node name="Control" type="Control" unique_id=811166172]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("1_05581")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=194855398]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -325.0
+offset_top = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_l2mhy")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=677273774]
+layout_mode = 2
+
+[node name="icon" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1777870924]
+self_modulate = Color(0.9843137, 0.34117648, 0.34117648, 1)
+layout_mode = 2
+texture = SubResource("DPITexture_s4768")
+expand_mode = 2
+
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/HBoxContainer" unique_id=1778867290]
+layout_mode = 2
+theme_override_constants/separation = 1
+theme_override_styles/separator = SubResource("StyleBoxEmpty_l2mhy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=907236958]
+layout_mode = 2
+
+[node name="error_title" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=587989286]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Coup invalide"
+label_settings = SubResource("LabelSettings_l2mhy")
+
+[node name="error_message" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=1401190894]
+unique_name_in_owner = true
+layout_mode = 2
+text = "La face chevauche une autre face !"
+label_settings = SubResource("LabelSettings_s2k8f")
+max_lines_visible = 2
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/HBoxContainer" unique_id=1685477146]
+layout_mode = 2
+theme_override_constants/separation = 15
+theme_override_styles/separator = SubResource("StyleBoxEmpty_l2mhy")
+
+[node name="close_button" type="Button" parent="PanelContainer/HBoxContainer" unique_id=1552344697]
+layout_mode = 2
+theme_override_colors/icon_normal_color = Color(0.9843137, 0.34117648, 0.34117648, 1)
+icon = SubResource("DPITexture_ud6hu")
+flat = true
+icon_alignment = 1

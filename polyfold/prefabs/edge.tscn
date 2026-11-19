@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bgq0y6jiuktsn"]
 
-[ext_resource type="Script" uid="uid://b5uab35k33oqh" path="res://scripts/polycubeDataStructure/Edge.gd" id="1_nlyqy"]
+[ext_resource type="Script" uid="uid://b5uab35k33oqh" path="res://scripts/polycube/Edge.gd" id="1_nlyqy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kjnlj"]
 albedo_color = Color(1, 0, 0, 1)
