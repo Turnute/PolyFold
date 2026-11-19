@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://1lrt3yilpr45"]
 
-[ext_resource type="Script" uid="uid://dnwcpw40uv4ae" path="res://scripts/polycubeDataStructure/Face.gd" id="1_4gycn"]
+[ext_resource type="Script" uid="uid://dnwcpw40uv4ae" path="res://scripts/polycube/Face.gd" id="1_4gycn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbuov"]
 

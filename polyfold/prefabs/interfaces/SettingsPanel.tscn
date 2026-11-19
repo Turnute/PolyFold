@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://qhkdy28iiy6r"]
 
-[ext_resource type="Script" uid="uid://dki35c2uee0uk" path="res://scripts/interfaces/prefabs/SettingsPanel.gd" id="1_toewy"]
+[ext_resource type="Script" uid="uid://dki35c2uee0uk" path="res://scripts/ui/SettingsPanel.gd" id="1_toewy"]
 [ext_resource type="PackedScene" uid="uid://2la5g75kyjxf" path="res://prefabs/interfaces/BackButton.tscn" id="2_513gy"]
-[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://Assets/fonts/Oswald-VariableFont_wght.ttf" id="2_hymon"]
+[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="2_hymon"]
 [ext_resource type="PackedScene" uid="uid://4s33upjasyn5" path="res://prefabs/interfaces/NavButton.tscn" id="2_u1llj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_st8hq"]

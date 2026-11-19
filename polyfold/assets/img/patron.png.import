@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc26v3qr3x5g2"
-path="res://.godot/imported/polycube.png-77716081e72f7f1b8ee68caeb3b42284.ctex"
+uid="uid://cgharmp512eja"
+path="res://.godot/imported/patron.png-2d463cdf884a6836bd6107e6e382353c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/img/polycube.png"
-dest_files=["res://.godot/imported/polycube.png-77716081e72f7f1b8ee68caeb3b42284.ctex"]
+source_file="res://assets/img/patron.png"
+dest_files=["res://.godot/imported/patron.png-2d463cdf884a6836bd6107e6e382353c.ctex"]
 
 [params]
 

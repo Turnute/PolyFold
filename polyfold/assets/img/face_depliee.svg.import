@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dy8g7kwgessfn"
-path="res://.godot/imported/cube.png-94ac5e92fe578dff7fffc6598592b05d.ctex"
+uid="uid://tw7nn7lt5ja"
+path="res://.godot/imported/face_depliee.svg-269dc6e9df157b536cc81cf9bbec76fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/img/cube.png"
-dest_files=["res://.godot/imported/cube.png-94ac5e92fe578dff7fffc6598592b05d.ctex"]
+source_file="res://assets/img/face_depliee.svg"
+dest_files=["res://.godot/imported/face_depliee.svg-269dc6e9df157b536cc81cf9bbec76fe.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
