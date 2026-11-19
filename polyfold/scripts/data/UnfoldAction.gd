@@ -16,6 +16,10 @@ var _edge : Edge.EdgeEnum
 ## The direction of the unfolding.
 var _dir : DirEnum
 
+var _deconnected_face = []
+
+var _group : Array[int]
+
 ## Creates an unfolding action for the specified cube, face, edge, and direction.
 static func createAction(id_cube : int, face : Face.FaceEnum, edge : Edge.EdgeEnum, dir : DirEnum) -> UnfoldAction :
 	var action : UnfoldAction = UnfoldAction.new()
@@ -25,6 +29,17 @@ static func createAction(id_cube : int, face : Face.FaceEnum, edge : Edge.EdgeEn
 	action._edge = edge
 	action._dir = dir
 
+	return action
+
+static func createActionGroup(id_cube : int, face : Face.FaceEnum, edge : Edge.EdgeEnum, dir : DirEnum, group, deconnected_face) -> UnfoldAction :
+	var action : UnfoldAction = UnfoldAction.new()
+
+	action._id_cube = id_cube
+	action._face = face
+	action._edge = edge
+	action._dir = dir
+	action._group = group
+	action._deconnected_face = deconnected_face
 	return action
 
 ## Prints the action parameters for debugging.

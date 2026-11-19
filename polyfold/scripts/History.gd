@@ -7,12 +7,6 @@ static var head_list : int
 # The actual polycube on the scene
 static var _polycube : Polycube
 
-## Unfolding direction.
-enum DirEnum { 
-	FWD,	## Adds 90 degrees
-	BWD		## Substracts 90 degrees
-	}
-
 # Create an empty history
 func _init() -> void :
 	_moves = []
@@ -37,9 +31,9 @@ static func undo() -> bool:
 		print("No moves to undo...")
 		return false
 	var last_action : UnfoldAction = _moves[head_list - 1]
-	var dir_inv = DirEnum.BWD if last_action._dir == DirEnum.FWD else DirEnum.FWD
-	var undo_action = UnfoldAction.createAction(last_action._id_cube, last_action._face, last_action._edge, dir_inv)
-	Unfolder.executeMove(undo_action, _polycube)
+	var dir_inv = UnfoldAction.DirEnum.BWD if last_action._dir == UnfoldAction.DirEnum.FWD else UnfoldAction.DirEnum.FWD
+	var undo_action = UnfoldAction.createActionGroup(last_action._id_cube, last_action._face, last_action._edge, dir_inv,last_action._group, last_action._deconnected_face)
+	Unfolder.connectMove(undo_action, _polycube)
 	head_list-=1
 	return true
 
@@ -50,6 +44,6 @@ static func redo() -> bool:
 		return false
 	head_list+=1
 	var redo_action : UnfoldAction = _moves[head_list - 1]
-	var undo_action = UnfoldAction.createAction(redo_action._id_cube, redo_action._face, redo_action._edge, redo_action._dir)
-	Unfolder.executeMove(undo_action, _polycube)
+	redo_action._deconnected_face.clear()
+	Unfolder.executeMove(redo_action, _polycube)
 	return true

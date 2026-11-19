@@ -1,6 +1,15 @@
 class_name PolycubeFactory
 extends Node
 
+const PALETTE = [
+	Color("bb9ed4ff"),
+	Color("6d91ceff"),
+	Color("36cdd6ff"),
+	Color("44d680ff"),
+	Color("ef7b70ff"),
+	Color("f5d487ff")
+]
+
 ## Function which gets positions of adjacent cubes by position
 static func getAdj(pos: Vector3i) -> Array[Vector3i]:
 	var adj : Array[Vector3i] = []
@@ -22,6 +31,7 @@ static func cntAdj(ref_cube: Vector3i, data: PolycubeData) -> int:
 
 ## Function which loads a polycube into the scene based on the coordinates in the data structure
 static func loadPolycube(data: PolycubeData) -> Polycube:
+	Log.info("Loading current polycube")
 	var curr_id = 0
 	
 	# Instantiating cubes
@@ -30,6 +40,7 @@ static func loadPolycube(data: PolycubeData) -> Polycube:
 		var cube = Cube.new()
 		cube._id = curr_id
 		cube._pos = pos
+		cube._col = PALETTE[curr_id % PALETTE.size()]
 		cubes.append(cube)
 		curr_id += 1
 	

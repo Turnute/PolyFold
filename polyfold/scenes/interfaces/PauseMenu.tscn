@@ -218,7 +218,9 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
 text = "PAUSE_LEAVE"
 
 [connection signal="pressed" from="Menu/VBoxContainer/Resume_button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Settings_button" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Help_button" to="." method="_on_help_button_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Leave_button" to="." method="_on_leave_button_pressed"]
 
 [editable path="Menu/VBoxContainer/Resume_button"]
 [editable path="Menu/VBoxContainer/Settings_button"]

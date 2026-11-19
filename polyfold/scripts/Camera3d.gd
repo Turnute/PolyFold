@@ -11,7 +11,7 @@ var _yaw: float = 0.0
 var _pitch: float = 0.0
 
 ## Initial distance between the camera and the target.
-var _distance : float = 2.0
+var _distance : float = 2.5
 
 ## Minimum camera distance from the targeted object.
 var _distance_min : float = 1.0
@@ -55,7 +55,7 @@ func _input(event : InputEvent):
 			
 			if event.button_index == MOUSE_BUTTON_LEFT and not event.shift_pressed:
 				var godot_object = getRaycastObject()
-				print(godot_object)
+				Log.trace(str(godot_object))
 				if godot_object:
 					var selected_object = godot_object["collider"]
 					var parent = selected_object.get_parent()
@@ -85,7 +85,7 @@ func updatePositionCamera() -> void :
 			position_target = _target.to_global(_target.getAveragePos())
 		else : 
 			position_target = _target.global_position
-		global_position = (offset+ position_target)
+		global_position = (offset + position_target)
 		look_at(position_target,Vector3.UP)
 
 ## Rotates the camera with Shift + left drag or middle drag.
