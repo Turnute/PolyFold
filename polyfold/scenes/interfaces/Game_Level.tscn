@@ -1,0 +1,262 @@
+[gd_scene format=3 uid="uid://b3hfgfialtdqc"]
+
+[ext_resource type="Script" uid="uid://dcqwu0ow02tw7" path="res://scripts/interfaces/game_level.gd" id="1_hq6jr"]
+[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://Assets/fonts/Oswald-VariableFont_wght.ttf" id="2_jr2gh"]
+[ext_resource type="Texture2D" uid="uid://d1k10kbsy3uvy" path="res://Assets/icons/bullseye.svg" id="3_s2alt"]
+[ext_resource type="Texture2D" uid="uid://ddd6qg7gphwoa" path="res://Assets/icons/stopwatch.svg" id="4_853i0"]
+[ext_resource type="PackedScene" uid="uid://c53y36ip3fu05" path="res://prefabs/interfaces/ButtonIcon.tscn" id="5_0lshf"]
+[ext_resource type="Texture2D" uid="uid://ddoumw0juxs12" path="res://Assets/icons/pause.svg" id="6_t5vjp"]
+[ext_resource type="Texture2D" uid="uid://ot6sv16ia5le" path="res://Assets/icons/arrow_counterclockwise.svg" id="7_5dcfj"]
+[ext_resource type="Texture2D" uid="uid://xkgtdgba68mo" path="res://Assets/icons/arrow_clockwise.svg" id="8_k5pa4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g7dw2"]
+bg_color = Color(0.7254902, 0.8666667, 0.93333334, 1)
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="FontVariation" id="FontVariation_bv61l"]
+base_font = ExtResource("2_jr2gh")
+variation_opentype = {
+2003265652: 500
+}
+spacing_bottom = -6
+
+[sub_resource type="LabelSettings" id="LabelSettings_l2mhy"]
+font = SubResource("FontVariation_bv61l")
+font_size = 40
+font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_6uhnx"]
+base_font = ExtResource("2_jr2gh")
+variation_opentype = {
+2003265652: 300
+}
+spacing_top = -5
+
+[sub_resource type="LabelSettings" id="LabelSettings_yty7p"]
+line_spacing = -5.0
+font = SubResource("FontVariation_6uhnx")
+font_size = 21
+font_color = Color(0.33333334, 0.33333334, 0.33333334, 0.69803923)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s2k8f"]
+
+[sub_resource type="FontVariation" id="FontVariation_kts8c"]
+base_font = ExtResource("2_jr2gh")
+variation_opentype = {
+2003265652: 400
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_s2k8f"]
+font = SubResource("FontVariation_kts8c")
+font_size = 24
+font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_aam7b"]
+base_font = ExtResource("2_jr2gh")
+variation_opentype = {
+2003265652: 300
+}
+
+[sub_resource type="FontVariation" id="FontVariation_gnb02"]
+base_font = SubResource("FontVariation_aam7b")
+variation_opentype = {
+2003265652: 400
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_aaql1"]
+font = SubResource("FontVariation_gnb02")
+font_size = 15
+font_color = Color(0.33333334, 0.33333334, 0.33333334, 0.69803923)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l2mhy"]
+
+[sub_resource type="FontVariation" id="FontVariation_6tegx"]
+base_font = ExtResource("2_jr2gh")
+variation_opentype = {
+2003265652: 400
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_2y1bh"]
+font = SubResource("FontVariation_6tegx")
+font_size = 17
+font_color = Color(0.7254902, 0.8666667, 0.93333334, 0.78431374)
+
+[node name="Control" type="Control" unique_id=1342354581]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_hq6jr")
+
+[node name="info_level" type="PanelContainer" parent="." unique_id=355342233]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -350.0
+offset_right = 350.0
+offset_bottom = 133.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g7dw2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="info_level" unique_id=301413719]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="level_name" type="Label" parent="info_level/VBoxContainer" unique_id=148288098]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Niveau 0"
+label_settings = SubResource("LabelSettings_l2mhy")
+
+[node name="level_description" type="Label" parent="info_level/VBoxContainer" unique_id=1492957799]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 52)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "5 cubes"
+label_settings = SubResource("LabelSettings_yty7p")
+horizontal_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="info_level/VBoxContainer" unique_id=1469317380]
+layout_mode = 2
+alignment = 1
+
+[node name="left_separator" type="VSeparator" parent="info_level/VBoxContainer/HBoxContainer" unique_id=1594075818]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
+
+[node name="move_container" type="HBoxContainer" parent="info_level/VBoxContainer/HBoxContainer" unique_id=1882537175]
+layout_mode = 2
+
+[node name="move_icon" type="TextureRect" parent="info_level/VBoxContainer/HBoxContainer/move_container" unique_id=870466663]
+modulate = Color(0.17254902, 0.35686275, 0.4862745, 1)
+layout_mode = 2
+texture = ExtResource("3_s2alt")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="info_level/VBoxContainer/HBoxContainer/move_container" unique_id=2043036426]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="move_number" type="Label" parent="info_level/VBoxContainer/HBoxContainer/move_container/VBoxContainer" unique_id=202663997]
+unique_name_in_owner = true
+layout_mode = 2
+text = "23 coups"
+label_settings = SubResource("LabelSettings_s2k8f")
+
+[node name="move_goal" type="Label" parent="info_level/VBoxContainer/HBoxContainer/move_container/VBoxContainer" unique_id=571491298]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Objectif : -"
+label_settings = SubResource("LabelSettings_aaql1")
+
+[node name="middle_separator" type="VSeparator" parent="info_level/VBoxContainer/HBoxContainer" unique_id=900165042]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
+
+[node name="time_container" type="HBoxContainer" parent="info_level/VBoxContainer/HBoxContainer" unique_id=882461701]
+layout_mode = 2
+
+[node name="time_icon" type="TextureRect" parent="info_level/VBoxContainer/HBoxContainer/time_container" unique_id=1479142267]
+modulate = Color(0.17254902, 0.35686275, 0.4862745, 1)
+layout_mode = 2
+texture = ExtResource("4_853i0")
+expand_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="info_level/VBoxContainer/HBoxContainer/time_container" unique_id=1931193948]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="time_count" type="Label" parent="info_level/VBoxContainer/HBoxContainer/time_container/VBoxContainer" unique_id=882704869]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "00:30:27"
+label_settings = SubResource("LabelSettings_s2k8f")
+
+[node name="time_goal" type="Label" parent="info_level/VBoxContainer/HBoxContainer/time_container/VBoxContainer" unique_id=2129579652]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Objectif : -"
+label_settings = SubResource("LabelSettings_aaql1")
+
+[node name="right_separator" type="VSeparator" parent="info_level/VBoxContainer/HBoxContainer" unique_id=290730705]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
+
+[node name="HSeparator2" type="HSeparator" parent="info_level/VBoxContainer" unique_id=495899452]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 7
+theme_override_styles/separator = SubResource("StyleBoxEmpty_l2mhy")
+
+[node name="pause_button" parent="." unique_id=1176339355 instance=ExtResource("5_0lshf")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 95.0
+offset_bottom = 95.0
+icon = ExtResource("6_t5vjp")
+
+[node name="undo" type="VBoxContainer" parent="." unique_id=1499203499]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -190.0
+offset_top = 15.0
+offset_right = -115.0
+offset_bottom = 113.0
+grow_horizontal = 0
+alignment = 1
+
+[node name="undo_button" parent="undo" unique_id=1872251594 instance=ExtResource("5_0lshf")]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+icon = ExtResource("7_5dcfj")
+
+[node name="undo_text" type="Label" parent="undo" unique_id=2144709864]
+layout_mode = 2
+text = "Undo"
+label_settings = SubResource("LabelSettings_2y1bh")
+horizontal_alignment = 1
+
+[node name="redo" type="VBoxContainer" parent="." unique_id=1511714863]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -95.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = 95.0
+grow_horizontal = 0
+
+[node name="redo_button" parent="redo" unique_id=1009220721 instance=ExtResource("5_0lshf")]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+disabled = true
+icon = ExtResource("8_k5pa4")
+
+[node name="redo_text" type="Label" parent="redo" unique_id=597812352]
+layout_mode = 2
+text = "Redo"
+label_settings = SubResource("LabelSettings_2y1bh")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="pause_button" to="." method="_on_pause_button_pressed"]

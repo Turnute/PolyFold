@@ -1,4 +1,3 @@
-class_name SettingsPage
 extends Control
 
 func _ready() -> void:

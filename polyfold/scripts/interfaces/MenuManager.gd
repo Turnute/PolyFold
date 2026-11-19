@@ -41,3 +41,11 @@ static func _display_error(parent: Node, title: String, message: String) -> Erro
 static func _display_settings(parent: Node) -> void:
 	Log.info("Display settings")
 	parent.add_child(load(SETTINGS_PAGE).instantiate())
+
+## 
+static func _display_game_level(parent : Node, ) -> GameLevel:
+	Log.info("Display Game Level")
+	var interface: GameLevel = load(GameLevel).instantiate()
+	interface.initialize()
+	parent.add_child(interface)
+	return interface
