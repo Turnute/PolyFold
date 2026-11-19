@@ -2,7 +2,7 @@ class_name SpawnPolycube
 extends Node3D
 
 # TEMP : String value for test polycube
-const data_str = "res://data/polycubes/test_poly.tres"
+static var data_str = "" # .tres
 
 var polycube : Polycube
 static var data : PolycubeData = null
@@ -26,5 +26,9 @@ func init_polycube() -> void:
 
 func _ready() -> void:
 	# TEMP: Init polycube
-	data = load(data_str)
+	if(data_str.is_empty()):
+		data = null 
+	else :
+		data = load(data_str)
+	
 	init_polycube()

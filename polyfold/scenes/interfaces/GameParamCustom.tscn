@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://b15kdr0xg47j8"]
 
-[ext_resource type="Script" uid="uid://c6svl7wl1gvob" path="res://scenes/interfaces/game_param_custom.gd" id="1_orwuu"]
-[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://Assets/fonts/Oswald-VariableFont_wght.ttf" id="2_0u0y5"]
+[ext_resource type="Script" uid="uid://c6svl7wl1gvob" path="res://scripts/ui/GameParamCustom.gd" id="1_orwuu"]
+[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="2_0u0y5"]
 [ext_resource type="PackedScene" uid="uid://4s33upjasyn5" path="res://prefabs/interfaces/NavButton.tscn" id="3_q5wa3"]
-[ext_resource type="Texture2D" uid="uid://cjodlp5gky7ka" path="res://Assets/icons/play.svg" id="4_23l5c"]
+[ext_resource type="Texture2D" uid="uid://cjodlp5gky7ka" path="res://assets/icons/play.svg" id="4_23l5c"]
 [ext_resource type="PackedScene" uid="uid://2la5g75kyjxf" path="res://prefabs/interfaces/BackButton.tscn" id="5_j8388"]
 [ext_resource type="PackedScene" uid="uid://n1nupa36ocyr" path="res://prefabs/interfaces/HelpButton.tscn" id="7_jqbch"]
 
@@ -16,11 +16,14 @@ gradient = SubResource("Gradient_ac62s")
 
 [sub_resource type="FontVariation" id="FontVariation_hlm2k"]
 base_font = ExtResource("2_0u0y5")
+variation_embolden = 0.5
 
 [sub_resource type="LabelSettings" id="LabelSettings_4p8d8"]
 font = SubResource("FontVariation_hlm2k")
-font_size = 48
+font_size = 64
 font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3db7w"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6otgt"]
 
@@ -67,7 +70,7 @@ layout_mode = 2
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1396326537]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 80
 text = "GAME_PARAM_CUSTOM_TITLE"
 label_settings = SubResource("LabelSettings_4p8d8")
 horizontal_alignment = 1
@@ -76,37 +79,109 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer" unique_id=1264893848]
+[node name="ParamPolycube" type="Label" parent="MarginContainer/VBoxContainer" unique_id=121148548]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+theme_override_font_sizes/font_size = 20
+text = "GAME_PARAM_CUSTOM_POLYCUBE"
+
+[node name="HSeparator6" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1005561515]
+layout_mode = 2
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_3db7w")
+
+[node name="GridContainer1" type="GridContainer" parent="MarginContainer/VBoxContainer" unique_id=1747997594]
 layout_mode = 2
 columns = 3
 
-[node name="MOVE_GOAL" type="Label" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=164361365]
+[node name="PolycubeFileLab" type="Label" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=641276878]
+layout_mode = 2
+text = "GAME_PARAM_CUSTOM_CUBE"
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=511093748]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PolycubeFile" type="TextEdit" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=43441965]
+layout_mode = 2
+
+[node name="NbCubeLab" type="Label" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=1204704111]
+layout_mode = 2
+text = "GAME_PARAM_CUSTOM_CUBE"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=1059952334]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="NbCube" type="SpinBox" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=794122052]
+layout_mode = 2
+
+[node name="MaxAdjLab" type="Label" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=845937532]
+layout_mode = 2
+text = "GAME_PARAM_CUSTOM_ADJ"
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=1530428683]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="MaxAdj" type="SpinBox" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=1169986843]
+layout_mode = 2
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1391649159]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=824371109]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+theme_override_font_sizes/font_size = 20
+text = "GAME_PARAM_CUSTOM_ROUND"
+
+[node name="HSeparator5" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1276100034]
+layout_mode = 2
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_3db7w")
+
+[node name="GridContainer2" type="GridContainer" parent="MarginContainer/VBoxContainer" unique_id=1264893848]
+layout_mode = 2
+columns = 3
+
+[node name="MOVE_GOAL" type="Label" parent="MarginContainer/VBoxContainer/GridContainer2" unique_id=164361365]
 layout_mode = 2
 text = "GAME_PARAM_CUSTOM_MOVE_GOAL"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=734877247]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer2" unique_id=734877247]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="MoveGoal" type="SpinBox" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=399294359]
+[node name="MoveGoal" type="SpinBox" parent="MarginContainer/VBoxContainer/GridContainer2" unique_id=399294359]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="TIME_GOAL" type="Label" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=193647032]
+[node name="TIME_GOAL" type="Label" parent="MarginContainer/VBoxContainer/GridContainer2" unique_id=193647032]
 layout_mode = 2
 text = "GAME_PARAM_CUSTOM_TIME_GOAL"
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1278644303]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer2" unique_id=1278644303]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="TimeGoal" type="SpinBox" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=702565353]
+[node name="TimeGoal" type="SpinBox" parent="MarginContainer/VBoxContainer/GridContainer2" unique_id=702565353]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -119,19 +194,15 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 64)
 layout_mode = 2
 size_flags_horizontal = 4
-
-[node name="Icon" parent="MarginContainer/VBoxContainer/StartButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="0" unique_id=1591882090]
-texture = ExtResource("4_23l5c")
-
-[node name="Text" parent="MarginContainer/VBoxContainer/StartButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="1" unique_id=296136175]
 text = "BUTTON_START"
+icon = ExtResource("4_23l5c")
 
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1469480911]
 layout_mode = 2
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_6otgt")
 
-[node name="BackButton" parent="MarginContainer/VBoxContainer" unique_id=1330581786 instance=ExtResource("5_j8388")]
+[node name="BackButton" parent="MarginContainer/VBoxContainer" unique_id=1336113725 instance=ExtResource("5_j8388")]
 layout_mode = 2
 size_flags_horizontal = 4
 
@@ -156,7 +227,6 @@ layout_mode = 2
 text = "ABOUT"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="Footer/HBoxContainer/HelpButton" to="." method="_on_help_button_pressed"]
 
 [editable path="MarginContainer/VBoxContainer/StartButton"]

@@ -92,12 +92,9 @@ theme_override_fonts/font = SubResource("FontVariation_gxwj6")
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=854569780]
 layout_mode = 2
 
-[node name="BackButton" parent="MarginContainer/VBoxContainer" unique_id=1088000271 instance=ExtResource("2_513gy")]
-unique_name_in_owner = true
+[node name="BackButton" parent="MarginContainer/VBoxContainer" unique_id=1201228055 instance=ExtResource("2_513gy")]
 layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer" unique_id=1055854589]
 layout_mode = 2
-
-[editable path="MarginContainer/VBoxContainer/BackButton"]

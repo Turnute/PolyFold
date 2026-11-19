@@ -19,11 +19,6 @@ gradient = SubResource("Gradient_ac62s")
 [sub_resource type="FontVariation" id="FontVariation_3db7w"]
 base_font = ExtResource("2_nn3se")
 
-[sub_resource type="DPITexture" id="DPITexture_nn3se"]
-_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"none\" viewBox=\"0 0 16 16\"><path fill=\"#ffffff\" d=\"M6 1a5 5 0 0 1 5 5H9a3 3 0 0 0-6 0v9H1V6a5 5 0 0 1 5-5M11 15H9v-3h2z\"/><path fill=\"#ffffff\" d=\"M11.293 6.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-2 2a1 1 0 1 1-1.414-1.414l.293-.293H6a1 1 0 0 1 0-2h5.586l-.293-.293a1 1 0 0 1 0-1.414\"/></svg>"
-fix_alpha_border = true
-base_scale = 4.0
-
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_nc8eo"]
 grow_begin = -10.0
 grow_end = -10.0
@@ -91,32 +86,21 @@ vertical_alignment = 1
 [node name="PlayButton" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=614178926 instance=ExtResource("5_ac62s")]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Icon" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="0" unique_id=1591882090]
-texture = ExtResource("4_ac62s")
-
-[node name="Text" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="1" unique_id=296136175]
+disabled = true
 text = "BUTTON_PLAY"
+icon = ExtResource("4_ac62s")
 
 [node name="SettingsButton" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=666445710 instance=ExtResource("5_ac62s")]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Icon" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/SettingsButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(666445710, 1873338246) index="0" unique_id=1591882090]
-texture = ExtResource("3_nn3se")
-
-[node name="Text" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/SettingsButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(666445710, 1873338246) index="1" unique_id=296136175]
 text = "BUTTON_SETTINGS"
+icon = ExtResource("3_nn3se")
 
 [node name="QuitButton" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=2014947329 instance=ExtResource("5_ac62s")]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Icon" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/QuitButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2014947329, 1873338246) index="0" unique_id=1591882090]
-texture = SubResource("DPITexture_nn3se")
-
-[node name="Text" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/QuitButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2014947329, 1873338246) index="1" unique_id=296136175]
 text = "BUTTON_QUIT"
+icon = ExtResource("6_04thv")
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer" unique_id=277126498]
 layout_mode = 2

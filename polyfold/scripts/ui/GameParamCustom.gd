@@ -8,17 +8,16 @@ func _on_start_button_pressed() -> void:
 		move_goal = -1
 	if time_goal == 0:
 		time_goal = -1
-
-	print("coups : ", move_goal, " / temps : ", time_goal)
+ 
+	var info = "Game param custom = NB coups : " + str(move_goal) + " | Temps : " + str(time_goal)
+	Log.info(info)
+	
+	var polycube = MenuManager._display_polycube(self, "", 5, 5)
+	get_tree().change_scene_to_node(polycube)
 
 	# crée la partie
-	var game := GameLevel.create(get_tree().root, 0, "", move_goal, time_goal)
-	game.get_node("%level_name").text = tr("GAME_MODE_CUSTOM")  # sinon on voit « Niveau 0 »
+	var game = MenuManager._display_game_level(polycube, GameLevel.gameMode.CUSTOM, "GAME_LEVEL_NAME_CUSTOM", "", move_goal, time_goal)
 	game.startChrono()
-
-	#clear empilement page
-	get_tree().current_scene.queue_free()
-	get_tree().current_scene = game
 
 
 func _on_back_button_pressed() -> void:

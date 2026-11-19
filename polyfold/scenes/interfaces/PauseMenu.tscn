@@ -14,6 +14,8 @@ shader = ExtResource("1_2boj1")
 shader_parameter/blur_amount = 2.000000095
 shader_parameter/darken = 0.150000007125
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s2k8f"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aaql1"]
 bg_color = Color(0.33333334, 0.33333334, 0.33333334, 1)
 corner_radius_top_left = 30
@@ -36,8 +38,6 @@ font = SubResource("FontVariation_s2alt")
 font_size = 40
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l2mhy"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s2k8f"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aaql1"]
 
@@ -120,6 +120,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Menu_VBoxContainer_Leave_button_MarginContainer_HBoxContainer#VSeparator" type="VSeparator" parent="." unique_id=1534110236]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 0
+theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
+
+[node name="Menu_VBoxContainer_Help_button_MarginContainer_HBoxContainer#VSeparator" type="VSeparator" parent="." unique_id=1898879978]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 0
+theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
+
+[node name="Menu_VBoxContainer_Settings_button_MarginContainer_HBoxContainer#VSeparator" type="VSeparator" parent="." unique_id=74435057]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 0
+theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
+
+[node name="Menu_VBoxContainer_Resume_button_MarginContainer_HBoxContainer#VSeparator" type="VSeparator" parent="." unique_id=1415928607]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 0
+theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
+
 [node name="Menu" type="PanelContainer" parent="." unique_id=901564814]
 layout_mode = 1
 anchors_preset = 8
@@ -155,31 +175,13 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_l2mhy")
 
 [node name="Resume_button" parent="Menu/VBoxContainer" unique_id=614178926 instance=ExtResource("3_qheo7")]
 layout_mode = 2
-
-[node name="Icon" parent="Menu/VBoxContainer/Resume_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="0" unique_id=1591882090]
-texture = ExtResource("4_3jl50")
-
-[node name="VSeparator" type="VSeparator" parent="Menu/VBoxContainer/Resume_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="1" unique_id=1415928607]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
-
-[node name="Text" parent="Menu/VBoxContainer/Resume_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="2" unique_id=296136175]
 text = "PAUSE_RESUME"
+icon = ExtResource("4_3jl50")
 
 [node name="Settings_button" parent="Menu/VBoxContainer" unique_id=827849679 instance=ExtResource("3_qheo7")]
 layout_mode = 2
-
-[node name="Icon" parent="Menu/VBoxContainer/Settings_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(827849679, 1873338246) index="0" unique_id=1591882090]
-texture = ExtResource("5_4ctk6")
-
-[node name="VSeparator" type="VSeparator" parent="Menu/VBoxContainer/Settings_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(827849679, 1873338246) index="1" unique_id=74435057]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
-
-[node name="Text" parent="Menu/VBoxContainer/Settings_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(827849679, 1873338246) index="2" unique_id=296136175]
 text = "PAUSE_SETTINGS"
+icon = ExtResource("5_4ctk6")
 
 [node name="HSeparator2" type="HSeparator" parent="Menu/VBoxContainer" unique_id=501722279]
 layout_mode = 2
@@ -188,34 +190,16 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_aaql1")
 
 [node name="Help_button" parent="Menu/VBoxContainer" unique_id=1357910421 instance=ExtResource("3_qheo7")]
 layout_mode = 2
-
-[node name="Icon" parent="Menu/VBoxContainer/Help_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1357910421, 1873338246) index="0" unique_id=1591882090]
-texture = ExtResource("6_3jl50")
-
-[node name="VSeparator" type="VSeparator" parent="Menu/VBoxContainer/Help_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1357910421, 1873338246) index="1" unique_id=1898879978]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
-
-[node name="Text" parent="Menu/VBoxContainer/Help_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1357910421, 1873338246) index="2" unique_id=296136175]
 text = "PAUSE_HELP"
+icon = ExtResource("6_3jl50")
 
 [node name="Leave_button" parent="Menu/VBoxContainer" unique_id=1955330189 instance=ExtResource("3_qheo7")]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_cbrlc")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_lfk0b")
 theme_override_styles/hover = SubResource("StyleBoxFlat_12j7i")
-
-[node name="Icon" parent="Menu/VBoxContainer/Leave_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1955330189, 1873338246) index="0" unique_id=1591882090]
-texture = ExtResource("7_4ctk6")
-
-[node name="VSeparator" type="VSeparator" parent="Menu/VBoxContainer/Leave_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1955330189, 1873338246) index="1" unique_id=1534110236]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
-
-[node name="Text" parent="Menu/VBoxContainer/Leave_button/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1955330189, 1873338246) index="2" unique_id=296136175]
 text = "PAUSE_LEAVE"
+icon = ExtResource("7_4ctk6")
 
 [connection signal="pressed" from="Menu/VBoxContainer/Resume_button" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Settings_button" to="." method="_on_settings_button_pressed"]

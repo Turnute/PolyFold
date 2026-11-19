@@ -2,6 +2,7 @@ class_name MenuManager
 extends Control
 
 const GAME_LEVEL := "res://scenes/interfaces/GameLevel.tscn"
+const GAME_SCENE := "res://scenes/GameScene.tscn"
 const SETTINGS_PAGE := "res://scenes/interfaces/Settings.tscn"
 const HELP := "res://scenes/interfaces/HelpMenu.tscn"
 const PAUSE := "res://scenes/interfaces/PauseMenu.tscn"
@@ -43,9 +44,21 @@ static func _display_settings(parent: Node) -> void:
 	parent.add_child(load(SETTINGS_PAGE).instantiate())
 
 ## 
-static func _display_game_level(parent : Node, ) -> GameLevel:
+static func _display_game_level(parent : Node, mode: GameLevel.gameMode, level_name: String, level_description: String,
+				move_goal: int, time_goal: int) -> GameLevel:
 	Log.info("Display Game Level")
-	var interface: GameLevel = load(GameLevel).instantiate()
-	interface.initialize()
+	var interface: GameLevel = load(GAME_LEVEL).instantiate()
+	interface.initialize(mode, level_name, level_description, move_goal, time_goal)
 	parent.add_child(interface)
 	return interface
+
+## 
+static func _display_polycube(parent : Node, data_str : String, nb_cubes : int, max_adj : int) -> Node3D :
+	Log.info("Display Polycube")
+	if(!data_str.is_empty()) :
+		SpawnPolycube.data_str = data_str
+	else :
+		SpawnPolycube.nb_cubes = nb_cubes
+		SpawnPolycube.max_adj = max_adj
+	var polycube = load(GAME_SCENE).instantiate()
+	return polycube

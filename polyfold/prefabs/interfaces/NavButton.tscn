@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://4s33upjasyn5"]
 
-[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://Assets/fonts/Oswald-VariableFont_wght.ttf" id="1_st8hq"]
+[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="1_dnbcs"]
+
+[sub_resource type="FontVariation" id="FontVariation_pe7jv"]
+base_font = ExtResource("1_dnbcs")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3db7w"]
 content_margin_left = 24.0
-content_margin_top = 10.0
+content_margin_top = 7.0
 content_margin_right = 24.0
-content_margin_bottom = 10.0
+content_margin_bottom = 7.0
 bg_color = Color(0.7254902, 0.8666667, 0.93333334, 1)
 border_width_left = 2
 border_width_top = 2
@@ -67,7 +70,7 @@ content_margin_left = 24.0
 content_margin_top = 10.0
 content_margin_right = 24.0
 content_margin_bottom = 10.0
-bg_color = Color(0.10554498, 0.11974127, 0.12815723, 1)
+bg_color = Color(0.8980392, 0.93333334, 0.9843137, 0.5254902)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -80,9 +83,6 @@ corner_radius_bottom_left = 100
 corner_detail = 12
 shadow_color = Color(0, 0, 0, 1)
 
-[sub_resource type="FontVariation" id="FontVariation_stx2u"]
-base_font = ExtResource("1_st8hq")
-
 [node name="NavButton" type="Button" unique_id=614178926]
 custom_minimum_size = Vector2(0, 64)
 anchors_preset = 15
@@ -90,43 +90,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 0.4)
+theme_override_colors/font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+theme_override_colors/font_pressed_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+theme_override_colors/font_hover_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+theme_override_colors/font_disabled_color = Color(0.17254902, 0.35686275, 0.4862745, 0.5254902)
+theme_override_colors/icon_normal_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+theme_override_colors/icon_pressed_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+theme_override_colors/icon_hover_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+theme_override_colors/icon_disabled_color = Color(0.17254902, 0.35686275, 0.4862745, 0.5254902)
+theme_override_constants/h_separation = 12
+theme_override_constants/icon_max_width = 32
+theme_override_fonts/font = SubResource("FontVariation_pe7jv")
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_3db7w")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_og51k")
 theme_override_styles/hover = SubResource("StyleBoxFlat_st8hq")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_kocej")
-
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1534968345]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 6
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1873338246]
-layout_mode = 2
-mouse_filter = 2
-alignment = 1
-
-[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=1591882090]
-self_modulate = Color(0.17254902, 0.35686275, 0.4862745, 1)
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Text" type="Label" parent="MarginContainer/HBoxContainer" unique_id=296136175]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
-theme_override_fonts/font = SubResource("FontVariation_stx2u")
-theme_override_font_sizes/font_size = 32
-vertical_alignment = 1
-text_overrun_behavior = 3
-max_lines_visible = 1
+alignment = 0

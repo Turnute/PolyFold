@@ -5,17 +5,31 @@ var temps_ecoule: float = 0.0
 var chrono_is_running: bool = false
 var moves : int = 0
 
+enum gameMode { LEVEL, PUZZLE, ENDLESS, CUSTOM }
+
 ## Create the interface by customizing the fields.
 ## [br][br]
 ## [b]Parameters:[/b]
-## [br]- [param level_number]: The level number
+## [br]- [param mode]: The game mode
+## [br]- [param level_name]: The name of the level
 ## [br]- [param level_description]: The level description (theme name, number of cubes, etc.)
 ## [br]- [param move_goal]: Target number of moves (if negative, no target is applied)
 ## [br]- [param time_goal]: Time target in seconds (if negative, no target is applied)
 ## [br][b]Returns:[/b] [code]Control[/code] - The interface, prepared and added to the parent
-func initialize(level_number: int, level_description: String,
+func initialize(mode: gameMode, level_name: String, level_description: String,
 				move_goal: int, time_goal: int) -> void:
-	get_node("%level_name").text = TranslationServer.translate("GAME_LEVEL_NAME") % level_number
+	if(mode == gameMode.LEVEL):
+		get_node("%level_name").text = TranslationServer.translate("GAME_LEVEL_NAME") % int(level_name)
+	elif(mode == gameMode.PUZZLE):
+		# TODO
+		pass
+	elif(mode == gameMode.ENDLESS):
+		# TODO
+		pass
+	elif(mode == gameMode.CUSTOM):
+		# TODO
+		pass
+	
 	get_node("%level_description").text = level_description
 	
 	get_node("%move_number").text = TranslationServer.translate("GAME_LEVEL_MOVE") % 0
