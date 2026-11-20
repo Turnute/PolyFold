@@ -1,6 +1,12 @@
 extends Control
 
+const LOG_TAG := "[GameParamCustom] "
+
 func _on_start_button_pressed() -> void:
+	
+	var nb_cube := int(%NbCube.value)
+	var max_adj := int(%MaxAdj.value)
+	
 	var move_goal := int(%MoveGoal.value)
 	var time_goal := int(%TimeGoal.value)
 
@@ -9,10 +15,9 @@ func _on_start_button_pressed() -> void:
 	if time_goal == 0:
 		time_goal = -1
  
-	var info = "Game param custom = NB coups : " + str(move_goal) + " | Temps : " + str(time_goal)
-	Log.info(info)
+	Log.info(LOG_TAG + "Lancement partie personnalisée (cubes : %d, adjacences max : %d, coups : %d, temps : %d)" % [nb_cube, max_adj, move_goal, time_goal])
 	
-	var polycube = MenuManager._display_polycube(self, "", 5, 5)
+	var polycube = MenuManager._display_polycube(self, "", nb_cube, max_adj)
 	get_tree().change_scene_to_node(polycube)
 
 	# crée la partie
