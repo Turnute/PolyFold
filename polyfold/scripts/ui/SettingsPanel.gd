@@ -23,9 +23,9 @@ func _ready() -> void:
 ## Fil list with Settings.gd const
 func _fill_lists() -> void:
 	for lang in Settings.LOCALES:
-		lang_select.add_item(lang.to_upper())                           # texte "FR", "EN"… -> traduit 
-		lang_select.set_item_metadata(lang_select.item_count - 1, lang) # (num, clé), ex : ("0", "fr")
-
+		lang_select.add_item(Settings.LANGUAGE_NAMES[lang])             # "Français", "English"… jamais traduit
+		lang_select.set_item_metadata(lang_select.item_count - 1, lang) # (index, code), ex : (0, "fr")
+		
 	var screen := DisplayServer.screen_get_size()
 	for res in Settings.RESOLUTIONS:
 		if res.x <= screen.x and res.y <= screen.y:  # seulement celles qui tiennent à l'écran

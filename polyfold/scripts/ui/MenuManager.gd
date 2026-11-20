@@ -8,6 +8,7 @@ const HELP := "res://scenes/interfaces/HelpMenu.tscn"
 const PAUSE := "res://scenes/interfaces/PauseMenu.tscn"
 const POPUP := "res://prefabs/interfaces/ErrorPopup.tscn"
 const MAIN_MENU := "res://scenes/interfaces/Menu.tscn"
+const CREDITS = ("res://scenes/interfaces/Credits.tscn")
 
 ## Create the interface by customizing the fields.
 static func _display_help(parent : Node) -> HelpMenu:
@@ -62,3 +63,7 @@ static func _display_polycube(parent : Node, data_str : String, nb_cubes : int, 
 		SpawnPolycube.max_adj = max_adj
 	var polycube = load(GAME_SCENE).instantiate()
 	return polycube
+
+static func _display_credits(parent: Node) -> void:
+	Log.info("[MenuManager] Display credits")
+	parent.add_child(load(CREDITS).instantiate())

@@ -27,7 +27,6 @@ OPTION_LABEL_RES,Résolutions,Resolutions,
 OPTION_LABEL_COMMAND,Commandes,Keybinds,
 OPTION_CHECK_FULLSCREEN,Plein écran,Fullscreen,
 OPTION_CHECK_WINDOWED,Fenêtré,Windowed,
-,,,
 HELP_TITLE,Comment jouer ?,How to play ?,
 HELP_OBJECTIVE,Objectif,Objective,
 HELP_OBJECTIVE_DESCRIPTION,"Déplie toutes les faces de chaque cube du polycube, et cela sans recouvrement !","Unfold all the faces of each cube in the polycube, without any overlap !",
@@ -54,6 +53,7 @@ GAME_PARAM_CUSTOM_ADJ,Adjacence maximale,Maximum adjacency,Adyacencia máxima
 GAME_PARAM_CUSTOM_ROUND,Paramètres de la partie,Game Settings,Configuración de la partida
 GAME_PARAM_CUSTOM_MOVE_GOAL,Objectif de coups,Move Goal,Objetivo de movimientos
 GAME_PARAM_CUSTOM_TIME_GOAL,Objectif de temps (s),Time Goal (s),Objetivo de tiempo (s)
+CREDIT,Crédits,Credits,Créditos
 VERSION,Version,Version,Versión
 CREDIT_TEAM,Équipe,Team,Equipo
 CREDIT_MEMBER_1,"Sébastian LOVEJOY-BLACK — Scrum Master, développeur","Sébastian LOVEJOY-BLACK — Scrum Master, Developer","Sébastian LOVEJOY-BLACK — Scrum Master, desarrollador"
@@ -62,7 +62,7 @@ CREDIT_MEMBER_3,Xavier BAUBET — Développeur,Xavier BAUBET — Developer,Xavie
 CREDIT_MEMBER_4,Clément BINET — Développeur,Clément BINET — Developer,Clément BINET — Desarrollador
 CREDIT_MEMBER_5,Ryan ELSEGAHY — Développeur,Ryan ELSEGAHY — Developer,Ryan ELSEGAHY — Desarrollador
 CREDIT_CONTEXT,Contexte,Context,Contexto
-CREDIT_CONTEXT_CONTENT,"Projet réalisé dans le cadre du Master Informatique, parcours Conception Logicielle – Université de Poitiers","Project developed as part of the Master’s degree in Computer Science, Software Design track – University of Poitiers","Proyecto realizado en el marco del Máster en Informática, especialidad Diseño de Software – Universidad de Poitiers"
+CREDIT_CONTEXT_CONTENT,Projet réalisé dans le cadre du Master Informatique – Université de Poitiers,Project developed as part of the Master’s degree in Computer Science – University of Poitiers,Proyecto realizado en el marco del Máster en Informática – Universidad de Poitiers
 CREDIT_THANKS,Remerciements,Acknowledgements,Agradecimientos
 CREDIT_THANKS_CONTENT,"Nous remercions M. Éric Andres, Professeur des Universités au laboratoire XLIM (Université de Poitiers), pour son encadrement.","We thank Mr. Éric Andres, Full Professor at the XLIM laboratory (University of Poitiers), for his supervision.","Agradecemos al Sr. Éric Andres, catedrático del laboratorio XLIM (Universidad de Poitiers), por su supervisión."
 CREDIT_LICENCE,Réalisé avec Godot Engine (licence MIT),Made with Godot Engine (MIT License),Hecho con Godot Engine (licencia MIT)

@@ -13,7 +13,6 @@ var _base_colors := {}
 
 
 func _ready() -> void:
-	# Mémorise les couleurs d'origine pour les restaurer à la fin
 	for key in COLOR_KEYS:
 		_base_colors[key] = get_theme_color(key)
 	_create_background()
@@ -22,7 +21,6 @@ func _ready() -> void:
 	_update_pivot()
 
 
-# Crée le fond flashy, invisible au départ, dessiné derrière le texte
 func _create_background() -> void:
 	var style := StyleBoxFlat.new()
 	style.bg_color = flash_bg_color
@@ -65,16 +63,11 @@ func _spin() -> void:
 	var start_color: Color = _base_colors["font_hover_color"]
 
 	_tween = create_tween().set_parallel().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	# Tour complet
 	_tween.tween_property(self, "rotation_degrees", 360.0, duration)
-	# Grossit puis revient
 	_tween.tween_property(self, "scale", Vector2.ONE * hover_scale, half)
 	_tween.tween_property(self, "scale", Vector2.ONE, half).set_delay(half)
-	# Texte : couleur normale → rouge → couleur normale
 	_tween.tween_method(_set_text_color, start_color, flash_text_color, half)
 	_tween.tween_method(_set_text_color, flash_text_color, start_color, half).set_delay(half)
-	# Fond : apparaît puis disparaît
 	_tween.tween_property(_bg, "modulate:a", 1.0, half)
 	_tween.tween_property(_bg, "modulate:a", 0.0, half).set_delay(half)
-	# Remise à zéro complète à la fin
 	_tween.chain().tween_callback(_restore)
