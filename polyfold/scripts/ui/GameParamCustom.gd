@@ -2,6 +2,9 @@ extends Control
 
 const LOG_TAG := "[GameParamCustom] "
 
+func _ready() -> void:
+	print_tree_pretty()
+
 func _on_start_button_pressed() -> void:
 	
 	var nb_cube := int(%NbCube.value)

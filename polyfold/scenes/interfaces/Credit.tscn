@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dryw31xtkc23t"]
+
+[ext_resource type="Script" uid="uid://dehfwyr45whwl" path="res://scripts/ui/Menu.gd" id="1_562ea"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3db7w"]
+
+[sub_resource type="Gradient" id="Gradient_ac62s"]
+offsets = PackedFloat32Array(0, 0.8694915)
+colors = PackedColorArray(0.09959147, 0.19162893, 0.4061211, 1, 0.2901961, 0.48235294, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3db7w"]
+gradient = SubResource("Gradient_ac62s")
+
+[node name="Credit" type="Control" unique_id=1346635894]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_562ea")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1455055721]
+material = SubResource("ShaderMaterial_3db7w")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Background" type="TextureRect" parent="." unique_id=1062525419]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.1113402, 1.1577446)
+texture = SubResource("GradientTexture1D_3db7w")
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=460263239]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
