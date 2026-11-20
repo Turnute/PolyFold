@@ -5,13 +5,16 @@ extends Camera3D
 ## Controller used to drag and commit folds.
 @onready var _fold_drag: FoldDragController = $FoldDragController
 
+## Both yawn and pitch define the position of the camera by the degree
 ## Camera yaw angle in radians.
-var _yaw: float = 0.0
+var _yaw: float = deg_to_rad(30.0)
 ## Camera pitch angle in radians.
-var _pitch: float = 0.0
+var _pitch: float = deg_to_rad(30.0)
+# #Safety Margin
+var _margin = 1.4
 
-## Initial distance between the camera and the target.
-var _distance : float = 2.5
+## Distance between the camera and the target.
+var _distance : float = 0.0
 
 ## Minimum camera distance from the targeted object.
 var _distance_min : float = 1.0
@@ -88,6 +91,21 @@ func updatePositionCamera() -> void :
 		global_position = (offset + position_target)
 		look_at(position_target,Vector3.UP)
 
+## Initializes camera distance limits based on the target AABB.
+func focusOnTarget() -> void:
+	var aabb: AABB = _target.getPolycubeAABB()
+	if aabb.size == Vector3.ZERO:
+		return
+
+	var center: Vector3 = _target.to_global(aabb.get_center())
+	
+	var radius: float = aabb.size.length() * 0.5
+	_distance = (radius * _margin) / sin(deg_to_rad(fov) * 0.5)
+	_distance_min = maxf(0.5, radius * 1.1)
+	_distance_max = maxf(10.0, _distance * 3.0)
+	_distance = clampf(_distance, _distance_min, _distance_max)
+	updatePositionCamera()
+
 ## Rotates the camera with Shift + left drag or middle drag.
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and ((Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and (event.shift_pressed))or (Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE))):
@@ -116,4 +134,4 @@ func target(object : Polycube) -> void :
 		_target.unselectAllFaces()
 	_curr_selected_face_id = -1
 	_target = object
-	updatePositionCamera()
+	focusOnTarget()

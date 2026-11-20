@@ -90,9 +90,59 @@ func initFaceAdj() -> void :
 				if neighbour != null:
 					face._adj_faces[i] = neighbour._id_face
 
+## Computes and returns the combined global AABB of all cubes in the polycube.
+func getPolycubeAABB() -> AABB :
+	var aabb : AABB = AABB()
+	var first = true
+	for cube in _cubes:
+		var aabb_cube = cube.getCubeAABB()
+		if first :
+			first = false
+			aabb = aabb_cube
+		else:
+			aabb = aabb.merge(aabb_cube)
+	return aabb
+
 ## Checks whether the polycube can be unfolded.
 func canUnfold() -> bool:
-	return true;
+	var end = true
+	var face_init =  _cubes[0]._faces[0]
+	for cube in _cubes:
+		for face in cube._faces:
+			end = areCoplanar(face_init, face) && end
+	return end;
+
+# Rotate all faces of the polycube in the direction the camera is looking
+func finalRotation(duration: float = 2.5) -> void:
+	var target_angle_x: float = 0.0
+	var target_angle_z: float = 0.0
+	
+	var ref_face : Face = _cubes[0]._faces[0]
+	var normal = ref_face.global_transform.basis
+	if normal.y[1] > 0.9:
+		return
+	elif roundi(normal.y[2]) != 0:
+		target_angle_x = 90 if int(normal.y[2]) == -1 else -90
+	elif roundi(normal.y[0]) != 0:
+		target_angle_z = 90 if int(normal.y[0]) == -1 else -90
+		
+	var avg_local: Vector3 = getAveragePos()
+	# only if the target is not on the origin center
+	var target_world: Vector3 = to_global(avg_local)
+	var end_rot_deg: Vector3 = rotation_degrees + Vector3(target_angle_x, 0.0, target_angle_z)
+	var end_basis: Basis = Basis.from_euler(Vector3(
+		deg_to_rad(end_rot_deg.x),
+		deg_to_rad(end_rot_deg.y),
+		deg_to_rad(end_rot_deg.z)
+	))
+	
+	var end_global_pos: Vector3 = target_world - (end_basis * avg_local)
+	var tween: Tween = create_tween()
+	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_CUBIC) 
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "rotation_degrees", end_rot_deg, duration)
+	tween.tween_property(self, "global_position", end_global_pos, duration)
 
 ## Returns a face from its cube identifier and original side.
 func getFace(id_cube : int, side : Face.FaceEnum) -> Face :
@@ -110,7 +160,6 @@ func getAveragePos() -> Vector3 :
 	for cube in _cubes :
 		var c_pos : Vector3 = cube._pos
 		result += c_pos
-		
 	return result / _cubes.size()
 
 ## Removes selection from all faces.
