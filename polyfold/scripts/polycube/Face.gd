@@ -207,6 +207,33 @@ func updateConnectionVisuals() -> void :
 		(left - right) * 0.5
 	)
 
+## Update the dimension of the face's collision box depending on the situation:
+## inset of 0.1 ...
+func updateFoldDetector(moving_faces: Array[int]) -> void:
+	var inset: Array[float] = []
+
+	for neighbour_id in _adj_faces:
+		var internal: bool = (
+			neighbour_id != -1
+			and not moving_faces.has(neighbour_id)
+		)
+		inset.append(0.0 if internal else 0.1)
+
+	var box: BoxShape3D = _fold_shape.shape.duplicate()
+	box.margin = 0.0
+	box.size = Vector3(
+		1.0 - inset[0] - inset[1],
+		box.size.y,
+		1.0 - inset[2] - inset[3]
+	)
+	_fold_shape.shape = box
+
+	_fold_shape.position = Vector3(
+		(inset[1] - inset[0]) * 0.5,
+		0.0,
+		(inset[2] - inset[3]) * 0.5
+	)
+
 func log() -> void :
 	Log.trace(
 		"Face " + str(_id_face) 
