@@ -209,6 +209,7 @@ func endEdgeDrag(commit: bool) -> void:
 			Unfolder.executeMove(action, _target)
 			## Add the action into the historic
 			_history.addAction(action)
+			Game._on_unfolding.emit()
 
 	_target.unselectAllFaces()
 	_camera = null

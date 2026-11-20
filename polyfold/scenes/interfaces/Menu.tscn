@@ -86,7 +86,6 @@ vertical_alignment = 1
 [node name="PlayButton" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=614178926 instance=ExtResource("5_ac62s")]
 unique_name_in_owner = true
 layout_mode = 2
-disabled = true
 text = "BUTTON_PLAY"
 icon = ExtResource("4_ac62s")
 
