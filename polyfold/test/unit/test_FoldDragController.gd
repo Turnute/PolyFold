@@ -31,7 +31,7 @@ func before_each() -> void :
 	_body._adj_faces = [-1, 1, -1, -1]
 	_polycube = Polycube.new([cube])
 	add_child_autofree(_polycube)
-	_polycube.selectFace(_tip._id_face)
+	_polycube.selectFace(_anchor._id_face)
 	_handle = _tip._edges[Edge.EdgeEnum.TOP]
 	_camera = Camera3D.new()
 	add_child_autofree(_camera)

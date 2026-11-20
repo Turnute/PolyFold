@@ -216,32 +216,45 @@ func collectFaces(start_id : int, excluded : Array[int], plane : Face = null) ->
 ## Other members reach the body only through the group's attachment face.
 func getSelectionGroup(face_id: int) -> Array[int]:
 	var reference: Face = getFaceFromFaceId(face_id)
-	var best_group: Array[int] = [face_id]
+	var components: Array[Array] = []
+	var processed: Dictionary = {face_id: true}
+	var body_index: int = -1
+	var body_cycles: int = -1
 
-	for root_id in collectFaces(face_id, [], reference):
-		var root_face: Face = getFaceFromFaceId(root_id)
-		var candidate: Array[int] = [root_id]
-		var processed: Dictionary = {root_id: true}
+	var neighbours: Array[int] = reference._adj_faces.duplicate()
+	neighbours.sort()
 
-		for i in root_face._adj_faces:
-			if i == -1 or processed.has(i):
-				continue
+	for neighbour_id in neighbours:
+		if neighbour_id == -1 or processed.has(neighbour_id):
+			continue
 
-			var component: Array[int] = collectFaces(i, [root_id])
-			var eligible: bool = true
+		var component: Array[int] = collectFaces(neighbour_id, [face_id])
 
-			for j in component:
-				processed[j] = true
-				if not areCoplanar(root_face, getFaceFromFaceId(j)):
-					eligible = false
+		# Compte les connexions internes de ce morceau.
+		var links: int = 0
+		for member_id in component:
+			processed[member_id] = true
 
-			if eligible:
-				candidate.append_array(component)
+			for adjacent_id in getFaceFromFaceId(member_id)._adj_faces:
+				if adjacent_id != -1 and adjacent_id != face_id:
+					links += 1
 
-		if candidate.has(face_id) and candidate.size() > best_group.size():
-			best_group = candidate
+		var cycles: int = links / 2 - component.size() + 1
+		components.append(component)
 
-	return best_group
+		if body_index == -1 or cycles > body_cycles or (
+			cycles == body_cycles
+			and component.size() > components[body_index].size()
+		):
+			body_index = components.size() - 1
+			body_cycles = cycles
+
+	var group: Array[int] = [face_id]
+	for i in range(components.size()):
+		if i != body_index:
+			group.append_array(components[i])
+
+	return group
 
 ## Returns the moving faces for the chosen hinge, including dependent branches.
 ## [param edge_side] identifies the grabbed side on the attachment face.
@@ -254,16 +267,7 @@ func getFoldGroup(face_id: int, edge_side: Edge.EdgeEnum) -> Array[int]:
 	if neighbour_id == -1 or selection.has(neighbour_id):
 		return []
 
-	var stationary: Array[int] = collectFaces(neighbour_id, selection)
-
-	var moving: Array[int] = []
-
-	for cube in _cubes:
-		for member in cube._faces:
-			if not stationary.has(member._id_face):
-				moving.append(member._id_face)
-
-	return moving
+	return selection
 
 ## Returns an edge's longitudinal axis in world space.
 func getEdgeAxis(face: Face, edge: Edge) -> Vector3:
