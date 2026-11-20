@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://ed68wp1468u7"]
 
-[ext_resource type="Script" uid="uid://dehfwyr45whwl" path="res://scripts/ui/Menu.gd" id="1_562ea"]
-[ext_resource type="Shader" path="res://scenes/shaders/credit_background.gdshader" id="2_epnde"]
+[ext_resource type="Script" uid="uid://4eb7dpqrdgdw" path="res://scripts/ui/credit.gd" id="1_g7k5t"]
+[ext_resource type="Shader" uid="uid://cgpjs6l2n1hqx" path="res://scenes/shaders/grid_background.gdshader" id="2_epnde"]
+[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="3_8doyd"]
+[ext_resource type="Script" uid="uid://b3tel008fhgv6" path="res://scripts/ui/member_1.gd" id="4_8doyd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3db7w"]
 shader = ExtResource("2_epnde")
@@ -11,6 +13,34 @@ shader_parameter/cell_size = 48.0
 shader_parameter/speed = 12.0
 shader_parameter/line_width = 1.5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3db7w"]
+content_margin_left = 32.0
+content_margin_top = 32.0
+content_margin_right = 32.0
+content_margin_bottom = 32.0
+bg_color = Color(0.043137256, 0.101960786, 0.23921569, 0.3764706)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="FontVariation" id="FontVariation_3db7w"]
+base_font = ExtResource("3_8doyd")
+variation_embolden = 1.0
+
+[sub_resource type="FontVariation" id="FontVariation_k2sg7"]
+base_font = ExtResource("3_8doyd")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g7k5t"]
+
+[sub_resource type="FontVariation" id="FontVariation_g7k5t"]
+base_font = ExtResource("3_8doyd")
+
 [node name="Credit" type="Control" unique_id=1346635894]
 layout_mode = 3
 anchors_preset = 15
@@ -18,7 +48,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_562ea")
+script = ExtResource("1_g7k5t")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1455055721]
 material = SubResource("ShaderMaterial_3db7w")
@@ -29,3 +59,158 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="ColorRect" unique_id=1277769539]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.5
+offset_top = -239.5
+offset_right = 121.5
+offset_bottom = 239.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3db7w")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/PanelContainer" unique_id=141647215]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=680551835]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.70980394, 0.83137256, 0.95686275, 1)
+theme_override_fonts/font = SubResource("FontVariation_3db7w")
+theme_override_font_sizes/font_size = 64
+text = "POLYFOLD"
+horizontal_alignment = 1
+
+[node name="VersionLabel" type="Label" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=41708766]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.5647059)
+theme_override_fonts/font = SubResource("FontVariation_k2sg7")
+theme_override_font_sizes/font_size = 14
+text = "Version 2026"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=1677761934]
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxEmpty_g7k5t")
+
+[node name="TeamLabel" type="Label" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=598100298]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.70980394, 0.83137256, 0.95686275, 1)
+theme_override_font_sizes/font_size = 22
+text = "CREDIT_TEAM"
+horizontal_alignment = 1
+
+[node name="Member1" type="LinkButton" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=84440259]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_pressed_color = Color(0.70980394, 0.83137256, 0.95686275, 1)
+theme_override_colors/font_hover_color = Color(0.70980394, 0.83137256, 0.95686275, 1)
+theme_override_fonts/font = SubResource("FontVariation_g7k5t")
+theme_override_font_sizes/font_size = 18
+text = "CREDIT_MEMBER_1"
+underline = 1
+uri = "https://github.com/thebattlecrw"
+script = ExtResource("4_8doyd")
+flash_text_color = Color(1, 1, 1, 1)
+flash_bg_color = Color(0.70980394, 0.83137256, 0.95686275, 1)
+
+[node name="Member2" type="LinkButton" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=1572609657]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_pressed_color = Color(0.70980394, 0.83137256, 0.95686275, 1)
+theme_override_colors/font_hover_color = Color(0.70980394, 0.83137256, 0.95686275, 1)
+theme_override_fonts/font = SubResource("FontVariation_g7k5t")
+theme_override_font_sizes/font_size = 18
+text = "CREDIT_MEMBER_2"
+underline = 1
+uri = "https://github.com/thebattlecrw"
+
+[node name="Member3" type="LinkButton" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=992762721]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_pressed_color = Color(0.70980394, 0.83137256, 0.95686275, 1)
+theme_override_colors/font_hover_color = Color(0.70980394, 0.83137256, 0.95686275, 1)
+theme_override_fonts/font = SubResource("FontVariation_g7k5t")
+theme_override_font_sizes/font_size = 18
+text = "CREDIT_MEMBER_3"
+underline = 1
+uri = "https://github.com/Baubet"
+
+[node name="Member4" type="LinkButton" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=1421225606]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_pressed_color = Color(0.70980394, 0.83137256, 0.95686275, 1)
+theme_override_colors/font_hover_color = Color(0.70980394, 0.83137256, 0.95686275, 1)
+theme_override_fonts/font = SubResource("FontVariation_g7k5t")
+theme_override_font_sizes/font_size = 18
+text = "CREDIT_MEMBER_4"
+underline = 1
+uri = "https://github.com/Klemang"
+
+[node name="Member5" type="LinkButton" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=787684681]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_pressed_color = Color(0.70980394, 0.83137256, 0.95686275, 1)
+theme_override_colors/font_hover_color = Color(0.70980394, 0.83137256, 0.95686275, 1)
+theme_override_fonts/font = SubResource("FontVariation_g7k5t")
+theme_override_font_sizes/font_size = 18
+text = "CREDIT_MEMBER_5"
+underline = 1
+uri = "https://github.com/Pachat2000"
+
+[node name="HSeparator2" type="HSeparator" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=1904170932]
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxEmpty_g7k5t")
+
+[node name="ContextLabel" type="Label" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=1588034071]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.70980394, 0.83137256, 0.95686275, 1)
+theme_override_font_sizes/font_size = 22
+text = "CREDIT_CONTEXT"
+horizontal_alignment = 1
+
+[node name="Context" type="Label" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=937702566]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "CREDIT_CONTEXT_CONTENT"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=1942830852]
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxEmpty_g7k5t")
+
+[node name="ThanksLabel" type="Label" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=1403727232]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.70980394, 0.83137256, 0.95686275, 1)
+theme_override_font_sizes/font_size = 22
+text = "CREDIT_THANKS"
+horizontal_alignment = 1
+
+[node name="Thanks" type="Label" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=218163028]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "CREDIT_THANKS_CONTENT"
+horizontal_alignment = 1
+
+[node name="HSeparator4" type="HSeparator" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=1130286926]
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxEmpty_g7k5t")
+
+[node name="LicencesLabel" type="Label" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=1130959163]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.5647059)
+theme_override_fonts/font = SubResource("FontVariation_k2sg7")
+theme_override_font_sizes/font_size = 14
+text = "CREDIT_LICENCE"
+horizontal_alignment = 1
