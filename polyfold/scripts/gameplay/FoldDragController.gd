@@ -103,6 +103,11 @@ func beginEdgeDrag(
 	_drag_requested_angle = 0.0
 	_drag_detectors.clear()
 
+	for cube in polycube._cubes:
+		for fixed_face in cube._faces:
+			if not group.has(fixed_face._id_face):
+				fixed_face.updateFoldDetector(group)
+
 	for face_id in group:
 		var member: Face = polycube.getFaceFromFaceId(face_id)
 		_drag_initial_transforms[member] = member.global_transform

@@ -12,7 +12,7 @@ size = Vector3(1, 0.05, 1)
 size = Vector3(1, 0.05, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sxki6"]
-size = Vector3(0.98, 0.005, 0.98)
+size = Vector3(1, 0.005, 1)
 
 [node name="Face" type="Node3D" unique_id=503661519]
 script = ExtResource("1_4gycn")

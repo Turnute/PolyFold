@@ -77,25 +77,29 @@ func test_collect_faces_does_not_cross_another_plane_to_reach_a_coplanar_face() 
 	found.sort()
 	assert_eq(found, expected)
 
-func test_selection_group_is_same_from_every_face_in_coplanar_branch() -> void :
-	var expected : Array[int] = [1, 4, 5]
-	for face in [_anchor, _middle, _tip]:
-		var group : Array[int] = _polycube.getSelectionGroup(face._id_face)
-		group.sort()
-		assert_eq(group, expected)
-
-func test_selection_group_does_not_merge_faces_with_a_second_body_attachment() -> void :
+func test_selection_group_does_not_merge_faces_with_a_second_body_attachment() -> void:
 	_middle.connectFace(_body_tip._id_face, Edge.EdgeEnum.LEFT)
 	_body_tip.connectFace(_middle._id_face, Edge.EdgeEnum.RIGHT)
-	var group : Array[int] = _polycube.getSelectionGroup(_anchor._id_face)
-	var expected : Array[int] = [_anchor._id_face]
+
+	var group: Array[int] = _polycube.getSelectionGroup(_anchor._id_face)
+	var expected: Array[int] = [_anchor._id_face]
+
 	assert_eq(group, expected)
 
-func test_selection_group_handles_coplanar_cycle_without_duplicates() -> void :
+func test_selection_group_starts_at_clicked_face() -> void:
+	var faces: Array[Face] = [_anchor, _middle, _tip]
+	var expected: Array[Array] = [[1, 4, 5], [4, 5], [4]]
+
+	for i in range(faces.size()):
+		var group: Array[int] = _polycube.getSelectionGroup(faces[i]._id_face)
+		group.sort()
+		assert_eq(group, expected[i])
+
+func test_selection_group_does_not_follow_cycle_back_to_body() -> void :
 	_anchor.connectFace(_tip._id_face, Edge.EdgeEnum.LEFT)
 	_tip.connectFace(_anchor._id_face, Edge.EdgeEnum.RIGHT)
 	var group : Array[int] = _polycube.getSelectionGroup(_tip._id_face)
-	var expected : Array[int] = [1, 4, 5]
+	var expected: Array[int] = [_tip._id_face]
 	group.sort()
 	assert_eq(group, expected)
 
@@ -116,6 +120,24 @@ func test_fold_group_rejects_missing_hinge_and_hinge_inside_selection() -> void 
 func test_fold_group_includes_non_coplanar_dependent_branch() -> void :
 	_body.disconnectFace(_body_tip._id_face)
 	_body_tip.disconnectFace(_body._id_face)
+	
+	var extra: Cube = Cube.new()
+	extra._id = 1
+	extra.createFace(Face.FaceEnum.TOP)
+	extra.createFace(Face.FaceEnum.FRONT)
+
+	var body_a: Face = extra.getFace(Face.FaceEnum.TOP)
+	var body_b: Face = extra.getFace(Face.FaceEnum.FRONT)
+
+	body_a._adj_faces = [body_b._id_face, _body._id_face, -1, -1]
+	body_b._adj_faces = [_body._id_face, body_a._id_face, -1, -1]
+
+	_body.connectFace(body_a._id_face, Edge.EdgeEnum.TOP)
+	_body.connectFace(body_b._id_face, Edge.EdgeEnum.LEFT)
+
+	_polycube._cubes.append(extra)
+	_polycube.add_child(extra)
+	
 	_tip.connectFace(_body_tip._id_face, Edge.EdgeEnum.TOP)
 	_body_tip.connectFace(_tip._id_face, Edge.EdgeEnum.BOTTOM)
 	var group : Array[int] = _polycube.getFoldGroup(_anchor._id_face, Edge.EdgeEnum.TOP)
@@ -158,10 +180,10 @@ func test_find_farthest_handle_returns_null_for_empty_group() -> void :
 	assert_null(_polycube.findFarthestHandle([], _anchor, _anchor._edges[Edge.EdgeEnum.BOTTOM]))
 
 func test_select_face_highlights_group_and_binds_only_farthest_handle() -> void :
-	_polycube.selectFace(_tip._id_face)
+	_polycube.selectFace(_anchor._id_face)
 	var handle : Edge = _tip._edges[Edge.EdgeEnum.TOP]
 
-	assert_eq(_polycube._selected_face_id, _tip._id_face)
+	assert_eq(_polycube._selected_face_id, _anchor._id_face)
 	assert_eq(handle._fold_face, _anchor)
 	assert_eq(handle._fold_grabbed_side, Edge.EdgeEnum.TOP)
 	for face in [_anchor, _middle, _tip]:
@@ -174,7 +196,7 @@ func test_select_face_highlights_group_and_binds_only_farthest_handle() -> void 
 			assert_eq(edge._col.disabled, edge != handle)
 
 func test_selecting_another_group_clears_previous_handle_binding() -> void :
-	_polycube.selectFace(_tip._id_face)
+	_polycube.selectFace(_anchor._id_face)
 	var old_handle : Edge = _tip._edges[Edge.EdgeEnum.TOP]
 	_polycube.selectFace(_body_tip._id_face)
 	var new_handle : Edge = _body_tip._edges[Edge.EdgeEnum.TOP]
@@ -182,7 +204,7 @@ func test_selecting_another_group_clears_previous_handle_binding() -> void :
 	assert_null(old_handle._fold_face)
 	assert_false(old_handle._mesh.visible)
 	assert_eq(_anchor._material.albedo_color, _anchor._ogColor)
-	assert_eq(new_handle._fold_face, _body)
+	assert_eq(new_handle._fold_face, _body_tip)
 	assert_true(new_handle._mesh.visible)
 
 func test_unselect_all_faces_restores_colors_and_hides_handles() -> void :
