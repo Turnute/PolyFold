@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Settings="*uid://dj5lmp4auweb5"
+Game="*uid://b3omd02dqa22d"
 
 [display]
 
