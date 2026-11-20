@@ -121,6 +121,8 @@ theme_override_constants/margin_bottom = 10
 
 [node name="NbCube" type="SpinBox" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=794122052]
 layout_mode = 2
+min_value = 1.0
+value = 1.0
 
 [node name="MaxAdjLab" type="Label" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=845937532]
 layout_mode = 2
@@ -135,6 +137,8 @@ theme_override_constants/margin_bottom = 10
 
 [node name="MaxAdj" type="SpinBox" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=1169986843]
 layout_mode = 2
+min_value = 1.0
+value = 1.0
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1391649159]
 layout_mode = 2
