@@ -78,6 +78,15 @@ func _ready() -> void:
 	
 	createEdges()
 	updateConnectionVisuals()
+	
+	$StaticBody3D.mouse_entered.connect(_on_mouse_entered)
+	$StaticBody3D.mouse_exited.connect(_on_mouse_exited)
+
+func _on_mouse_entered():
+	_wireframe.visible = true
+
+func _on_mouse_exited():
+	_wireframe.visible = false
 
 ## Creates the face's edges
 func createEdges() -> void :
@@ -90,14 +99,12 @@ func select() -> void:
 	Log.debug("Face " + str(_id_face) + " sélectionnée !")
 	_material.albedo_color = _selectionColor
 	showEdges(true)
-	_wireframe.visible = true
 	_material.emission_enabled = true
 
 ## Called when a face is unselected. Removes highlighting and hides its edges.
 func unselect() -> void:
 	_material.albedo_color = _ogColor
 	showEdges(false)
-	_wireframe.visible = false
 	_material.emission_enabled = false
 
 ## Toggles the face's edge visibility and collision.
