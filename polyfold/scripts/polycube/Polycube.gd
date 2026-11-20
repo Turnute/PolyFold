@@ -212,8 +212,7 @@ func collectFaces(start_id : int, excluded : Array[int], plane : Face = null) ->
 	
 	return result
 
-## Returns the largest coplanar branch containing the selected face.
-## Other members reach the body only through the group's attachment face.
+## Returns the selected face and the branches outside the main body.
 func getSelectionGroup(face_id: int) -> Array[int]:
 	var reference: Face = getFaceFromFaceId(face_id)
 	var components: Array[Array] = []
@@ -230,7 +229,6 @@ func getSelectionGroup(face_id: int) -> Array[int]:
 
 		var component: Array[int] = collectFaces(neighbour_id, [face_id])
 
-		# Compte les connexions internes de ce morceau.
 		var links: int = 0
 		for member_id in component:
 			processed[member_id] = true

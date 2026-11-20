@@ -169,7 +169,8 @@ func disconnectFromEdge(edge : Edge) -> Array[int]:
 	updateConnectionVisuals()
 	return disconnected_faces
 
-## Disconnects a neighbouring face and returns whether it was found.
+## Removes the neighbour from this face's adjacency list.
+## Returns the corresponding EdgeEnum index, or -1 if not found.
 func disconnectFace(faceId: int) -> int:
 	for i in range(_adj_faces.size()):
 		if _adj_faces[i] == faceId:
@@ -207,8 +208,9 @@ func updateConnectionVisuals() -> void :
 		(left - right) * 0.5
 	)
 
-## Update the dimension of the face's collision box depending on the situation:
-## inset of 0.1 ...
+## Resizes and offsets this face's detector.
+## Keeps borders shared with stationary neighbours at full size.
+## Insets borders facing moving faces or no faces by 0.1 units.
 func updateFoldDetector(moving_faces: Array[int]) -> void:
 	var inset: Array[float] = []
 
