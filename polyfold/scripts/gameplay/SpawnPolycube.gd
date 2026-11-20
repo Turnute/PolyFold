@@ -19,9 +19,6 @@ func init_polycube() -> void:
 	else: 
 		polycube = PolycubeFactory.generatePolycube(nb_cubes, max_adj)
 	
-	if polycube == null:
-		Log.error("[SpawnPolycube] Génération impossible (cubes : %d, adjacences max : %d)" % [nb_cubes, max_adj])
-		return
 	polycube.name = "Polycube"
 	add_child(polycube)
 	camera.target(polycube)
