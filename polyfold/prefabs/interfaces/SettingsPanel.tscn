@@ -93,6 +93,7 @@ theme_override_fonts/font = SubResource("FontVariation_gxwj6")
 layout_mode = 2
 
 [node name="BackButton" parent="MarginContainer/VBoxContainer" unique_id=1201228055 instance=ExtResource("2_513gy")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 
