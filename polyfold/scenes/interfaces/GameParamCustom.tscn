@@ -137,8 +137,8 @@ theme_override_constants/margin_bottom = 10
 
 [node name="MaxAdj" type="SpinBox" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=1169986843]
 layout_mode = 2
-min_value = 1.0
-value = 1.0
+min_value = 2.0
+value = 2.0
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1391649159]
 layout_mode = 2
