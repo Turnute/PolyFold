@@ -7,7 +7,7 @@ extends Node
 ## [b]Parameters:[/b]
 ## [br]- [param time]: Duration of the game (in milliseconds)
 ## [br]- [param moves]: Number of moves of the game
-## [br]- [param time_goal]: Time goal of the game
+## [br]- [param time_goal]: Time goal of the game (in seconds)
 ## [br]- [param moves_goal]: Moves goal of the game
 ## [br]- [param nb_undo]: Number of undos performed during the game
 ## [br]- [param nb_redo]: Number of redos performed during the game
@@ -35,12 +35,12 @@ func initialize(time: int, moves: int, time_goal: int, moves_goal: int,
 	# Time goal
 	var icon_time := get_node("%icon_time_goal") as TextureRect
 	if(time_goal > 0):
-		var total_time_goal := int(max(time_goal, 0.0) * 10.0)
-		var minutes_goal := total_time_goal / 6000
-		var secondes_goal := (total_time_goal / 100) % 60
-		var time_goal_count := "%02dm%02ds" % [minutes, secondes]
+		var total_time_goal := int(max(time_goal, 0.0))
+		var minutes_goal := total_time_goal / 60
+		var secondes_goal := total_time_goal % 60
+		var time_goal_count := "%02dm%02ds" % [minutes_goal, secondes_goal]
 		
-		if(time < time_goal):
+		if((time / 1000.0) < time_goal):
 			icon_time.texture = preload("res://assets/icons/checkmark.svg")
 		else:
 			icon_time.texture = preload("res://assets/icons/cross.svg")
@@ -53,7 +53,7 @@ func initialize(time: int, moves: int, time_goal: int, moves_goal: int,
 		
 	# Moves goal
 	var icon_moves := get_node("%icon_moves_goal") as TextureRect
-	if(moves_goal == 0):
+	if(moves_goal > 0):
 		if(moves < moves_goal):
 			icon_moves.texture = preload("res://assets/icons/checkmark.svg")
 		else:

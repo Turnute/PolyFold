@@ -157,6 +157,10 @@ func _input(event: InputEvent) -> void:
 		_on_pause_button_pressed()
 
 func changeTransparencyInfoLevel(transparency: float) -> void:
+	var info_node := get_node_or_null("%info_level")
+	if not is_instance_valid(info_node):
+		return
+	
 	%info_level.get_theme_stylebox("panel").bg_color.a = transparency
 	%level_name.label_settings.font_color.a = transparency
 	%level_description.label_settings.font_color.a = transparency
