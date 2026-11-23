@@ -30,6 +30,11 @@ const _RAY_LENGTH = 1000
 ## Selected face identifier, or -1 when nothing is selected.
 var _curr_selected_face_id : int = -1
 
+## Duration of the camera shake.
+@export var period = 0.1
+## Magnitude of the camera shake.
+@export var magnitude = 0.1
+
 ## Initializes the pitch so the camera stays above the target.
 func _ready() -> void:
 	_pitch = clampf(_pitch, deg_to_rad(10.0), deg_to_rad(80.0))
@@ -135,3 +140,21 @@ func target(object : Polycube) -> void :
 	_curr_selected_face_id = -1
 	_target = object
 	focusOnTarget()
+
+## Shakes the camera
+func shake() -> void :
+	var initial_transform = self.transform 
+	var elapsed_time = 0.0
+
+	while elapsed_time < period:
+		var offset = Vector3(
+			randf_range(-magnitude, magnitude),
+			randf_range(-magnitude, magnitude),
+			0.0
+		)
+
+		self.transform.origin = initial_transform.origin + offset
+		elapsed_time += get_process_delta_time()
+		await get_tree().process_frame
+
+	self.transform = initial_transform
