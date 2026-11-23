@@ -184,7 +184,7 @@ func multiselectFace(face_id: int) -> void:
 		selectFace(face_id)
 	elif face_id != _selected_face_id:
 		if _multiselection.has(face_id):
-			_multiselection.erase(face_id)	# TODO: blem si on supprime au milieu
+			_multiselection.erase(face_id)
 		elif (
 			hasInAdjList(_selected_face_id, face_id) or
 			isAdjToGroup(_multiselection, face_id)
