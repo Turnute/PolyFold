@@ -110,6 +110,7 @@ func canUnfold() -> bool:
 	for cube in _cubes:
 		for face in cube._faces:
 			end = areCoplanar(face_init, face) && end
+	Log.info("Fin de jeu : " + str(end))
 	return end;
 
 # Rotate all faces of the polycube in the direction the camera is looking
