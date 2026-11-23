@@ -1,7 +1,13 @@
 extends Node
 
+const LOG_TAG := "[Settings] "
 const PATH := "user://settings.cfg"
 const LOCALES: Array[String] = ["fr", "en", "es"]
+const LANGUAGE_NAMES := {
+	"fr": "Français",
+	"en": "English",
+	"es": "Español",
+}
 const RESOLUTIONS: Array[Vector2i] = [
 	Vector2i(1920, 1080), Vector2i(1600, 900), Vector2i(1366, 768),
 	Vector2i(1280, 720), Vector2i(1024, 768),
@@ -16,24 +22,27 @@ var fullscreen := false
 func _ready() -> void:
 	_load() # load settings file (if exist)
 	TranslationServer.set_locale(locale)
-	Log.info("Langue active : " + TranslationServer.get_locale())
+	Log.info(LOG_TAG + "Langue active : " + TranslationServer.get_locale())
 	_apply_window()
 
 
 func set_locale(value: String) -> void:
 	locale = value
 	TranslationServer.set_locale(locale)
+	Log.info(LOG_TAG + "Langue changée : " + locale)
 	save()
 
 
 func set_resolution(value: Vector2i) -> void:
 	resolution = value
+	Log.info(LOG_TAG + "Résolution changée : %s" % resolution)
 	_apply_window()
 	save()
 
 
 func set_fullscreen(value: bool) -> void:
 	fullscreen = value
+	Log.info(LOG_TAG + "Plein écran : %s" % fullscreen)
 	_apply_window()
 	save()
 
@@ -46,14 +55,19 @@ func _apply_window() -> void:
 		w.mode = Window.MODE_WINDOWED
 		w.size = resolution
 		w.move_to_center()
-
+		
+	Log.debug(LOG_TAG + "Fenêtre appliquée (mode : %s, taille : %s)" % [w.mode, w.size])
 
 func save() -> void:
 	var cfg := ConfigFile.new()
 	cfg.set_value("general", "locale", locale)
 	cfg.set_value("video", "resolution", resolution)
 	cfg.set_value("video", "fullscreen", fullscreen)
-	cfg.save(PATH)
+	var err := cfg.save(PATH)
+	if err != OK:
+		Log.error(LOG_TAG + "Échec de la sauvegarde des paramètres (%s)" % error_string(err))
+	else:
+		Log.debug(LOG_TAG + "Paramètres sauvegardés")
 
 
 func _load() -> void:

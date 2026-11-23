@@ -86,32 +86,20 @@ vertical_alignment = 1
 [node name="PlayButton" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=614178926 instance=ExtResource("5_ac62s")]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Icon" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="0" unique_id=1591882090]
-texture = ExtResource("4_ac62s")
-
-[node name="Text" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="1" unique_id=296136175]
 text = "BUTTON_PLAY"
+icon = ExtResource("4_ac62s")
 
 [node name="SettingsButton" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=666445710 instance=ExtResource("5_ac62s")]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Icon" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/SettingsButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(666445710, 1873338246) index="0" unique_id=1591882090]
-texture = ExtResource("3_nn3se")
-
-[node name="Text" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/SettingsButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(666445710, 1873338246) index="1" unique_id=296136175]
 text = "BUTTON_SETTINGS"
+icon = ExtResource("3_nn3se")
 
 [node name="QuitButton" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=2014947329 instance=ExtResource("5_ac62s")]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Icon" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/QuitButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2014947329, 1873338246) index="0" unique_id=1591882090]
-texture = ExtResource("6_04thv")
-
-[node name="Text" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/QuitButton/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2014947329, 1873338246) index="1" unique_id=296136175]
 text = "BUTTON_QUIT"
+icon = ExtResource("6_04thv")
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer" unique_id=277126498]
 layout_mode = 2
@@ -139,12 +127,14 @@ theme_override_constants/margin_bottom = 30
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2" unique_id=1582123714]
 layout_mode = 2
 
-[node name="HelpButton" parent="MarginContainer2/HBoxContainer" unique_id=1824558458 instance=ExtResource("8_04thv")]
+[node name="CreditsButton" parent="MarginContainer2/HBoxContainer" unique_id=1824558458 instance=ExtResource("8_04thv")]
 layout_mode = 2
-text = "ABOUT"
+text = "CREDIT"
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="MarginContainer2/HBoxContainer/HelpButton" to="." method="_on_help_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 
 [editable path="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayButton"]
 [editable path="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/SettingsButton"]
