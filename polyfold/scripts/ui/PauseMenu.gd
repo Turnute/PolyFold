@@ -7,6 +7,7 @@ extends Control
 func _on_resume_button_pressed() -> void:
 	get_tree().paused = false
 	queue_free()
+	Game._on_resume.emit()
 
 ## Function called when the [code]Help_button[/code] button is pressed.
 func _on_help_button_pressed() -> void:

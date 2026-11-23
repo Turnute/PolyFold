@@ -38,9 +38,8 @@ variation_opentype = {
 font = SubResource("FontVariation_s2alt")
 font_size = 45
 
-[sub_resource type="DPITexture" id="DPITexture_k4h7x"]
-_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"none\" viewBox=\"0 0 16 16\"><path fill=\"#ffffff\" d=\"M12.293 2.293a1 1 0 0 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 1 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 1 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 1 1 1.414-1.414L8 6.586z\"/></svg>"
-fix_alpha_border = true
+[sub_resource type="DPITexture" id="DPITexture_1dkps"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"none\" viewBox=\"0 0 16 16\"><path fill=\"#e0e0e0\" d=\"M12.293 2.293a1 1 0 0 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 1 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 1 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 1 1 1.414-1.414L8 6.586z\"/></svg>"
 base_scale = 2.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2y1bh"]
@@ -233,7 +232,7 @@ custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-icon = SubResource("DPITexture_k4h7x")
+icon = SubResource("DPITexture_1dkps")
 
 [node name="VSeparator3" type="VSeparator" parent="Menu/VBoxContainer/top" unique_id=522260528]
 layout_mode = 2
