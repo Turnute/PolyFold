@@ -95,14 +95,17 @@ mouse_filter = 1
 script = ExtResource("1_hq6jr")
 
 [node name="info_level" type="PanelContainer" parent="." unique_id=355342233]
+unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -350.0
-offset_right = 350.0
-offset_bottom = 133.0
+anchors_preset = -1
+anchor_left = 0.31800002
+anchor_right = 0.68200004
+anchor_bottom = 0.15900001
+offset_left = -0.5600586
+offset_right = 0.5599365
+offset_bottom = -38.720016
 grow_horizontal = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_g7dw2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="info_level" unique_id=301413719]
@@ -142,6 +145,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
 layout_mode = 2
 
 [node name="move_icon" type="TextureRect" parent="info_level/VBoxContainer/HBoxContainer/move_container" unique_id=870466663]
+unique_name_in_owner = true
 modulate = Color(0.17254902, 0.35686275, 0.4862745, 1)
 layout_mode = 2
 texture = ExtResource("3_s2alt")
@@ -166,12 +170,14 @@ label_settings = SubResource("LabelSettings_aaql1")
 [node name="middle_separator" type="VSeparator" parent="info_level/VBoxContainer/HBoxContainer" unique_id=900165042]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
 
 [node name="time_container" type="HBoxContainer" parent="info_level/VBoxContainer/HBoxContainer" unique_id=882461701]
 layout_mode = 2
 
 [node name="time_icon" type="TextureRect" parent="info_level/VBoxContainer/HBoxContainer/time_container" unique_id=1479142267]
+unique_name_in_owner = true
 modulate = Color(0.17254902, 0.35686275, 0.4862745, 1)
 layout_mode = 2
 texture = ExtResource("4_853i0")
@@ -183,9 +189,9 @@ theme_override_constants/separation = 0
 
 [node name="time_count" type="Label" parent="info_level/VBoxContainer/HBoxContainer/time_container/VBoxContainer" unique_id=882704869]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(80, 0)
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
-text = "00:30:27"
+text = "00:30"
 label_settings = SubResource("LabelSettings_s2k8f")
 
 [node name="time_goal" type="Label" parent="info_level/VBoxContainer/HBoxContainer/time_container/VBoxContainer" unique_id=2129579652]
@@ -227,6 +233,7 @@ grow_horizontal = 0
 alignment = 1
 
 [node name="undo_button" parent="undo" unique_id=1872251594 instance=ExtResource("5_0lshf")]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 icon = ExtResource("7_5dcfj")
@@ -249,6 +256,7 @@ offset_bottom = 95.0
 grow_horizontal = 0
 
 [node name="redo_button" parent="redo" unique_id=1009220721 instance=ExtResource("5_0lshf")]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 icon = ExtResource("8_k5pa4")
@@ -259,6 +267,8 @@ text = "Redo"
 label_settings = SubResource("LabelSettings_2y1bh")
 horizontal_alignment = 1
 
+[connection signal="mouse_entered" from="info_level" to="." method="_on_info_level_mouse_entered"]
+[connection signal="mouse_exited" from="info_level" to="." method="_on_info_level_mouse_exited"]
 [connection signal="pressed" from="pause_button" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="undo/undo_button" to="." method="_on_undo_button_pressed"]
 [connection signal="pressed" from="redo/redo_button" to="." method="_on_redo_button_pressed"]

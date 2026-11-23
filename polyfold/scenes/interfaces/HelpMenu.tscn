@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bhjm1ljk1p20o"]
 
 [ext_resource type="Script" uid="uid://djuhftwah1bay" path="res://scripts/ui/HelpMenu.gd" id="1_vq8ek"]
-[ext_resource type="Shader" uid="uid://duvqdhtdslif7" path="res://scenes/interfaces/flou.gdshader" id="2_jn8xe"]
+[ext_resource type="Shader" uid="uid://duvqdhtdslif7" path="res://scenes/shaders/flou.gdshader" id="2_jn8xe"]
 [ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="3_ejxdo"]
 [ext_resource type="PackedScene" uid="uid://c53y36ip3fu05" path="res://prefabs/interfaces/ButtonIcon.tscn" id="4_s2upg"]
 [ext_resource type="Texture2D" uid="uid://dy8g7kwgessfn" path="res://assets/img/cube.png" id="5_e6p4f"]
@@ -532,17 +532,14 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_2y1bh")
 custom_minimum_size = Vector2(300, 64)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.7254902, 0.8666667, 0.93333334, 1)
+theme_override_colors/font_pressed_color = Color(0.7254902, 0.8666667, 0.93333334, 1)
+theme_override_colors/font_hover_color = Color(0.7254902, 0.8666667, 0.93333334, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_fjnws")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_2lfh7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_lujq8")
-
-[node name="Icon" parent="Menu/VBoxContainer/confirm/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="0" unique_id=1591882090]
-custom_minimum_size = Vector2(0, 0)
-
-[node name="Text" parent="Menu/VBoxContainer/confirm/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="1" unique_id=296136175]
-theme_override_colors/font_color = Color(0.7254902, 0.8666667, 0.93333334, 1)
 text = "HELP_CONFIRM"
-horizontal_alignment = 1
+alignment = 1
 
 [connection signal="pressed" from="Menu/VBoxContainer/top/close_button" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/confirm" to="." method="_on_confirm_pressed"]
