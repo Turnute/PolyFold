@@ -16,6 +16,20 @@ var _pos : Vector3i
 ## The color of this cube's faces
 var _col : Color = Color(1,1,1)
 
+## Computes and returns the combined global AABB of all faces in the cube.
+func getCubeAABB() -> AABB :
+	var aabb : AABB = AABB()
+	var first = true
+	for face in _faces:
+		var mesh = face.get_child(0).get_child(0)
+		var aabb_face = mesh.global_transform * mesh.mesh.get_aabb()
+		if first :
+			first = false
+			aabb = aabb_face
+		else:
+			aabb = aabb.merge(aabb_face)
+	return aabb
+
 ## Creates and stores a cube's face from its FaceEnum identifier.
 func createFace(face_side: Face.FaceEnum) -> void:
 	var face_pos : Vector3 = _pos
