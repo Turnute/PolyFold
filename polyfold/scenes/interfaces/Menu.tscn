@@ -127,12 +127,14 @@ theme_override_constants/margin_bottom = 30
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2" unique_id=1582123714]
 layout_mode = 2
 
-[node name="HelpButton" parent="MarginContainer2/HBoxContainer" unique_id=1824558458 instance=ExtResource("8_04thv")]
+[node name="CreditsButton" parent="MarginContainer2/HBoxContainer" unique_id=1824558458 instance=ExtResource("8_04thv")]
 layout_mode = 2
-text = "ABOUT"
+text = "CREDIT"
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="MarginContainer2/HBoxContainer/HelpButton" to="." method="_on_help_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 
 [editable path="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayButton"]
 [editable path="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/SettingsButton"]

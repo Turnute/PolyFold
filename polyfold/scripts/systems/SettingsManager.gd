@@ -3,6 +3,11 @@ extends Node
 const LOG_TAG := "[Settings] "
 const PATH := "user://settings.cfg"
 const LOCALES: Array[String] = ["fr", "en", "es"]
+const LANGUAGE_NAMES := {
+	"fr": "Français",
+	"en": "English",
+	"es": "Español",
+}
 const RESOLUTIONS: Array[Vector2i] = [
 	Vector2i(1920, 1080), Vector2i(1600, 900), Vector2i(1366, 768),
 	Vector2i(1280, 720), Vector2i(1024, 768),

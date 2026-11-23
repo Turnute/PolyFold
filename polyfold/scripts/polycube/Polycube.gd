@@ -90,9 +90,60 @@ func initFaceAdj() -> void :
 				if neighbour != null:
 					face._adj_faces[i] = neighbour._id_face
 
+## Computes and returns the combined global AABB of all cubes in the polycube.
+func getPolycubeAABB() -> AABB :
+	var aabb : AABB = AABB()
+	var first = true
+	for cube in _cubes:
+		var aabb_cube = cube.getCubeAABB()
+		if first :
+			first = false
+			aabb = aabb_cube
+		else:
+			aabb = aabb.merge(aabb_cube)
+	return aabb
+
 ## Checks whether the polycube can be unfolded.
 func canUnfold() -> bool:
-	return true;
+	var end = true
+	var face_init =  _cubes[0]._faces[0]
+	for cube in _cubes:
+		for face in cube._faces:
+			end = areCoplanar(face_init, face) && end
+	Log.info("Fin de jeu : " + str(end))
+	return end;
+
+# Rotate all faces of the polycube in the direction the camera is looking
+func finalRotation(duration: float = 2.5) -> void:
+	var target_angle_x: float = 0.0
+	var target_angle_z: float = 0.0
+	
+	var ref_face : Face = _cubes[0]._faces[0]
+	var normal = ref_face.global_transform.basis
+	if normal.y[1] > 0.9:
+		return
+	elif roundi(normal.y[2]) != 0:
+		target_angle_x = 90 if int(normal.y[2]) == -1 else -90
+	elif roundi(normal.y[0]) != 0:
+		target_angle_z = 90 if int(normal.y[0]) == -1 else -90
+		
+	var avg_local: Vector3 = getAveragePos()
+	# only if the target is not on the origin center
+	var target_world: Vector3 = to_global(avg_local)
+	var end_rot_deg: Vector3 = rotation_degrees + Vector3(target_angle_x, 0.0, target_angle_z)
+	var end_basis: Basis = Basis.from_euler(Vector3(
+		deg_to_rad(end_rot_deg.x),
+		deg_to_rad(end_rot_deg.y),
+		deg_to_rad(end_rot_deg.z)
+	))
+	
+	var end_global_pos: Vector3 = target_world - (end_basis * avg_local)
+	var tween: Tween = create_tween()
+	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_CUBIC) 
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "rotation_degrees", end_rot_deg, duration)
+	tween.tween_property(self, "global_position", end_global_pos, duration)
 
 ## Returns a face from its cube identifier and original side.
 func getFace(id_cube : int, side : Face.FaceEnum) -> Face :
@@ -110,7 +161,6 @@ func getAveragePos() -> Vector3 :
 	for cube in _cubes :
 		var c_pos : Vector3 = cube._pos
 		result += c_pos
-		
 	return result / _cubes.size()
 
 ## Removes selection from all faces.
@@ -212,36 +262,47 @@ func collectFaces(start_id : int, excluded : Array[int], plane : Face = null) ->
 	
 	return result
 
-## Returns the largest coplanar branch containing the selected face.
-## Other members reach the body only through the group's attachment face.
+## Returns the selected face and the branches outside the main body.
 func getSelectionGroup(face_id: int) -> Array[int]:
 	var reference: Face = getFaceFromFaceId(face_id)
-	var best_group: Array[int] = [face_id]
+	var components: Array[Array] = []
+	var processed: Dictionary = {face_id: true}
+	var body_index: int = -1
+	var body_cycles: int = -1
 
-	for root_id in collectFaces(face_id, [], reference):
-		var root_face: Face = getFaceFromFaceId(root_id)
-		var candidate: Array[int] = [root_id]
-		var processed: Dictionary = {root_id: true}
+	var neighbours: Array[int] = reference._adj_faces.duplicate()
+	neighbours.sort()
 
-		for i in root_face._adj_faces:
-			if i == -1 or processed.has(i):
-				continue
+	for neighbour_id in neighbours:
+		if neighbour_id == -1 or processed.has(neighbour_id):
+			continue
 
-			var component: Array[int] = collectFaces(i, [root_id])
-			var eligible: bool = true
+		var component: Array[int] = collectFaces(neighbour_id, [face_id])
 
-			for j in component:
-				processed[j] = true
-				if not areCoplanar(root_face, getFaceFromFaceId(j)):
-					eligible = false
+		var links: int = 0
+		for member_id in component:
+			processed[member_id] = true
 
-			if eligible:
-				candidate.append_array(component)
+			for adjacent_id in getFaceFromFaceId(member_id)._adj_faces:
+				if adjacent_id != -1 and adjacent_id != face_id:
+					links += 1
 
-		if candidate.has(face_id) and candidate.size() > best_group.size():
-			best_group = candidate
+		var cycles: int = links / 2 - component.size() + 1
+		components.append(component)
 
-	return best_group
+		if body_index == -1 or cycles > body_cycles or (
+			cycles == body_cycles
+			and component.size() > components[body_index].size()
+		):
+			body_index = components.size() - 1
+			body_cycles = cycles
+
+	var group: Array[int] = [face_id]
+	for i in range(components.size()):
+		if i != body_index:
+			group.append_array(components[i])
+
+	return group
 
 ## Returns the moving faces for the chosen hinge, including dependent branches.
 ## [param edge_side] identifies the grabbed side on the attachment face.
@@ -254,16 +315,7 @@ func getFoldGroup(face_id: int, edge_side: Edge.EdgeEnum) -> Array[int]:
 	if neighbour_id == -1 or selection.has(neighbour_id):
 		return []
 
-	var stationary: Array[int] = collectFaces(neighbour_id, selection)
-
-	var moving: Array[int] = []
-
-	for cube in _cubes:
-		for member in cube._faces:
-			if not stationary.has(member._id_face):
-				moving.append(member._id_face)
-
-	return moving
+	return selection
 
 ## Returns an edge's longitudinal axis in world space.
 func getEdgeAxis(face: Face, edge: Edge) -> Vector3:
@@ -300,3 +352,15 @@ func findFarthestHandle(group: Array[int], anchor: Face, hinge: Edge) -> Edge:
 				best = edge
 
 	return best
+
+func log() -> void :
+	Log.trace("Polycube")
+	for c in _cubes:
+		for f in c._faces:
+			f.log()
+
+## Used in unit testing: manually creates all faces' edges
+func createEdges() -> void :
+	for c in _cubes:
+		for f in c._faces:
+			f.createEdges()

@@ -73,9 +73,13 @@ func _ready() -> void:
 	_mesh.set_surface_override_material(0, _material)
 	_material.albedo_color = _ogColor
 	
+	createEdges()
+	updateConnectionVisuals()
+
+## Creates the face's edges
+func createEdges() -> void :
 	for i in range(4):
 		createEdge(i, Vector3(Edge.DIRECTIONS[i]) * 0.5)
-	
 	updateConnectionVisuals()
 
 ## Called when a face is selected. Highlights it and reveals its edges.
@@ -165,7 +169,8 @@ func disconnectFromEdge(edge : Edge) -> Array[int]:
 	updateConnectionVisuals()
 	return disconnected_faces
 
-## Disconnects a neighbouring face and returns whether it was found.
+## Removes the neighbour from this face's adjacency list.
+## Returns the corresponding EdgeEnum index, or -1 if not found.
 func disconnectFace(faceId: int) -> int:
 	for i in range(_adj_faces.size()):
 		if _adj_faces[i] == faceId:
@@ -202,3 +207,40 @@ func updateConnectionVisuals() -> void :
 		_mesh.position.y,
 		(left - right) * 0.5
 	)
+
+## Resizes and offsets this face's detector.
+## Keeps borders shared with stationary neighbours at full size.
+## Insets borders facing moving faces or no faces by 0.1 units.
+func updateFoldDetector(moving_faces: Array[int]) -> void:
+	var inset: Array[float] = []
+
+	for neighbour_id in _adj_faces:
+		var internal: bool = (
+			neighbour_id != -1
+			and not moving_faces.has(neighbour_id)
+		)
+		inset.append(0.0 if internal else 0.1)
+
+	var box: BoxShape3D = _fold_shape.shape.duplicate()
+	box.margin = 0.0
+	box.size = Vector3(
+		1.0 - inset[0] - inset[1],
+		box.size.y,
+		1.0 - inset[2] - inset[3]
+	)
+	_fold_shape.shape = box
+
+	_fold_shape.position = Vector3(
+		(inset[1] - inset[0]) * 0.5,
+		0.0,
+		(inset[2] - inset[3]) * 0.5
+	)
+
+func log() -> void :
+	Log.trace(
+		"Face " + str(_id_face) 
+		+ " of side " + str(_side)
+		+ " with Edges: "
+		)
+	for e in _edges:
+		e.log()

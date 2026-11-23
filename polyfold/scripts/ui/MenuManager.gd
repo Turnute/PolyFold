@@ -9,6 +9,7 @@ const HELP := "res://scenes/interfaces/HelpMenu.tscn"
 const PAUSE := "res://scenes/interfaces/PauseMenu.tscn"
 const POPUP := "res://prefabs/interfaces/ErrorPopup.tscn"
 const MAIN_MENU := "res://scenes/interfaces/Menu.tscn"
+const CREDITS = ("res://scenes/interfaces/Credits.tscn")
 
 ## Create the interface by customizing the fields.
 static func _display_help(parent : Node) -> HelpMenu:
@@ -72,3 +73,7 @@ static func _display_finish(parent : Node, time: String, moves: int, time_goal: 
 	interface.initialize(time, moves, time_goal, moves_goal, nb_undo, nb_redo)
 	parent.add_child(interface)
 	return interface
+
+static func _display_credits(parent: Node) -> void:
+	Log.info("[MenuManager] Display credits")
+	parent.add_child(load(CREDITS).instantiate())

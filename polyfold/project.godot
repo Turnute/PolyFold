@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="PolyFold"
+config/version="1.0"
 run/main_scene="uid://b7sw2hgh0fhef"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://clss1wnu6jsru"
 
 [autoload]
 
