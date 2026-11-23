@@ -59,6 +59,12 @@ const CUT_INSET: float = 0.015
 @onready var _ogColor: Color
 ## The color used to highlight the selected face.
 var _selectionColor: Color = Color(1, 1, 0)
+## Whether the face is being selected or not
+var _selected: bool = false
+## The color flashed over the face when an incorrect fold occurs
+var _errorColor: Color = Color(1, 0, 0)
+## Whether the face is flashing red or not
+var _error_flashing := false
 ## Reference to the face's wireframe structure
 @onready var _wireframe : Node3D = $Wireframe
 ## Dedicated detector used to validate folding collisions.
@@ -97,12 +103,14 @@ func createEdges() -> void :
 ## Called when a face is selected. Highlights it and reveals its edges.
 func select() -> void:
 	Log.debug("Face " + str(_id_face) + " sélectionnée !")
+	_selected = true
 	_material.albedo_color = _selectionColor
 	showEdges(true)
 	_material.emission_enabled = true
 
 ## Called when a face is unselected. Removes highlighting and hides its edges.
 func unselect() -> void:
+	_selected = false
 	_material.albedo_color = _ogColor
 	showEdges(false)
 	_material.emission_enabled = false
@@ -249,6 +257,26 @@ func updateFoldDetector(moving_faces: Array[int]) -> void:
 		0.0,
 		(inset[2] - inset[3]) * 0.5
 	)
+
+## Flashes the face red for 0.1 seconds
+func error() -> void:
+	if _error_flashing:
+		return
+
+	_error_flashing = true
+	Log.info("Collision!")
+
+	_material.albedo_color = _errorColor
+	_material.emission = _errorColor
+	await get_tree().create_timer(0.1).timeout
+	if _selected:
+		_material.albedo_color = _selectionColor
+		_material.emission = _selectionColor
+	else:
+		_material.albedo_color = _ogColor
+		_material.emission = _selectionColor
+	_error_flashing = false
+	
 
 func log() -> void :
 	Log.trace(
