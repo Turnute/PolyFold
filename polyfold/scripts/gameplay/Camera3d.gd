@@ -79,6 +79,15 @@ func _input(event : InputEvent):
 					_target.unselectAllFaces()
 					_curr_selected_face_id = -1
 					pass
+			elif event.button_index == MOUSE_BUTTON_LEFT and event.shift_pressed:
+				var godot_object = getRaycastObject()
+				Log.trace(str(godot_object))
+				if godot_object:
+					var selected_object = godot_object["collider"]
+					var parent = selected_object.get_parent()
+					if is_instance_of(parent, Face):
+						Log.debug("Multiselect: " + str(parent._id_face))
+						_target.multiselectFace(parent._id_face)
 
 ## Updates the camera position from its pitch, yaw, distance, and actual target.
 func updatePositionCamera() -> void :

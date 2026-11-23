@@ -18,6 +18,8 @@ var _adj : Array[Array] = []
 
 ## Stores which face is currently being selected
 var _selected_face_id: int = -1
+## Stores Shift+Click selected faces
+var _multiselection: Array[int] = []
 
 ## Initializes the polycube from an array of cubes.
 func _init(cubes: Array[Cube]):
@@ -166,6 +168,7 @@ func getAveragePos() -> Vector3 :
 ## Removes selection from all faces.
 func unselectAllFaces() -> void :
 	_selected_face_id = -1
+	_multiselection = []
 	for cube in _cubes:
 		for face in cube._faces:
 			face.unselect()
@@ -174,6 +177,31 @@ func unselectAllFaces() -> void :
 func selectFace(face_id: int) -> void:
 	_selected_face_id = face_id
 	refreshSelectedFaceEdges()
+
+## Handles multiselection
+func multiselectFace(face_id: int) -> void:
+	if _selected_face_id == -1:
+		selectFace(face_id)
+	elif face_id != _selected_face_id:
+		if _multiselection.has(face_id):
+			_multiselection.erase(face_id)	# TODO: blem si on supprime au milieu
+		elif (
+			hasInAdjList(_selected_face_id, face_id) or
+			isAdjToGroup(_multiselection, face_id)
+			):
+			_multiselection.append(face_id)
+	refreshSelectedFaceEdges()
+
+## Checks whether face a has face b in its adjacency list
+func hasInAdjList(a: int, b: int) -> bool :
+	return getFaceFromFaceId(a)._adj_faces.has(b)
+
+## Checks whether a face is adjacent to a group of faces
+func isAdjToGroup(group: Array[int], face_id: int):
+	var result: bool = false
+	for f in group:
+		result = result or hasInAdjList(f, face_id)
+	return result
 
 ## Removes selection from the face matching a valid face identifier.
 func unselectFace(face_id : int) -> void :
@@ -194,7 +222,7 @@ func refreshSelectedFaceEdges() -> void:
 			for edge in face._edges:
 				edge._fold_face = null
 
-	var group: Array[int] = getSelectionGroup(_selected_face_id)
+	var group: Array[int] = getSelectedFaces()
 
 	for face_id in group:
 		var face: Face = getFaceFromFaceId(face_id)
@@ -263,28 +291,36 @@ func collectFaces(start_id : int, excluded : Array[int], plane : Face = null) ->
 	return result
 
 ## Returns the selected face and the branches outside the main body.
-func getSelectionGroup(face_id: int) -> Array[int]:
-	var reference: Face = getFaceFromFaceId(face_id)
+func getSelectionGroup(face_id: int, extra_faces: Array[int] = []) -> Array[int]:
+	var faces_depart : Array[int] = [face_id]
+	for extra_id in extra_faces:
+		if not faces_depart.has(extra_id):
+			faces_depart.append(extra_id)
 	var components: Array[Array] = []
-	var processed: Dictionary = {face_id: true}
+	var processed: Dictionary = {}
 	var body_index: int = -1
 	var body_cycles: int = -1
-
-	var neighbours: Array[int] = reference._adj_faces.duplicate()
+	var neighbours: Array[int] = []
+	for depart_id in faces_depart:
+		processed[depart_id] = true
+		var depart = getFaceFromFaceId(depart_id)
+		for neighbour_id in depart._adj_faces:
+			if neighbour_id != -1 and not neighbours.has(neighbour_id):
+				neighbours.append(neighbour_id)
 	neighbours.sort()
 
 	for neighbour_id in neighbours:
-		if neighbour_id == -1 or processed.has(neighbour_id):
+		if processed.has(neighbour_id):
 			continue
 
-		var component: Array[int] = collectFaces(neighbour_id, [face_id])
+		var component: Array[int] = collectFaces(neighbour_id, faces_depart)
 
 		var links: int = 0
 		for member_id in component:
 			processed[member_id] = true
 
 			for adjacent_id in getFaceFromFaceId(member_id)._adj_faces:
-				if adjacent_id != -1 and adjacent_id != face_id:
+				if adjacent_id != -1 and not faces_depart.has(adjacent_id):
 					links += 1
 
 		var cycles: int = links / 2 - component.size() + 1
@@ -297,24 +333,49 @@ func getSelectionGroup(face_id: int) -> Array[int]:
 			body_index = components.size() - 1
 			body_cycles = cycles
 
-	var group: Array[int] = [face_id]
+	var group: Array[int] = faces_depart.duplicate()
 	for i in range(components.size()):
 		if i != body_index:
 			group.append_array(components[i])
 
 	return group
 
+## Shortcut: returns getSelectionGroup on current selected face and multiselection
+func getSelectedFaces() -> Array[int] :
+	if _selected_face_id == -1:
+		return []
+	return getSelectionGroup(_selected_face_id, _multiselection) 
+
 ## Returns the moving faces for the chosen hinge, including dependent branches.
 ## [param edge_side] identifies the grabbed side on the attachment face.
-func getFoldGroup(face_id: int, edge_side: Edge.EdgeEnum) -> Array[int]:
-	var selection: Array[int] = getSelectionGroup(face_id)
+func getFoldGroup(face_id: int, edge_side: Edge.EdgeEnum, saved_group: Array[int] = []) -> Array[int]:
+	var selection: Array[int] = saved_group.duplicate()
+	
+	if selection.is_empty():
+		selection = getSelectedFaces()
+	if selection.is_empty():
+		selection = getSelectionGroup(face_id)
+	
+	if not selection.has(face_id):
+		return []
+	
 	var face: Face = getFaceFromFaceId(face_id)
 	var hinge: Edge = face.getOppositeEdge(face._edges[edge_side])
 	var neighbour_id: int = face.getNeighbouringFace(hinge._side)
-
+	
 	if neighbour_id == -1 or selection.has(neighbour_id):
 		return []
-
+	
+	var fixed: Array[int] = collectFaces(neighbour_id, selection)
+	var moving: Array[int] = collectFaces(face_id, fixed)
+	
+	var expected: Array[int] = selection.duplicate()
+	expected.sort()
+	moving.sort()
+	
+	if moving != expected:
+		return []
+	
 	return selection
 
 ## Returns an edge's longitudinal axis in world space.
