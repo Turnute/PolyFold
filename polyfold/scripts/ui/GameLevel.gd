@@ -50,7 +50,7 @@ func initialize(mode: gameMode, level_name: String, level_description: String,
 	if(time_goal > 0):
 		var minutes = time_goal / 60
 		var secondes = time_goal % 60
-		var temps = "%02d:%02d:%02d" % [minutes, secondes, 0]
+		var temps = "%02d:%02d" % [minutes, secondes]
 		t_goal = TranslationServer.translate("GAME_LEVEL_GOAL") % temps
 	else:
 		t_goal = TranslationServer.translate("GAME_LEVEL_GOAL") % "-"

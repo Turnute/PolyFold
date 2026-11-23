@@ -120,6 +120,7 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="NbCube" type="SpinBox" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=794122052]
+unique_name_in_owner = true
 layout_mode = 2
 min_value = 1.0
 value = 1.0
@@ -136,6 +137,7 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="MaxAdj" type="SpinBox" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=1169986843]
+unique_name_in_owner = true
 layout_mode = 2
 min_value = 2.0
 value = 2.0
