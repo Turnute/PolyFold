@@ -8,6 +8,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		queue_free()
 		get_viewport().set_input_as_handled()
+	elif event.is_action_pressed("window_fullscreen"):
+		Settings.set_fullscreen(!Settings.fullscreen)
+		get_viewport().set_input_as_handled()
+
 
 ## Function called when the [code]close_button[/code] button is pressed.
 func _on_close_button_pressed() -> void:
