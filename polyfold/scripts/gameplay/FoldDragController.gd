@@ -222,6 +222,9 @@ func endEdgeDrag(commit: bool) -> void:
 			## Add the action into the historic
 			_history.addAction(action)
 			Game._on_unfolding.emit()
+			if(_target.canUnfold()):
+				_target.finalRotation()
+				Game._on_game_finished.emit()
 
 	if is_instance_valid(_target):
 		_target.unselectAllFaces()

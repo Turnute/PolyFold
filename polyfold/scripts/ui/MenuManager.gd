@@ -66,7 +66,7 @@ static func _display_polycube(parent : Node, data_str : String, nb_cubes : int, 
 	return polycube
 	
 ## 
-static func _display_finish(parent : Node, time: String, moves: int, time_goal: String, moves_goal: int,
+static func _display_finish(parent : Node, time: int, moves: int, time_goal: int, moves_goal: int,
 							nb_undo: int, nb_redo: int) -> FinishMenu:
 	Log.info("Display Finish Menu")
 	var interface: FinishMenu = load(FINISH).instantiate()
