@@ -225,6 +225,7 @@ func endEdgeDrag(commit: bool) -> void:
 			Game._on_unfolding.emit()
 			if(_target.canUnfold()):
 				_target.finalRotation()
+				_camera._rotate()
 				Game._on_game_finished.emit()
 
 	if is_instance_valid(_target):
