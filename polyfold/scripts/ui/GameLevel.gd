@@ -155,6 +155,12 @@ func _on_redo_button_pressed() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		_on_pause_button_pressed()
+	elif event.is_action_pressed("window_fullscreen"):
+		Settings.set_fullscreen(!Settings.fullscreen)
+	elif event.is_action_pressed("ui_undo"):
+		History.undo()
+	elif event.is_action_pressed("ui_redo"):
+		History.redo()
 
 func changeTransparencyInfoLevel(transparency: float) -> void:
 	var info_node := get_node_or_null("%info_level")

@@ -16,3 +16,8 @@ func _on_quit_button_pressed() -> void:
 
 func _on_credits_button_pressed() -> void:
 	MenuManager._display_credits(self)
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("window_fullscreen"):
+		Settings.set_fullscreen(!Settings.fullscreen)
+		get_viewport().set_input_as_handled()

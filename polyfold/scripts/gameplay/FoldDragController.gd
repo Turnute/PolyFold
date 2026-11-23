@@ -84,6 +84,7 @@ func beginEdgeDrag(
 		face._id_face,
 		action._edge
 	)
+	Log.debug(str(group))
 
 	if group.is_empty():
 		return

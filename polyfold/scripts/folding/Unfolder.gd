@@ -7,7 +7,7 @@ extends Node
 static func validMove(action: UnfoldAction, pol: Polycube) -> bool:
 	var face: Face = pol.getFace(action._id_cube, action._face)
 
-	return pol.canFoldFace(face._id_face, action._edge)
+	return not pol.getFoldGroup(face._id_face, action._edge, action._group).is_empty()
 
 ## Executes an unfolding move and updates face connections.
 static func executeMove(action : UnfoldAction, pol : Polycube) -> void:
@@ -18,8 +18,8 @@ static func executeMove(action : UnfoldAction, pol : Polycube) -> void:
 	var folding_edge : Edge = folding_face._edges[action._edge]
 	var hinge : Edge = folding_face.getOppositeEdge(folding_edge)
 	
-	var group : Array[int] = pol.getFoldGroup(folding_face._id_face, action._edge)
-	action._group = group
+	var group : Array[int] = pol.getFoldGroup(folding_face._id_face, action._edge, action._group)
+	action._group = group.duplicate()
 	var hinge_neighbour : int = folding_face.getNeighbouringFace(hinge._side)
 	
 	var pivot : Vector3 = hinge.global_position
