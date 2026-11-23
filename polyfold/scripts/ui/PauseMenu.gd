@@ -28,3 +28,6 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		_on_resume_button_pressed()
 		get_viewport().set_input_as_handled()
+	elif event.is_action_pressed("window_fullscreen"):
+		Settings.set_fullscreen(!Settings.fullscreen)
+		get_viewport().set_input_as_handled()

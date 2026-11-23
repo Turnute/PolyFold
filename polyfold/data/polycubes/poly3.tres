@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="PolycubeData" format=3 uid="uid://b0uqrc5gl8tsk"]
+
+[ext_resource type="Script" uid="uid://dc4v6f25cghss" path="res://scripts/data/PolycubeData.gd" id="1_3i86d"]
+
+[resource]
+script = ExtResource("1_3i86d")
+metadata/_custom_type_script = "uid://dc4v6f25cghss"
