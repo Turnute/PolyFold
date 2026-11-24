@@ -20,6 +20,7 @@ config/icon="uid://clss1wnu6jsru"
 
 Settings="*uid://dj5lmp4auweb5"
 Game="*uid://b3omd02dqa22d"
+SaveLevelManager="*uid://bvgajnp0b6h5j"
 
 [display]
 

@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://b1xxselcmrmju"]
+
+[ext_resource type="Texture2D" uid="uid://5hq6p0cfrx5l" path="res://assets/icons/lock.svg" id="1_kaf1v"]
+[ext_resource type="Script" uid="uid://n1ruf37wsleq" path="res://scripts/ui/LevelCard.gd" id="1_o27el"]
+[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="2_vkw6a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkw6a"]
+bg_color = Color(0.8392157, 0.9137255, 0.972549, 1)
+border_color = Color(0.5529412, 0.72156864, 0.8784314, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oku38"]
+bg_color = Color(0.7254902, 0.84313726, 0.9490196, 1)
+border_color = Color(0.18431373, 0.43529412, 0.6901961, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wxr3t"]
+bg_color = Color(0.9098039, 0.9529412, 0.9882353, 1)
+border_color = Color(0.2901961, 0.5647059, 0.8509804, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xd5wc"]
+bg_color = Color(0.7882353, 0.80784315, 0.8392157, 1)
+border_color = Color(0.654902, 0.68235296, 0.72156864, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o0fvb"]
+border_color = Color(0.9607843, 0.7254902, 0.25882354, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="FontVariation" id="FontVariation_d1lq5"]
+base_font = ExtResource("2_vkw6a")
+variation_embolden = 2.0
+
+[sub_resource type="FontVariation" id="FontVariation_ghlii"]
+base_font = ExtResource("2_vkw6a")
+
+[sub_resource type="FontVariation" id="FontVariation_1aqkj"]
+base_font = ExtResource("2_vkw6a")
+
+[node name="LevelCard" type="Button" unique_id=256461682]
+custom_minimum_size = Vector2(200, 225)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.105882354, 0.22745098, 0.36078432, 1)
+theme_override_colors/font_pressed_color = Color(0.07058824, 0.19215687, 0.30980393, 1)
+theme_override_colors/font_hover_color = Color(0.105882354, 0.22745098, 0.36078432, 1)
+theme_override_colors/font_disabled_color = Color(0.41960785, 0.4509804, 0.5019608, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_vkw6a")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_oku38")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wxr3t")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_xd5wc")
+theme_override_styles/focus = SubResource("StyleBoxFlat_o0fvb")
+script = ExtResource("1_o27el")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=798532964]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="Margin" unique_id=1206274746]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="NumberLabel" type="Label" parent="Margin/VBox" unique_id=841672325]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_d1lq5")
+theme_override_font_sizes/font_size = 44
+text = "LEVEL_SELECT"
+
+[node name="NameLabel" type="Label" parent="Margin/VBox" unique_id=1651617923]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_ghlii")
+theme_override_font_sizes/font_size = 22
+text = "LEVEL_SELECT_NAME"
+
+[node name="LockIcon" type="TextureRect" parent="Margin/VBox" unique_id=1601092868]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("1_kaf1v")
+
+[node name="ScoreLabel" type="Label" parent="Margin/VBox" unique_id=33386132]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_1aqkj")
+theme_override_font_sizes/font_size = 20
+text = "SCORE_NEW_LOCK"
