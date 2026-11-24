@@ -5,53 +5,106 @@ const LOG_TAG := "[LevelSelect] "
 const LEVELS_DIR := "res://data/levels/"
 const LEVEL_CARD_SCENE := preload("res://prefabs/interfaces/LevelCard.tscn")
 const GAME_SCENE := "res://scenes/interfaces/Game.tscn"
+const GAME_LEVEL_SCENE := preload("res://scenes/interfaces/GameLevel.tscn")
 
 @onready var grid: GridContainer = %GridContainer
+@onready var info_label: Label = %InfoLabel
+@onready var progress_label: Label = %ProgressLabel
 
+## Tous les niveaux chargés, rangés par id.
+var _levels_by_id := {}
+## Niveau actuellement sélectionné (-1 = aucun).
+var _selected_id := -1
 
 func _ready() -> void:
-	_build_grid()
+	_init_page()
 
 func _on_back_button_pressed() -> void:
 	queue_free()
 
-func _build_grid() -> void:
+## Initialise les cartes + progress & preselect
+func _init_page() -> void:
 	# récupérer et parser les fichiers
-	var levels: Array[Dictionary] = []
-	for file_name in _get_level_files():
-		var info := _parse_level_file_name(file_name)
-		if info.is_empty():
-			Log.warn("Nom de niveau invalide (ignoré) : " + file_name)
+	var levels: Array[LevelData] = []
+	for file_name in ResourceLoader.list_directory(LEVELS_DIR):
+		if file_name.get_extension() != "tres":
 			continue
-		Log.info("Nouvelle card (niveau) : " + str(info["order"]) + " - " + info["tr_name"])
-		info["path"] = LEVELS_DIR + file_name
-		levels.append(info)
+		var level := load(LEVELS_DIR + file_name) as LevelData
+		if level == null:
+			Log.warn(LOG_TAG + "Fichier ignoré : " + file_name)
+			continue
+		levels.append(level)
 
 	# création card
-	var previous_completed := true   # le 1er niveau est toujours débloqué
+	var locked := false  
+	var total_stars := 0
+		
 	for level in levels:
-		var best_score: int = SaveLevelManager.get_best_score(level["tr_name"])
+		var stats := SaveLevelManager.get_all_stats(level)
+		total_stars += stats["stars"]
 
 		var card := LEVEL_CARD_SCENE.instantiate()
-		grid.add_child(card)   # d'abord add_child, pour que les @onready existent
-		card.setup(level["order"], level["tr_name"], best_score, previous_completed)
-		print(card.scene_file_path, " |) ", card.get_script().resource_path)
+		grid.add_child(card)  # avant setup(), pour que les @onready existent
+		card.setup(level.id, "LEVEL_%d" % level.id,
+			stats["best_moves"], stats["best_time"], stats["stars"], locked)
+
+		_levels_by_id[level.id] = level
+		card.level_chosen.connect(_on_level_chosen)
 		
-		previous_completed = (best_score != -1)
+		if not locked : 
+			locked = not stats["is_completed"]
+
+	progress_label.text = tr("LEVEL_SELECT_PROGRESS") % [total_stars, levels.size() * 3]
+	_select_default_level(levels)
+
+## signal d'une carte ou présélection 
+func _on_level_chosen(level_id: int) -> void:
+	_selected_id = level_id
+	var level: LevelData = _levels_by_id[level_id]
+
+	info_label.text = tr("LEVEL_INFO") % [
+		level.id,                        # numéro
+		tr("LEVEL_%d" % level.id),       # nom
+		level.move_goal,                 # objectif de coups
+		_format_time(level.time_goal),   # objectif de temps
+	]
+
+## Sélectionne le premier niveau pas encore réussi, sinon le dernier.
+func _select_default_level(levels: Array[LevelData]) -> void:
+	if levels.is_empty():
+		info_label.text = ""
+		return
+	for level in levels:
+		if not SaveLevelManager.is_completed(level.id):
+			_on_level_chosen(level.id)
+			return
+	_on_level_chosen(levels[-1].id)
+
+# 75 -> 01:15
+func _format_time(seconds: int) -> String:
+	return "%02d:%02d" % [seconds / 60, seconds % 60]
 
 
-func _get_level_files() -> PackedStringArray:
-	var files := PackedStringArray()
-	for file_name in ResourceLoader.list_directory(LEVELS_DIR):
-		if file_name.get_extension() == "tres":
-			files.append(file_name)
-	return files
+func _on_play_button_pressed() -> void:
+	if _selected_id == -1:
+		return
+	var level: LevelData = _levels_by_id[_selected_id]
+
+	Log.info(LOG_TAG + "Lancement niveau %d (coups : %d, temps : %d)"
+		% [level.id, level.move_goal, level.time_goal])
 
 
-## "1__Niv_TRADUCTION.tres" -> { "order": 1, "tr_name": "Niv_TRADUCTION" }
-func _parse_level_file_name(file_name: String) -> Dictionary :
-	var parts := file_name.get_basename().split("__", false, 1)
-	if parts.size() != 2 or not parts[0].is_valid_int():
-		return {}
-	return {	"order": parts[0],
-				"tr_name": parts[1] }
+	var polycube = MenuManager._display_polycube(self, level.polycube_file.resource_path, 0, 0)
+	get_tree().change_scene_to_node(polycube)
+
+	# Crée la partie
+	var game = MenuManager._display_game_level(
+		polycube,
+		GameLevel.gameMode.LEVEL,
+		str(level.id),               
+		tr("LEVEL_%d" % level.id),  
+		level.move_goal,
+		level.time_goal,
+	)
+	game.startChrono()
+	queue_free()

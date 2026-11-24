@@ -1,7 +1,12 @@
 [gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://dc5mixovq6oui"]
 
+[ext_resource type="Resource" uid="uid://bxryoxvjajiao" path="res://data/polycubes/poly1.tres" id="1_cnf1w"]
 [ext_resource type="Script" uid="uid://cv58d7q6nfdfu" path="res://scripts/data/LevelData.gd" id="1_imdmg"]
 
 [resource]
 script = ExtResource("1_imdmg")
+id = 2
+move_goal = 20
+time_goal = 60
+polycube_file = ExtResource("1_cnf1w")
 metadata/_custom_type_script = "uid://cv58d7q6nfdfu"

@@ -15,8 +15,6 @@ shader = ExtResource("2_16dlw")
 shader_parameter/blur_amount = 2.000000095
 shader_parameter/darken = 0.150000007125
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s2k8f"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aaql1"]
 bg_color = Color(0.33333334, 0.33333334, 0.33333334, 1)
 corner_radius_top_left = 30
@@ -59,26 +57,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Menu_VBoxContainer_Mode_Custom_Button_MarginContainer_HBoxContainer#VSeparator" type="VSeparator" parent="." unique_id=624382249]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
-
-[node name="Menu_VBoxContainer_Mode_Endless_button_MarginContainer_HBoxContainer#VSeparator" type="VSeparator" parent="." unique_id=1898879978]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
-
-[node name="Menu_VBoxContainer_Mode_Puzzle_button_MarginContainer_HBoxContainer#VSeparator" type="VSeparator" parent="." unique_id=74435057]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
-
-[node name="Menu_VBoxContainer_Mode_level_button_MarginContainer_HBoxContainer#VSeparator" type="VSeparator" parent="." unique_id=1415928607]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_s2k8f")
-
 [node name="Menu" type="PanelContainer" parent="." unique_id=901564814]
 layout_mode = 1
 anchors_preset = 8
@@ -112,7 +90,7 @@ layout_mode = 2
 theme_override_constants/separation = 20
 theme_override_styles/separator = SubResource("StyleBoxEmpty_l2mhy")
 
-[node name="Mode_level_button" parent="Menu/VBoxContainer" unique_id=614178926 instance=ExtResource("4_s3htr")]
+[node name="Mode_Level_button" parent="Menu/VBoxContainer" unique_id=614178926 instance=ExtResource("4_s3htr")]
 layout_mode = 2
 text = "GAME_MODE_LEVEL"
 icon = ExtResource("5_16dlw")
@@ -145,11 +123,12 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 
+[connection signal="pressed" from="Menu/VBoxContainer/Mode_Level_button" to="." method="_on_mode_level_button_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Mode_Endless_button" to="." method="_on_help_button_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Mode_Custom_Button" to="." method="_on_mode_custom_button_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 
-[editable path="Menu/VBoxContainer/Mode_level_button"]
+[editable path="Menu/VBoxContainer/Mode_Level_button"]
 [editable path="Menu/VBoxContainer/Mode_Endless_button"]
 [editable path="Menu/VBoxContainer/Mode_Custom_Button"]
 [editable path="Menu/VBoxContainer/BackButton"]

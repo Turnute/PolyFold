@@ -5,11 +5,9 @@ extends Resource
 
 ## Level identifier.
 @export var id : int
-## Level name.
-@export var name : String
-## Level difficulty.
-@export var difficulty : int
-## Best score recorded for the level.
-@export var high_score : int
+## Move goal
+@export var move_goal : int
+## Time goal (s)
+@export var time_goal : int
 ## Polycube data used by the level.
 @export var polycube_file : PolycubeData
