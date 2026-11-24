@@ -225,8 +225,9 @@ func endEdgeDrag(commit: bool) -> void:
 			Game._on_unfolding.emit()
 			if(_target.canUnfold()):
 				_target.finalRotation()
-				_camera._rotate()
 				Game._on_game_finished.emit()
+				_camera._switch_input_player()
+				_camera._reset_position_camera()
 
 	if is_instance_valid(_target):
 		_target.unselectAllFaces()
