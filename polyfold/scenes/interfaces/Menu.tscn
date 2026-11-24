@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://b7sw2hgh0fhef"]
 
 [ext_resource type="Script" uid="uid://dehfwyr45whwl" path="res://scripts/ui/Menu.gd" id="1_ac62s"]
-[ext_resource type="Texture2D" uid="uid://dc26v3qr3x5g2" path="res://assets/img/polycube.png" id="1_vgc6r"]
 [ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="2_nn3se"]
 [ext_resource type="Shader" uid="uid://cgpjs6l2n1hqx" path="res://scenes/shaders/grid_background.gdshader" id="2_qahm3"]
 [ext_resource type="Texture2D" uid="uid://bydir01fx200c" path="res://assets/icons/cog.svg" id="3_nn3se"]
 [ext_resource type="Texture2D" uid="uid://cjodlp5gky7ka" path="res://assets/icons/play.svg" id="4_ac62s"]
 [ext_resource type="PackedScene" uid="uid://4s33upjasyn5" path="res://prefabs/interfaces/NavButton.tscn" id="5_ac62s"]
 [ext_resource type="Texture2D" uid="uid://6emt0ew4r8fi" path="res://assets/icons/doorway_exit.svg" id="6_04thv"]
+[ext_resource type="Texture2D" uid="uid://clss1wnu6jsru" path="res://assets/img/logo_temp.png" id="7_04thv"]
 [ext_resource type="PackedScene" uid="uid://n1nupa36ocyr" path="res://prefabs/interfaces/HelpButton.tscn" id="8_04thv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_26cg0"]
@@ -111,7 +111,7 @@ theme_override_styles/separator = SubResource("StyleBoxLine_nc8eo")
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("1_vgc6r")
+texture = ExtResource("7_04thv")
 
 [node name="MarginContainer2" type="MarginContainer" parent="." unique_id=460263239]
 layout_mode = 1
