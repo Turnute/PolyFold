@@ -13,6 +13,13 @@ signal back
 
 
 func _ready() -> void:
+	# Web specific changes
+	if OS.has_feature("web"):
+		$CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ResLabel.hide()
+		res_select.hide()
+		fullscreen_check.hide()
+		$CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/HSeparator2.hide()
+	
 	_fill_lists()
 	_refresh()
 	lang_select.item_selected.connect(_on_lang_selected)
