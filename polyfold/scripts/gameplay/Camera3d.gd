@@ -37,10 +37,25 @@ var _curr_selected_face_id : int = -1
 ## Magnitude of the camera shake.
 @export var magnitude = 0.1
 
+## Whether the camera is supposed to be rotating.
+var _rotating: bool = false
+## Rotation speed.
+var _rotation_speed: float = 0.2
+
 ## Initializes the pitch so the camera stays above the target.
 func _ready() -> void:
 	_pitch = clampf(_pitch, deg_to_rad(10.0), deg_to_rad(80.0))
 	updatePositionCamera()
+
+## Called every frame. Handles camera rotation.
+func _process(delta: float) -> void:
+	if _rotating:
+		_yaw += _rotation_speed * delta
+		updatePositionCameraTransition()
+
+## Starts or stops automatic camera rotation.
+func _rotate() -> void:
+	_rotating = not _rotating
 
 ## Handles zoom, object selection, and fold dragging.
 func _input(event : InputEvent):

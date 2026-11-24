@@ -154,7 +154,7 @@ func finalRotation(duration: float = 2.5) -> void:
 	tween.set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "rotation_degrees", end_rot_deg, duration)
 	tween.tween_property(self, "global_position", end_global_pos, duration)
-	_rotate()
+	#_rotate()
 ## Returns a face from its cube identifier and original side.
 func getFace(id_cube : int, side : Face.FaceEnum) -> Face :
 	return _cubes[id_cube].getFace(side)
