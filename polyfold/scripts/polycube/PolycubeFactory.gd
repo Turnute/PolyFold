@@ -110,7 +110,8 @@ static func generatePolycube(cube_nb: int, max_adj: int) -> Polycube :
 						elif cnt_adj < max_adj:
 							all_max = false
 					
-					if add and !all_max:
+					if add and !all_max and adj[idx].y >= 0:
+						Log.trace("Adding cube ({0}, {1}, {2})".format([adj[idx].x, adj[idx].y, adj[idx].z]))
 						visited.push_back(adj[idx])
 						queue.push_back(adj[idx])
 						added += 1
