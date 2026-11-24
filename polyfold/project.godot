@@ -26,7 +26,6 @@ config/icon="uid://clss1wnu6jsru"
 
 Settings="*uid://dj5lmp4auweb5"
 Game="*uid://b3omd02dqa22d"
-ControlsRemap="*uid://d252u3gj57frg"
 
 [display]
 
@@ -44,7 +43,11 @@ project/assembly_name="PolyFold"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/runtime_controls_remap/plugin.cfg")
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+
+[filesystem]
+
+import/fbx2gltf/enabled=false
 
 [importer_defaults]
 
