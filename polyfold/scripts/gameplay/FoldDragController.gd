@@ -52,6 +52,12 @@ const SWEEP_MAX_DEPTH: int = 16
 const GROUP_BORDER_INSET: float = 0.01
 ## Temporary group volume: Face -> shape and local offset.
 var _drag_detectors: Dictionary = {}
+## Whether a collision has been detected.
+var _error_detected: bool = false
+## The angle of the error.
+var _error_angle: float = 0.0
+## The angle threshold at which a new error can occur during the same drag. 
+const ERROR_ANGLE: float = 3.0
 
 ## Resolves the handle's actual hinge and captures every moving face once.
 func beginEdgeDrag(
@@ -78,6 +84,7 @@ func beginEdgeDrag(
 		face._id_face,
 		action._edge
 	)
+	Log.debug(str(group))
 
 	if group.is_empty():
 		return
@@ -102,6 +109,7 @@ func beginEdgeDrag(
 	
 	_drag_requested_angle = 0.0
 	_drag_detectors.clear()
+	_error_detected = false
 
 	for cube in polycube._cubes:
 		for fixed_face in cube._faces:
@@ -215,6 +223,9 @@ func endEdgeDrag(commit: bool) -> void:
 			## Add the action into the historic
 			_history.addAction(action)
 			Game._on_unfolding.emit()
+			if(_target.canUnfold()):
+				_target.finalRotation()
+				Game._on_game_finished.emit()
 
 	if is_instance_valid(_target):
 		_target.unselectAllFaces()
@@ -232,6 +243,7 @@ func endEdgeDrag(commit: bool) -> void:
 	_drag_requested_angle = 0.0
 	_drag_release_requested = false
 	_drag_colliding = false
+	_error_detected = false
 
 
 ## Sets the preview angle relative to the initial pose.
@@ -333,11 +345,30 @@ func _physics_process(_delta: float) -> void:
 
 		if _drag_colliding:
 			setPreviewAngle(previous_angle)
+			error()
 			break
-
+	
+	if _error_detected:
+		if absf(_drag_angle - _error_angle) >= ERROR_ANGLE:
+			_error_detected = false
+	
 	if _drag_release_requested:
 		endEdgeDrag(
 			_drag_snapped
 			and not _drag_colliding
 			and absf(_drag_angle) == 90.0
 		)
+
+## Collision feedback: faces flash red and camera shake
+func error() -> void:
+	if _error_detected:
+		return
+
+	_error_detected = true
+	_error_angle = _drag_angle
+	
+	if is_instance_valid(_camera) and _camera.has_method("shake"):
+		_camera.shake()
+		
+	for face in _drag_detectors:
+		face.error()

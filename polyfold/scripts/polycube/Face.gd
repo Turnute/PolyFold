@@ -59,7 +59,14 @@ const CUT_INSET: float = 0.015
 @onready var _ogColor: Color
 ## The color used to highlight the selected face.
 var _selectionColor: Color = Color(1, 1, 0)
-
+## Whether the face is being selected or not
+var _selected: bool = false
+## The color flashed over the face when an incorrect fold occurs
+var _errorColor: Color = Color(1, 0, 0)
+## Whether the face is flashing red or not
+var _error_flashing := false
+## Reference to the face's wireframe structure
+@onready var _wireframe : Node3D = $Wireframe
 ## Dedicated detector used to validate folding collisions.
 @onready var _fold_area: Area3D = $FoldDetector
 ## Collision shape.
@@ -72,9 +79,20 @@ func _ready() -> void:
 	_mesh.mesh = _mesh.mesh.duplicate()
 	_mesh.set_surface_override_material(0, _material)
 	_material.albedo_color = _ogColor
+	_material.emission = _selectionColor
+	_material.emission_energy_multiplier = 0.6
 	
 	createEdges()
 	updateConnectionVisuals()
+	
+	$StaticBody3D.mouse_entered.connect(_on_mouse_entered)
+	$StaticBody3D.mouse_exited.connect(_on_mouse_exited)
+
+func _on_mouse_entered():
+	_wireframe.visible = true
+
+func _on_mouse_exited():
+	_wireframe.visible = false
 
 ## Creates the face's edges
 func createEdges() -> void :
@@ -85,13 +103,17 @@ func createEdges() -> void :
 ## Called when a face is selected. Highlights it and reveals its edges.
 func select() -> void:
 	Log.debug("Face " + str(_id_face) + " sélectionnée !")
+	_selected = true
 	_material.albedo_color = _selectionColor
 	showEdges(true)
+	_material.emission_enabled = true
 
 ## Called when a face is unselected. Removes highlighting and hides its edges.
 func unselect() -> void:
+	_selected = false
 	_material.albedo_color = _ogColor
 	showEdges(false)
+	_material.emission_enabled = false
 
 ## Toggles the face's edge visibility and collision.
 func switchEdges() -> void:
@@ -210,7 +232,7 @@ func updateConnectionVisuals() -> void :
 
 ## Resizes and offsets this face's detector.
 ## Keeps borders shared with stationary neighbours at full size.
-## Insets borders facing moving faces or no faces by 0.1 units.
+## Insets borders facing moving faces or no faces by 0.025 units.
 func updateFoldDetector(moving_faces: Array[int]) -> void:
 	var inset: Array[float] = []
 
@@ -219,7 +241,7 @@ func updateFoldDetector(moving_faces: Array[int]) -> void:
 			neighbour_id != -1
 			and not moving_faces.has(neighbour_id)
 		)
-		inset.append(0.0 if internal else 0.1)
+		inset.append(0.0 if internal else 0.025)
 
 	var box: BoxShape3D = _fold_shape.shape.duplicate()
 	box.margin = 0.0
@@ -235,6 +257,26 @@ func updateFoldDetector(moving_faces: Array[int]) -> void:
 		0.0,
 		(inset[2] - inset[3]) * 0.5
 	)
+
+## Flashes the face red for 0.1 seconds
+func error() -> void:
+	if _error_flashing:
+		return
+
+	_error_flashing = true
+	Log.info("Collision!")
+
+	_material.albedo_color = _errorColor
+	_material.emission = _errorColor
+	await get_tree().create_timer(0.1).timeout
+	if _selected:
+		_material.albedo_color = _selectionColor
+		_material.emission = _selectionColor
+	else:
+		_material.albedo_color = _ogColor
+		_material.emission = _selectionColor
+	_error_flashing = false
+	
 
 func log() -> void :
 	Log.trace(

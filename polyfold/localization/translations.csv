@@ -19,9 +19,6 @@ PAUSE_SETTINGS,Paramètres,Settings,
 PAUSE_HELP,Aide,Help,
 PAUSE_LEAVE,Quitter la partie,Leave the game,
 OPTION_TITLE,Options,Settings,
-FR,Français,French,
-EN,Anglais,English,
-ES,Espagnol,Spanish,Español
 OPTION_LABEL_LANG,Langues,Langages,
 OPTION_LABEL_RES,Résolutions,Resolutions,
 OPTION_LABEL_COMMAND,Commandes,Keybinds,
@@ -56,7 +53,7 @@ GAME_PARAM_CUSTOM_TIME_GOAL,Objectif de temps (s),Time Goal (s),Objetivo de tiem
 CREDIT,Crédits,Credits,Créditos
 VERSION,Version,Version,Versión
 CREDIT_TEAM,Équipe,Team,Equipo
-CREDIT_MEMBER_1,"Sébastian LOVEJOY-BLACK — Scrum Master, développeur","Sébastian LOVEJOY-BLACK — Scrum Master, Developer","Sébastian LOVEJOY-BLACK — Scrum Master, desarrollador"
+CREDIT_MEMBER_1,"Sébastian LOVEJOY-BLACK — Scrum Master, développeur","Sebastian LOVEJOY-BLACK — Scrum Master, Developer","Sebastian LOVEJOY-BLACK — Scrum Master, desarrollador"
 CREDIT_MEMBER_2,"Vincent TOURENNE — Product Owner, développeur","Vincent TOURENNE — Product Owner, Developer","Vincent TOURENNE — Product Owner, desarrollador"
 CREDIT_MEMBER_3,Xavier BAUBET — Développeur,Xavier BAUBET — Developer,Xavier BAUBET — Desarrollador
 CREDIT_MEMBER_4,Clément BINET — Développeur,Clément BINET — Developer,Clément BINET — Desarrollador
@@ -66,3 +63,15 @@ CREDIT_CONTEXT_CONTENT,Projet réalisé dans le cadre du Master Informatique –
 CREDIT_THANKS,Remerciements,Acknowledgements,Agradecimientos
 CREDIT_THANKS_CONTENT,"Nous remercions M. Éric Andres, Professeur des Universités au laboratoire XLIM (Université de Poitiers), pour son encadrement.","We thank Mr. Éric Andres, Full Professor at the XLIM laboratory (University of Poitiers), for his supervision.","Agradecemos al Sr. Éric Andres, catedrático del laboratorio XLIM (Universidad de Poitiers), por su supervisión."
 CREDIT_LICENCE,Réalisé avec Godot Engine (licence MIT),Made with Godot Engine (MIT License),Hecho con Godot Engine (licencia MIT)
+FINISH_TITLE,Partie terminée !,Game Finished !,¡Partida terminada!
+FINISH_GOALS,Objectifs,Goals,Objetivos
+FINISH_GOALS_TIME,Finir en %s,Finish in %s,Terminar en %s
+FINISH_GOALS_TIME_NONE,Pas d'objectif de temps,No time goal,Sin objetivo de tiempo
+FINISH_GOALS_MOVES,Finir en %d coups,Finish in %d moves,Terminar en %d movimientos
+FINISH_GOALS_MOVES_NONE,Pas d'objectif de coups,No moves goal,Sin objetivo de golpes
+FINISH_STATS_UNDO,Annulations,Undo,Deshacer
+FINISH_STATS_REDO,Rétablissements,Redo,Rehacer
+,,,
+LEVEL_LOCKED,Verrouillé,Locked,Bloqueado
+LEVEL_NEW,Nouveau,New,Nuevo
+LEVEL_BEST_SCORE,Record : %d coups,Best: %d moves,Récord: %d movimientos

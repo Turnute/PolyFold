@@ -14,6 +14,7 @@ sky_material = SubResource("ProceduralSkyMaterial_xy3my")
 [sub_resource type="Environment" id="Environment_18ig4"]
 background_mode = 2
 sky = SubResource("Sky_cxv17")
+glow_enabled = true
 
 [node name="Node3D" type="Node3D" unique_id=453980180]
 script = ExtResource("1_xy3my")

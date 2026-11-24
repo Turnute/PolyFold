@@ -3,6 +3,7 @@ extends Control
 
 const GAME_LEVEL := "res://scenes/interfaces/GameLevel.tscn"
 const GAME_SCENE := "res://scenes/GameScene.tscn"
+const FINISH := "res://scenes/interfaces/FinishMenu.tscn"
 const SETTINGS_PAGE := "res://scenes/interfaces/Settings.tscn"
 const HELP := "res://scenes/interfaces/HelpMenu.tscn"
 const PAUSE := "res://scenes/interfaces/PauseMenu.tscn"
@@ -63,6 +64,15 @@ static func _display_polycube(parent : Node, data_str : String, nb_cubes : int, 
 		SpawnPolycube.max_adj = max_adj
 	var polycube = load(GAME_SCENE).instantiate()
 	return polycube
+	
+## 
+static func _display_finish(parent : Node, time: int, moves: int, time_goal: int, moves_goal: int,
+							nb_undo: int, nb_redo: int) -> FinishMenu:
+	Log.info("Display Finish Menu")
+	var interface: FinishMenu = load(FINISH).instantiate()
+	interface.initialize(time, moves, time_goal, moves_goal, nb_undo, nb_redo)
+	parent.add_child(interface)
+	return interface
 
 static func _display_credits(parent: Node) -> void:
 	Log.info("[MenuManager] Display credits")
