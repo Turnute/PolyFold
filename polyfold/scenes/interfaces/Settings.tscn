@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dki35c2uee0uk" path="res://scripts/ui/SettingsPage.gd" id="1_sdea2"]
 [ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="2_4rudf"]
 [ext_resource type="Shader" uid="uid://cgpjs6l2n1hqx" path="res://scenes/shaders/grid_background.gdshader" id="2_jg0ql"]
-[ext_resource type="PackedScene" uid="uid://4s33upjasyn5" path="res://prefabs/interfaces/NavButton.tscn" id="4_26cg0"]
+[ext_resource type="PackedScene" uid="uid://ddxs8yj81gjjr" path="res://prefabs/interfaces/CommandButton.tscn" id="4_2rmw2"]
 [ext_resource type="PackedScene" uid="uid://2la5g75kyjxf" path="res://prefabs/interfaces/BackButton.tscn" id="5_2rmw2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3db7w"]
@@ -72,7 +72,13 @@ base_font = ExtResource("2_4rudf")
 [sub_resource type="FontVariation" id="FontVariation_usbuj"]
 base_font = ExtResource("2_4rudf")
 
-[sub_resource type="FontVariation" id="FontVariation_gxwj6"]
+[sub_resource type="FontVariation" id="FontVariation_gy52r"]
+base_font = ExtResource("2_4rudf")
+
+[sub_resource type="LabelSettings" id="LabelSettings_yubtp"]
+font = SubResource("FontVariation_gy52r")
+font_size = 20
+font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
 
 [node name="Settings" type="Control" unique_id=2113557474]
 layout_mode = 3
@@ -186,19 +192,81 @@ theme_override_fonts/font = SubResource("FontVariation_usbuj")
 theme_override_font_sizes/font_size = 26
 text = "OPTION_LABEL_COMMAND"
 
-[node name="CommandButton" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" unique_id=614178926 instance=ExtResource("4_26cg0")]
+[node name="ControlsContainer" type="MarginContainer" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" unique_id=627588187]
 layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_gxwj6")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="Controls" type="VBoxContainer" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer" unique_id=646191610]
+layout_mode = 2
+
+[node name="Pause_return" type="HBoxContainer" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls" unique_id=1571610625]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="name" type="Label" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Pause_return" unique_id=340847858]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pause/Return"
+label_settings = SubResource("LabelSettings_yubtp")
+
+[node name="CommandButton" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Pause_return" unique_id=614178926 instance=ExtResource("4_2rmw2")]
+layout_mode = 2
+action = &"ui_cancel"
+
+[node name="Undo" type="HBoxContainer" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls" unique_id=1879520233]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="name" type="Label" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Undo" unique_id=677557699]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Undo"
+label_settings = SubResource("LabelSettings_yubtp")
+
+[node name="CommandButton" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Undo" unique_id=606455343 instance=ExtResource("4_2rmw2")]
+layout_mode = 2
+action = &"ui_undo"
+
+[node name="Redo" type="HBoxContainer" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls" unique_id=452220303]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="name" type="Label" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Redo" unique_id=679322501]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Redo"
+label_settings = SubResource("LabelSettings_yubtp")
+
+[node name="CommandButton" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Redo" unique_id=1353577209 instance=ExtResource("4_2rmw2")]
+layout_mode = 2
+action = &"ui_redo"
+
+[node name="Fullscreen" type="HBoxContainer" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls" unique_id=1991046334]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="name" type="Label" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Fullscreen" unique_id=358116071]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fullscreen"
+label_settings = SubResource("LabelSettings_yubtp")
+
+[node name="CommandButton" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Fullscreen" unique_id=596088172 instance=ExtResource("4_2rmw2")]
+layout_mode = 2
+action = &"window_fullscreen"
 
 [node name="HSeparator3" type="HSeparator" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" unique_id=854569780]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="BackButton" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" unique_id=1201228055 instance=ExtResource("5_2rmw2")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-
-[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" unique_id=1055854589]
-layout_mode = 2
 
 [editable path="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/BackButton"]

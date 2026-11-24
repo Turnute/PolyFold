@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://ddxs8yj81gjjr"]
+
+[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="1_yubtp"]
+[ext_resource type="Script" uid="uid://dn385r7jo2wcj" path="res://scripts/ui/CommandButton.gd" id="2_gy52r"]
+
+[sub_resource type="FontVariation" id="FontVariation_pe7jv"]
+base_font = ExtResource("1_yubtp")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yubtp"]
+bg_color = Color(0, 0, 0, 0.5019608)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="CommandButton" type="Button" unique_id=614178926]
+custom_minimum_size = Vector2(150, 50)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/icon_max_width = 32
+theme_override_fonts/font = SubResource("FontVariation_pe7jv")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_yubtp")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yubtp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yubtp")
+script = ExtResource("2_gy52r")
+
+[connection signal="pressed" from="." to="." method="_on_cmd_btn_pressed"]
