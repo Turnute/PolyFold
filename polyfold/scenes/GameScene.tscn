@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://q8ap87w27sm3" path="res://scripts/gameplay/SpawnPolycube.gd" id="1_xy3my"]
 [ext_resource type="Script" uid="uid://c0byudojwg0gv" path="res://scripts/gameplay/Camera3d.gd" id="2_cxv17"]
 [ext_resource type="Script" uid="uid://b6inn0km6nbue" path="res://scripts/gameplay/FoldDragController.gd" id="3_cxv17"]
+[ext_resource type="PackedScene" uid="uid://va0armxu1gj0" path="res://prefabs/folding_plane.tscn" id="4_18ig4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xy3my"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -34,3 +35,5 @@ script = ExtResource("2_cxv17")
 script = ExtResource("3_cxv17")
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D" unique_id=1962511222]
+
+[node name="FoldingPlane" parent="." unique_id=1749935408 instance=ExtResource("4_18ig4")]
