@@ -58,6 +58,8 @@ var _error_detected: bool = false
 var _error_angle: float = 0.0
 ## The angle threshold at which a new error can occur during the same drag. 
 const ERROR_ANGLE: float = 3.0
+## Whether the polycube folds and unfolds on its own at the end of the game.
+var _autofolding = false
 
 ## Resolves the handle's actual hinge and captures every moving face once.
 func beginEdgeDrag(
@@ -66,6 +68,9 @@ func beginEdgeDrag(
 	cam: Camera3D,
 	polycube: Polycube
 ) -> void:
+	if _autofolding:
+		return
+	
 	endEdgeDrag(false)
 
 	if not is_instance_valid(selected_edge):
@@ -224,10 +229,7 @@ func endEdgeDrag(commit: bool) -> void:
 			_history.addAction(action)
 			Game._on_unfolding.emit()
 			if(_target.canUnfold()):
-				_target.finalRotation()
-				Game._on_game_finished.emit()
-				_camera._switch_input_player()
-				_camera._reset_position_camera()
+				endGame()
 
 	if is_instance_valid(_target):
 		_target.unselectAllFaces()
@@ -247,6 +249,14 @@ func endEdgeDrag(commit: bool) -> void:
 	_drag_colliding = false
 	_error_detected = false
 
+## Collection of methods called when the end of the game is triggered.
+func endGame() -> void:
+	_target.finalRotation()
+	autofold()
+	Game._on_game_finished.emit()
+	_camera._rotate()
+	_camera._switch_input_player()
+	_camera._reset_position_camera()
 
 ## Sets the preview angle relative to the initial pose.
 func setPreviewAngle(angle: float) -> void:
@@ -374,3 +384,53 @@ func error() -> void:
 		
 	for face in _drag_detectors:
 		face.error()
+
+## Called at end of game. Folds and Unfolds the polycube on loop using
+## History moves.
+func autofold() -> void:
+	if _autofolding:
+		return
+	
+	_autofolding = true
+	await get_tree().create_timer(2.5).timeout
+	var nb_moves = _history.head_list
+	
+	while _autofolding:
+		for i in range(nb_moves -1, -1, -1):
+			await animateAction(_history._moves[i], true)
+			_history.undo()
+		
+		await get_tree().create_timer(0.8).timeout
+		
+		for i in range(nb_moves):
+			await animateAction(_history._moves[i], false)
+			_history.redo()
+		
+		await get_tree().create_timer(0.8).timeout
+
+## Animates a given undo or redo action with tween.
+func animateAction(action: UnfoldAction, undo: bool) -> void:
+	var polycube : Polycube = _history._polycube
+	var face : Face = polycube.getFace(action._id_cube, action._face)
+	var hinge : Edge = face.getOppositeEdge(face._edges[action._edge])
+	
+	_drag_pivot = hinge.global_position
+	_drag_axis = polycube.getEdgeAxis(face, hinge)
+	_drag_initial_transforms.clear()
+	
+	for face_id in action._group:
+		var member: Face = polycube.getFaceFromFaceId(face_id)
+		_drag_initial_transforms[member] = member.global_transform
+	
+	var angle : float = 90.0
+	if action._dir == UnfoldAction.DirEnum.BWD:
+		angle = -90.0
+	
+	if undo:
+		angle = -1*angle
+	
+	var tween: Tween = create_tween()
+	tween.tween_method(setPreviewAngle, 0.0, angle, 0.4)
+	await tween.finished
+	
+	setPreviewAngle(0.0)

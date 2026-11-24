@@ -40,6 +40,10 @@ project/assembly_name="PolyFold"
 
 enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 
+[filesystem]
+
+import/fbx2gltf/enabled=false
+
 [importer_defaults]
 
 csv_translation={
