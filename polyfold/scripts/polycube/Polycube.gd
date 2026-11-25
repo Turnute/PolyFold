@@ -133,7 +133,7 @@ func finalRotation(duration: float = 2.5) -> void:
 	if normal.y[1] > 0.9:
 		return
 	elif roundi(normal.y[2]) != 0:
-		target_angle_x = 90 if int(normal.y[2]) == -1 else -90
+		target_angle_x = -90 if int(normal.y[2]) == -1 else 90
 	elif roundi(normal.y[0]) != 0:
 		target_angle_z = 90 if int(normal.y[0]) == -1 else -90
 		
@@ -148,6 +148,7 @@ func finalRotation(duration: float = 2.5) -> void:
 	))
 	
 	var end_global_pos: Vector3 = target_world - (end_basis * avg_local)
+	end_global_pos.y = .5
 	var tween: Tween = create_tween()
 	tween.set_parallel(true)
 	tween.set_trans(Tween.TRANS_CUBIC) 
