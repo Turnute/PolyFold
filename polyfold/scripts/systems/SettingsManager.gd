@@ -33,7 +33,7 @@ func _ready() -> void:
 	if OS.has_feature("web"):
 		get_window().mode = Window.MODE_MAXIMIZED
 	else:
-		_apply_window()
+		apply_window()
 
 ## Change the application language
 ## [br][br]
