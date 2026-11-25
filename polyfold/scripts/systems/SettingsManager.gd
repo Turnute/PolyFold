@@ -29,7 +29,11 @@ func _ready() -> void:
 	
 	TranslationServer.set_locale(locale)
 	Log.info(LOG_TAG + "Langue active : " + TranslationServer.get_locale())
-	apply_window()
+	
+	if OS.has_feature("web"):
+		get_window().mode = Window.MODE_MAXIMIZED
+	else:
+		apply_window()
 
 ## Change the application language
 ## [br][br]
@@ -57,6 +61,8 @@ func set_resolution(value: Vector2i) -> void:
 ## [b]Parameters:[/b]
 ## [br]- [param value]: true to enter in fullscreen, else false
 func set_fullscreen(value: bool) -> void:
+	if (OS.has_feature("web")):
+		pass
 	fullscreen = value
 	Log.info(LOG_TAG + "Plein écran : %s" % fullscreen)
 	apply_window()
