@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="PolycubeData" format=3 uid="uid://18tymeqrvpot"]
-
-[ext_resource type="Script" uid="uid://dc4v6f25cghss" path="res://scripts/data/PolycubeData.gd" id="1_gl4ww"]
-
-[resource]
-script = ExtResource("1_gl4ww")
-cube_matrix = Array[Vector3i]([Vector3i(0, 0, 0)])
-metadata/_custom_type_script = "uid://dc4v6f25cghss"

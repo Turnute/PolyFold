@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PolycubeData" format=3 uid="uid://bkmrv4wk8dvgs"]
+
+[ext_resource type="Script" uid="uid://dc4v6f25cghss" path="res://scripts/data/PolycubeData.gd" id="1_knie6"]
+
+[resource]
+script = ExtResource("1_knie6")
+cube_matrix = Array[Vector3i]([Vector3i(1, 0, -1), Vector3i(1, 0, 0), Vector3i(1, 0, 1), Vector3i(0, 0, -1), Vector3i(0, 0, 1), Vector3i(-1, 0, 1), Vector3i(-1, 0, 0), Vector3i(-1, 0, -1), Vector3i(1, 2, -1), Vector3i(1, 2, 0), Vector3i(1, 2, 1), Vector3i(0, 2, -1), Vector3i(0, 2, 1), Vector3i(-1, 2, 1), Vector3i(-1, 2, 0), Vector3i(-1, 2, -1), Vector3i(1, 1, -1), Vector3i(1, 1, 1), Vector3i(-1, 1, -1), Vector3i(-1, 1, 1)])
+metadata/_custom_type_script = "uid://dc4v6f25cghss"

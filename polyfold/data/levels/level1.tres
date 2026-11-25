@@ -1,12 +1,12 @@
-[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://dc5mixovq6oui"]
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://drs7hls4phe5m"]
 
-[ext_resource type="Resource" uid="uid://bxryoxvjajiao" path="res://data/polycubes/poly1.tres" id="1_cnf1w"]
-[ext_resource type="Script" uid="uid://cv58d7q6nfdfu" path="res://scripts/data/LevelData.gd" id="1_imdmg"]
+[ext_resource type="Resource" uid="uid://18tymeqrvpot" path="res://data/polycubes/Poly1.tres" id="1_f3ptp"]
+[ext_resource type="Script" uid="uid://cv58d7q6nfdfu" path="res://scripts/data/LevelData.gd" id="2_63lwk"]
 
 [resource]
-script = ExtResource("1_imdmg")
-id = 2
-move_goal = 20
+script = ExtResource("2_63lwk")
+id = 1
+move_goal = 10
 time_goal = 60
-polycube_file = ExtResource("1_cnf1w")
+polycube_file = ExtResource("1_f3ptp")
 metadata/_custom_type_script = "uid://cv58d7q6nfdfu"
