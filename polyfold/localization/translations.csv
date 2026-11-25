@@ -84,3 +84,7 @@ LEVEL_BEST_MOVES,Meilleur coup : %d,Best moves: %d,Mejores movimientos: %d
 LEVEL_BEST_TIME,Temps : %s,Time: %s,Tiempo: %s
 LEVEL_INFO,Niveau %d — %s\nObjectifs : %d coups  |  %s,Level %d — %s\nGoals: %d moves  |  %s,Nivel %d — %s\nObjetivos: %d movimientos  |  %s
 LEVEL_1,Le cube,The cube,El cubo
+LEVEL_2,Angle,Angle,Ángulo
+LEVEL_3,Logo,Logo,Logotipo
+LEVEL_4,L'arbre,The Tree,El árbol
+LEVEL_5,Homme bâton,Stick Figure,Muñeco de palo
