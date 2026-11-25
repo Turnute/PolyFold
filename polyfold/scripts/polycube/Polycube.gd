@@ -436,6 +436,17 @@ func findFarthestHandle(group: Array[int], anchor: Face, hinge: Edge) -> Edge:
 
 	return best
 
+## Hides all edges in the polycube's faces except one
+func hideAllEdgesExceptOne(edge: Edge) -> void:
+	for c in _cubes:
+		for f in c._faces:
+			for e in f._edges:
+				if e.get_rid() == edge.get_rid():
+					continue
+				else:
+					f.showEdge(e._side, false)
+					
+
 func log() -> void :
 	Log.trace("Polycube")
 	for c in _cubes:

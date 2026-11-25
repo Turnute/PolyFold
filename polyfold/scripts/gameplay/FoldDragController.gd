@@ -85,6 +85,8 @@ func beginEdgeDrag(
 		return
 
 	var hinge: Edge = face.getOppositeEdge(face._edges[action._edge])
+	face.showHinge(hinge._side, true)
+	polycube.hideAllEdgesExceptOne(selected_edge)
 	var group: Array[int] = polycube.getFoldGroup(
 		face._id_face,
 		action._edge
@@ -233,6 +235,7 @@ func endEdgeDrag(commit: bool) -> void:
 
 	if is_instance_valid(_target):
 		_target.unselectAllFaces()
+	_drag_face.showHinge(_drag_hinge._side, false)
 	_camera = null
 	_target = null
 	_drag_edge = null
@@ -254,9 +257,10 @@ func endGame() -> void:
 	_target.finalRotation()
 	autofold()
 	Game._on_game_finished.emit()
-	_camera._rotate()
-	_camera._switch_input_player()
-	_camera._reset_position_camera()
+	if _camera.has_method("_rotate"):
+		_camera._rotate()
+		_camera._switch_input_player()
+		_camera._reset_position_camera()
 
 ## Sets the preview angle relative to the initial pose.
 func setPreviewAngle(angle: float) -> void:
@@ -388,7 +392,7 @@ func error() -> void:
 ## Called at end of game. Folds and Unfolds the polycube on loop using
 ## History moves.
 func autofold() -> void:
-	if _autofolding:
+	if _autofolding or not is_inside_tree():
 		return
 	
 	_autofolding = true
