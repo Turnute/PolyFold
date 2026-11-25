@@ -130,7 +130,7 @@ func finalRotation(duration: float = 2.5) -> void:
 	
 	var ref_face : Face = _cubes[0]._faces[0]
 	var normal = ref_face.global_transform.basis
-	if normal.y[1] > 0.9:
+	if normal.y[1] > 0.9 or normal.y[1] < -0.9:
 		return
 	elif roundi(normal.y[2]) != 0:
 		target_angle_x = -90 if int(normal.y[2]) == -1 else 90
