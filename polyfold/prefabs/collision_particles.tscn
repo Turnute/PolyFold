@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://3osb8mpcugus"]
+
+[ext_resource type="Material" uid="uid://bnq4ux4avxu7g" path="res://materials/error_particle.tres" id="1_4a2px"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_sxki6"]
+material = ExtResource("1_4a2px")
+inner_radius = 0.85
+outer_radius = 0.95
+rings = 32
+ring_segments = 8
+
+[sub_resource type="Curve" id="Curve_8uy76"]
+_data = [Vector2(0, 0.1875), 0.0, 2.143781, 0, 0, Vector2(0.99999994, 1), 0.37060893, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_wqvgw"]
+offsets = PackedFloat32Array(0, 0.502809, 1)
+colors = PackedColorArray(1, 0.85490197, 0.5803922, 1, 1, 0.61960787, 0.25882354, 0.8117647, 1, 0.61960787, 0.25882354, 0)
+
+[node name="CPUParticles3D" type="CPUParticles3D" unique_id=1429786018]
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("TorusMesh_sxki6")
+gravity = Vector3(0, 0, 0)
+scale_amount_curve = SubResource("Curve_8uy76")
+color_ramp = SubResource("Gradient_wqvgw")
