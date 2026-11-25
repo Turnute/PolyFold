@@ -35,6 +35,17 @@ size = Vector3(0.01, 0.01, 0.99)
 material = ExtResource("2_vbuov")
 size = Vector3(0.01, 0.05, 0.01)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m7ri8"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sxki6"]
+material = SubResource("StandardMaterial3D_m7ri8")
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.5
+
 [node name="Face" type="Node3D" unique_id=503661519]
 script = ExtResource("1_4gycn")
 
@@ -118,3 +129,25 @@ mesh = SubResource("BoxMesh_huy67")
 [node name="BotRight" type="MeshInstance3D" parent="Wireframe/Corners" unique_id=795952265]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 mesh = SubResource("BoxMesh_huy67")
+
+[node name="Hinges" type="Node3D" parent="." unique_id=2116710333]
+
+[node name="TopHinge" type="MeshInstance3D" parent="Hinges" unique_id=706964207]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.5, 0, 0)
+visible = false
+mesh = SubResource("CylinderMesh_sxki6")
+
+[node name="BotHinge" type="MeshInstance3D" parent="Hinges" unique_id=1406393573]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.5, 0, 0)
+visible = false
+mesh = SubResource("CylinderMesh_sxki6")
+
+[node name="LeftHinge" type="MeshInstance3D" parent="Hinges" unique_id=395357633]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, -0.5)
+visible = false
+mesh = SubResource("CylinderMesh_sxki6")
+
+[node name="RightHinge" type="MeshInstance3D" parent="Hinges" unique_id=589052531]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0.5)
+visible = false
+mesh = SubResource("CylinderMesh_sxki6")

@@ -9,12 +9,12 @@ func _ready() -> void:
 	Log.debug(LOG_TAG + "ready")
 
 func _on_mode_level_button_pressed() -> void:
-	Log.info(LOG_TAG + "Mode Level sélectionné")
+	Log.info(LOG_TAG + "Level mode selected")
 	get_parent().add_child(GAME_LEVEL_SELECT.instantiate())
 	queue_free()
 
 func _on_mode_custom_button_pressed() -> void:
-	Log.info(LOG_TAG + "Mode personnalisé sélectionné")
+	Log.info(LOG_TAG + "Custom mode selected")
 	get_parent().add_child(GAME_PARAM_CUSTOM.instantiate())
 	queue_free()
 

@@ -6,8 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://va0armxu1gj0" path="res://prefabs/folding_plane.tscn" id="4_18ig4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xy3my"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+sky_top_color = Color(0.09019608, 0.13725491, 0.21960784, 1)
+sky_horizon_color = Color(0.20784314, 0.27450982, 0.36862746, 1)
+sky_curve = 0.2
+ground_bottom_color = Color(0.1254902, 0.17254902, 0.2509804, 1)
+ground_horizon_color = Color(0.20784314, 0.27450982, 0.36862746, 1)
+ground_curve = 0.2
+sun_angle_max = 0.0
 
 [sub_resource type="Sky" id="Sky_cxv17"]
 sky_material = SubResource("ProceduralSkyMaterial_xy3my")
@@ -15,6 +20,9 @@ sky_material = SubResource("ProceduralSkyMaterial_xy3my")
 [sub_resource type="Environment" id="Environment_18ig4"]
 background_mode = 2
 sky = SubResource("Sky_cxv17")
+ambient_light_source = 2
+ambient_light_color = Color(0.8627451, 0.8980392, 0.9607843, 1)
+ambient_light_energy = 0.5
 glow_enabled = true
 
 [node name="Node3D" type="Node3D" unique_id=453980180]

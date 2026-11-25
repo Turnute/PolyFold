@@ -16,11 +16,22 @@ func initialize(time: int, moves: int, time_goal: int, moves_goal: int,
 	# Stars
 	var star_yellow = Color.html("#f6c445")
 	var star_gray = Color.html("#7a869680")
+	
 	get_node("%Star_1").self_modulate = star_yellow
-	get_node("%Star_2").self_modulate = star_yellow
-	get_node("%Star_3").self_modulate = star_yellow
+	get_node("%Star_2").self_modulate = star_gray
+	get_node("%Star_3").self_modulate = star_gray
 	
+	var stars := 1
+	if (moves) <= moves_goal:
+		stars += 1  # objectif de coups
+	if (time/1000) <= time_goal:
+		stars += 1  # objectif de temps
 	
+	if(stars >= 2):
+		get_node("%Star_2").self_modulate = star_yellow
+	if(stars >= 3):
+		get_node("%Star_3").self_modulate = star_yellow
+		
 	
 	# Infos
 	var total_time := int(max(time, 0.0) / 10.0)

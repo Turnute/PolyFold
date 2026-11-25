@@ -208,7 +208,7 @@ alignment = 1
 [node name="name" type="Label" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Pause_return" unique_id=340847858]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Pause/Return"
+text = "OPTION_CONTROLS_PAUSE"
 label_settings = SubResource("LabelSettings_yubtp")
 
 [node name="CommandButton" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Pause_return" unique_id=614178926 instance=ExtResource("4_2rmw2")]
@@ -223,7 +223,7 @@ alignment = 1
 [node name="name" type="Label" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Undo" unique_id=677557699]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Undo"
+text = "OPTION_CONTROLS_UNDO"
 label_settings = SubResource("LabelSettings_yubtp")
 
 [node name="CommandButton" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Undo" unique_id=606455343 instance=ExtResource("4_2rmw2")]
@@ -238,7 +238,7 @@ alignment = 1
 [node name="name" type="Label" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Redo" unique_id=679322501]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Redo"
+text = "OPTION_CONTROLS_REDO"
 label_settings = SubResource("LabelSettings_yubtp")
 
 [node name="CommandButton" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Redo" unique_id=1353577209 instance=ExtResource("4_2rmw2")]
@@ -253,7 +253,7 @@ alignment = 1
 [node name="name" type="Label" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Fullscreen" unique_id=358116071]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Fullscreen"
+text = "OPTION_CONTROLS_FULLSCREEN"
 label_settings = SubResource("LabelSettings_yubtp")
 
 [node name="CommandButton" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Fullscreen" unique_id=596088172 instance=ExtResource("4_2rmw2")]
@@ -268,5 +268,9 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
+
+[connection signal="item_selected" from="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/LangSelect" to="." method="_on_lang_select_item_selected"]
+[connection signal="item_selected" from="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ResSelect" to="." method="_on_res_select_item_selected"]
+[connection signal="toggled" from="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/FullscreenCheck" to="." method="_on_fullscreen_check_toggled"]
 
 [editable path="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/BackButton"]

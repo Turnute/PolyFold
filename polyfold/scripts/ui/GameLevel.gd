@@ -6,7 +6,6 @@ var temps_ecoule : int = 0
 var debut_pause_temps : int = 0
 var chrono_is_running : bool = false
 var moves : int = 0
-var all_moves : int = 0
 var time_goal : int = 0
 var move_goal : int = 0
 var nb_undo : int = 0
@@ -106,8 +105,6 @@ func _process(delta: float) -> void:
 func addMove() -> void:
 	moves += 1
 	%move_number.text = TranslationServer.translate("GAME_LEVEL_MOVE") % moves
-	if(moves > all_moves):
-		all_moves = moves
 	refreshActionButtons()
 
 ## Remove one move
@@ -132,7 +129,7 @@ func refreshActionButtons() -> void:
 		%undo_button.disabled = false
 	
 	# Redo
-	if(moves == all_moves):
+	if(History._moves.size() == History.head_list):
 		%redo_button.disabled = true
 	else:
 		%redo_button.disabled = false
@@ -143,7 +140,7 @@ func _on_undo_button_pressed() -> void:
 	var done : bool = History.undo()
 	if(done):
 		nb_undo += 1
-		removeMove()
+		addMove()
 	
 
 ## Function called when the [code]redo_button[/code] button is pressed.

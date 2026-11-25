@@ -9,6 +9,8 @@ const DIRECTION_LOCK_ANGLE: float = 4.0
 const SNAP_ENTER_ANGLE: float = 75.0
 ## Minimum angle in degrees required to remain snapped.
 const SNAP_EXIT_ANGLE: float = 70.0
+## Collision particle effect
+const COLLISION_EFFECT = preload("res://prefabs/collision_particles.tscn")
 
 ## Camera used for screen projection.
 var _camera: Camera3D
@@ -60,6 +62,8 @@ var _error_angle: float = 0.0
 const ERROR_ANGLE: float = 3.0
 ## Whether the polycube folds and unfolds on its own at the end of the game.
 var _autofolding = false
+## Location of a collision
+var _collision_point : Vector3
 
 ## Resolves the handle's actual hinge and captures every moving face once.
 func beginEdgeDrag(
@@ -85,6 +89,8 @@ func beginEdgeDrag(
 		return
 
 	var hinge: Edge = face.getOppositeEdge(face._edges[action._edge])
+	face.showHinge(hinge._side, true)
+	polycube.hideAllEdgesExceptOne(selected_edge)
 	var group: Array[int] = polycube.getFoldGroup(
 		face._id_face,
 		action._edge
@@ -233,6 +239,7 @@ func endEdgeDrag(commit: bool) -> void:
 
 	if is_instance_valid(_target):
 		_target.unselectAllFaces()
+	_drag_face.showHinge(_drag_hinge._side, false)
 	_camera = null
 	_target = null
 	_drag_edge = null
@@ -254,9 +261,10 @@ func endGame() -> void:
 	_target.finalRotation()
 	autofold()
 	Game._on_game_finished.emit()
-	_camera._rotate()
-	_camera._switch_input_player()
-	_camera._reset_position_camera()
+	if _camera.has_method("_rotate"):
+		_camera._rotate()
+		_camera._switch_input_player()
+		_camera._reset_position_camera()
 
 ## Sets the preview angle relative to the initial pose.
 func setPreviewAngle(angle: float) -> void:
@@ -326,8 +334,10 @@ func previewOverlaps() -> bool:
 			face.global_transform
 			* Transform3D(Basis.IDENTITY, offset)
 		)
-
-		if not space.intersect_shape(query, 1).is_empty():
+		
+		var result := space.get_rest_info(query)
+		if not result.is_empty():
+			_collision_point = result["point"]
 			return true
 
 	return false
@@ -384,11 +394,21 @@ func error() -> void:
 		
 	for face in _drag_detectors:
 		face.error()
+	
+	spawnCollisionEffect(_collision_point)
+
+## Spawn a collision particle effect at the designated location
+func spawnCollisionEffect(pos: Vector3) -> void:
+	var effect: CPUParticles3D = COLLISION_EFFECT.instantiate()
+	get_tree().current_scene.add_child(effect)
+	effect.global_position = pos
+	effect.finished.connect(effect.queue_free)
+	effect.emitting = true
 
 ## Called at end of game. Folds and Unfolds the polycube on loop using
 ## History moves.
 func autofold() -> void:
-	if _autofolding:
+	if _autofolding or not is_inside_tree():
 		return
 	
 	_autofolding = true

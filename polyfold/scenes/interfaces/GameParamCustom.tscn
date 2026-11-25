@@ -2,17 +2,35 @@
 
 [ext_resource type="Script" uid="uid://c6svl7wl1gvob" path="res://scripts/ui/GameParamCustom.gd" id="1_orwuu"]
 [ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="2_0u0y5"]
+[ext_resource type="Shader" uid="uid://cgpjs6l2n1hqx" path="res://scenes/shaders/grid_background.gdshader" id="2_j8388"]
 [ext_resource type="PackedScene" uid="uid://4s33upjasyn5" path="res://prefabs/interfaces/NavButton.tscn" id="3_q5wa3"]
 [ext_resource type="Texture2D" uid="uid://cjodlp5gky7ka" path="res://assets/icons/play.svg" id="4_23l5c"]
 [ext_resource type="PackedScene" uid="uid://2la5g75kyjxf" path="res://prefabs/interfaces/BackButton.tscn" id="5_j8388"]
 [ext_resource type="PackedScene" uid="uid://n1nupa36ocyr" path="res://prefabs/interfaces/HelpButton.tscn" id="7_jqbch"]
 
-[sub_resource type="Gradient" id="Gradient_ac62s"]
-offsets = PackedFloat32Array(0, 0.8694915)
-colors = PackedColorArray(0.26993462, 0.4844079, 0.988347, 1, 1, 1, 1, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3db7w"]
+shader = ExtResource("2_j8388")
+shader_parameter/color_top = Color(0.8039216, 0.8, 0.023529412, 1)
+shader_parameter/color_bottom = Color(0.9939036, 0.2938506, 0.23741719, 1)
+shader_parameter/cell_size = 48.0
+shader_parameter/speed = 12.0
+shader_parameter/line_width = 1.5
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_3db7w"]
-gradient = SubResource("Gradient_ac62s")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0u0y5"]
+bg_color = Color(0.9529412, 0.92941177, 0.7058824, 0.58431375)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="FontVariation" id="FontVariation_f2e7p"]
+base_font = ExtResource("2_0u0y5")
+variation_embolden = 1.0
 
 [sub_resource type="FontVariation" id="FontVariation_hlm2k"]
 base_font = ExtResource("2_0u0y5")
@@ -23,9 +41,29 @@ font = SubResource("FontVariation_hlm2k")
 font_size = 64
 font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
 
+[sub_resource type="FontVariation" id="FontVariation_q5wa3"]
+base_font = ExtResource("2_0u0y5")
+variation_embolden = 0.5
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3db7w"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6otgt"]
+[sub_resource type="FontVariation" id="FontVariation_23l5c"]
+base_font = ExtResource("2_0u0y5")
+
+[sub_resource type="FontVariation" id="FontVariation_otbwk"]
+base_font = ExtResource("2_0u0y5")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j8388"]
+
+[sub_resource type="FontVariation" id="FontVariation_0u0y5"]
+base_font = ExtResource("2_0u0y5")
+variation_embolden = 0.5
+
+[sub_resource type="FontVariation" id="FontVariation_20krv"]
+base_font = ExtResource("2_0u0y5")
+
+[sub_resource type="FontVariation" id="FontVariation_jqbch"]
+base_font = ExtResource("2_0u0y5")
 
 [node name="GameParamCustom" type="Control" unique_id=1346635894]
 layout_mode = 3
@@ -36,7 +74,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_orwuu")
 
-[node name="Background" type="TextureRect" parent="." unique_id=1062525419]
+[node name="Background" type="ColorRect" parent="." unique_id=2007528109]
+material = SubResource("ShaderMaterial_3db7w")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,175 +83,188 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.1113402, 1.1577446)
-texture = SubResource("GradientTexture1D_3db7w")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1237686117]
+[node name="Header" type="MarginContainer" parent="." unique_id=951714709]
+layout_mode = 1
+offset_right = 200.0
+offset_bottom = 64.0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="BackButton" parent="Header" unique_id=614178926 instance=ExtResource("5_j8388")]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1829896714]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -156.5
-offset_top = -109.0
-offset_right = 156.5
-offset_bottom = 109.0
+offset_left = -379.5
+offset_top = -296.0
+offset_right = 383.5
+offset_bottom = 296.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0u0y5")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1237686117]
+layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=70337671]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=70337671]
 layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1396326537]
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1396326537]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+theme_override_fonts/font = SubResource("FontVariation_f2e7p")
 theme_override_font_sizes/font_size = 80
 text = "GAME_PARAM_CUSTOM_TITLE"
 label_settings = SubResource("LabelSettings_4p8d8")
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1395680831]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1395680831]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="ParamPolycube" type="Label" parent="MarginContainer/VBoxContainer" unique_id=121148548]
+[node name="ParamPolycube" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=121148548]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = SubResource("FontVariation_q5wa3")
+theme_override_font_sizes/font_size = 25
 text = "GAME_PARAM_CUSTOM_POLYCUBE"
 
-[node name="HSeparator6" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1005561515]
+[node name="HSeparator6" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1005561515]
 layout_mode = 2
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_3db7w")
 
-[node name="GridContainer1" type="GridContainer" parent="MarginContainer/VBoxContainer" unique_id=1747997594]
+[node name="GridContainer1" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1747997594]
 layout_mode = 2
 columns = 3
 
-[node name="PolycubeFileLab" type="Label" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=641276878]
+[node name="NbCubeLab" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer1" unique_id=1204704111]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.1882353, 0.38431373, 0.52156866, 1)
+theme_override_fonts/font = SubResource("FontVariation_23l5c")
+theme_override_font_sizes/font_size = 20
 text = "GAME_PARAM_CUSTOM_CUBE"
 
-[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=511093748]
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer1" unique_id=1059952334]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="PolycubeFile" type="TextEdit" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=43441965]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="NbCubeLab" type="Label" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=1204704111]
-layout_mode = 2
-text = "GAME_PARAM_CUSTOM_CUBE"
-
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=1059952334]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="NbCube" type="SpinBox" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=794122052]
+[node name="NbCube" type="SpinBox" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer1" unique_id=794122052]
 unique_name_in_owner = true
 layout_mode = 2
 min_value = 1.0
 value = 1.0
+alignment = 1
 
-[node name="MaxAdjLab" type="Label" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=845937532]
+[node name="MaxAdjLab" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer1" unique_id=845937532]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.1882353, 0.38431373, 0.52156866, 1)
+theme_override_fonts/font = SubResource("FontVariation_otbwk")
+theme_override_font_sizes/font_size = 20
 text = "GAME_PARAM_CUSTOM_ADJ"
 
-[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=1530428683]
+[node name="MarginContainer3" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer1" unique_id=1530428683]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="MaxAdj" type="SpinBox" parent="MarginContainer/VBoxContainer/GridContainer1" unique_id=1169986843]
+[node name="MaxAdj" type="SpinBox" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer1" unique_id=1169986843]
 unique_name_in_owner = true
 layout_mode = 2
 min_value = 2.0
 max_value = 6.0
 value = 2.0
+alignment = 1
 
-[node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1391649159]
+[node name="HSeparator4" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1391649159]
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 25
+theme_override_styles/separator = SubResource("StyleBoxEmpty_j8388")
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=824371109]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=824371109]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = SubResource("FontVariation_0u0y5")
+theme_override_font_sizes/font_size = 25
 text = "GAME_PARAM_CUSTOM_ROUND"
 
-[node name="HSeparator5" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1276100034]
+[node name="HSeparator5" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1276100034]
 layout_mode = 2
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_3db7w")
 
-[node name="GridContainer2" type="GridContainer" parent="MarginContainer/VBoxContainer" unique_id=1264893848]
+[node name="GridContainer2" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1264893848]
 layout_mode = 2
 columns = 3
 
-[node name="MOVE_GOAL" type="Label" parent="MarginContainer/VBoxContainer/GridContainer2" unique_id=164361365]
+[node name="MOVE_GOAL" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2" unique_id=164361365]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.18973714, 0.38572815, 0.5235242, 1)
+theme_override_fonts/font = SubResource("FontVariation_20krv")
+theme_override_font_sizes/font_size = 20
 text = "GAME_PARAM_CUSTOM_MOVE_GOAL"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer2" unique_id=734877247]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2" unique_id=734877247]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="MoveGoal" type="SpinBox" parent="MarginContainer/VBoxContainer/GridContainer2" unique_id=399294359]
+[node name="MoveGoal" type="SpinBox" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2" unique_id=399294359]
 unique_name_in_owner = true
 layout_mode = 2
+alignment = 1
 
-[node name="TIME_GOAL" type="Label" parent="MarginContainer/VBoxContainer/GridContainer2" unique_id=193647032]
+[node name="TIME_GOAL" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2" unique_id=193647032]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.1882353, 0.38431373, 0.52156866, 1)
+theme_override_fonts/font = SubResource("FontVariation_jqbch")
+theme_override_font_sizes/font_size = 20
 text = "GAME_PARAM_CUSTOM_TIME_GOAL"
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer2" unique_id=1278644303]
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2" unique_id=1278644303]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="TimeGoal" type="SpinBox" parent="MarginContainer/VBoxContainer/GridContainer2" unique_id=702565353]
+[node name="TimeGoal" type="SpinBox" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer2" unique_id=702565353]
 unique_name_in_owner = true
 layout_mode = 2
+alignment = 1
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=313377487]
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=313377487]
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 25
 
-[node name="StartButton" parent="MarginContainer/VBoxContainer" unique_id=614178926 instance=ExtResource("3_q5wa3")]
+[node name="StartButton" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1085229077 instance=ExtResource("3_q5wa3")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "BUTTON_START"
 icon = ExtResource("4_23l5c")
-
-[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1469480911]
-layout_mode = 2
-theme_override_constants/separation = 12
-theme_override_styles/separator = SubResource("StyleBoxEmpty_6otgt")
-
-[node name="BackButton" parent="MarginContainer/VBoxContainer" unique_id=1336113725 instance=ExtResource("5_j8388")]
-layout_mode = 2
-size_flags_horizontal = 4
 
 [node name="Footer" type="MarginContainer" parent="." unique_id=460263239]
 layout_mode = 1
@@ -234,8 +286,8 @@ layout_mode = 2
 layout_mode = 2
 text = "ABOUT"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Header/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Footer/HBoxContainer/HelpButton" to="." method="_on_help_button_pressed"]
 
-[editable path="MarginContainer/VBoxContainer/StartButton"]
+[editable path="PanelContainer/MarginContainer/VBoxContainer/StartButton"]

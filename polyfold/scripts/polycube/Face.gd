@@ -44,6 +44,14 @@ static func faceIdToCubeIDWithSide(faceId : int) -> Array[int] :
 ## The face's edges, indexed by EdgeEnum.
 var _edges : Array[Edge]
 
+## The face's hinges, indexed by EdgeEnum.
+@onready var _hinges : Array[MeshInstance3D] = [
+	$Hinges/TopHinge,
+	$Hinges/BotHinge,
+	$Hinges/LeftHinge,
+	$Hinges/RightHinge
+]
+
 ## This face's adjacency list. Contains the unique identifiers of
 ## neighbouring faces, indexed by EdgeEnum (-1 if disconnected).
 var _adj_faces : Array[int]
@@ -124,6 +132,10 @@ func switchEdges() -> void:
 func showEdges(vis: bool) -> void:
 	for e in _edges:
 		e.showEdge(vis)
+
+## Sets the visibility and collision state of the designated edge.
+func showEdge(side: Edge.EdgeEnum, vis: bool) -> void:
+	_edges[side].showEdge(vis)
 
 ## Creates and stores an edge.
 func createEdge(edge_side: Edge.EdgeEnum, pos: Vector3) -> void:
@@ -276,7 +288,10 @@ func error() -> void:
 		_material.albedo_color = _ogColor
 		_material.emission = _selectionColor
 	_error_flashing = false
-	
+
+## Sets visibility for the designated hinge
+func showHinge(side: Edge.EdgeEnum, vis: bool) -> void:
+	_hinges[side].visible = vis
 
 func log() -> void :
 	Log.trace(

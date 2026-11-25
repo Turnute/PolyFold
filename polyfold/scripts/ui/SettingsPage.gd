@@ -4,6 +4,8 @@ extends Control
 # cf /scripts/SettingsManager.gd 
 # => const value LOCALES & RESOLUTIONS
 
+const LOG_TAG := "[SettingsPage] "
+
 signal back 
 
 @onready var lang_select: OptionButton = %LangSelect
@@ -22,14 +24,10 @@ func _ready() -> void:
 	
 	_fill_lists()
 	_refresh()
-	lang_select.item_selected.connect(_on_lang_selected)
-	res_select.item_selected.connect(_on_res_selected)
-	fullscreen_check.toggled.connect(_on_fullscreen_toggled)
 	back.connect(queue_free)
 	back_button.pressed.connect(back.emit)
 
-
-## Fil list with Settings.gd const
+## Fil list (Select) with Settings.gd const
 func _fill_lists() -> void:
 	for lang in Settings.LOCALES:
 		lang_select.add_item(Settings.LANGUAGE_NAMES[lang])             # "Français", "English"… jamais traduit
@@ -42,9 +40,9 @@ func _fill_lists() -> void:
 			res_select.set_item_metadata(res_select.item_count - 1, res)
 
 
-## Actual choice
+## Show the current settings in the menu.
 func _refresh() -> void:
-	Log.debug("Refresh called")
+	Log.debug(LOG_TAG + "Refresh called")
 	_select_by_metadata(lang_select, Settings.locale)
 	_select_by_metadata(res_select, Settings.resolution)
 	fullscreen_check.set_pressed_no_signal(Settings.fullscreen)
@@ -58,20 +56,27 @@ func _select_by_metadata(select: OptionButton, value: Variant) -> void:
 			return
 
 
-func _on_lang_selected(index: int) -> void:
+func _on_lang_select_item_selected(index: int) -> void:
 	Settings.set_locale(lang_select.get_item_metadata(index))
 
 
-func _on_res_selected(index: int) -> void:
+func _on_res_select_item_selected(index: int) -> void:
 	Settings.set_resolution(res_select.get_item_metadata(index))
 
-func _on_fullscreen_toggled(on: bool) -> void:
-	Log.debug("Fullscreen toggled")
-	Settings.set_fullscreen(on)
-	res_select.disabled = on # lock res choice if fullscreen on
-	fullscreen_check.set_pressed_no_signal(on)
 
+func _on_fullscreen_check_toggled(toggled_on: bool) -> void:
+	Log.debug(LOG_TAG + "Fullscreen toggled")
+	Settings.set_fullscreen(toggled_on)
+	res_select.disabled = toggled_on # lock res choice if fullscreen on
+	fullscreen_check.set_pressed_no_signal(toggled_on)
 
+## Close the menu with [code]Escape[/code]
+## and switch full-screen mode with the full-screen key.
+## [br][br]
+## Does nothing while a command button is waiting for a key.
+## [br][br]
+## [b]Parameters:[/b]
+## [br]- [param event]: The input event
 func _input(event: InputEvent) -> void:
 	if(CmdButton.listening):
 		pass
@@ -81,5 +86,5 @@ func _input(event: InputEvent) -> void:
 			queue_free()
 			get_viewport().set_input_as_handled()
 		elif event.is_action_pressed("window_fullscreen"):
-			_on_fullscreen_toggled(!Settings.fullscreen)
+			_on_fullscreen_check_toggled(!Settings.fullscreen)
 			get_viewport().set_input_as_handled()

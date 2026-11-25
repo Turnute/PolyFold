@@ -1,6 +1,6 @@
 extends Node
 
-const LOG_TAG := "[Settings] "
+const LOG_TAG := "[SettingsManager] "
 const PATH := "user://settings.cfg"
 const LOCALES: Array[String] = ["fr", "en", "es"]
 const LANGUAGE_NAMES := {
@@ -28,8 +28,8 @@ func _ready() -> void:
 		replace_key(action, keys[action])
 	
 	TranslationServer.set_locale(locale)
-	Log.info(LOG_TAG + "Langue active : " + TranslationServer.get_locale())
-	
+	Log.info(LOG_TAG + "Language on : " + TranslationServer.get_locale())
+
 	if OS.has_feature("web"):
 		get_window().mode = Window.MODE_MAXIMIZED
 	else:
@@ -42,7 +42,7 @@ func _ready() -> void:
 func set_locale(value: String) -> void:
 	locale = value
 	TranslationServer.set_locale(locale)
-	Log.info(LOG_TAG + "Langue changée : " + locale)
+	Log.info(LOG_TAG + "Language changed : " + locale)
 	save()
 
 ## Change the window resolution
@@ -51,7 +51,7 @@ func set_locale(value: String) -> void:
 ## [br]- [param value]: Vector corresponding to the new resolution
 func set_resolution(value: Vector2i) -> void:
 	resolution = value
-	Log.info(LOG_TAG + "Résolution changée : %s" % resolution)
+	Log.info(LOG_TAG + "Resolution changed : %s" % resolution)
 	apply_window()
 	save()
 
@@ -64,7 +64,7 @@ func set_fullscreen(value: bool) -> void:
 	if (OS.has_feature("web")):
 		pass
 	fullscreen = value
-	Log.info(LOG_TAG + "Plein écran : %s" % fullscreen)
+	Log.info(LOG_TAG + "Fullscreen : %s" % fullscreen)
 	apply_window()
 	save()
 
@@ -78,7 +78,7 @@ func apply_window() -> void:
 		w.size = resolution
 		w.move_to_center()
 		
-	Log.debug(LOG_TAG + "Fenêtre appliquée (mode : %s, taille : %s)" % [w.mode, w.size])
+	Log.debug(LOG_TAG + "Window apply (mode : %s, size : %s)" % [w.mode, w.size])
 
 ## Save all changes in a config file
 func save() -> void:
@@ -89,9 +89,9 @@ func save() -> void:
 	cfg.set_value("controls", "keys", keys)
 	var err := cfg.save(PATH)
 	if err != OK:
-		Log.error(LOG_TAG + "Échec de la sauvegarde des paramètres (%s)" % error_string(err))
+		Log.error(LOG_TAG + "Failed on parameters saved (%s)" % error_string(err))
 	else:
-		Log.debug(LOG_TAG + "Paramètres sauvegardés")
+		Log.debug(LOG_TAG + "Parameters saved")
 
 ## Load user settings from a config file and apply it
 func _load() -> void:
