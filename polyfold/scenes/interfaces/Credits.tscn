@@ -42,7 +42,7 @@ base_font = ExtResource("3_ugdtc")
 [sub_resource type="FontVariation" id="FontVariation_g7k5t"]
 base_font = ExtResource("3_ugdtc")
 
-[node name="Credit" type="Control" unique_id=1346635894]
+[node name="Credits" type="Control" unique_id=1346635894]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

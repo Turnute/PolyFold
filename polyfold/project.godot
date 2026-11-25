@@ -31,6 +31,8 @@ window/size/window_width_override=1024
 window/size/window_height_override=768
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/stretch/aspect.web="expand"
+display_server/driver.web="default"
 
 [dotnet]
 

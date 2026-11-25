@@ -3,7 +3,10 @@ extends Node
 const GAME_MODE_CHOICE: PackedScene = preload("res://scenes/interfaces/GameModeChoice.tscn")
 
 func _ready() -> void:
-	pass
+	# Web specific settings
+	if OS.has_feature("web"):
+		%QuitButton.hide()
+		get_window().mode = Window.MODE_MAXIMIZED
 
 func _on_play_button_pressed() -> void:
 	add_child(GAME_MODE_CHOICE.instantiate())

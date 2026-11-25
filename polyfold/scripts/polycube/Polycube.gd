@@ -130,10 +130,10 @@ func finalRotation(duration: float = 2.5) -> void:
 	
 	var ref_face : Face = _cubes[0]._faces[0]
 	var normal = ref_face.global_transform.basis
-	if normal.y[1] > 0.9:
+	if normal.y[1] > 0.9 or normal.y[1] < -0.9:
 		return
 	elif roundi(normal.y[2]) != 0:
-		target_angle_x = 90 if int(normal.y[2]) == -1 else -90
+		target_angle_x = -90 if int(normal.y[2]) == -1 else 90
 	elif roundi(normal.y[0]) != 0:
 		target_angle_z = 90 if int(normal.y[0]) == -1 else -90
 		
@@ -148,6 +148,7 @@ func finalRotation(duration: float = 2.5) -> void:
 	))
 	
 	var end_global_pos: Vector3 = target_world - (end_basis * avg_local)
+	end_global_pos.y = .5
 	var tween: Tween = create_tween()
 	tween.set_parallel(true)
 	tween.set_trans(Tween.TRANS_CUBIC) 
@@ -434,6 +435,17 @@ func findFarthestHandle(group: Array[int], anchor: Face, hinge: Edge) -> Edge:
 				best = edge
 
 	return best
+
+## Hides all edges in the polycube's faces except one
+func hideAllEdgesExceptOne(edge: Edge) -> void:
+	for c in _cubes:
+		for f in c._faces:
+			for e in f._edges:
+				if e.get_rid() == edge.get_rid():
+					continue
+				else:
+					f.showEdge(e._side, false)
+					
 
 func log() -> void :
 	Log.trace("Polycube")
