@@ -11,6 +11,7 @@ var time_goal : int = 0
 var move_goal : int = 0
 var nb_undo : int = 0
 var nb_redo : int = 0
+var level_id : int = 0
 
 enum gameMode { LEVEL, PUZZLE, ENDLESS, CUSTOM }
 
@@ -33,6 +34,7 @@ func initialize(mode: gameMode, level_name: String, level_description: String,
 				move_goal: int, time_goal: int) -> void:
 	self.time_goal = time_goal
 	self.move_goal = move_goal
+	self.level_id = int(level_name)
 	
 	if(mode == gameMode.LEVEL):
 		get_node("%level_name").text = TranslationServer.translate("GAME_LEVEL_NAME") % int(level_name)
@@ -189,3 +191,4 @@ func gameFinished() -> void:
 	queue_free()
 	MenuManager._display_finish(parent, temps_ecoule, moves,
 								time_goal, move_goal, nb_undo, nb_redo)
+	SaveLevelManager.save_result(level_id, moves, (temps_ecoule/1000))

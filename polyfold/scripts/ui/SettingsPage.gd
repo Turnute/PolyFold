@@ -71,11 +71,15 @@ func _on_fullscreen_toggled(on: bool) -> void:
 	res_select.disabled = on # lock res choice if fullscreen on
 	fullscreen_check.set_pressed_no_signal(on)
 
+
 func _input(event: InputEvent) -> void:
-	# Handling ui_cancel before parent method
-	if event.is_action_pressed("ui_cancel"):
-		queue_free()
-		get_viewport().set_input_as_handled()
-	elif event.is_action_pressed("window_fullscreen"):
-		_on_fullscreen_toggled(!Settings.fullscreen)
-		get_viewport().set_input_as_handled()
+	if(CmdButton.listening):
+		pass
+	else:
+		# Handling ui_cancel before parent method
+		if event.is_action_pressed("ui_cancel"):
+			queue_free()
+			get_viewport().set_input_as_handled()
+		elif event.is_action_pressed("window_fullscreen"):
+			_on_fullscreen_toggled(!Settings.fullscreen)
+			get_viewport().set_input_as_handled()

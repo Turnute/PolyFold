@@ -20,6 +20,14 @@ var _adj : Array[Array] = []
 var _selected_face_id: int = -1
 ## Stores Shift+Click selected faces
 var _multiselection: Array[int] = []
+## boolean to rotate the polycube at the end
+var _rotating : bool = false
+## rotation speed of polycube
+var _rotation_speed: float = 0.5
+
+func _process(delta):
+	if _rotating:
+		rotation.y += _rotation_speed * delta
 
 ## Initializes the polycube from an array of cubes.
 func _init(cubes: Array[Cube]):
@@ -146,7 +154,7 @@ func finalRotation(duration: float = 2.5) -> void:
 	tween.set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "rotation_degrees", end_rot_deg, duration)
 	tween.tween_property(self, "global_position", end_global_pos, duration)
-
+	#_rotate()
 ## Returns a face from its cube identifier and original side.
 func getFace(id_cube : int, side : Face.FaceEnum) -> Face :
 	return _cubes[id_cube].getFace(side)
@@ -164,6 +172,19 @@ func getAveragePos() -> Vector3 :
 		var c_pos : Vector3 = cube._pos
 		result += c_pos
 	return result / _cubes.size()
+
+## Returns the average faces position in polycube local space.
+func getAveragePosFace() -> Vector3 : 
+	if _cubes.is_empty(): return Vector3i.ZERO
+	var result = Vector3.ZERO
+	var nb_face = 0;
+	for cube in _cubes :
+		for face in cube._faces:
+			var f_pos : Vector3 = face._mesh.global_position
+			result += f_pos
+			nb_face += 1
+			
+	return result / nb_face
 
 ## Removes selection from all faces.
 func unselectAllFaces() -> void :
@@ -425,3 +446,6 @@ func createEdges() -> void :
 	for c in _cubes:
 		for f in c._faces:
 			f.createEdges()
+
+func _rotate():
+	_rotating = not _rotating

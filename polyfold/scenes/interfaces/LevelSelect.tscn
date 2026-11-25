@@ -1,0 +1,235 @@
+[gd_scene format=3 uid="uid://dy406ufhg5j8j"]
+
+[ext_resource type="PackedScene" uid="uid://2la5g75kyjxf" path="res://prefabs/interfaces/BackButton.tscn" id="1_3brj0"]
+[ext_resource type="Script" uid="uid://d0621ef3ehace" path="res://scripts/ui/LevelSelect.gd" id="1_oku38"]
+[ext_resource type="Shader" uid="uid://cgpjs6l2n1hqx" path="res://scenes/shaders/grid_background.gdshader" id="2_d1lq5"]
+[ext_resource type="PackedScene" uid="uid://4s33upjasyn5" path="res://prefabs/interfaces/NavButton.tscn" id="2_gyjqn"]
+[ext_resource type="Texture2D" uid="uid://cjodlp5gky7ka" path="res://assets/icons/play.svg" id="3_oku38"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3db7w"]
+shader = ExtResource("2_d1lq5")
+shader_parameter/color_top = Color(0.86002916, 0.9766583, 0.9971861, 1)
+shader_parameter/color_bottom = Color(0.19062811, 0.6732015, 0.5978715, 1)
+shader_parameter/cell_size = 48.0
+shader_parameter/speed = 12.0
+shader_parameter/line_width = 1.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oku38"]
+content_margin_left = 25.0
+content_margin_top = 10.0
+content_margin_right = 25.0
+content_margin_bottom = 10.0
+bg_color = Color(0.08235294, 0.08235294, 0.08235294, 0.58431375)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.07831762, 0.17975947, 0.29095277, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d1lq5"]
+content_margin_left = 24.0
+content_margin_top = 7.0
+content_margin_right = 24.0
+content_margin_bottom = 7.0
+bg_color = Color(0.95686275, 0.9843137, 0.98039216, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.16470589, 0.6156863, 0.56078434, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 12
+shadow_color = Color(0.11764706, 0.27058825, 0.3764706, 0.2509804)
+shadow_size = 4
+shadow_offset = Vector2(4, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghlii"]
+content_margin_left = 24.0
+content_margin_top = 10.0
+content_margin_right = 24.0
+content_margin_bottom = 10.0
+bg_color = Color(0.84313726, 0.9372549, 0.9254902, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.09019608, 0.41960785, 0.37254903, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 12
+shadow_color = Color(0.11764706, 0.27058825, 0.3764706, 0.1882353)
+shadow_size = 1
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1aqkj"]
+content_margin_left = 24.0
+content_margin_top = 10.0
+content_margin_right = 24.0
+content_margin_bottom = 10.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.12156863, 0.5411765, 0.47843137, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 12
+shadow_color = Color(0.11764706, 0.27058825, 0.3764706, 0.33333334)
+shadow_size = 8
+shadow_offset = Vector2(6, 6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eu15o"]
+content_margin_left = 24.0
+content_margin_top = 10.0
+content_margin_right = 24.0
+content_margin_bottom = 10.0
+bg_color = Color(0.7882353, 0.827451, 0.81960785, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.56078434, 0.6392157, 0.627451, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 12
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q3u8s"]
+draw_center = false
+border_color = Color(0.9607843, 0.7254902, 0.25882354, 1)
+
+[node name="LevelSelect" type="Control" unique_id=926725307]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oku38")
+
+[node name="TextureRect" type="ColorRect" parent="." unique_id=1399038497]
+material = SubResource("ShaderMaterial_3db7w")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect" unique_id=435782063]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer" unique_id=1593182459]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Header" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=74731378]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="BackButton" parent="TextureRect/MarginContainer/VBoxContainer/Header" unique_id=614178926 instance=ExtResource("1_3brj0")]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/Header" unique_id=336054068]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.105882354, 0.22745098, 0.36078432, 1)
+theme_override_font_sizes/font_size = 64
+text = "LEVEL_SELECT_TITLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/Header" unique_id=1685745046]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882354, 0.22745098, 0.36078432, 1)
+theme_override_font_sizes/font_size = 24
+text = "LEVEL_SELECT_PROGRESS"
+horizontal_alignment = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=477332463]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="TextureRect/MarginContainer/VBoxContainer/ScrollContainer" unique_id=432985974]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 5
+
+[node name="InfoPanel" type="PanelContainer" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=760158523]
+custom_minimum_size = Vector2(0, 125)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oku38")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer/InfoPanel" unique_id=730260908]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="InfoLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/InfoPanel/HBoxContainer" unique_id=360119337]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+
+[node name="PlayButton" parent="TextureRect/MarginContainer/VBoxContainer/InfoPanel/HBoxContainer" unique_id=443918039 instance=ExtResource("2_gyjqn")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 64)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.078431375, 0.34117648, 0.30980393, 1)
+theme_override_colors/font_focus_color = Color(0.078431375, 0.34117648, 0.30980393, 1)
+theme_override_colors/font_pressed_color = Color(0.078431375, 0.34117648, 0.30980393, 1)
+theme_override_colors/font_hover_color = Color(0.078431375, 0.34117648, 0.30980393, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.05490196, 0.2627451, 0.23921569, 1)
+theme_override_colors/font_disabled_color = Color(0.43137255, 0.5019608, 0.49019608, 1)
+theme_override_colors/icon_normal_color = Color(0.078431375, 0.34117648, 0.30980393, 1)
+theme_override_colors/icon_focus_color = Color(0.078431375, 0.34117648, 0.30980393, 1)
+theme_override_colors/icon_pressed_color = Color(0.078431375, 0.34117648, 0.30980393, 1)
+theme_override_colors/icon_hover_color = Color(0.078431375, 0.34117648, 0.30980393, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.05490196, 0.2627451, 0.23921569, 1)
+theme_override_colors/icon_disabled_color = Color(0.43137255, 0.5019608, 0.49019608, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_d1lq5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ghlii")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1aqkj")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_eu15o")
+theme_override_styles/focus = SubResource("StyleBoxFlat_q3u8s")
+text = "BUTTON_PLAY"
+icon = ExtResource("3_oku38")
+
+[connection signal="pressed" from="TextureRect/MarginContainer/VBoxContainer/Header/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="TextureRect/MarginContainer/VBoxContainer/InfoPanel/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+
+[editable path="TextureRect/MarginContainer/VBoxContainer/InfoPanel/HBoxContainer/PlayButton"]

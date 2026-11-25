@@ -15,6 +15,8 @@ var _margin = 1.4
 
 ## Distance between the camera and the target.
 var _distance : float = 0.0
+## Initial value of the distance (use for the reset)
+var _distance_init = 0.0
 
 ## Minimum camera distance from the targeted object.
 var _distance_min : float = 1.0
@@ -35,18 +37,25 @@ var _curr_selected_face_id : int = -1
 ## Magnitude of the camera shake.
 @export var magnitude = 0.1
 
+## Whether the camera is supposed to be rotating.
 var _rotating: bool = false
-var _rotation_speed: float = 0.5
+## Rotation speed.
+var _rotation_speed: float = 0.2
 
 ## Initializes the pitch so the camera stays above the target.
 func _ready() -> void:
 	_pitch = clampf(_pitch, deg_to_rad(10.0), deg_to_rad(80.0))
 	updatePositionCamera()
 
+## Called every frame. Handles camera rotation.
 func _process(delta: float) -> void:
 	if _rotating:
 		_yaw += _rotation_speed * delta
-		updatePositionCamera()
+		updatePositionCameraTransition()
+
+## Starts or stops automatic camera rotation.
+func _rotate() -> void:
+	_rotating = not _rotating
 
 ## Handles zoom, object selection, and fold dragging.
 func _input(event : InputEvent):
@@ -110,6 +119,38 @@ func updatePositionCamera() -> void :
 		global_position = (offset + position_target)
 		look_at(position_target,Vector3.UP)
 
+## Updates the camera position from its pitch, yaw, distance, and the average of the faces position of the target.
+func updatePositionCameraTransition() -> void:
+	if not is_instance_valid(_target):
+		return
+		
+	var offset = Vector3(
+		cos(_pitch) * sin(_yaw),
+		sin(_pitch),
+		cos(_pitch) * cos(_yaw)
+	) * _distance
+	
+	var position_target: Vector3
+	if _target.has_method("getAveragePosFace"):
+		position_target = _target.to_global(_target.getAveragePosFace())
+	else:
+		position_target = _target.global_position
+		
+	var start_pos: Vector3 = global_position
+	var end_pos: Vector3 = offset + position_target
+
+	var tween: Tween = create_tween()
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_method(
+		func(t: float) -> void:
+			global_position = start_pos.lerp(end_pos, t)
+			look_at(position_target, Vector3.UP),
+		0.0,
+		1.0,
+		3.0
+	)
+
 ## Initializes camera distance limits based on the target AABB.
 func focusOnTarget() -> void:
 	var aabb: AABB = _target.getPolycubeAABB()
@@ -120,6 +161,7 @@ func focusOnTarget() -> void:
 	
 	var radius: float = aabb.size.length() * 0.5
 	_distance = (radius * _margin) / sin(deg_to_rad(fov) * 0.5)
+	_distance_init= _distance
 	_distance_min = maxf(0.5, radius * 1.1)
 	_distance_max = maxf(10.0, _distance * 3.0)
 	_distance = clampf(_distance, _distance_min, _distance_max)
@@ -173,6 +215,25 @@ func shake() -> void :
 
 	self.transform = initial_transform
 
-## Starts or stops automatic camera rotation.
-func _rotate() -> void:
-	_rotating = not _rotating
+# Enable/Diseable player input for the camera
+func _switch_input_player() :
+	set_process_input(not is_processing_input())
+	set_process_unhandled_input(not is_processing_unhandled_input())
+
+# Reset the position of the camera with a transition
+func _reset_position_camera():
+	_yaw =  deg_to_rad(30.0)
+	_pitch =  deg_to_rad(30.0)
+	var aabb: AABB = _target.getPolycubeAABB()
+	if aabb.size == Vector3.ZERO:
+		return
+
+	var center: Vector3 = _target.to_global(aabb.get_center())
+	
+	var radius: float = aabb.size.length() * 0.5
+	_distance = (radius * _margin) / sin(deg_to_rad(fov) * 0.5)
+	_distance_init= _distance
+	_distance_min = maxf(0.5, radius * 1.1)
+	_distance_max = maxf(10.0, _distance * 3.0)
+	_distance = clampf(_distance, _distance_min, _distance_max)
+	updatePositionCameraTransition()
