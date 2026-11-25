@@ -30,7 +30,7 @@ Le jeu est développé avec Godot.
 
 ## Technologies utilisées
 
-- GodOwOt 
+- Godot 
 
 
 ## Fonctionnalités
