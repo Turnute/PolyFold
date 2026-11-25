@@ -24,10 +24,10 @@ func _ready() -> void:
 	TranslationServer.set_locale(locale)
 	Log.info(LOG_TAG + "Langue active : " + TranslationServer.get_locale())
 	
-	if !OS.has_feature("web"):
+	if OS.has_feature("web"):
+		get_window().mode = Window.MODE_MAXIMIZED
+	else:
 		_apply_window()
-		get_window().mode = Window.MODE_FULLSCREEN
-
 
 func set_locale(value: String) -> void:
 	locale = value
