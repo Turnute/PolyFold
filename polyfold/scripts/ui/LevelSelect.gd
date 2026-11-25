@@ -40,7 +40,7 @@ func _init_page() -> void:
 	var total_stars := 0
 		
 	for level in levels:
-		var stats := SaveLevelManager.get_all_stats(level)
+		var stats : Dictionary = SaveLevelManager.get_all_stats(level)
 		total_stars += stats["stars"]
 
 		var card := LEVEL_CARD_SCENE.instantiate()
