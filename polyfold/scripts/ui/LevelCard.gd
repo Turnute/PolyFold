@@ -6,7 +6,9 @@ extends Button
 @export var star_color_on := Color("#EF9F27")
 @export var star_color_off := Color("#B4B2A9")
 
-@onready var new_level_color := Color("4a8fd940")
+@export var new_level_color := Color("4a8fd940")
+
+@export var selected_border_color := Color(1.0, 0.85, 0.3)
 
 @onready var number_label: Label = $Margin/VBox/NumberLabel
 @onready var name_label: Label = $Margin/VBox/NameLabel
@@ -28,7 +30,7 @@ func _ready() -> void:
 ## [b]Parameters:[/b]
 ## [br]- [param number]: The level id
 ## [br]- [param name_key]: Translation key of the level name
-## [br]- [vbest_moves]: Best number of moves, or -1 if never completed
+## [br]- [param best_moves]: Best number of moves, or -1 if never completed
 ## [br]- [param best_time]: Best time in seconds, or -1 if never completed
 ## [br]- [param stars]: Number of stars won (0 to 3)
 ## [br]- [param locked]: true if the player cannot play this level
@@ -61,6 +63,28 @@ func setup(number: int, name_key: String, best_moves: int, best_time: int,
 	var color := text_color_locked if locked else text_color
 	for label in [number_label, name_label, moves_label, time_label, status_label]:
 		label.add_theme_color_override("font_color", color)
+
+
+## Shows or hides the selection highlight (thicker colored border).
+## [br][br]
+## [b]Parameters:[/b]
+## [br]- [param selected]: [code]true[/code] to highlight the card
+func set_selected(selected: bool) -> void:
+	for state in ["normal", "hover", "pressed"]:
+		var current := get_theme_stylebox(state)
+		var is_selected := current.has_meta("original")
+
+		if selected and not is_selected:
+			# Copy of the inspector style, only the border changes.
+			var style := current.duplicate() as StyleBoxFlat
+			style.border_color = selected_border_color
+			style.set_border_width_all(4)
+			style.set_meta("original", current)  # kept to restore it later
+			add_theme_stylebox_override(state, style)
+		elif not selected and is_selected:
+			# Put the inspector style back.
+			add_theme_stylebox_override(state, current.get_meta("original"))
+
 
 ## Color the stars (yellow = on (won) & grey = off).
 ## [br][br]

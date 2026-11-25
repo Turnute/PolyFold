@@ -11,10 +11,13 @@ const GAME_LEVEL_SCENE := preload("res://scenes/interfaces/GameLevel.tscn")
 @onready var info_label: Label = %InfoLabel
 @onready var progress_label: Label = %ProgressLabel
 
-## All levels loaded, arranged by id.
+## All levels loaded, arranged by id. 
 var _levels_by_id := {}
 ## Level actuelly selected (-1 = none).
 var _selected_id := -1
+## All cards instantiated, arranged by level id.
+var _cards_by_id := {}
+
 
 func _ready() -> void:
 	_init_page()
@@ -35,6 +38,8 @@ func _init_page() -> void:
 			continue
 		levels.append(level)
 
+	levels.sort_custom(func(a: LevelData, b: LevelData) -> bool: return a.id < b.id)
+
 	# create card
 	var locked := false  
 	var total_stars := 0
@@ -49,6 +54,7 @@ func _init_page() -> void:
 			stats["best_moves"], stats["best_time"], stats["stars"], locked)
 
 		_levels_by_id[level.id] = level
+		_cards_by_id[level.id] = card
 		card.level_chosen.connect(_on_level_chosen)
 		
 		if not locked : 
@@ -64,7 +70,12 @@ func _init_page() -> void:
 ## [b]Parameters:[/b]
 ## [br]- [param level_id]: The chosen level id
 func _on_level_chosen(level_id: int) -> void:
+	# Update highlight: unselect the previous card, select the new one.
+	if _cards_by_id.has(_selected_id):
+		_cards_by_id[_selected_id].set_selected(false)
 	_selected_id = level_id
+	_cards_by_id[level_id].set_selected(true)
+
 	var level: LevelData = _levels_by_id[level_id]
 
 	info_label.text = tr("LEVEL_INFO") % [
