@@ -36,3 +36,7 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("window_fullscreen"):
 		Settings.set_fullscreen(!Settings.fullscreen)
 		get_viewport().set_input_as_handled()
+
+
+func _on_help_button_pressed() -> void:
+	MenuManager._display_help(self)
