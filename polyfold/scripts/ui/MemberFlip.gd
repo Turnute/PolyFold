@@ -57,6 +57,7 @@ func _restore() -> void:
 
 
 func _spin() -> void:
+	Log.critical(" SCRUM MASTER SELECTED")
 	if _tween and _tween.is_running():
 		return
 	var half := duration / 2

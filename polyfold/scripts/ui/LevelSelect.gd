@@ -11,9 +11,9 @@ const GAME_LEVEL_SCENE := preload("res://scenes/interfaces/GameLevel.tscn")
 @onready var info_label: Label = %InfoLabel
 @onready var progress_label: Label = %ProgressLabel
 
-## Tous les niveaux chargés, rangés par id.
+## All levels loaded, arranged by id.
 var _levels_by_id := {}
-## Niveau actuellement sélectionné (-1 = aucun).
+## Level actuelly selected (-1 = none).
 var _selected_id := -1
 
 func _ready() -> void:
@@ -22,20 +22,20 @@ func _ready() -> void:
 func _on_back_button_pressed() -> void:
 	queue_free()
 
-## Initialise les cartes + progress & preselect
+## Initialise cards + progress & preselect
 func _init_page() -> void:
-	# récupérer et parser les fichiers
+	# load et parse files
 	var levels: Array[LevelData] = []
 	for file_name in ResourceLoader.list_directory(LEVELS_DIR):
 		if file_name.get_extension() != "tres":
 			continue
 		var level := load(LEVELS_DIR + file_name) as LevelData
 		if level == null:
-			Log.warn(LOG_TAG + "Fichier ignoré : " + file_name)
+			Log.warn(LOG_TAG + "Ignored file : " + file_name)
 			continue
 		levels.append(level)
 
-	# création card
+	# create card
 	var locked := false  
 	var total_stars := 0
 		
@@ -44,7 +44,7 @@ func _init_page() -> void:
 		total_stars += stats["stars"]
 
 		var card := LEVEL_CARD_SCENE.instantiate()
-		grid.add_child(card)  # avant setup(), pour que les @onready existent
+		grid.add_child(card)  # before setup(), then @onready exist
 		card.setup(level.id, "LEVEL_%d" % level.id,
 			stats["best_moves"], stats["best_time"], stats["stars"], locked)
 
@@ -57,19 +57,27 @@ func _init_page() -> void:
 	progress_label.text = tr("LEVEL_SELECT_PROGRESS") % [total_stars, levels.size() * 3]
 	_select_default_level(levels)
 
-## signal d'une carte ou présélection 
+## Show the info of the chosen level in the bottom panel.
+## [br][br]
+## Called by the [code]level_chosen[/code] signal of a card, or by the default selection.
+## [br][br]
+## [b]Parameters:[/b]
+## [br]- [param level_id]: The chosen level id
 func _on_level_chosen(level_id: int) -> void:
 	_selected_id = level_id
 	var level: LevelData = _levels_by_id[level_id]
 
 	info_label.text = tr("LEVEL_INFO") % [
-		level.id,                        # numéro
-		tr("LEVEL_%d" % level.id),       # nom
-		level.move_goal,                 # objectif de coups
-		_format_time(level.time_goal),   # objectif de temps
+		level.id,                        # number
+		tr("LEVEL_%d" % level.id),       # name
+		level.move_goal,                 # moves goal
+		_format_time(level.time_goal),   # time goal
 	]
 
-## Sélectionne le premier niveau pas encore réussi, sinon le dernier.
+## Select the first level not completed yet, else the last one.
+## [br][br]
+## [b]Parameters:[/b]
+## [br]- [param levels]: The levels, sorted by id
 func _select_default_level(levels: Array[LevelData]) -> void:
 	if levels.is_empty():
 		info_label.text = ""
@@ -78,7 +86,7 @@ func _select_default_level(levels: Array[LevelData]) -> void:
 		if not SaveLevelManager.is_completed(level.id):
 			_on_level_chosen(level.id)
 			return
-	_on_level_chosen(levels[-1].id)
+	_on_level_chosen(levels[-1].id) # all levels completed: select the last one
 
 # 75 -> 01:15
 func _format_time(seconds: int) -> String:
@@ -90,14 +98,13 @@ func _on_play_button_pressed() -> void:
 		return
 	var level: LevelData = _levels_by_id[_selected_id]
 
-	Log.info(LOG_TAG + "Lancement niveau %d (coups : %d, temps : %d)"
+	Log.info(LOG_TAG + "Level launched %d (moves : %d, time : %d)"
 		% [level.id, level.move_goal, level.time_goal])
-
 
 	var polycube = MenuManager._display_polycube(self, level.polycube_file.resource_path, 0, 0)
 	get_tree().change_scene_to_node(polycube)
 
-	# Crée la partie
+	# Initialise game
 	var game = MenuManager._display_game_level(
 		polycube,
 		GameLevel.gameMode.LEVEL,

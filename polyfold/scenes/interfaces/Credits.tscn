@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://ed68wp1468u7"]
 
-[ext_resource type="Script" uid="uid://dcf1hvgtq63hm" path="res://scripts/ui/Credit.gd" id="1_0x08i"]
+[ext_resource type="Script" uid="uid://dcf1hvgtq63hm" path="res://scripts/ui/Credits.gd" id="1_0x08i"]
 [ext_resource type="Shader" uid="uid://cgpjs6l2n1hqx" path="res://scenes/shaders/grid_background.gdshader" id="2_r2njd"]
 [ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="3_ugdtc"]
-[ext_resource type="Script" uid="uid://b3tel008fhgv6" path="res://scripts/ui/member_1.gd" id="4_5g4t3"]
+[ext_resource type="Script" uid="uid://b3tel008fhgv6" path="res://scripts/ui/MemberFlip.gd" id="4_5g4t3"]
 [ext_resource type="PackedScene" uid="uid://2la5g75kyjxf" path="res://prefabs/interfaces/BackButton.tscn" id="5_r2njd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3db7w"]

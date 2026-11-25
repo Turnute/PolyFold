@@ -21,13 +21,22 @@ var level_id := -1
 
 
 func _ready() -> void:
-	pressed.connect(func(): level_chosen.emit(level_id))
+	pass
 
+## Fill the card with the level data.
+## [br][br]
+## [b]Parameters:[/b]
+## [br]- [param number]: The level id
+## [br]- [param name_key]: Translation key of the level name
+## [br]- [vbest_moves]: Best number of moves, or -1 if never completed
+## [br]- [param best_time]: Best time in seconds, or -1 if never completed
+## [br]- [param stars]: Number of stars won (0 to 3)
+## [br]- [param locked]: true if the player cannot play this level
 func setup(number: int, name_key: String, best_moves: int, best_time: int,
 		stars: int, locked: bool) -> void:
 
 	level_id = number
-	
+
 	var completed := best_moves != -1
 	number_label.text = str(number)
 	name_label.text = tr(name_key)
@@ -53,12 +62,16 @@ func setup(number: int, name_key: String, best_moves: int, best_time: int,
 	for label in [number_label, name_label, moves_label, time_label, status_label]:
 		label.add_theme_color_override("font_color", color)
 
-
+## Color the stars (yellow = on (won) & grey = off).
+## [br][br]
+## [b]Parameters:[/b]
+## [br]- [param count]: Number of stars won
 func _set_stars(count: int) -> void:
 	for i in stars_box.get_child_count():
 		var star := stars_box.get_child(i) as TextureRect
 		star.self_modulate = star_color_on if i < count else star_color_off
 
+## Style apply on text for new level
 func _make_badge(color: Color) -> StyleBoxFlat:
 	var box := StyleBoxFlat.new()
 	box.bg_color = color
@@ -69,5 +82,10 @@ func _make_badge(color: Color) -> StyleBoxFlat:
 	box.content_margin_bottom = 2
 	return box
 
+## ex : 75 -> 01:15
 func _format_time(seconds: int) -> String:
 	return "%02d:%02d" % [seconds / 60, seconds % 60]
+
+
+func _on_pressed() -> void:
+	level_chosen.emit(level_id)
