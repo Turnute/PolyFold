@@ -8,16 +8,17 @@ BACK,Retour,Back,Atrás
 HELP,Aide,Help,Ayuda
 ABOUT,A propos du jeu ,About the Game,Sobre el juego
 GAME_LEVEL_NAME,Niveau %d,Level %d,Nivel %d
-GAME_LEVEL_NAME_CUSTOM,Partie personnalisé,Custom game,Partida personalizada
+GAME_LEVEL_NAME_CUSTOM,Partie personnalisée,Custom game,Partida personalizada
 GAME_LEVEL_MOVE,%d coups,%d moves,%d movimientos
-GAME_LEVEL_GOAL,Objectif : %s,Goal : %s,Objetivo : %s
+GAME_LEVEL_GOAL,Objectif : %s,Goal: %s,Objetivo: %s
 GAME_LEVEL_UNDO,Annuler,Undo,Deshacer
 GAME_LEVEL_REDO,Refaire,Redo,Rehacer
 PAUSE,Pause,Pause,Pausa
 PAUSE_RESUME,Reprendre partie,Resume game,Reanudar partida
 PAUSE_SETTINGS,Paramètres,Settings,Ajustes
 PAUSE_HELP,Aide,Help,Ayuda
-PAUSE_LEAVE,Quitter la partie,Leave the game,Salir del juego
+PAUSE_RESET,Réinitialiser le niveau,Reset level,Reiniciar el nivel
+PAUSE_LEAVE,Quitter la partie,Leave game,Salir del juego
 OPTION_TITLE,Options,Options,Opciones
 OPTION_LABEL_LANG,Langues,Langages,Lenguajes
 OPTION_LABEL_RES,Résolutions,Resolutions,Resoluciones
@@ -28,7 +29,7 @@ OPTION_CONTROLS_PAUSE,Pause/Retour,Pause/Return,Pausa/Volver
 OPTION_CONTROLS_UNDO,Annuler,Undo,Deshacer
 OPTION_CONTROLS_REDO,Refaire,Redo,Rehacer
 OPTION_CONTROLS_FULLSCREEN,Mode plein écran,Full-screen mode,Modo pantalla completa
-HELP_TITLE,Comment jouer ?,How to play ?,¿Cómo jugar?
+HELP_TITLE,Comment jouer ?,How to play?,¿Cómo jugar?
 HELP_OBJECTIVE,Objectif,Objective,Objetivo
 HELP_OBJECTIVE_DESCRIPTION,"Déplie toutes les faces de chaque cube du polycube, et cela sans recouvrement !","Unfold all the faces of each cube in the polycube, without any overlap !","Despliega todas las caras de cada cubo del policubo, ¡sin que ninguna se solape!"
 HELP_METHOD,Méthode,Method,Método
@@ -41,13 +42,13 @@ HELP_RULES_2,Les faces dépliées ne doivent jamais se chevaucher.,The unfolded 
 HELP_RULES_3,Déplier une face entraîne avec elle toutes les faces déjà dépliées sur le même plan.,Unfolding a face carries along with it all the faces already unfolded on the same plane.,Desplegar una cara arrastra consigo todas las caras ya desplegadas en el mismo plano.
 HELP_RULES_4,"Il est possible d'annuler un coup grâce au bouton ""%s"" et d'annuler ce retour en arrière grâce au bouton ""%s"".","It is possible to undo a move using the ""%s"" button, and to reverse that undo action using the ""%s"" button.",Es posible deshacer un movimiento mediante el botón «%s» y anular este retroceso mediante el botón «%s».
 HELP_RULES_5,Le niveau est réussi quand toutes les faces sont à plat.,The level is successfully completed when all the faces are lying flat.,El nivel se supera cuando todas las caras están planas.
-HELP_CONFIRM,Compris !,Understood !,Si senor
+HELP_CONFIRM,Compris !,Understood!,Si senor
 GAME_MODE_CHOICE_TITLE,Choix du mode,Game Mode,Modo de juego
 GAME_MODE_LEVEL,Niveaux,Levels,Niveles
 GAME_MODE_PUZZLE,Puzzle,Puzzle,Puzle
 GAME_MODE_ENDLESS,Infini,Endless,Infinito
 GAME_MODE_CUSTOM,Personnalisé,Custom,Personalizado
-GAME_PARAM_CUSTOM_TITLE,Partie personnalisé,Custom Game,Partida personalizada
+GAME_PARAM_CUSTOM_TITLE,Partie personnalisée,Custom Game,Partida personalizada
 GAME_PARAM_CUSTOM_POLYCUBE,Paramètres du polycube,Polycube parameters,Parámetros del policubo
 GAME_PARAM_CUSTOM_CUBE,Nombre de cube(s),Number of cube(s),Número de cubos
 GAME_PARAM_CUSTOM_ADJ,Adjacence maximale,Maximum adjacency,Adyacencia máxima
@@ -67,15 +68,17 @@ CREDIT_CONTEXT_CONTENT,Projet réalisé dans le cadre du Master Informatique –
 CREDIT_THANKS,Remerciements,Acknowledgements,Agradecimientos
 CREDIT_THANKS_CONTENT,"Nous remercions M. Éric Andres, Professeur des Universités au laboratoire XLIM (Université de Poitiers), pour son encadrement.","We thank Mr. Éric Andres, Full Professor at the XLIM laboratory (University of Poitiers), for his supervision.","Agradecemos al Sr. Éric Andres, catedrático del laboratorio XLIM (Universidad de Poitiers), por su supervisión."
 CREDIT_LICENCE,Réalisé avec Godot Engine (licence MIT),Made with Godot Engine (MIT License),Hecho con Godot Engine (licencia MIT)
-FINISH_TITLE,Partie terminée !,Game Finished !,¡Partida terminada!
+FINISH_TITLE,Partie terminée !,Game Finished!,¡Partida terminada!
 FINISH_GOALS,Objectifs,Goals,Objetivos
 FINISH_GOALS_TIME,Finir en %s,Finish in %s,Terminar en %s
 FINISH_GOALS_TIME_NONE,Pas d'objectif de temps,No time goal,Sin objetivo de tiempo
 FINISH_GOALS_MOVES,Finir en %d coups,Finish in %d moves,Terminar en %d movimientos
 FINISH_GOALS_MOVES_NONE,Pas d'objectif de coups,No moves goal,Sin objetivo de golpes
 FINISH_STATS_UNDO,Annulations,Undo,Deshacer
-LEVEL_SELECT_PROGRESS,Étoiles : %d / %d,Stars: %d / %d,Estrellas: %d / %d
 FINISH_STATS_REDO,Rétablissements,Redo,Rehacer
+FINISH_NEXT,Prochain niveau,Next level,Siguiente nivel
+FINISH_MENU,Retour au menu principal,Return to main menu,Volver al menú principal
+LEVEL_SELECT_PROGRESS,Étoiles : %d / %d,Stars: %d / %d,Estrellas: %d / %d
 LEVEL_SELECT_TITLE,Choix du niveau,Level select,Selección de nivel
 LEVEL_LOCKED,Verrouillé,Locked,Bloqueado
 LEVEL_NEW,Nouveau,New,Nuevo
