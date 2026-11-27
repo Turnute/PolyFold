@@ -59,11 +59,9 @@ static func _display_game_level(parent : Node, mode: GameLevel.gameMode, level_n
 ## 
 static func _display_polycube(parent : Node, data_str : String, nb_cubes : int, max_adj : int) -> Node3D :
 	Log.info(LOG_TAG + "Display Polycube")
-	if(!data_str.is_empty()) :
-		SpawnPolycube.data_str = data_str
-	else :
-		SpawnPolycube.nb_cubes = nb_cubes
-		SpawnPolycube.max_adj = max_adj
+	SpawnPolycube.data_str = data_str
+	SpawnPolycube.nb_cubes = nb_cubes
+	SpawnPolycube.max_adj = max_adj
 	var polycube = load(GAME_SCENE).instantiate()
 	return polycube
 	
