@@ -1,0 +1,53 @@
+name: Publier Polyfold sur Pages
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Télécharger et extraire l’export web
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          if [ -z "$RELEASE_TAG" ]; then
+            RELEASE_TAG="$(gh release view \
+              --repo "$GITHUB_REPOSITORY" \
+              --json tagName --jq '.tagName')"
+          fi
+
+          gh release download "$RELEASE_TAG" \
+            --repo "$GITHUB_REPOSITORY" \
+            --pattern "polyfold-web.zip"
+
+          unzip polyfold-web.zip -d public
+          test -f public/index.html
+
+      - name: Configurer Pages
+        uses: actions/configure-pages@v5
+
+      - name: Envoyer les fichiers
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: public
+
+      - name: Publier
+        id: deployment
+        uses: actions/deploy-pages@v4
