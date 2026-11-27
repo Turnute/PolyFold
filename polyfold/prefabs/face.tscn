@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://1lrt3yilpr45"]
 
-[ext_resource type="Script" uid="uid://dnwcpw40uv4ae" path="res://scripts/polycubeDataStructure/Face.gd" id="1_4gycn"]
+[ext_resource type="Script" uid="uid://dnwcpw40uv4ae" path="res://scripts/polycube/Face.gd" id="1_4gycn"]
+[ext_resource type="Material" uid="uid://cug4t0fydfdr6" path="res://materials/WireframeMaterial.tres" id="2_vbuov"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbuov"]
 
@@ -12,7 +13,38 @@ size = Vector3(1, 0.05, 1)
 size = Vector3(1, 0.05, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sxki6"]
-size = Vector3(0.98, 0.005, 0.98)
+size = Vector3(1, 0.005, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m7ri8"]
+material = ExtResource("2_vbuov")
+size = Vector3(0.99, 0.01, 0.01)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8uy76"]
+material = ExtResource("2_vbuov")
+size = Vector3(0.99, 0.01, 0.01)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wqvgw"]
+material = ExtResource("2_vbuov")
+size = Vector3(0.01, 0.01, 0.99)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kjnlj"]
+material = ExtResource("2_vbuov")
+size = Vector3(0.01, 0.01, 0.99)
+
+[sub_resource type="BoxMesh" id="BoxMesh_huy67"]
+material = ExtResource("2_vbuov")
+size = Vector3(0.01, 0.05, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m7ri8"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sxki6"]
+material = SubResource("StandardMaterial3D_m7ri8")
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.5
 
 [node name="Face" type="Node3D" unique_id=503661519]
 script = ExtResource("1_4gycn")
@@ -38,3 +70,84 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25994843, 0)
 visible = false
 pixel_size = 0.01
 text = "Test"
+
+[node name="Wireframe" type="Node3D" parent="." unique_id=1503352745]
+visible = false
+
+[node name="TopPart" type="Node3D" parent="Wireframe" unique_id=1352623922]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+
+[node name="Top" type="MeshInstance3D" parent="Wireframe/TopPart" unique_id=1789053876]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+mesh = SubResource("BoxMesh_m7ri8")
+
+[node name="Bottom" type="MeshInstance3D" parent="Wireframe/TopPart" unique_id=1972787823]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+mesh = SubResource("BoxMesh_8uy76")
+
+[node name="Left" type="MeshInstance3D" parent="Wireframe/TopPart" unique_id=226719251]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+mesh = SubResource("BoxMesh_wqvgw")
+
+[node name="Right" type="MeshInstance3D" parent="Wireframe/TopPart" unique_id=319748928]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+mesh = SubResource("BoxMesh_kjnlj")
+
+[node name="BottomPart" type="Node3D" parent="Wireframe" unique_id=399920843]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02, 0)
+
+[node name="Top" type="MeshInstance3D" parent="Wireframe/BottomPart" unique_id=1775979334]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+mesh = SubResource("BoxMesh_m7ri8")
+
+[node name="Bottom" type="MeshInstance3D" parent="Wireframe/BottomPart" unique_id=377039622]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+mesh = SubResource("BoxMesh_8uy76")
+
+[node name="Left" type="MeshInstance3D" parent="Wireframe/BottomPart" unique_id=1770953926]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+mesh = SubResource("BoxMesh_wqvgw")
+
+[node name="Right" type="MeshInstance3D" parent="Wireframe/BottomPart" unique_id=1664636267]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+mesh = SubResource("BoxMesh_kjnlj")
+
+[node name="Corners" type="Node3D" parent="Wireframe" unique_id=94444577]
+
+[node name="TopLeft" type="MeshInstance3D" parent="Wireframe/Corners" unique_id=2114168371]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
+mesh = SubResource("BoxMesh_huy67")
+
+[node name="TopRight" type="MeshInstance3D" parent="Wireframe/Corners" unique_id=1524948930]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
+mesh = SubResource("BoxMesh_huy67")
+
+[node name="BotLeft" type="MeshInstance3D" parent="Wireframe/Corners" unique_id=747715353]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)
+mesh = SubResource("BoxMesh_huy67")
+
+[node name="BotRight" type="MeshInstance3D" parent="Wireframe/Corners" unique_id=795952265]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+mesh = SubResource("BoxMesh_huy67")
+
+[node name="Hinges" type="Node3D" parent="." unique_id=2116710333]
+
+[node name="TopHinge" type="MeshInstance3D" parent="Hinges" unique_id=706964207]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.5, 0, 0)
+visible = false
+mesh = SubResource("CylinderMesh_sxki6")
+
+[node name="BotHinge" type="MeshInstance3D" parent="Hinges" unique_id=1406393573]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.5, 0, 0)
+visible = false
+mesh = SubResource("CylinderMesh_sxki6")
+
+[node name="LeftHinge" type="MeshInstance3D" parent="Hinges" unique_id=395357633]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, -0.5)
+visible = false
+mesh = SubResource("CylinderMesh_sxki6")
+
+[node name="RightHinge" type="MeshInstance3D" parent="Hinges" unique_id=589052531]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0.5)
+visible = false
+mesh = SubResource("CylinderMesh_sxki6")

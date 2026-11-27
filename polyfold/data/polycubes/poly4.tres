@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PolycubeData" format=3 uid="uid://bxdkkpawqtk60"]
+
+[ext_resource type="Script" uid="uid://dc4v6f25cghss" path="res://scripts/data/PolycubeData.gd" id="1_netxf"]
+
+[resource]
+script = ExtResource("1_netxf")
+cube_matrix = Array[Vector3i]([Vector3i(0, 0, 0), Vector3i(0, 1, 0), Vector3i(0, 1, -1), Vector3i(0, 1, -2), Vector3i(0, 2, -2), Vector3i(0, 2, 0), Vector3i(0, 3, 0), Vector3i(0, 3, 1), Vector3i(0, 3, 2), Vector3i(0, 4, 2), Vector3i(0, 4, 0), Vector3i(0, 5, 0)])
+metadata/_custom_type_script = "uid://dc4v6f25cghss"

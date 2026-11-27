@@ -1,15 +1,34 @@
 [gd_scene format=3 uid="uid://etyjpv1ewey2"]
 
-[ext_resource type="PackedScene" uid="uid://qhkdy28iiy6r" path="res://prefabs/interfaces/SettingsPanel.tscn" id="1_ims5e"]
-[ext_resource type="Script" uid="uid://ceeruxsx71axk" path="res://scripts/prefabs/SettingsPage.gd" id="1_sdea2"]
+[ext_resource type="Script" uid="uid://dki35c2uee0uk" path="res://scripts/ui/SettingsPage.gd" id="1_sdea2"]
 [ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="2_4rudf"]
+[ext_resource type="Shader" uid="uid://cgpjs6l2n1hqx" path="res://scenes/shaders/grid_background.gdshader" id="2_jg0ql"]
+[ext_resource type="PackedScene" uid="uid://ddxs8yj81gjjr" path="res://prefabs/interfaces/CommandButton.tscn" id="4_2rmw2"]
+[ext_resource type="PackedScene" uid="uid://2la5g75kyjxf" path="res://prefabs/interfaces/BackButton.tscn" id="5_2rmw2"]
 
-[sub_resource type="Gradient" id="Gradient_qoor0"]
-offsets = PackedFloat32Array(0, 0.8697271)
-colors = PackedColorArray(0.5146108, 0.8251347, 0.34318286, 1, 1, 1, 1, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3db7w"]
+shader = ExtResource("2_jg0ql")
+shader_parameter/color_top = Color(0.18431373, 0.47843137, 0.22745098, 1)
+shader_parameter/color_bottom = Color(0.56078434, 0.85882354, 0.41568628, 1)
+shader_parameter/cell_size = 48.0
+shader_parameter/speed = 12.0
+shader_parameter/line_width = 1.5
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_w5dhp"]
-gradient = SubResource("Gradient_qoor0")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jg0ql"]
+bg_color = Color(0.83137256, 0.96862745, 0.7607843, 0.3764706)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="FontVariation" id="FontVariation_jg0ql"]
+base_font = ExtResource("2_4rudf")
+variation_embolden = 1.0
 
 [sub_resource type="FontVariation" id="FontVariation_hlm2k"]
 base_font = ExtResource("2_4rudf")
@@ -18,6 +37,9 @@ base_font = ExtResource("2_4rudf")
 font = SubResource("FontVariation_hlm2k")
 font_size = 48
 font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_26cg0"]
+base_font = ExtResource("2_4rudf")
 
 [sub_resource type="FontVariation" id="FontVariation_u8y58"]
 base_font = ExtResource("2_4rudf")
@@ -28,6 +50,9 @@ font_size = 26
 font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
 
 [sub_resource type="FontVariation" id="FontVariation_u716c"]
+base_font = ExtResource("2_4rudf")
+
+[sub_resource type="FontVariation" id="FontVariation_2rmw2"]
 base_font = ExtResource("2_4rudf")
 
 [sub_resource type="FontVariation" id="FontVariation_mywkd"]
@@ -44,6 +69,17 @@ base_font = ExtResource("2_4rudf")
 [sub_resource type="FontVariation" id="FontVariation_4rudf"]
 base_font = ExtResource("2_4rudf")
 
+[sub_resource type="FontVariation" id="FontVariation_usbuj"]
+base_font = ExtResource("2_4rudf")
+
+[sub_resource type="FontVariation" id="FontVariation_gy52r"]
+base_font = ExtResource("2_4rudf")
+
+[sub_resource type="LabelSettings" id="LabelSettings_yubtp"]
+font = SubResource("FontVariation_gy52r")
+font_size = 20
+font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+
 [node name="Settings" type="Control" unique_id=2113557474]
 layout_mode = 3
 anchors_preset = 15
@@ -53,50 +89,188 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sdea2")
 
-[node name="Background" type="TextureRect" parent="." unique_id=468131612]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=184894342]
+material = SubResource("ShaderMaterial_3db7w")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.1113402, 1.1577446)
-texture = SubResource("GradientTexture1D_w5dhp")
+mouse_filter = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=21842175]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 0
+offset_left = 676.0
+offset_top = 234.0
+offset_right = 1244.0
+offset_bottom = 846.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SettingsPanel" parent="CenterContainer" unique_id=806210726 instance=ExtResource("1_ims5e")]
+[node name="SettingsPanel" type="PanelContainer" parent="CenterContainer" unique_id=806210726]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(420, 0)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jg0ql")
 
-[node name="Title" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(806210726, 556982979) index="0" unique_id=1850417253]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/SettingsPanel" unique_id=1809685219]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/SettingsPanel/MarginContainer" unique_id=556982979]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" unique_id=1850417253]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_jg0ql")
+theme_override_font_sizes/font_size = 64
+text = "OPTION_TITLE"
 label_settings = SubResource("LabelSettings_llpt4")
+horizontal_alignment = 1
 
-[node name="LangLabel" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(806210726, 556982979) index="1" unique_id=1085991999]
+[node name="LangLabel" type="Label" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" unique_id=1085991999]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+theme_override_fonts/font = SubResource("FontVariation_26cg0")
+theme_override_font_sizes/font_size = 26
+text = "OPTION_LABEL_LANG"
 label_settings = SubResource("LabelSettings_7spiv")
 
-[node name="LangSelect" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(806210726, 556982979) index="2" unique_id=1083023603]
+[node name="LangSelect" type="OptionButton" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" unique_id=1083023603]
+unique_name_in_owner = true
+layout_mode = 2
 theme_override_fonts/font = SubResource("FontVariation_u716c")
+theme_override_font_sizes/font_size = 24
 
-[node name="ResLabel" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(806210726, 556982979) index="4" unique_id=1991952277]
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" unique_id=1418767932]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+
+[node name="ResLabel" type="Label" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" unique_id=1991952277]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+theme_override_fonts/font = SubResource("FontVariation_2rmw2")
+theme_override_font_sizes/font_size = 26
+text = "OPTION_LABEL_RES"
 label_settings = SubResource("LabelSettings_pcpot")
 
-[node name="ResSelect" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(806210726, 556982979) index="5" unique_id=716209483]
+[node name="ResSelect" type="OptionButton" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" unique_id=716209483]
+unique_name_in_owner = true
+layout_mode = 2
 theme_override_fonts/font = SubResource("FontVariation_otiot")
+theme_override_font_sizes/font_size = 24
 
-[node name="FullscreenCheck" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(806210726, 556982979) index="6" unique_id=826618835]
+[node name="FullscreenCheck" type="CheckBox" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" unique_id=826618835]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
 theme_override_colors/font_focus_color = Color(0.24705882, 0.49803922, 0.6666667, 1)
 theme_override_colors/font_pressed_color = Color(0.11764706, 0.27058825, 0.3764706, 1)
 theme_override_colors/font_hover_color = Color(0.24705882, 0.49803922, 0.6666667, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.20784314, 0.42745098, 0.5803922, 1)
 theme_override_colors/font_disabled_color = Color(0.54901963, 0.6, 0.6313726, 1)
 theme_override_fonts/font = SubResource("FontVariation_4rudf")
+theme_override_font_sizes/font_size = 24
+text = "OPTION_CHECK_FULLSCREEN"
 
-[editable path="CenterContainer/SettingsPanel"]
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" unique_id=464483858]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+
+[node name="CommandLabel" type="Label" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" unique_id=1292598309]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
+theme_override_fonts/font = SubResource("FontVariation_usbuj")
+theme_override_font_sizes/font_size = 26
+text = "OPTION_LABEL_COMMAND"
+
+[node name="ControlsContainer" type="MarginContainer" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" unique_id=627588187]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="Controls" type="VBoxContainer" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer" unique_id=646191610]
+layout_mode = 2
+
+[node name="Pause_return" type="HBoxContainer" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls" unique_id=1571610625]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="name" type="Label" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Pause_return" unique_id=340847858]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "OPTION_CONTROLS_PAUSE"
+label_settings = SubResource("LabelSettings_yubtp")
+
+[node name="CommandButton" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Pause_return" unique_id=614178926 instance=ExtResource("4_2rmw2")]
+layout_mode = 2
+action = &"ui_cancel"
+
+[node name="Undo" type="HBoxContainer" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls" unique_id=1879520233]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="name" type="Label" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Undo" unique_id=677557699]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "OPTION_CONTROLS_UNDO"
+label_settings = SubResource("LabelSettings_yubtp")
+
+[node name="CommandButton" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Undo" unique_id=606455343 instance=ExtResource("4_2rmw2")]
+layout_mode = 2
+action = &"ui_undo"
+
+[node name="Redo" type="HBoxContainer" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls" unique_id=452220303]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="name" type="Label" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Redo" unique_id=679322501]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "OPTION_CONTROLS_REDO"
+label_settings = SubResource("LabelSettings_yubtp")
+
+[node name="CommandButton" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Redo" unique_id=1353577209 instance=ExtResource("4_2rmw2")]
+layout_mode = 2
+action = &"ui_redo"
+
+[node name="Fullscreen" type="HBoxContainer" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls" unique_id=1991046334]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="name" type="Label" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Fullscreen" unique_id=358116071]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "OPTION_CONTROLS_FULLSCREEN"
+label_settings = SubResource("LabelSettings_yubtp")
+
+[node name="CommandButton" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ControlsContainer/Controls/Fullscreen" unique_id=596088172 instance=ExtResource("4_2rmw2")]
+layout_mode = 2
+action = &"window_fullscreen"
+
+[node name="HSeparator3" type="HSeparator" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" unique_id=854569780]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BackButton" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer" unique_id=1201228055 instance=ExtResource("5_2rmw2")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+
+[connection signal="item_selected" from="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/LangSelect" to="." method="_on_lang_select_item_selected"]
+[connection signal="item_selected" from="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/ResSelect" to="." method="_on_res_select_item_selected"]
+[connection signal="toggled" from="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/FullscreenCheck" to="." method="_on_fullscreen_check_toggled"]
+
 [editable path="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/BackButton"]

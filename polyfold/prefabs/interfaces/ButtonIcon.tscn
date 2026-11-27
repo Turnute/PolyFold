@@ -55,10 +55,11 @@ corner_radius_bottom_left = 50
 [node name="button" type="Button" unique_id=1009220721]
 offset_right = 80.0
 offset_bottom = 80.0
+theme_override_colors/font_disabled_color = Color(0.17254902, 0.35686275, 0.4862745, 0.5254902)
 theme_override_colors/icon_normal_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
 theme_override_colors/icon_pressed_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
 theme_override_colors/icon_hover_color = Color(0.17254902, 0.35686275, 0.4862745, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+theme_override_colors/icon_disabled_color = Color(0.17254902, 0.35686275, 0.4862745, 0.5254902)
 theme_override_styles/normal = SubResource("StyleBoxFlat_6uj72")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_og51k")
 theme_override_styles/hover = SubResource("StyleBoxFlat_st8hq")

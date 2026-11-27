@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://bhjm1ljk1p20o"]
 
-[ext_resource type="Script" uid="uid://djuhftwah1bay" path="res://scripts/interfaces/help_menu.gd" id="1_vq8ek"]
-[ext_resource type="Shader" uid="uid://duvqdhtdslif7" path="res://scenes/interfaces/flou.gdshader" id="2_jn8xe"]
-[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://Assets/fonts/Oswald-VariableFont_wght.ttf" id="3_ejxdo"]
+[ext_resource type="Script" uid="uid://djuhftwah1bay" path="res://scripts/ui/HelpMenu.gd" id="1_vq8ek"]
+[ext_resource type="Shader" uid="uid://duvqdhtdslif7" path="res://scenes/shaders/flou.gdshader" id="2_jn8xe"]
+[ext_resource type="FontFile" uid="uid://bi2jok75ve7nd" path="res://assets/fonts/Oswald-VariableFont_wght.ttf" id="3_ejxdo"]
 [ext_resource type="PackedScene" uid="uid://c53y36ip3fu05" path="res://prefabs/interfaces/ButtonIcon.tscn" id="4_s2upg"]
-[ext_resource type="Texture2D" uid="uid://dy8g7kwgessfn" path="res://Assets/img/cube.png" id="5_e6p4f"]
-[ext_resource type="Texture2D" uid="uid://bccf42jcxiqux" path="res://Assets/icons/arrow_right.svg" id="6_wmrcs"]
-[ext_resource type="Texture2D" uid="uid://cgharmp512eja" path="res://Assets/img/patron.png" id="7_wgidi"]
-[ext_resource type="Texture2D" uid="uid://dfhky7jfnowe3" path="res://Assets/icons/checkmark.svg" id="8_7g5cy"]
+[ext_resource type="Texture2D" uid="uid://dy8g7kwgessfn" path="res://assets/img/cube.png" id="5_e6p4f"]
+[ext_resource type="Texture2D" uid="uid://bccf42jcxiqux" path="res://assets/icons/arrow_right.svg" id="6_wmrcs"]
+[ext_resource type="Texture2D" uid="uid://cgharmp512eja" path="res://assets/img/patron.png" id="7_wgidi"]
+[ext_resource type="Texture2D" uid="uid://dfhky7jfnowe3" path="res://assets/icons/checkmark.svg" id="8_7g5cy"]
 [ext_resource type="PackedScene" uid="uid://4s33upjasyn5" path="res://prefabs/interfaces/NavButton.tscn" id="9_re7ix"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l2mhy"]
@@ -38,9 +38,8 @@ variation_opentype = {
 font = SubResource("FontVariation_s2alt")
 font_size = 45
 
-[sub_resource type="DPITexture" id="DPITexture_k4h7x"]
-_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"none\" viewBox=\"0 0 16 16\"><path fill=\"#ffffff\" d=\"M12.293 2.293a1 1 0 0 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 1 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 1 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 1 1 1.414-1.414L8 6.586z\"/></svg>"
-fix_alpha_border = true
+[sub_resource type="DPITexture" id="DPITexture_1dkps"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"none\" viewBox=\"0 0 16 16\"><path fill=\"#e0e0e0\" d=\"M12.293 2.293a1 1 0 0 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 1 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 1 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 1 1 1.414-1.414L8 6.586z\"/></svg>"
 base_scale = 2.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2y1bh"]
@@ -233,7 +232,7 @@ custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-icon = SubResource("DPITexture_k4h7x")
+icon = SubResource("DPITexture_1dkps")
 
 [node name="VSeparator3" type="VSeparator" parent="Menu/VBoxContainer/top" unique_id=522260528]
 layout_mode = 2
@@ -532,17 +531,14 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_2y1bh")
 custom_minimum_size = Vector2(300, 64)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.7254902, 0.8666667, 0.93333334, 1)
+theme_override_colors/font_pressed_color = Color(0.7254902, 0.8666667, 0.93333334, 1)
+theme_override_colors/font_hover_color = Color(0.7254902, 0.8666667, 0.93333334, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_fjnws")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_2lfh7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_lujq8")
-
-[node name="Icon" parent="Menu/VBoxContainer/confirm/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="0" unique_id=1591882090]
-custom_minimum_size = Vector2(0, 0)
-
-[node name="Text" parent="Menu/VBoxContainer/confirm/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(614178926, 1873338246) index="1" unique_id=296136175]
-theme_override_colors/font_color = Color(0.7254902, 0.8666667, 0.93333334, 1)
 text = "HELP_CONFIRM"
-horizontal_alignment = 1
+alignment = 1
 
 [connection signal="pressed" from="Menu/VBoxContainer/top/close_button" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/confirm" to="." method="_on_confirm_pressed"]
